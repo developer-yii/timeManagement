@@ -1,0 +1,13 @@
+.invalid-feedback{display:block;}
+.error{color: #fa5c7c;}
+.daterangepicker {
+	z-index: 10000 !important;
+}
+.fc-event{
+	padding: 0px !important;
+}
+
+.monthly_view_table table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
