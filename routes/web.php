@@ -56,6 +56,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/get', 'StudentTimeLogController@get')->name('student-time-log.list');
         Route::post('/addupdate', 'StudentTimeLogController@addupdate')->name('student-time-log.addupdate');
         Route::post('/delete', 'StudentTimeLogController@delete')->name('student-time-log.delete');
+        Route::get('/timelog/search', 'StudentTimeLogController@logSearch')->name('student-time-log.search');
     });
 
     Route::group(['prefix' => 'holiday'], function () {

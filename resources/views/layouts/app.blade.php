@@ -100,17 +100,8 @@
                                     <a href="{{ route('student-time-log') }}">Calendar View</a>
                                 </li>
                                 <li>
-                                    <a href="crm-projects.html">Project</a>
-                                </li>
-                                <li>
-                                    <a href="crm-orders-list.html">Orders List</a>
-                                </li>
-                                <li>
-                                    <a href="crm-clients.html">Clients</a>
-                                </li>
-                                <li>
-                                    <a href="crm-management.html">Management</a>
-                                </li>
+                                    <a href="{{ route('student-time-log.monthly_view') }}">Monthly View</a>
+                                </li>                                
                             </ul>
                         </div>
                     </li>
