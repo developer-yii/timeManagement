@@ -84,26 +84,35 @@ class StudentTimeLogController extends Controller
             ->where('user_id',$user_id)
             ->get();
 
-        $month = '07';
-        $year = '2022';
+        // $month = date("m");
+        // $year = date("Y");
         
-        $days = cal_days_in_month(CAL_GREGORIAN,$month,$year);
+        // $days = cal_days_in_month(CAL_GREGORIAN,$month,$year);
 
-        $student_subject_log = StudentTimeLog::query()
-            ->join('students','students.id','=','student_time_log.student_id')
-            ->join('subjects','subjects.id','=','student_time_log.subject_id')
-            ->where('student_time_log.user_id',$user_id)
-            ->whereYear('log_date', '=', $year)
-            ->whereMonth('log_date', '=', $month)
-            ->get();
+        // $student_subject_log = StudentTimeLog::query()
+        //     ->join('students','students.id','=','student_time_log.student_id')
+        //     ->join('subjects','subjects.id','=','student_time_log.subject_id')
+        //     ->where('student_time_log.user_id',$user_id)
+        //     ->whereYear('log_date', '=', $year)
+        //     ->whereMonth('log_date', '=', $month)
+        //     ->get();
 
-        $student_log_data = array();
-        foreach($student_subject_log as $slist){
-            $student_log_data[$slist['student_id'].'-'.$slist['subject_id'].'-'.date('d',strtotime($slist['log_date']))] = $slist[
-                'log_time'];
-        }
+        // $student_attendances = StudentTimeLog::query()
+        //         ->where('student_time_log.user_id',$user_id)
+        //         ->where('student_id',$student_subject_log[0]->student_id)
+        //         ->whereYear('log_date', '=', $year)
+        //         ->whereMonth('log_date', '=', $month)
+        //         ->where('is_attendance',1)
+        //         ->get();
 
-        return view('studentTimeLog.monthly_view',compact('subject_list','days','month','year','student_log_data','student_list'));
+        // $student_log_data = array();
+        // foreach($student_subject_log as $slist){
+        //     $student_log_data[$slist['student_id'].'-'.$slist['subject_id'].'-'.date('d',strtotime($slist['log_date']))] = $slist[
+        //         'log_time'];
+        // }
+
+        // return view('studentTimeLog.monthly_view',compact('subject_list','days','month','year','student_log_data','student_list','student_attendances'));
+            return view('studentTimeLog.monthly_view',compact('subject_list','student_list'));
     }
     public function get()
     {
@@ -187,5 +196,104 @@ class StudentTimeLogController extends Controller
             $result = ['status' => false, 'message' => 'Delete fail'];
         }
         return response()->json($result);
+    }
+
+    public function logSearch(Request $request)
+    {
+        $rules = array(
+            'student_id' => 'required',
+            'year' => 'required',              
+            'month' => 'required',            
+        );        
+        
+        $validator = Validator::make($request->all(),$rules);            
+        if($validator->fails()){
+            $result = ['status' => false, 'message' => $validator->errors(), 'data' => []];
+        }
+        else
+        {
+            $user_id = Auth::user()->id;
+
+            $student_list = Student::query()
+                ->where('user_id',$user_id)
+                ->get()
+                ->pluck('first_name','id')
+                ->toArray();
+
+            $subject_list = Subject::query()
+                ->where('user_id',$user_id)
+                ->get();
+
+            $month = $request->month;
+            $year = $request->year;
+            
+            $days = cal_days_in_month(CAL_GREGORIAN,$month,$year);
+
+            $student_subject_log = StudentTimeLog::query()
+                ->join('students','students.id','=','student_time_log.student_id')
+                ->join('subjects','subjects.id','=','student_time_log.subject_id')
+                ->where('student_time_log.user_id',$user_id)
+                ->whereYear('log_date', '=', $year)
+                ->whereMonth('log_date', '=', $month)
+                ->select('student_time_log.id','student_time_log.subject_id','student_time_log.log_date','student_time_log.student_id','student_time_log.log_time')
+                ->get();                            
+
+            $student_log_data = array();
+            foreach($student_subject_log as $slist){
+                $student_log_data[$slist['student_id'].'-'.$slist['subject_id'].'-'.date('d',strtotime($slist['log_date']))] = $slist[
+                    'log_time'];
+
+                $student_log_data[$slist['student_id'].'-'.$slist['subject_id'].'-'.date('d',strtotime($slist['log_date'])).'-id'] = $slist[
+                    'id'];                
+            }            
+
+            $student_attendances = StudentTimeLog::query()
+                ->where('student_time_log.user_id',$user_id)
+                ->where('student_id',$request->student_id)
+                ->whereYear('log_date', '=', $year)
+                ->whereMonth('log_date', '=', $month)
+                ->where('is_attendance',1)
+                ->get();            
+
+            $html = '';
+
+            for($i=1;$i<=$days;$i++){
+                $d = sprintf("%02d", $i);
+                $logdate = $year.'-'.$month.'-'.$d;
+                $attendance = 0;
+                
+                foreach($student_attendances as $sa)
+                {
+                    if($sa->log_date == $logdate)
+                    {
+                        $attendance = 1;
+                    }
+                } 
+                $html.=            
+                '<tr>
+                    <td>'.$d.'-'.$month.'-'.$year.'</td>
+                    <td>'.$attendance.'</td>';
+                    foreach($subject_list as $slist)
+                    {
+                        $s_s_date = $request->student_id.'-'.$slist['id'].'-'.$d;                                
+                        $s_s_id = $request->student_id.'-'.$slist['id'].'-'.$d.'-id';                                
+
+                        if(isset($student_log_data[$s_s_date])){
+                            $html.='<td><a class="editModal" href="javascript:void(0)" data-id='.$student_log_data[$s_s_id].' data-bs-toggle="modal" data-bs-target="#edit-modal">';                            
+                            $html.= gmdate("H:i", $student_log_data[$s_s_date]*60);
+                            $html.='</a></td>';
+                        }else{
+                            $html.='<td>';
+                            $html.= '00:00';
+                            $html.='</td>';
+                        }
+                            
+                    }
+                $html.='</tr>';
+              
+            }
+            $result = ['status' => true, 'data' => $html];
+        }  
+        return response()->json($result);      
     }
 }
