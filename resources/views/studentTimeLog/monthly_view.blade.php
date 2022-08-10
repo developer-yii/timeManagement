@@ -79,9 +79,9 @@ $lable = "Student Time Log";
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <button type="button" class="btn btn-warning mb-2 add-new mt-1" data-bs-toggle="modal" data-bs-target="#add-modal">Add Log</button>
+                        {{-- <button type="button" class="btn btn-warning mb-2 add-new mt-1" data-bs-toggle="modal" data-bs-target="#add-modal">Add Log</button> --}}
                         <div id="flash-message"></div>
-                        <div class="mt-4 mt-lg-0 table-responsive monthly_view_table">
+                        <div class="mt-4 table-responsive monthly_view_table">
                            <table class="table table-striped table-centered mb-0"> 
                                 <thead class="table-dark">
                                     <td>Date</td>
