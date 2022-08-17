@@ -20,7 +20,7 @@
     </div>
     <!-- end page title --> 
 	<form id="password-form" action="{{ route('profile.passwordUpdate')}}">
-        <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle me-1"></i> Change Password</h5>
+        <h5 class="mb-4 text-uppercase"><i class="mdi mdi-form-textbox-password me-1"></i> Change Password</h5>
         <div class="row">
             <div class="col-md-6">
                 <div class="mb-3">
