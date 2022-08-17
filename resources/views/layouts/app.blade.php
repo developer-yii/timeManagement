@@ -62,29 +62,30 @@
                 <ul class="side-nav">
                     <li class="side-nav-item">
                         <a href="{{ route('home') }}" class="side-nav-link">
-                            <i class="uil-home-alt"></i>
+                            <i class="mdi mdi-view-dashboard-outline"></i>
                             <span> Dashboards </span>
                         </a>
                     </li>
 
                     <li class="side-nav-item">
-                        <a href="{{ route('subject') }}" class="side-nav-link">
-                            <i class="uil-home-alt"></i>
-                            <span> Subjects </span>
-                        </a>
-                    </li>
-
-                    <li class="side-nav-item">
                         <a href="{{ route('student') }}" class="side-nav-link">
-                            <i class="uil-home-alt"></i>
+                            <i class="mdi mdi-human-female-boy"></i>
                             <span> Students </span>
                         </a>
                     </li>
 
                     <li class="side-nav-item">
+                        <a href="{{ route('subject') }}" class="side-nav-link">
+                            <i class="mdi mdi-notebook"></i>
+                            <span> Subjects </span>
+                        </a>
+                    </li>
+
+
+                    <li class="side-nav-item">
                         <a href="{{ route('holiday') }}" class="side-nav-link">
-                            <i class="uil-home-alt"></i>
-                            <span> Holidays </span>
+                            <i class="mdi mdi-dance-ballroom"></i>
+                            <span> Holidays/Events </span>
                         </a>
                     </li>
 
@@ -92,7 +93,7 @@
                         <a data-bs-toggle="collapse" href="#sidebarCrm" aria-expanded="false" aria-controls="sidebarCrm" class="side-nav-link">
                             <i class="uil uil-tachometer-fast"></i>
                             <span class="menu-arrow"></span>
-                            <span> Time Log </span>
+                            <span> Hours/Attendance </span>
                         </a>
                         <div class="collapse" id="sidebarCrm">
                             <ul class="side-nav-second-level">
@@ -281,15 +282,15 @@
                                 </div>
 
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <a href="{{ route('profile')}}" class="dropdown-item notify-item">
                                     <i class="mdi mdi-account-circle me-1"></i>
                                     <span>My Account</span>
                                 </a>
 
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="mdi mdi-account-edit me-1"></i>
-                                    <span>Settings</span>
+                                <a href="{{ route('profile.password') }}" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-form-textbox-password me-1"></i>
+                                    <span>Change Password</span>
                                 </a>
 
                                 <!-- item-->

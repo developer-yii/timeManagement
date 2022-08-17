@@ -23,10 +23,16 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function () {
-    // Route::get('/profile', 'HomeController@profile')->name('profile');
+    
     // Route::get('/profileDetail', 'HomeController@profileDetail')->name('profileDetail');
     // Route::post('/updateProfile', 'HomeController@updateProfile')->name('updateProfile');
     // Route::post('/getDealerOfBrand', 'DealerBrandController@getDealerOfBrand')->name('getDealerOfBrand');
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/profile', 'HomeController@profile')->name('profile');
+        Route::post('/updateProfile', 'HomeController@updateProfile')->name('updateProfile');
+        Route::get('/password', 'HomeController@password')->name('profile.password');
+        Route::post('/password/update', 'HomeController@passwordUpdate')->name('profile.passwordUpdate');
+    });
 
     Route::group(['prefix' => 'subject'], function () {
         Route::get('/', 'SubjectController@index')->name('subject');

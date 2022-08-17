@@ -62,10 +62,15 @@ class StudentTimeLogController extends Controller
             $data[$i]['title'] = $hlist['note'].' ('.$hlist['first_name'].' '.$hlist['last_name'].')';
             $data[$i]['start'] = date('Y-m-d',strtotime($hlist['start_date']));
             $data[$i]['end'] = date('Y-m-d',strtotime($hlist['end_date']));
-            $data[$i]['className'] = 'bg-danger';    
+            // $data[$i]['className'] = 'bg-danger';    
+            if(!$hlist['event_color'])
+                $a = '#fa5c7c';
+            else
+                $a = $hlist['event_color'];
+            $data[$i]['color'] = $a;    
             $i++;
         }
-
+        
         $data_json = json_encode($data);
 
         return view('studentTimeLog.index',compact('student_list','subject_list','data_json'));

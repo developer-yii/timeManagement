@@ -65,19 +65,24 @@ class HolidayController extends Controller
                     }
                 }
                 else{
-                    $msg = 'Holiday added successfully';
-                    $holiday = new Holiday;
+                    $msg = 'Holiday added successfully';                    
                 }
 
-                $holiday->student_id = $request->student_id;
-                $holiday->start_date = date('Y-m-d',strtotime($request->start_date));
-                $holiday->end_date = date('Y-m-d',strtotime($request->end_date));
-                $holiday->user_id = Auth::user()->id;
-                $holiday->note = $request->note;
-                $holiday->created_at = Carbon::now();
-                $holiday->updated_at = Carbon::now();
+                foreach($request->student_id as $key => $studentId)
+                {
+                    $holiday = new Holiday;
+                    $holiday->student_id = $studentId;
+                    $holiday->start_date = date('Y-m-d',strtotime($request->start_date));
+                    $holiday->end_date = date('Y-m-d',strtotime($request->end_date));
+                    $holiday->user_id = Auth::user()->id;
+                    $holiday->event_color = $request->event_color;
+                    $holiday->note = $request->note;
+                    $holiday->created_at = Carbon::now();
+                    $holiday->updated_at = Carbon::now();
+                    $r = $holiday->save();
+                }
 
-                if($holiday->save()){
+                if($r){
                     $result = ['status' => true, 'message' => $msg, 'data' => []];
                 }else{
                     $result = ['status' => false, 'message' => 'Error in saving data', 'data' => []];
