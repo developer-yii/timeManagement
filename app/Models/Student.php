@@ -16,6 +16,8 @@ class Student extends Model
     protected $table = 'students';
 
     public static $gradeLevel = [
+        'pre_k' => 'Pre K',
+        'k' => 'K',
         1 => '1',
         2 => '2',       
         3 => '3',       

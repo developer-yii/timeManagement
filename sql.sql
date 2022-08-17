@@ -1,0 +1,1 @@
+ALTER TABLE `students` CHANGE `grade_level` `grade_level` VARCHAR(30) NULL DEFAULT NULL;
