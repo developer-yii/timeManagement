@@ -5,6 +5,7 @@ $(document).ready(function() {
 
         $('.add-new').click(function(event) {
             $('.modal-lable-class').html('Add');
+            $('#add-form')[0].reset();
         });
 
         $('#add-form').submit(function(event) {
@@ -68,6 +69,7 @@ $(document).ready(function() {
                     $('#add-form').find('#last_name').val(result.data.last_name);
                     $('#add-form').find('#phone').val(result.data.phone);
                     $('#add-form').find('#email').val(result.data.email);
+                    $('#add-form').find('#grade_level').val(result.data.grade_level);
                 }
             });    
         });
@@ -109,8 +111,8 @@ $(document).ready(function() {
             columns: [
                 { data: 'first_name' },
                 { data: 'last_name' },
-                { data: 'phone' },
                 { data: 'email' },
+                { data: 'phone' },
                 {
                     sortable: false,
                     render: function(_,_, full) {

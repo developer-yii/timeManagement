@@ -86,6 +86,17 @@ $lable = "Student";
                     <input type="text" class="form-control" id="phone" name="phone"> 
                     <span class="error"></span>
                 </div>
+
+                <div class="mb-3">
+                    <label for="phone" class="control-label">Grade Level:</label>
+                    <select id="grade_level" name="grade_level" class="form-control">
+                        <option value=""> -- Select Grade --</option>
+                        @foreach($gradeLevels as $key => $value)
+                            <option value="{{$key}}">{{$value}}</option>
+                        @endforeach
+                    </select>
+                    <span class="error"></span>
+                </div>
                 
                 <div class="mb-3 text-center">
                     <button class="btn btn-primary" type="submit">Save changes</button>

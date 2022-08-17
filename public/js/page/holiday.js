@@ -3,8 +3,29 @@ $(document).ready(function() {
         var msgElement = $('#add_error_message');
         var editmsgElement = $('#edit_error_message');
 
+        Coloris({
+          swatches: [
+            '#fa5c7c',
+            '#264653',
+            '#2a9d8f',
+            '#e9c46a',
+            '#f4a261',
+            '#e76f51',
+            '#d62828',
+            '#023e8a',
+            '#0077b6',
+            '#0096c7',
+            '#00b4d8',
+            '#48cae4',
+          ],
+          format: 'hex',
+          theme: 'large',
+          themeMode: 'light', // light, dark, auto
+        });
+
         $('.add-new').click(function(event) {
             $('.modal-lable-class').html('Add');
+            $('#add-form')[0].reset();
         });
 
         $('#add-form').submit(function(event) {
@@ -42,6 +63,8 @@ $(document).ready(function() {
                         $.each(result.message, function(key) {
                             if(first_input=="") first_input=key;
                             $('#'+key).closest('.mb-3').find('.error').html(result.message[key]);
+                            if(key == 'student_id')
+                                $('.student_id').html(result.message[key]);
                         });
                         $('#add-form').find("#"+first_input).focus();
                     }
@@ -119,7 +142,7 @@ $(document).ready(function() {
 
                         if(contactId) {
                             actions = "";
-                            actions += ' <a href="javascript:void(0)" data-id="'+ contactId +'" class="btn-sm btn-warning edit-holiday"><i class="mdi mdi-pencil"></i></a>';
+                            // actions += ' <a href="javascript:void(0)" data-id="'+ contactId +'" class="btn-sm btn-warning edit-holiday"><i class="mdi mdi-pencil"></i></a>';
                             actions += ' <a href="javascript:void(0)" data-id="'+ contactId +'" class="btn-sm btn-danger delete-holiday"><i class="mdi mdi-trash-can"></i></a>';
                             
                             return actions;

@@ -19,7 +19,8 @@ class StudentController extends Controller
 
     public function index()
     {
-        return view('student.index');
+        $gradeLevels = Student::$gradeLevel;
+        return view('student.index',compact('gradeLevels'));
     }
     public function get()
     {
@@ -63,6 +64,7 @@ class StudentController extends Controller
                 $student->last_name = $request->last_name;
                 $student->email = $request->email;
                 $student->phone = $request->phone;
+                $student->grade_level = $request->grade_level;
                 $student->user_id = Auth::user()->id;
                 $student->created_at = Carbon::now();
                 $student->updated_at = Carbon::now();

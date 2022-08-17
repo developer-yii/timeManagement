@@ -1,9 +1,12 @@
 @extends('layouts.app')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/vendor/coloris.css') }}" />
+@endsection
+
 @section('content')
 @php
-$lable = "Holidays";
-
+    $lable = "Holidays/Events";
 @endphp
 <div class="row">
     <div class="col-12">
@@ -24,7 +27,7 @@ $lable = "Holidays";
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <button type="button" class="btn btn-primary mb-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal">Add {{$lable}}</button>
+                <button type="button" class="btn btn-primary mb-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal">Add {{$lable}}</button><img src="{{asset('images/bulb.png')}}" class="bulb-icon"><span class="font-bold">keep track of your home school schedule quickly and easily! Add holiday, Days off, weekends and more.</span>
                 <div id="flash-message"></div>
                 <div class="table-responsive">
                     <table id="holidayTable" class="table table-hover dataTable">
@@ -49,7 +52,7 @@ $lable = "Holidays";
 
 @section('modal')
 <!-- /.modal -->
-<div id="add-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="add-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             
@@ -66,13 +69,19 @@ $lable = "Holidays";
                 
                 <div class="mb-3">
                     <label for="student_id" class="control-label">Student:</label>
-                    <select name="student_id" id="student_id" class="form-control">
-                        <option value="">Select Student</option>
-                        @foreach($student_list as $stkey=>$stlist)
-                            <option value="{{ $stkey }}">{{ $stlist }}</option>
+                    {{-- <select name="student_id[]" id="student_id" class="form-control"> --}}
+                        {{-- <option value="">Select Student</option> --}}
+                        <div class="flex">
+                        @foreach($student_list as $stkey=>$stlist)                                                    
+                        <div class="form-check">
+                            <input type='checkbox' name='student_id[]' value="{{ $stkey }}" id="student_id_{{ $stkey }}" class="form-check-input"/>
+                            <label class="form-check-label form-label" for="student_id_{{ $stkey }}">{{ $stlist }}</label>
+                        </div>
                         @endforeach
-                    </select>
-                    <span class="error"></span>
+                        </div>
+                    <span class="error student_id"></span>
+                    {{-- </select> --}}
+                    
                 </div>
 
                 <div class="mb-3">
@@ -84,6 +93,12 @@ $lable = "Holidays";
                 <div class="mb-3">
                     <label for="name" class="control-label">End Date:</label>
                     <input type="text" class="form-control date" id="end_date" data-provide="datepicker" data-single-date-picker="true" name="end_date" data-date-format="yyyy-mm-dd">
+                    <span class="error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="event_color" class="control-label">Event Color:</label>
+                    <input type="text" class="form-control" name="event_color" id="event_color" data-coloris value="#fa5c7c">
                     <span class="error"></span>
                 </div>
 
@@ -107,6 +122,7 @@ $lable = "Holidays";
 @endsection
 
 @section('js')
+<script src="{{ asset('js/vendor/coloris.js') }}"></script>
 <script>
     var apiUrl = "{{ route('holiday.list') }}";
     var detailUrl = "{{ route('holiday.detail') }}";

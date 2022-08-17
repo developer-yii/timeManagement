@@ -7,6 +7,19 @@
 	padding: 0px !important;
 }
 
+.bulb-icon{
+	height:40px; 
+	vertical-align: top; 
+	margin-left: 20px;
+}
+.font-bold{
+	font-weight: bold;
+}
+.flex{
+	display: flex;
+  justify-content: space-between;
+}
+
 /*.monthly_view_table table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
