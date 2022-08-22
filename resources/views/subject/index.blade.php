@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/vendor/coloris.css') }}" />
+@endsection
+
 @section('content')
 @php
 $lable = "Subject";
@@ -24,7 +28,7 @@ $lable = "Subject";
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <button type="button" class="btn btn-primary mb-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal">Add {{$lable}}</button>
+                <button type="button" class="btn btn-primary mb-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal">Add {{$lable}}</button><img src="{{asset('images/bulb.png')}}" class="bulb-icon"><span class="font-bold">Add each subject, sport, and extracurricular your children/students may participate in. These subjects can also be classified as core or non-core.</span>
                 <div id="flash-message"></div>
                 <div class="table-responsive">
                     <table id="subjectTable" class="table table-hover dataTable">
@@ -74,6 +78,12 @@ $lable = "Subject";
                     </select>
                     <span class="error"></span>
                 </div>
+
+                <div class="mb-3">
+                    <label for="subject_color" class="control-label">Event Color:</label>
+                    <input type="text" class="form-control" name="subject_color" id="subject_color" data-coloris value="#727cf5">
+                    <span class="error"></span>
+                </div>
                 
                 <div class="mb-3 text-center">
                     <button class="btn btn-primary" type="submit">Save changes</button>
@@ -89,6 +99,7 @@ $lable = "Subject";
 @endsection
 
 @section('js')
+<script src="{{ asset('js/vendor/coloris.js') }}"></script>
 <script>
     var apiUrl = "{{ route('subject.list') }}";
     var detailUrl = "{{ route('subject.detail') }}";

@@ -3,6 +3,26 @@ $(document).ready(function() {
         var msgElement = $('#add_error_message');
         var editmsgElement = $('#edit_error_message');
 
+        Coloris({
+          swatches: [
+            '#d1652b',
+            '#e0b284',
+            '#e2b751',
+            '#c6990f',
+            '#ffe1ba',
+            '#e5976e',
+            '#84f93b',
+            '#079175',
+            '#9ef7cf',
+            '#80f2ec',
+            '#b1c9f9',
+            '#1870e2',
+          ],
+          format: 'hex',
+          theme: 'large',
+          themeMode: 'light', // light, dark, auto
+        });
+
         $('.add-new').click(function(event) {
             $('.modal-lable-class').html('Add');
         });
@@ -66,6 +86,8 @@ $(document).ready(function() {
                     $('.modal-lable-class').html('Edit');
                     $('#add-form').find('#subject_name').val(result.data.subject_name);
                     $('#add-form').find('#subject_type').val(result.data.subject_type);
+                    $('#add-form').find('#subject_color').val(result.data.subject_color);
+                    document.querySelector('#subject_color').dispatchEvent(new Event('input', { bubbles: true }));
                 }
             });    
         });

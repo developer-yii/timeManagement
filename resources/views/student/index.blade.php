@@ -24,7 +24,7 @@ $lable = "Student";
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <button type="button" class="btn btn-primary mb-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal">Add {{$lable}}</button>
+                <button type="button" class="btn btn-primary mb-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal">Add {{$lable}}</button><img src="{{asset('images/bulb.png')}}" class="bulb-icon"><span class="font-bold">Add all children, even those not attending school. You will still be able to keep track of projects, schedules, doctor's appointments, and more.</span>
                 <div id="flash-message"></div>
                 <div class="table-responsive">
                     <table id="studentTable" class="table table-hover dataTable">
@@ -32,6 +32,7 @@ $lable = "Student";
                             <tr>
                                 <th>First Name</th>
                                 <th>Last Name</th>
+                                <th>Grade</th>
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Actions</th>

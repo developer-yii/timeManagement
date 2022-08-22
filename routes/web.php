@@ -73,6 +73,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/index', 'HolidayController@index')->name('holiday');
         Route::get('/get', 'HolidayController@get')->name('holiday.list');
         Route::post('/addupdate', 'HolidayController@addupdate')->name('holiday.addupdate');
+        Route::post('/update', 'HolidayController@update')->name('holiday.update');
         Route::post('/delete', 'HolidayController@delete')->name('holiday.delete');
     });
 });

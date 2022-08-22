@@ -51,23 +51,8 @@ class HolidayController extends Controller
             if($validator->fails()){
                 $result = ['status' => false, 'message' => $validator->errors(), 'data' => []];
             }else{
-                if($request->id)
-                {
-                    $msg = 'Holiday updated successfully';
-                    $model = Holiday::where('user_id',Auth::user()->id)->where('id',$request->id)->first();
-                    if($model)
-                    {
-                        $holiday = $model;
-                    }
-                    else{
-                        $result = ['status' => false, 'message' => 'Invalid request', 'data' => []];
-                        return response()->json($result);
-                    }
-                }
-                else{
-                    $msg = 'Holiday added successfully';                    
-                }
-
+                                
+                $msg = 'Holiday added successfully';   
                 foreach($request->student_id as $key => $studentId)
                 {
                     $holiday = new Holiday;
@@ -95,9 +80,63 @@ class HolidayController extends Controller
         return response()->json($result);
 
     }
+
+    public function update(Request $request)
+    {
+        if($request->ajax()) {
+            $rules = array(
+                'start_date'=>'required',
+                'end_date'=>'required',
+                'note'=>'required'
+            );
+            $msg = '';
+            $validator = Validator::make($request->all(), $rules);
+            if($validator->fails()){
+                $result = ['status' => false, 'message' => $validator->errors(), 'data' => []];
+            }else{
+                if($request->id)
+                {
+                    $msg = 'Holiday updated successfully';
+                    $model = Holiday::where('user_id',Auth::user()->id)->where('id',$request->id)->first();
+                    if($model)
+                    {
+                        $holiday = $model;
+                        $holiday->start_date = date('Y-m-d',strtotime($request->start_date));
+                        $holiday->end_date = date('Y-m-d',strtotime($request->end_date));
+                        $holiday->user_id = Auth::user()->id;
+                        $holiday->event_color = $request->event_color;
+                        $holiday->note = $request->note;
+                        $holiday->created_at = Carbon::now();
+                        $holiday->updated_at = Carbon::now();
+                        $r = $holiday->save();
+                    }
+                    else{
+                        $result = ['status' => false, 'message' => 'Invalid request', 'data' => []];
+                        return response()->json($result);
+                    }
+                }
+
+                if($r){
+                    $result = ['status' => true, 'message' => $msg, 'data' => []];
+                }else{
+                    $result = ['status' => false, 'message' => 'Error in saving data', 'data' => []];
+                }
+            }
+        }
+        else{
+            $result = ['status' => false, 'message' => 'Invalid request', 'data' => []];
+        }
+        return response()->json($result);
+    }
     
     public function detail(Request $request){
         $c = Holiday::find($request->id);
+        if($c->student_id)
+        {
+            $student = Student::find($c->student_id);
+            $c->studentName = $student->first_name;
+        }
+        
         $result = ['status' => true, 'message' => '', 'data' => $c];
         return response()->json($result);
     }
