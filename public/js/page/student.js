@@ -111,6 +111,7 @@ $(document).ready(function() {
             columns: [
                 { data: 'first_name' },
                 { data: 'last_name' },
+                { data: 'grade_name' },
                 { data: 'email' },
                 { data: 'phone' },
                 {

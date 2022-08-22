@@ -77,20 +77,74 @@ $(document).ready(function() {
             });
         });
 
+        $('#edit-form').submit(function(event) {
+            event.preventDefault();
+            var $this = $(this);
+            $.ajax({
+                url: updateUrl,
+                type: 'POST',
+                data: $('#edit-form').serialize(),
+                dataType: 'json',
+                beforeSend: function() {
+                    $($this).find('button[type="submit"]').prop('disabled', true);
+                },
+                success: function(result) {
+                    $($this).find('button[type="submit"]').prop('disabled', false);
+                    if (result.status == true) {
+                        $this[0].reset();
+
+                        if($('#holidayTable').length>0)
+                            $('#holidayTable').DataTable().ajax.reload();
+                        else
+                            location.reload();
+
+                        setTimeout(function() {
+                            $('#edit-modal').modal('hide');
+                            show_toast(result.message, 'success');
+                        }, 300);
+
+                        $('.error').html("");
+                        $('#edit-id').val(0);
+
+                    } else {
+                        first_input = "";
+                        $('.error').html("");
+                        $.each(result.message, function(key) {
+                            if(first_input=="") first_input=key;
+                            $('#edit_'+key).closest('.mb-3').find('.error').html(result.message[key]);
+                            if(key == 'student_id')
+                                $('.student_id').html(result.message[key]);
+                        });
+                        $('#edit-form').find("#"+first_input).focus();
+                    }
+                },
+                error: function(error) {
+                    $($this).find('button[type="submit"]').prop('disabled', false);
+                    alert('Something went wrong!', 'error');
+                    // location.reload();
+                }
+            });
+        });
+
         $('body').on('click','.edit-holiday',function(event) {
             var id = $(this).attr('data-id');
+
             $.ajax({
                 url: detailUrl+'?id='+id,
                 type: 'GET',
                 dataType: 'json',
                 success: function(result) {
                     $('#edit-id').val(id);
-                    $('#add-modal').modal('show');
+                    $('#edit-modal').modal('show');
                     $('.modal-lable-class').html('Edit');
-                    $('#add-form').find('#start_date').val(result.data.start_date);
-                    $('#add-form').find('#end_date').val(result.data.end_date);
-                    $('#add-form').find('#note').val(result.data.note);
-                    $('#add-form').find('#student_id').val(result.data.student_id);
+                    $('#edit-form').find('#edit_start_date').val(result.data.start_date);
+                    $('#edit-form').find('#edit_end_date').val(result.data.end_date);
+                    $('#edit-form').find('#edit_note').val(result.data.note);
+                    $('#edit-form').find('#edit_event_color').val(result.data.event_color);
+                    $('#edit_modal').html('');
+                    $('#edit_modal').html(result.data.studentName);
+                    document.querySelector('#edit_event_color').dispatchEvent(new Event('input', { bubbles: true }));
+                    // $('#add-form').find('#student_id').val(result.data.student_id);
                 }
             });    
         });
@@ -130,8 +184,8 @@ $(document).ready(function() {
                 },
             },
             columns: [
-                { data: 'first_name' },
-                { data: 'last_name' },
+                { data: 'first_name', name:'students.first_name' },
+                { data: 'last_name', name:'students.last_name' },
                 { data: 'start_date' },
                 { data: 'end_date' },
                 { data: 'note' },
@@ -142,7 +196,7 @@ $(document).ready(function() {
 
                         if(contactId) {
                             actions = "";
-                            // actions += ' <a href="javascript:void(0)" data-id="'+ contactId +'" class="btn-sm btn-warning edit-holiday"><i class="mdi mdi-pencil"></i></a>';
+                            actions += ' <a href="javascript:void(0)" data-id="'+ contactId +'" class="btn-sm btn-warning edit-holiday"><i class="mdi mdi-pencil"></i></a>';
                             actions += ' <a href="javascript:void(0)" data-id="'+ contactId +'" class="btn-sm btn-danger delete-holiday"><i class="mdi mdi-trash-can"></i></a>';
                             
                             return actions;

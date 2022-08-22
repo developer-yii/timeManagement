@@ -24,9 +24,15 @@ class StudentController extends Controller
     }
     public function get()
     {
+        $gradeLevel = Student::$gradeLevel;
+
         $data = Student::where('user_id',Auth::user()->id);
 
-        return DataTables::eloquent($data)->toJson();
+        return DataTables::eloquent($data)
+                ->addColumn('grade_name', function($row) use ($gradeLevel) {
+                    return isset($gradeLevel[$row->grade_level]) ? $gradeLevel[$row->grade_level]:"";
+                })
+                ->toJson();
     }
 
     public function addupdate(Request $request)

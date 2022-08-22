@@ -54,7 +54,12 @@ class StudentTimeLogController extends Controller
             $data[$i]['title'] = gmdate("H:i", $list['log_time']*60).' - '.$list['subject_name'].' ('.$list['first_name'].' '.$list['last_name'].')';
             $data[$i]['start'] = date('Y-m-d',strtotime($list['log_date']));
             $data[$i]['end'] = date('Y-m-d',strtotime($list['log_date']));
-            $data[$i]['className'] = 'bg-primary';    
+            // $data[$i]['className'] = 'bg-primary';    
+            if(!$list['subject_color'])
+                $a = '#727cf5';
+            else
+                $a = $list['subject_color'];
+            $data[$i]['color'] = $a; 
             $i++;
         }
 
