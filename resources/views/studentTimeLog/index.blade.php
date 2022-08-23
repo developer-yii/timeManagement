@@ -26,7 +26,7 @@ $lable = "Student Time Log";
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        <button type="button" class="btn btn-warning mb-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal">Add Log</button>
+                        <button type="button" class="btn btn-warning mb-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal">Add Student Time/Activity</button>
                         <div id="flash-message"></div>
                         <div class="mt-4 mt-lg-0">
                             <div id="calendar"></div>
@@ -91,7 +91,7 @@ $lable = "Student Time Log";
 
                 <div class="mb-3">
                     <label for="log_time" class="control-label">Log Time:</label>
-                    <select name="log_time" id="log_time" class="form-control">
+                    {{-- <select name="log_time" id="log_time" class="form-control">
                         <option value="">Select Log Time</option>
                         <option value="5">00.05</option>
                         <option value="10">00.10</option>
@@ -113,7 +113,8 @@ $lable = "Student Time Log";
                         <option value="240">04.00</option>
                         <option value="300">05.00</option>
                         <option value="360">06.00</option>
-                    </select>
+                    </select> --}}
+                    <input type="time" name="log_time" id="log_time" class="form-control">
                     <span class="error"></span>
                 </div>
 

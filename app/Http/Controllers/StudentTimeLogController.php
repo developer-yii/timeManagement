@@ -51,7 +51,8 @@ class StudentTimeLogController extends Controller
         $data = array();
         $i=0;
         foreach($student_subject_log as $key => $list){
-            $data[$i]['title'] = gmdate("H:i", $list['log_time']*60).' - '.$list['subject_name'].' ('.$list['first_name'].' '.$list['last_name'].')';
+            // $data[$i]['title'] = gmdate("H:i", $list['log_time']*60).' - '.$list['subject_name'].' ('.ucfirst($list['first_name']).' '.substr(ucfirst($list['last_name']),0,1).')';
+            $data[$i]['title'] = $list['log_time'].' - '.$list['subject_name'].' ('.ucfirst($list['first_name']).' '.substr(ucfirst($list['last_name']),0,1).')';
             $data[$i]['start'] = date('Y-m-d',strtotime($list['log_date']));
             $data[$i]['end'] = date('Y-m-d',strtotime($list['log_date']));
             // $data[$i]['className'] = 'bg-primary';    
@@ -64,9 +65,9 @@ class StudentTimeLogController extends Controller
         }
 
         foreach($student_holiday_log as $hkey => $hlist){
-            $data[$i]['title'] = $hlist['note'].' ('.$hlist['first_name'].' '.$hlist['last_name'].')';
+            $data[$i]['title'] = $hlist['note'].' ('.ucfirst($hlist['first_name']).' '.substr(ucfirst($hlist['last_name']),0,1).')';
             $data[$i]['start'] = date('Y-m-d',strtotime($hlist['start_date']));
-            $data[$i]['end'] = date('Y-m-d',strtotime($hlist['end_date']));
+            $data[$i]['end'] = date('Y-m-d',strtotime($hlist['end_date'].'+ 1 day')); // 1 day added as fullcalender doesnt count endday
             // $data[$i]['className'] = 'bg-danger';    
             if(!$hlist['event_color'])
                 $a = '#fa5c7c';
@@ -75,7 +76,7 @@ class StudentTimeLogController extends Controller
             $data[$i]['color'] = $a;    
             $i++;
         }
-        
+
         $data_json = json_encode($data);
 
         return view('studentTimeLog.index',compact('student_list','subject_list','data_json'));
@@ -290,7 +291,8 @@ class StudentTimeLogController extends Controller
 
                         if(isset($student_log_data[$s_s_date])){
                             $html.='<td><a class="editModal" href="javascript:void(0)" data-id='.$student_log_data[$s_s_id].' data-bs-toggle="modal" data-bs-target="#edit-modal">';                            
-                            $html.= gmdate("H:i", $student_log_data[$s_s_date]*60);
+                            // $html.= gmdate("H:i", $student_log_data[$s_s_date]*60);
+                            $html.= $student_log_data[$s_s_date];
                             $html.='</a></td>';
                         }else{
                             $html.='<td>';
