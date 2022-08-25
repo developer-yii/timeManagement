@@ -174,30 +174,22 @@ $lable = "Student Time Log";
                 </div>
 
                 <div class="mb-3">
-                    <label for="log_time" class="control-label">Log Time:</label>
-                    {{-- <select name="log_time" id="log_time" class="form-control">
-                        <option value="">Select Log Time</option>
-                        <option value="5">00.05</option>
-                        <option value="10">00.10</option>
-                        <option value="15">00.15</option>
-                        <option value="20">00.20</option>
-                        <option value="25">00.25</option>
-                        <option value="30">00.30</option>
-                        <option value="35">00.35</option>
-                        <option value="40">00.40</option>
-                        <option value="45">00.45</option>
-                        <option value="50">00.50</option>
-                        <option value="55">00.55</option>
-                        <option value="60">01.00</option>
-                        <option value="75">01.15</option>
-                        <option value="90">01.30</option>
-                        <option value="105">01.45</option>
-                        <option value="120">02.00</option>
-                        <option value="180">03.00</option>
-                        <option value="240">04.00</option>
-                        <option value="300">05.00</option>
-                        <option value="360">06.00</option>
-                    </select> --}}
+                    <label class="form-label">Start time</label>
+                    <div class="input-group" id="timepicker-input-group4">
+                        <input id="start_time1" name="start_time" type="text" class="form-control timepicker" data-provide="timepicker">
+                        <span class="input-group-text"><i class="dripicons-clock"></i></span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">End time</label>
+                    <div class="input-group" id="timepicker-input-group5">
+                        <input id="end_time1" name="end_time" type="text" class="form-control timepicker" data-provide="timepicker">
+                        <span class="input-group-text"><i class="dripicons-clock"></i></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="log_time" class="control-label">Log Time:</label>                    
                     <input type="time" name="log_time" id="log_time" class="form-control">
                     <span class="error"></span>
                 </div>
@@ -238,6 +230,10 @@ $lable = "Student Time Log";
 @endsection
 
 @section('pagejs')
+
+<!-- demo app -->
+<script src="{{ asset('js/vendor/demo.timepicker.js') }}"></script>
+<!-- end demo js-->
 
 <script src="{{asset('/js')}}/page/studentMonthlyLog.js"></script>
 

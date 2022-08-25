@@ -46,15 +46,13 @@ $lable = "Student Time Log";
 
 
 <!-- /.modal -->
-<div id="add-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="add-modal" class="modal fade" {{-- tabindex="-1" --}} role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            
+        <div class="modal-content">            
             <div class="modal-header">
-                <h4 class="modal-title"><span class="modal-lable-class">Add</span> {{$lable}}</h4> 
+                <h4 class="modal-title"><span class="modal-lable-class" id="add-form-lable">Add</span></h4> 
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
             </div>
-
             <div class="modal-body">
             <form id="add-form" method="post" class="ps-3 pe-3" action="{{route('student-time-log.addupdate')}}">
                 @csrf
@@ -89,9 +87,9 @@ $lable = "Student Time Log";
                     <span class="error"></span>
                 </div>
 
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label for="log_time" class="control-label">Log Time:</label>
-                    {{-- <select name="log_time" id="log_time" class="form-control">
+                    <select name="log_time" id="log_time" class="form-control">
                         <option value="">Select Log Time</option>
                         <option value="5">00.05</option>
                         <option value="10">00.10</option>
@@ -113,11 +111,29 @@ $lable = "Student Time Log";
                         <option value="240">04.00</option>
                         <option value="300">05.00</option>
                         <option value="360">06.00</option>
-                    </select> --}}
+                    </select>
+                    <input type="time" name="log_time" id="log_time" class="form-control">
+                    <span class="error"></span>
+                </div> --}}
+                <div class="mb-3">
+                    <label class="form-label">Start time</label>
+                    <div class="input-group" id="timepicker-input-group">
+                        <input id="start_time" name="start_time" type="text" class="form-control timepicker" data-provide="timepicker">
+                        <span class="input-group-text"><i class="dripicons-clock"></i></span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">End time</label>
+                    <div class="input-group" id="timepicker-input-group1">
+                        <input id="end_time" name="end_time" type="text" class="form-control timepicker" data-provide="timepicker">
+                        <span class="input-group-text"><i class="dripicons-clock"></i></span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="log_time" class="control-label">Log Time:</label>
                     <input type="time" name="log_time" id="log_time" class="form-control">
                     <span class="error"></span>
                 </div>
-
 
                 <div class="mb-3">
                     <label for="name" class="control-label">Attendance:</label>
@@ -134,11 +150,64 @@ $lable = "Student Time Log";
                 <div class="mb-3 text-center">
                     <button class="btn btn-primary" type="submit">Save changes</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                </div>
-
-                
+                </div>                
             </form>
                 </div>
+        </div>
+    </div>
+</div>
+
+<div id="edit-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+                <h4 class="modal-title"><span class="modal-lable-class">View Holiday</h4> 
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+
+            <div class="modal-body">
+            <form id="edit-form" method="post" class="ps-3 pe-3" action="">
+                @csrf
+                {{-- <input type="hidden" name="id" value="" id="edit-id"> --}}
+                <div id="add_error_message"></div>
+                
+                <div class="mb-3" >
+                    <label for="student_id" class="control-label">Student:</label>                    
+                        <div class="flex" id="edit_modal">                        
+                        </div>
+                    <span class="error student_id"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="edit_start_date" class="control-label">Start Date:</label>
+                    <input type="text" class="form-control date" id="edit_start_date" data-provide="datepicker" data-single-date-picker="true" name="start_date" data-date-format="yyyy-mm-dd" data-date-autoclose="true">
+                    <span class="error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="edit_end_date" class="control-label">End Date:</label>
+                    <input type="text" class="form-control date" id="edit_end_date" data-provide="datepicker" data-single-date-picker="true" name="end_date" data-date-format="yyyy-mm-dd">
+                    <span class="error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="edit_event_color" class="control-label">Event Color:</label>
+                    <input type="text" class="form-control" name="event_color" id="edit_event_color" data-coloris value="#fa5c7c">
+                    <span class="error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="edit_note" class="control-label">Notes:</label>
+                    <textarea class="form-control" name="note" id="edit_note" rows="5"></textarea>
+                    <span class="error"></span>
+                </div>
+                
+                <div class="mb-3 text-center">
+                    {{-- <button class="btn btn-primary" type="submit">Save changes</button> --}}
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                </div>                
+            </form>
+            </div>
         </div>
     </div>
 </div>
@@ -149,6 +218,7 @@ $lable = "Student Time Log";
     var data_json = {!! $data_json !!};
     var apiUrl = "{{ route('student-time-log.list') }}";
     var detailUrl = "{{ route('student-time-log.detail') }}";
+    var holidayDetailUrl = "{{ route('holiday.detail') }}";
     var deleteUrl = "{{ route('student-time-log.delete') }}";
     var addUrl = $('#add-form').attr('action');
     var page_reload = false;
@@ -162,6 +232,7 @@ $lable = "Student Time Log";
 
 <!-- demo app -->
 <script src="{{ asset('js/vendor/demo.calendar.js') }}"></script>
+<script src="{{ asset('js/vendor/demo.timepicker.js') }}"></script>
 <!-- end demo js-->
 
 <script src="{{asset('/js')}}/page/studentTimeLog.js"></script>

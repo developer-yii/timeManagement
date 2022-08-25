@@ -3,8 +3,29 @@ $(document).ready(function() {
         var msgElement = $('#add_error_message');
         var editmsgElement = $('#edit_error_message');
 
+        function calculateTime()
+        {
+            var day = '1/1/1970 ', // 1st January 1970
+            start = $('#start_time').val(), //eg "09:20 PM"
+            end = $('#end_time').val(), //eg "10:00 PM"
+            diff_in_min = ( Date.parse(day + end) - Date.parse(day + start) ) / 1000 / 60;
+
+            var hr = Math.floor(diff_in_min / 60);
+            var min = diff_in_min % 60;
+
+            if(hr < 10)
+                hr = '0'+hr;
+            if(min < 10)
+                min = '0'+min;
+
+            return hr+':'+min;
+        }
+
         $('.add-new').click(function(event) {
-            $('.modal-lable-class').html('Add');
+            $('#add-form-lable').html('');
+            $('#add-form-lable').html('Add Student Time Log');
+            $('#add-form').find('button[type="submit"]').show();
+            $('#add-form')[0].reset()
         });
 
         $('#add-form').submit(function(event) {
@@ -66,4 +87,9 @@ $(document).ready(function() {
                 });    
             }
         });
+
+        $('body').on('change','#end_time',function(e){
+            e.preventDefault();
+            $('#log_time').val(calculateTime());            
+        })
     });
