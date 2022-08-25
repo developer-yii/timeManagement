@@ -40,21 +40,24 @@ class StudentTimeLogController extends Controller
             ->join('students','students.id','=','student_time_log.student_id')
             ->join('subjects','subjects.id','=','student_time_log.subject_id')
             ->where('student_time_log.user_id',$user_id)
-            ->get();
+            ->select('student_time_log.*','students.*','subjects.*','student_time_log.id as log_id')
+            ->get();          
 
 
         $student_holiday_log = Holiday::query()
             ->join('students','students.id','=','student_holidays.student_id')
             ->where('student_holidays.user_id',$user_id)
+            ->select('student_holidays.*','students.*','student_holidays.id as holiday_id')
             ->get();
 
         $data = array();
         $i=0;
         foreach($student_subject_log as $key => $list){
-            // $data[$i]['title'] = gmdate("H:i", $list['log_time']*60).' - '.$list['subject_name'].' ('.ucfirst($list['first_name']).' '.substr(ucfirst($list['last_name']),0,1).')';
+            // $data[$i]['title'] = gmdate("H:i", $list['log_time']*60).' - '.$list['subject_name'].' ('.ucfirst($list['first_name']).' '.substr(ucfirst($list['last_name']),0,1).')';            
             $data[$i]['title'] = $list['log_time'].' - '.$list['subject_name'].' ('.ucfirst($list['first_name']).' '.substr(ucfirst($list['last_name']),0,1).')';
             $data[$i]['start'] = date('Y-m-d',strtotime($list['log_date']));
             $data[$i]['end'] = date('Y-m-d',strtotime($list['log_date']));
+            $data[$i]['log_id'] = $list['log_id'];
             // $data[$i]['className'] = 'bg-primary';    
             if(!$list['subject_color'])
                 $a = '#727cf5';
@@ -69,6 +72,7 @@ class StudentTimeLogController extends Controller
             $data[$i]['start'] = date('Y-m-d',strtotime($hlist['start_date']));
             $data[$i]['end'] = date('Y-m-d',strtotime($hlist['end_date'].'+ 1 day')); // 1 day added as fullcalender doesnt count endday
             // $data[$i]['className'] = 'bg-danger';    
+            $data[$i]['holiday_id'] = $hlist['holiday_id'];
             if(!$hlist['event_color'])
                 $a = '#fa5c7c';
             else
@@ -140,6 +144,8 @@ class StudentTimeLogController extends Controller
                 'subject_id'=>'required',
                 'log_date'=>'required',
                 'log_time'=>'required',
+                'start_time'=>'required',
+                'end_time'=>'required',
             );
             $msg = '';
             $validator = Validator::make($request->all(), $rules);
@@ -165,6 +171,8 @@ class StudentTimeLogController extends Controller
                 }
 
                 $studentTimeLog->student_id = $request->student_id;
+                $studentTimeLog->start_time = $request->start_time;
+                $studentTimeLog->end_time = $request->end_time;
                 $studentTimeLog->log_time = $request->log_time;
                 $studentTimeLog->subject_id = $request->subject_id;
                 $studentTimeLog->log_date = date('Y-m-d',strtotime($request->log_date));
@@ -200,8 +208,8 @@ class StudentTimeLogController extends Controller
     
     public function delete(Request $request){
 
-        $user = StudentTimeLog::where('id',$request->id);
-        if($user->delete()){
+        $model = StudentTimeLog::where('id',$request->id);
+        if($model->delete()){
             $result = ['status' => true, 'message' => 'Delete successfully'];
         }else{
             $result = ['status' => false, 'message' => 'Delete fail'];
@@ -293,7 +301,7 @@ class StudentTimeLogController extends Controller
                             $html.='<td><a class="editModal" href="javascript:void(0)" data-id='.$student_log_data[$s_s_id].' data-bs-toggle="modal" data-bs-target="#edit-modal">';                            
                             // $html.= gmdate("H:i", $student_log_data[$s_s_date]*60);
                             $html.= $student_log_data[$s_s_date];
-                            $html.='</a></td>';
+                            $html.='</a><a href="javascript:void(0)" class="delete_log" data-id='.$student_log_data[$s_s_id].'> <i class="dripicons-trash"></i></a></td>';
                         }else{
                             $html.='<td>';
                             $html.= '00:00';

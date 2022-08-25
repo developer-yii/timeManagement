@@ -3,6 +3,24 @@ $(document).ready(function() {
         var msgElement = $('#add_error_message');
         var editmsgElement = $('#edit_error_message');
 
+        function calculateTimeEdit()
+        {
+            var day = '1/1/1970 ', // 1st January 1970
+            start = $('#start_time1').val(), //eg "09:20 PM"
+            end = $('#end_time1').val(), //eg "10:00 PM"
+            diff_in_min = ( Date.parse(day + end) - Date.parse(day + start) ) / 1000 / 60;
+
+            var hr = Math.floor(diff_in_min / 60);
+            var min = diff_in_min % 60;
+
+            if(hr < 10)
+                hr = '0'+hr;
+            if(min < 10)
+                min = '0'+min;
+
+            return hr+':'+min;
+        }
+
         $('body').on('click','.editModal',function(event) {
             $('.modal-lable-class').html('Edit');
             var logId = $(this).attr('data-id');
@@ -18,6 +36,8 @@ $(document).ready(function() {
                         $('#edit-form').find('#subject_id').val(result.data.subject_id);
                         $('#edit-form').find('#log_date').val(result.data.log_date);
                         $('#edit-form').find('#log_time').val(result.data.log_time);
+                        $('#edit-form').find('#start_time1').val(result.data.start_time);
+                        $('#edit-form').find('#end_time1').val(result.data.end_time);
                         $('#edit-form').find("textarea#activity_notes").val(result.data.activity_notes); 
                         if(result.data.is_attendance)
                             $('#edit-form').find('#attendance').prop('checked',true);
@@ -54,7 +74,6 @@ $(document).ready(function() {
 
                         setTimeout(function() {
                             $('#edit-modal').modal('hide');
-                            console.log('helo');
                             show_toast(result.message, 'success');
                         }, 300);
 
@@ -116,5 +135,28 @@ $(document).ready(function() {
                     //location.reload();
                 }
             });
-        });                
+        });
+
+        $('body').on('click','.delete_log',function(e){
+            e.preventDefault();
+            var delId = $(this).attr('data-id');
+
+            if(confirm('Are you sure want to delete this log?'))
+            {
+                $.ajax({
+                    url: deleteUrl+'?id='+delId,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(result) {            
+                        show_toast(result.message, 'success');
+                        $( ".search_log" ).trigger( "click" );
+                    }
+                });
+            }
+        });    
+
+        $('body').on('change','#end_time1',function(e){
+            e.preventDefault();
+            $('#log_time').val(calculateTimeEdit());            
+        })            
     });

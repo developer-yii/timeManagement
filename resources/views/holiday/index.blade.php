@@ -137,14 +137,9 @@
                 
                 <div class="mb-3" >
                     <label for="student_id" class="control-label">Student:</label>
-                    {{-- <select name="student_id[]" id="student_id" class="form-control"> --}}
-                        {{-- <option value="">Select Student</option> --}}
                         <div class="flex" id="edit_modal">
-                        
                         </div>
                     <span class="error student_id"></span>
-                    {{-- </select> --}}
-                    
                 </div>
 
                 <div class="mb-3">
