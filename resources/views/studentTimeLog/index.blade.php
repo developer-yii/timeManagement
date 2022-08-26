@@ -35,10 +35,10 @@ $lable = "Student Time Log";
                        <form class="row gy-2 gx-2 align-items-center justify-content-xl-start justify-content-between" action="{{route('student-time-log')}}" method="GET">                           
                            <div class="col-auto">
                                <div class="d-flex align-items-center">
-                                   <label for="subject-select" class="me-2">Subject</label>
-                                   <select class="form-select" id="subject-select" name="sub">
+                                   <label for="subject-select" class="me-2">Student</label>
+                                   <select class="form-select" id="student-select" name="st">
                                        <option value="" selected>Choose...</option>
-                                        @foreach($subject_list as $key => $value)
+                                        @foreach($student_list as $key => $value)
                                             <option value="{{$key}}">{{$value}}</option>                                        
                                         @endforeach
                                    </select>
@@ -46,10 +46,10 @@ $lable = "Student Time Log";
                            </div>
                            <div class="col-6">
                                <div class="d-flex align-items-center">
-                                   <label for="subject-select" class="me-2">Student</label>
+                                   <label for="subject-select" class="me-2">Subject</label>
                                    <!-- Multiple Select -->
-                                    <select class="select2 form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose ..." name="st[]">      
-                                        @foreach($student_list as $key => $value)
+                                    <select class="select2 form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose ..." name="sub[]">      
+                                        @foreach($subject_list as $key => $value)
                                             <option value="{{$key}}">{{$value}}</option>                                        
                                         @endforeach
                                     </select>
