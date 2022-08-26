@@ -22,7 +22,7 @@ class StudentTimeLogController extends Controller
 
     public function index(Request $request)
     {
-        
+
         $conditionHoliStu = [];
         
         if($request->st)
@@ -52,11 +52,11 @@ class StudentTimeLogController extends Controller
             
         if($request->sub)
         {
-            $student_subject_log = $student_subject_log->where('subjects.id', $request->sub);
+            $student_subject_log = $student_subject_log->whereIn('subjects.id', $request->sub);
         }
         if($request->st)
         {   
-            $student_subject_log = $student_subject_log->whereIn('student_time_log.student_id', $request->st);
+            $student_subject_log = $student_subject_log->where('student_time_log.student_id', $request->st);
         }
         $student_subject_log = $student_subject_log->get();        
 
