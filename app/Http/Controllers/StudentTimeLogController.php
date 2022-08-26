@@ -20,8 +20,16 @@ class StudentTimeLogController extends Controller
         $this->middleware(['auth']);
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        
+        $conditionHoliStu = [];
+        
+        if($request->st)
+        {            
+            $conditionHoliStu[] = ['student_holidays.student_id','=' ,$request->st];            
+        }        
+
         $user_id = Auth::user()->id;
 
         $student_list = Student::query()
@@ -40,13 +48,22 @@ class StudentTimeLogController extends Controller
             ->join('students','students.id','=','student_time_log.student_id')
             ->join('subjects','subjects.id','=','student_time_log.subject_id')
             ->where('student_time_log.user_id',$user_id)
-            ->select('student_time_log.*','students.*','subjects.*','student_time_log.id as log_id')
-            ->get();          
-
+            ->select('student_time_log.*','students.*','subjects.*','student_time_log.id as log_id');
+            
+        if($request->sub)
+        {
+            $student_subject_log = $student_subject_log->where('subjects.id', $request->sub);
+        }
+        if($request->st)
+        {   
+            $student_subject_log = $student_subject_log->whereIn('student_time_log.student_id', $request->st);
+        }
+        $student_subject_log = $student_subject_log->get();        
 
         $student_holiday_log = Holiday::query()
             ->join('students','students.id','=','student_holidays.student_id')
             ->where('student_holidays.user_id',$user_id)
+            ->where($conditionHoliStu)
             ->select('student_holidays.*','students.*','student_holidays.id as holiday_id')
             ->get();
 

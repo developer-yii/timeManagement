@@ -24,9 +24,48 @@ $lable = "Student Time Log";
     <div class="col-12">
         <div class="card">
             <div class="card-body">
+                <div class="row mb-2">
+                    <div class="col-xl-3">
+                       <div class="text-xl-start mt-xl-0 mt-2">
+                           <button type="button" class="btn btn-warning mb-2 me-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal"> Add Student Time/Activity</button>
+                           
+                       </div>
+                   </div><!-- end col-->
+                   <div class="col-xl-9">
+                       <form class="row gy-2 gx-2 align-items-center justify-content-xl-start justify-content-between" action="{{route('student-time-log')}}" method="GET">                           
+                           <div class="col-auto">
+                               <div class="d-flex align-items-center">
+                                   <label for="subject-select" class="me-2">Subject</label>
+                                   <select class="form-select" id="subject-select" name="sub">
+                                       <option value="" selected>Choose...</option>
+                                        @foreach($subject_list as $key => $value)
+                                            <option value="{{$key}}">{{$value}}</option>                                        
+                                        @endforeach
+                                   </select>
+                               </div>
+                           </div>
+                           <div class="col-6">
+                               <div class="d-flex align-items-center">
+                                   <label for="subject-select" class="me-2">Student</label>
+                                   <!-- Multiple Select -->
+                                    <select class="select2 form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose ..." name="st[]">      
+                                        @foreach($student_list as $key => $value)
+                                            <option value="{{$key}}">{{$value}}</option>                                        
+                                        @endforeach
+                                    </select>
+                               </div>
+                           </div>
+                           <div class="col-auto">
+                                <div class="d-flex align-items-center">
+                                    <button type="submit" class="btn btn-warning"> <i class="dripicons-search"></i></button>
+                                </div>
+                            </div>
+                       </form>                            
+                   </div>
+                   
+               </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <button type="button" class="btn btn-warning mb-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal">Add Student Time/Activity</button>
                         <div id="flash-message"></div>
                         <div class="mt-4 mt-lg-0">
                             <div id="calendar"></div>
