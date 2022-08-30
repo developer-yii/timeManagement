@@ -3,9 +3,30 @@ $(document).ready(function() {
         var msgElement = $('#add_error_message');
         var editmsgElement = $('#edit_error_message');
 
+        Coloris({
+          swatches: [
+            '#d1652b',
+            '#e0b284',
+            '#e2b751',
+            '#c6990f',
+            '#ffe1ba',
+            '#e5976e',
+            '#84f93b',
+            '#079175',
+            '#9ef7cf',
+            '#80f2ec',
+            '#b1c9f9',
+            '#1870e2',
+          ],
+          format: 'hex',
+          theme: 'large',
+          themeMode: 'light', // light, dark, auto
+        });
+
         $('.add-new').click(function(event) {
             $('.modal-lable-class').html('Add');
             $('#add-form')[0].reset();
+            document.querySelector('#student_color').dispatchEvent(new Event('input', { bubbles: true }));
         });
 
         $('#add-form').submit(function(event) {
@@ -70,11 +91,11 @@ $(document).ready(function() {
                     $('#add-form').find('#phone').val(result.data.phone);
                     $('#add-form').find('#email').val(result.data.email);
                     $('#add-form').find('#grade_level').val(result.data.grade_level);
+                    $('#add-form').find('#student_color').val(result.data.student_color);                    
+                    document.querySelector('#student_color').dispatchEvent(new Event('input', { bubbles: true }));
                 }
             });    
-        });
-
-        
+        });        
 
         $('body').on('click','.delete-student',function(event) {
             var id = $(this).attr('data-id');
@@ -114,6 +135,19 @@ $(document).ready(function() {
                 { data: 'grade_name' },
                 { data: 'email' },
                 { data: 'phone' },
+                {
+                    sortable: false,
+                    render: function(_,_, full) {
+                        var stuColor = full['student_color'];
+
+                        if(stuColor) {
+                            actions = "";
+                            actions += ' <span class="me-2 dot" style="background-color:'+ stuColor+';"></span>';
+                            return actions;
+                        }
+                        return '';
+                    },
+                },
                 {
                     sortable: false,
                     render: function(_,_, full) {

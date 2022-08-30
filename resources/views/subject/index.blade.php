@@ -79,11 +79,11 @@ $lable = "Subject";
                     <span class="error"></span>
                 </div>
 
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label for="subject_color" class="control-label">Event Color:</label>
                     <input type="text" class="form-control" name="subject_color" id="subject_color" data-coloris value="#727cf5">
                     <span class="error"></span>
-                </div>
+                </div> --}}
                 
                 <div class="mb-3 text-center">
                     <button class="btn btn-primary" type="submit">Save changes</button>

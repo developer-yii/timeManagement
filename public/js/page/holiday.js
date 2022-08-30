@@ -192,6 +192,19 @@ $(document).ready(function() {
                 {
                     sortable: false,
                     render: function(_,_, full) {
+                        var stuColor = full['event_color'];
+
+                        if(stuColor) {
+                            actions = "";
+                            actions += ' <span class="me-2 dot" style="background-color:'+ stuColor+';"></span>';
+                            return actions;
+                        }
+                        return '';
+                    },
+                },
+                {
+                    sortable: false,
+                    render: function(_,_, full) {
                         var contactId = full['id'];
 
                         if(contactId) {

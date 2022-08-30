@@ -33,8 +33,7 @@ class SubjectController extends Controller
         if($request->ajax()) {
             $rules = array(
                 'subject_name'=>'required',
-                'subject_type'=>'required',
-                'subject_color'=>'required',
+                'subject_type'=>'required',                
             );
             $msg = '';
             $validator = Validator::make($request->all(), $rules);
@@ -60,8 +59,7 @@ class SubjectController extends Controller
                 }
 
                 $subject->subject_name = $request->subject_name;
-                $subject->subject_type = $request->subject_type;
-                $subject->subject_color = $request->subject_color;
+                $subject->subject_type = $request->subject_type;                
                 $subject->user_id = Auth::user()->id;
                 $subject->created_at = Carbon::now();
                 $subject->updated_at = Carbon::now();

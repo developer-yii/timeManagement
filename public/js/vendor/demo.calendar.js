@@ -16,25 +16,43 @@
             
             if (eventObj.extendedProps.log_id) {
                 var log_ide = eventObj.extendedProps.log_id;
+                $('#add-modal').find('#edit-id').val(log_ide);
                 $.ajax({
                     url: detailUrl+'?id='+log_ide,
                     type: 'GET',
                     dataType: 'json',
                     success: function(result) {
                         if (result.status == true) {
-                            $('#add-form').find('#student_id').val(result.data.student_id);
-                            $('#add-form').find('#subject_id').val(result.data.subject_id);
-                            $('#add-form').find('#log_date').val(result.data.log_date);
-                            $('#add-form').find('#log_time').val(result.data.log_time);
-                            $('#add-form').find('#start_time').val(result.data.start_time);
-                            $('#add-form').find('#end_time').val(result.data.end_time);
-                            $('#add-form').find("textarea#activity_notes").val(result.data.activity_notes); 
-                            $('#add-form-lable').html('View Student Time Log');
-                            $('#add-form').find('button[type="submit"]').hide();
+                            $('#add-modal').find()
+                            $('#add-modal').find('#student_id').val(result.data.student_id);
+                            $('#add-modal').find('#subject_id').val(result.data.subject_id);
+                            $('#add-modal').find('#log_date').val(result.data.log_date);
+                            $('#add-modal').find('#log_time').val(result.data.log_time);
+                            $('#add-modal').find('#start_time').val(result.data.start_time);
+                            $('#add-modal').find('#end_time').val(result.data.end_time);
+                            $('#add-modal').find("textarea#activity_notes").val(result.data.activity_notes); 
+                            var htm = 'Edit Student Time Log';
+                            htm += '<a href="javascript:void(0)" class="delete_log ml-10" id="log-del"><i class="dripicons-trash"></i></a>';
+                            $('#add-form-lable').html(htm);
+                            // $('#edit-log-modal').find('button[type="submit"]').hide();
                             if(result.data.is_attendance)
                                 $('#add-form').find('#attendance').prop('checked',true);                                
                             $('.error').html("");                        
-                            $("#add-modal").modal("show");
+                            $('#add-modal').modal("show");
+
+                            // $('#add-form').find('#student_id').val(result.data.student_id);
+                            // $('#add-form').find('#subject_id').val(result.data.subject_id);
+                            // $('#add-form').find('#log_date').val(result.data.log_date);
+                            // $('#add-form').find('#log_time').val(result.data.log_time);
+                            // $('#add-form').find('#start_time').val(result.data.start_time);
+                            // $('#add-form').find('#end_time').val(result.data.end_time);
+                            // $('#add-form').find("textarea#activity_notes").val(result.data.activity_notes); 
+                            // $('#add-form-lable').html('View Student Time Log');
+                            // $('#add-form').find('button[type="submit"]').hide();
+                            // if(result.data.is_attendance)
+                            //     $('#add-form').find('#attendance').prop('checked',true);                                
+                            // $('.error').html("");                        
+                            // $("#add-modal").modal("show");
                         } else {                        
                             
                         }
