@@ -38,6 +38,7 @@
                                 <th>Start Date</th>
                                 <th>End Date</th>
                                 <th>Note</th>
+                                <th>Color</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>

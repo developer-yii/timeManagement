@@ -98,10 +98,13 @@
                         <div class="collapse" id="sidebarCrm">
                             <ul class="side-nav-second-level">
                                 <li>
-                                    <a href="{{ route('student-time-log') }}">Calendar View</a>
+                                    <a href="{{ route('student-time-log.create') }}"><i class="mdi mdi-calendar-plus"></i> Add Student Time/Activity</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('student-time-log.monthly_view') }}">Monthly View</a>
+                                    <a href="{{ route('student-time-log') }}"><i class="mdi mdi-calendar-month"></i> Calendar View</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('student-time-log.monthly_view') }}"><i class="mdi mdi-calendar-check"></i> Monthly View</a>
                                 </li>                                
                             </ul>
                         </div>

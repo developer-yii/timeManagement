@@ -32,7 +32,7 @@ class HolidayController extends Controller
     {
         $data = Holiday::where('student_holidays.user_id',Auth::user()->id)
             ->join('students','students.id','=','student_holidays.student_id')
-            ->select('student_holidays.id','start_date','end_date','note','students.first_name','students.last_name');
+            ->select('student_holidays.id','start_date','end_date','note','students.first_name','students.last_name','student_holidays.event_color');
 
         return DataTables::eloquent($data)->toJson();
     }

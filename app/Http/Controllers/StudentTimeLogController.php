@@ -69,6 +69,7 @@ class StudentTimeLogController extends Controller
 
         $data = array();
         $i=0;
+        
         foreach($student_subject_log as $key => $list){
             // $data[$i]['title'] = gmdate("H:i", $list['log_time']*60).' - '.$list['subject_name'].' ('.ucfirst($list['first_name']).' '.substr(ucfirst($list['last_name']),0,1).')';            
             $data[$i]['title'] = $list['log_time'].' - '.$list['subject_name'].' ('.ucfirst($list['first_name']).' '.substr(ucfirst($list['last_name']),0,1).')';
@@ -76,10 +77,10 @@ class StudentTimeLogController extends Controller
             $data[$i]['end'] = date('Y-m-d',strtotime($list['log_date']));
             $data[$i]['log_id'] = $list['log_id'];
             // $data[$i]['className'] = 'bg-primary';    
-            if(!$list['subject_color'])
+            if(!$list['student_color'])
                 $a = '#727cf5';
             else
-                $a = $list['subject_color'];
+                $a = $list['student_color'];
             $data[$i]['color'] = $a; 
             $i++;
         }
@@ -97,10 +98,12 @@ class StudentTimeLogController extends Controller
             $data[$i]['color'] = $a;    
             $i++;
         }
+        $student = $request->st;
+        $subjects = $request->sub; 
 
         $data_json = json_encode($data);
 
-        return view('studentTimeLog.index',compact('student_list','subject_list','data_json'));
+        return view('studentTimeLog.index',compact('student_list','subject_list','data_json','student','subjects'));
     }
     public function monthlyView()
     {
@@ -215,6 +218,25 @@ class StudentTimeLogController extends Controller
         }
         return response()->json($result);
 
+    }
+
+    public function create()
+    {
+        $user_id = Auth::user()->id;
+
+        $student_list = Student::query()
+            ->where('user_id',$user_id)
+            ->get()
+            ->pluck('first_name','id')
+            ->toArray();
+
+        $subject_list = Subject::query()
+            ->where('user_id',$user_id)
+            ->get()
+            ->pluck('subject_name','id')
+            ->toArray();
+
+        return view('studentTimeLog.create',compact('student_list','subject_list'));
     }
     
     public function detail(Request $request){

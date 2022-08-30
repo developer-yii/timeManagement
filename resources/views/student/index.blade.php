@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/vendor/coloris.css') }}" />
+@endsection
+
 @section('content')
 @php
 $lable = "Student";
@@ -35,6 +39,7 @@ $lable = "Student";
                                 <th>Grade</th>
                                 <th>Email</th>
                                 <th>Phone</th>
+                                <th>Color</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -89,6 +94,12 @@ $lable = "Student";
                 </div>
 
                 <div class="mb-3">
+                    <label for="student_color" class="control-label">Color:</label>
+                    <input type="text" class="form-control" name="student_color" id="student_color" data-coloris value="#727cf5">
+                    <span class="error"></span>
+                </div>
+
+                <div class="mb-3">
                     <label for="phone" class="control-label">Grade Level:</label>
                     <select id="grade_level" name="grade_level" class="form-control">
                         <option value=""> -- Select Grade --</option>
@@ -113,6 +124,7 @@ $lable = "Student";
 @endsection
 
 @section('js')
+<script src="{{ asset('js/vendor/coloris.js') }}"></script>
 <script>
     var apiUrl = "{{ route('student.list') }}";
     var detailUrl = "{{ route('student.detail') }}";

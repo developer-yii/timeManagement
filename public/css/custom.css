@@ -22,6 +22,18 @@
 .delete_log{
 	color: red;
 }
+.ml-10{
+	margin-left: 10px;
+}
+.text-right{
+	text-align: right;
+}
+.dot {
+  height: 25px;
+  width: 25px; 
+  border-radius: 50%;
+  display: inline-block;
+}
 
 /*.monthly_view_table table, th, td {
   border: 1px solid black;

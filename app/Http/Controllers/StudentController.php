@@ -41,6 +41,7 @@ class StudentController extends Controller
             $rules = array(
                 'first_name'=>'required',
                 'last_name'=>'required',
+                'student_color'=>'required',
                 'email'=>'email',
             );
             $msg = '';
@@ -70,6 +71,7 @@ class StudentController extends Controller
                 $student->last_name = $request->last_name;
                 $student->email = $request->email;
                 $student->phone = $request->phone;
+                $student->student_color = $request->student_color;
                 $student->grade_level = $request->grade_level;
                 $student->user_id = Auth::user()->id;
                 $student->created_at = Carbon::now();

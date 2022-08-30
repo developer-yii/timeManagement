@@ -21,10 +21,29 @@ $(document).ready(function() {
             return hr+':'+min;
         }
 
+        function calculateTimeEdit()
+        {
+            var day = '1/1/1970 ', // 1st January 1970
+            start = $('#start_time1').val(), //eg "09:20 PM"
+            end = $('#end_time1').val(), //eg "10:00 PM"
+            diff_in_min = ( Date.parse(day + end) - Date.parse(day + start) ) / 1000 / 60;
+
+            var hr = Math.floor(diff_in_min / 60);
+            var min = diff_in_min % 60;
+
+            if(hr < 10)
+                hr = '0'+hr;
+            if(min < 10)
+                min = '0'+min;
+
+            return hr+':'+min;
+        }
+
         $('.add-new').click(function(event) {
             $('#add-form-lable').html('');
             $('#add-form-lable').html('Add Student Time Log');
             $('#add-form').find('button[type="submit"]').show();
+            $('#add-form').find('#edit-id').val(0);
             $('#add-form')[0].reset()
         });
 
@@ -44,12 +63,12 @@ $(document).ready(function() {
                     if (result.status == true) {
                         $this[0].reset();
 
-                        location.reload();
 
                         setTimeout(function() {
-                            $('#add-modal').modal('hide');
+                            $('#add-modal').modal('hide');                            
                             show_toast(result.message, 'success');
                         }, 300);
+                        location.reload();
 
                         $('.error').html("");
                         $('#edit-id').val(0);
@@ -86,10 +105,39 @@ $(document).ready(function() {
                     }
                 });    
             }
+        });                
+
+        $('body').on('click','#log-del',function(event) {
+            var log_id = $('#add-modal').find('#edit-id').val()
+            if(confirm('Are you sure want to delete this log?'))
+            {
+                $.ajax({
+                    url: deleteUrl+'?id='+log_id,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(result) {            
+                        show_toast(result.message, 'success');
+
+                        setTimeout(function() {                        
+                            location.reload();
+                        }, 1500);
+                    }
+                });
+            }
         });
+
+        $('body').on('click','.reset-form',function(){
+
+            window.location.href = window.location.pathname;            
+        })
 
         $('body').on('change','#end_time',function(e){
             e.preventDefault();
             $('#log_time').val(calculateTime());            
+        })
+
+        $('body').on('change','#end_time1',function(e){
+            e.preventDefault();
+            $('#edit_log_time').val(calculateTimeEdit());            
         })
     });
