@@ -39,7 +39,7 @@
             <!-- LOGO -->
             <a href="index.html" class="logo text-center logo-light">
                 <span class="logo-lg">
-                    <img src="{{ asset('images/logo.png') }}" alt="" height="16">
+                    <img src="{{ asset('images/logo.png') }}" alt="" height="60">
                 </span>
                 <span class="logo-sm">
                     <img src="{{ asset('images/logo_sm.png') }}" alt="" height="16">
@@ -350,7 +350,7 @@
     <script src="{{ asset('js/app.min.js') }}"></script>
 
     <!-- third party js -->
-    <!-- <script src="{{ asset('js/vendor/apexcharts.min.js') }}"></script> -->
+    <script src="{{ asset('js/vendor/apexcharts.min.js') }}?{{time()}}"></script>
     <script src="{{ asset('js/vendor/jquery-jvectormap-1.2.2.min.js') }}"></script>
     <script src="{{ asset('js/vendor/jquery-jvectormap-world-mill-en.js') }}"></script>
 

@@ -94,6 +94,18 @@ $lable = "Student";
                 </div>
 
                 <div class="mb-3">
+                    <label for="attendance" class="control-label">Attendance Required:</label>
+                    <input type="number" step="1" class="form-control" id="attendance" name="attendance"> 
+                    <span class="error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="hours" class="control-label">Hours Required:</label>
+                    <input type="number" step="1" class="form-control" id="hours" name="hours"> 
+                    <span class="error"></span>
+                </div>
+
+                <div class="mb-3">
                     <label for="student_color" class="control-label">Color:</label>
                     <input type="text" class="form-control" name="student_color" id="student_color" data-coloris value="#727cf5">
                     <span class="error"></span>

@@ -42,6 +42,8 @@ class StudentController extends Controller
                 'first_name'=>'required',
                 'last_name'=>'required',
                 'student_color'=>'required',
+                'attendance'=>'required',
+                'hours'=>'required',
                 'email'=>'email',
             );
             $msg = '';
@@ -73,6 +75,8 @@ class StudentController extends Controller
                 $student->phone = $request->phone;
                 $student->student_color = $request->student_color;
                 $student->grade_level = $request->grade_level;
+                $student->hours_required = $request->hours;
+                $student->attendance_required = $request->attendance;
                 $student->user_id = Auth::user()->id;
                 $student->created_at = Carbon::now();
                 $student->updated_at = Carbon::now();
