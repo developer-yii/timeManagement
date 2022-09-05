@@ -1,0 +1,52 @@
+.d-flex{
+	align-items: center;
+}
+.ml-10{
+	margin-left: 10px;
+}
+.text-bold{
+	font-weight: 600;
+}
+#chart {
+  max-width: 650px;
+  margin: 35px auto;
+}
+.arrow-left {
+  width: 0; 
+  height: 0; 
+  border-top: 60px solid transparent;
+  border-bottom: 60px solid transparent; 
+  border-right: 60px solid blue; 
+}
+.arrow-down {
+  width: 0; 
+  height: 0; 
+  border-left: 75px solid transparent;
+  border-right: 75px solid transparent;
+  border-top: 75px solid #f00;
+}
+
+.font-40{
+	font-size: 40px;
+}
+.text-right{
+	float: right;
+}
+.text-left{
+	float: left;
+}
+@media only screen and (min-width: 1700px) {
+	 .font-40{
+		font-size: 60px;
+	}
+}
+@media only screen and (min-width: 1800px) {
+	 .font-40{
+		font-size: 68px;
+	}
+}
+@media only screen and (min-width: 2000px) {
+	 .font-40{
+		font-size: 80px;
+	}
+}

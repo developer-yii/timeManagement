@@ -92,6 +92,8 @@ $(document).ready(function() {
                     $('#add-form').find('#email').val(result.data.email);
                     $('#add-form').find('#grade_level').val(result.data.grade_level);
                     $('#add-form').find('#student_color').val(result.data.student_color);                    
+                    $('#add-form').find('#attendance').val(result.data.attendance_required);                    
+                    $('#add-form').find('#hours').val(result.data.hours_required);                    
                     document.querySelector('#student_color').dispatchEvent(new Event('input', { bubbles: true }));
                 }
             });    
