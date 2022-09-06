@@ -6,9 +6,9 @@
         <div class="col-xxl-4 col-lg-5">
             <div class="card">
                 <!-- Logo-->
-                <div class="card-header pt-4 pb-4 text-center bg-primary">
-                    <a href="index.html">
-                        <span><img src="{{ asset('images/logo.png') }}" alt="" height="18"></span>
+                <div class="card-header text-center bg-primary">
+                    <a href="{{ route('register')}}">
+                        <span><img src="{{ asset('images/logo.png') }}" alt="" height="50"></span>
                     </a>
                 </div>
 
@@ -84,6 +84,18 @@
                         </div>
 
                         <div class="mb-3">
+                            <label for="referral_id" class="form-label">Refferal Code</label>
+                            <div class="input-group input-group-merge">
+                                <input type="text" id="referral_id" class="form-control" name="referral_id" placeholder="Referral Code">
+                            </div>
+                            @error('referral_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="checkbox-signup">
                                 <label class="form-check-label" for="checkbox-signup">I accept <a href="#" class="text-muted">Terms and Conditions</a></label>
@@ -101,7 +113,7 @@
 
             <div class="row mt-3">
                 <div class="col-12 text-center">
-                    <p class="text-muted">Already have account? <a href="pages-login.html" class="text-muted ms-1"><b>Log In</b></a></p>
+                    <p class="text-muted">Already have account? <a href="{{ route('login')}}" class="text-muted ms-1"><b>Log In</b></a></p>
                 </div> <!-- end col-->
             </div>
             <!-- end row -->
