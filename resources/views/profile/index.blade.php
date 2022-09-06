@@ -40,7 +40,12 @@
             <button type="submit" class="btn btn-success mt-2"><i class="mdi mdi-content-save"></i> Save</button>
         </div>
     </form>
+
     <div class="row pt-4">
+            <div class="col-12 font-bold">Referral Code:</div>
+        <div class="col-12">
+            <span id="referral_code_copy">{{ $user->referral_code }}</span> <button class="btn btn-sm btn-success" onclick="copyID()"><i class="mdi mdi-content-copy"></i></button>
+        </div>
         <div class="col-12">
             <div class="page-title">
                 <h4>Referral</h4>

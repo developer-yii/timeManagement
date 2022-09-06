@@ -1,3 +1,11 @@
+function copyID() {
+        var displayReferalLink = $('#referral_code_copy').html();
+        console.log(displayReferalLink);
+        /* Copy the text inside the text field */
+        navigator.clipboard.writeText(displayReferalLink);
+        show_toast('Copied - '+displayReferalLink,'success');    
+    }
+
 $(document).ready(function() {
 	var msgElement = $('#add_error_message');
     var editmsgElement = $('#edit_error_message');
