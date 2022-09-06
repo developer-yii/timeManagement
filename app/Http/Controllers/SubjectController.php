@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Subject;
+use App\Models\StudentTimeLog;
 use DataTables;
 use Validator;
 use Auth;
@@ -86,8 +87,11 @@ class SubjectController extends Controller
     
     public function delete(Request $request){
 
-        $user = Subject::where('id',$request->id)->where('user_id',Auth::user()->id);
-        if($user->delete()){
+        $model = Subject::where('id',$request->id)->where('user_id',Auth::user()->id);
+
+        $d = StudentTimeLog::where('subject_id',$request->id)->delete();
+
+        if($model->delete() && $d){
             $result = ['status' => true, 'message' => 'Delete successfully'];
         }else{
             $result = ['status' => false, 'message' => 'Delete fail'];

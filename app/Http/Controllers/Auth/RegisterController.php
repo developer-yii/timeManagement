@@ -53,6 +53,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'referral_id' => ['nullable','min:8','string']
         ]);
     }
 
@@ -68,6 +69,8 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'user_type' => $data['user_type'],
+            'referral_code' => generateReferralCode(),
+            'referral_id' => $data['referral_id'],
             'password' => Hash::make($data['password']),
         ]);
     }

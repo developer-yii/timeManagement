@@ -39,13 +39,35 @@
         <div class="text-start">
             <button type="submit" class="btn btn-success mt-2"><i class="mdi mdi-content-save"></i> Save</button>
         </div>
-    </form>	
+    </form>
+    <div class="row pt-4">
+        <div class="col-12">
+            <div class="page-title">
+                <h4>Referral</h4>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="referralTable" class="table table-hover dataTable">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>                                
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>	
 </div>
 @endsection
 
 @section('js')
 	<script>
 	    var addUrl = $('#profile-form').attr('action');
+        var apiUrl = "{{ route('referral.list') }}";
 	    var page_reload = false;
 	</script>
 @endsection

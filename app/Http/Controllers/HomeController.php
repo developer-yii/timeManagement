@@ -7,7 +7,7 @@ use Auth;
 use DataTables;
 use Validator;
 use DB;
-use App\helpers;
+use App\User;
 use Carbon\Carbon;
 use App\Models\Student;
 use App\Models\Subject;
@@ -83,7 +83,8 @@ class HomeController extends Controller
                             ->where('student_time_log.log_date','<',$lastDay);
                         })
                     ->where('subjects.user_id',$user_id)                    
-                    ->where('subjects.subject_type',1)                    
+                    ->where('subjects.subject_type',1)
+                    ->where('subjects.deleted_at',null)
                     ->select('subjects.subject_name',DB::raw('SUM( COALESCE(TIME_TO_SEC( student_time_log.log_time),0 )) as time'))
                     ->groupBy('subjects.subject_name')
                     ->get();
@@ -109,7 +110,8 @@ class HomeController extends Controller
                             ->where('student_time_log.log_date','<',$lastDay);
                         })
                     ->where('subjects.user_id',$user_id)                    
-                    ->where('subjects.subject_type',2)                    
+                    ->where('subjects.subject_type',2)  
+                    ->where('subjects.deleted_at',null)                  
                     ->select('subjects.subject_name',DB::raw('SUM( COALESCE(TIME_TO_SEC( student_time_log.log_time),0 )) as time'))
                     ->groupBy('subjects.subject_name')
                     ->get();          
@@ -305,5 +307,19 @@ class HomeController extends Controller
             $result = ['status' => false, 'message' => 'Invalid request', 'data' => []];
         }
         return response()->json($result);
+    }
+
+    public function getReferral(Request $request)
+    {
+        if($request->ajax()) 
+        {
+            $user = Auth::user();
+            $data = User::where('referral_id',$user->referral_code)
+                   ->select('name','email')
+                   ->get();            
+
+            return DataTables::of($data)                
+                ->toJson();
+        }
     }
 }

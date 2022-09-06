@@ -31,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/profile', 'HomeController@profile')->name('profile');
         Route::post('/updateProfile', 'HomeController@updateProfile')->name('updateProfile');
         Route::get('/password', 'HomeController@password')->name('profile.password');
+        Route::get('/referral', 'HomeController@getReferral')->name('referral.list');
         Route::post('/password/update', 'HomeController@passwordUpdate')->name('profile.passwordUpdate');
     });
 

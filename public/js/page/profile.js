@@ -40,4 +40,24 @@ $(document).ready(function() {
             }
         });
     });
+
+    var referralTable = $('#referralTable').DataTable({
+            searching: true,
+            pageLength: 10,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: apiUrl,
+                type: 'GET',
+                headers: {
+                    'X-XSRF-TOKEN': $('meta[name=csrf-token]').attr('content'),
+                },
+            },
+            columns: [
+                { data: 'name' },
+                { data: 'email' },
+            ],
+            "drawCallback": function( settings ) {
+            }
+        });
 });

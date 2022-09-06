@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Student;
+use App\Models\Holiday;
+use App\Models\StudentTimeLog;
 use DataTables;
 use Validator;
 use Auth;
@@ -103,8 +105,13 @@ class StudentController extends Controller
     
     public function delete(Request $request){
 
-        $user = Student::where('id',$request->id)->where('user_id',Auth::user()->id);
-        if($user->delete()){
+        $model = Student::where('id',$request->id)->where('user_id',Auth::user()->id);
+
+        $c = Holiday::where('student_id',$request->id)->delete();
+
+        $d = StudentTimeLog::where('student_id',$request->id)->delete();
+
+        if($model->delete() && $c && $d){
             $result = ['status' => true, 'message' => 'Delete successfully'];
         }else{
             $result = ['status' => false, 'message' => 'Delete fail'];
