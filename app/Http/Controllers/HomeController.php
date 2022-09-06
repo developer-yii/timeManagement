@@ -56,8 +56,14 @@ class HomeController extends Controller
         }
 
         $studentObj = Student::find($s);
-        $attendance_required = $studentObj->attendance_required;
-        $hours_required = $studentObj->hours_required;
+        $hours_required = 0;
+        $attendance_required = 0;
+        
+        if($studentObj)
+        {            
+            $attendance_required = $studentObj->attendance_required;
+            $hours_required = $studentObj->hours_required;
+        }
 
 
         $y = date('Y');
@@ -88,7 +94,12 @@ class HomeController extends Controller
             $max_core_array[$key] = $core->time;
         }
 
-        $maxCore = max($max_core_array);
+        $maxCore = 0;
+
+        if(count($max_core_array))
+        {
+            $maxCore = max($max_core_array);
+        }
 
         $nonCoreSubjects = DB::table('subjects')
                     ->leftJoin('student_time_log', function($join) use ($user_id,$s,$firstDay,$lastDay) {
@@ -109,7 +120,11 @@ class HomeController extends Controller
             $max_noncore_array[$key] = $nonCore->time;
         }
 
-        $maxNonCore = max($max_noncore_array);           
+        $maxNonCore = 0;
+        if(count($max_noncore_array))
+        {            
+            $maxNonCore = max($max_noncore_array);           
+        }
 
         $coreHoursinSec = DB::table('student_time_log')
             ->join('subjects','student_time_log.subject_id','subjects.id')
