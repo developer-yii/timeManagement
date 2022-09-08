@@ -20,7 +20,10 @@ $(document).ready(function() {
                 type: 'POST',
                 dataType: 'json',
                 success: function(result) {            
-                    show_toast(result.message, 'success');                    
+                    show_toast(result.message, 'success');       
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1000);             
                 }
             });
         }
