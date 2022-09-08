@@ -24,6 +24,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function () {
     
+    Route::get('/plans', 'PlanController@index')->name('plans.index');
+    Route::get('/plan/{plan}', 'PlanController@show')->name('plans.show');
+    Route::post('/subscription', 'SubscriptionController@create')->name('subscription.create');
+    Route::post('/subscription/cancel', 'SubscriptionController@cancel')->name('subscription.cancel');
     // Route::get('/profileDetail', 'HomeController@profileDetail')->name('profileDetail');
     // Route::post('/updateProfile', 'HomeController@updateProfile')->name('updateProfile');
     // Route::post('/getDealerOfBrand', 'DealerBrandController@getDealerOfBrand')->name('getDealerOfBrand');
