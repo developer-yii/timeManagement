@@ -37,12 +37,15 @@ class SubscriptionController extends Controller
         });
 
         if($r)
+        {
             $user->is_sub_cancel = 1;
             $user->save();
-
             $result = ['status' => true, 'message' => 'Subscription cancel successfully'];
+        }
         else
+        {
             $result = ['status' => false, 'message' => 'Subscription cancel failed'];
+        }
 
         return response()->json($result);
     }
