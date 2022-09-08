@@ -40,9 +40,37 @@
             <button type="submit" class="btn btn-success mt-2"><i class="mdi mdi-content-save"></i> Save</button>
         </div>
     </form>
+    <div class="row pt-4">
+        <div class="col-12 font-bold">Subscription :</div>
+        @if(!$user->is_sub_cancel)
+            <div class="col-12">
+                <span><h3><span class="badge badge-success-lighten">{{ (isSubscriptionActive())?"Active":"Inactive"}}</span></h3></span>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-sm btn-danger cancel-sub" >Cancel Subscription</button>
+            </div>
+        @else
+            <div class="col-12">
+                <span><h3><span class="badge bg-danger">Cancelled</span></h3></span>
+            </div>
+        @endif
+    </div>
 
     <div class="row pt-4">
-            <div class="col-12 font-bold">Referral Code:</div>
+        @if($user->pm_type)
+        <div class="col-12 font-bold">Card Information:</div>
+            <div class="col-12">
+                <span><h3><span class="badge badge-info-lighten">{{ $user->pm_type }}</span></h3></span>
+            </div>
+            <div class="col-12">
+                <span>********{{$user->pm_last_four}}</span>
+            </div>
+        
+        @endif
+    </div>
+
+    <div class="row pt-4">
+        <div class="col-12 font-bold">Referral Code:</div>
         <div class="col-12">
             <span id="referral_code_copy">{{ $user->referral_code }}</span> <button class="btn btn-sm btn-success" onclick="copyID()"><i class="mdi mdi-content-copy"></i></button>
         </div>
@@ -73,6 +101,7 @@
 	<script>
 	    var addUrl = $('#profile-form').attr('action');
         var apiUrl = "{{ route('referral.list') }}";
+        var cancelSubUrl = "{{ route('subscription.cancel') }}";
 	    var page_reload = false;
 	</script>
 @endsection

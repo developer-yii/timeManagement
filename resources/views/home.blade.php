@@ -5,6 +5,11 @@
 <div class="container-fluid">
 
     <!-- start page title -->
+    {{-- @if(session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @endif --}}
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
@@ -339,6 +344,8 @@
     var stuHours = "{{$hoursHHArray}}";
     var stuBarHours = "{{$hoursHHBarArray}}";
     var stuCoreNonCore = "{{$hourCoreNonCoreArray}}";
+    var sesMessage = "{{ session()->get('success') }}";
+
     var coreSubjectsColumn = @json($coreSubjectsColumn);
     var coreSubjectsTimeColumn = @json($coreSubjectsTimeColumn);
     var nonCoreSubjectsColumn = @json($nonCoreSubjectsColumn);
@@ -347,8 +354,7 @@
     coreSubjectsColumn = JSON.parse(coreSubjectsColumn);
     coreSubjectsTimeColumn = JSON.parse(coreSubjectsTimeColumn);
     nonCoreSubjectsColumn = JSON.parse(nonCoreSubjectsColumn);
-    nonCoreSubjectsTimeColumn = JSON.parse(nonCoreSubjectsTimeColumn);
-    
+    nonCoreSubjectsTimeColumn = JSON.parse(nonCoreSubjectsTimeColumn);    
 
     attendance = JSON.parse(attendance);    
     stuHours = JSON.parse(stuHours);

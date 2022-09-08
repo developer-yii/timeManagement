@@ -2,6 +2,11 @@ function randomColor(){
   return '#'+(0x1000000+Math.random()*0xffffff).toString(16).substr(1,6);
 }
 
+if(sesMessage)
+{
+    show_toast(sesMessage, 'sucess');
+}
+
 var options = {
       	series: attendance,
       	chart: {

@@ -10,6 +10,22 @@ $(document).ready(function() {
 	var msgElement = $('#add_error_message');
     var editmsgElement = $('#edit_error_message');
 
+    $('body').on('click','.cancel-sub',function(e){
+        e.preventDefault();
+
+        if(confirm('Are you sure want to cancel subscription?'))
+        {
+            $.ajax({
+                url: cancelSubUrl,
+                type: 'POST',
+                dataType: 'json',
+                success: function(result) {            
+                    show_toast(result.message, 'success');                    
+                }
+            });
+        }
+    })
+
     $('#profile-form').submit(function(event) {
         event.preventDefault();
         var $this = $(this);

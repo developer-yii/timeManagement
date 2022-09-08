@@ -60,3 +60,25 @@ function generateReferralCode()
     	generateReferralCode();
     }    	
 }
+
+function isSubscriptionActive()
+{
+	$s = \Auth::user()->subscription('Basic');
+	if(!$s)
+	{
+		return false;
+	}
+	$sub = \Auth::user()->subscription('Basic')->asStripeSubscription();
+    
+    $current_time = \Carbon\Carbon::now();
+    $expire_time = \Carbon\Carbon::createFromTimeStamp($sub->current_period_end);
+
+    if($current_time > $expire_time)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }    
+}
