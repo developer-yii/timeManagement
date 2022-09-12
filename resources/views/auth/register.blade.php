@@ -1,5 +1,9 @@
 @extends('layouts.login')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/page/login.css') }}" />
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -8,7 +12,7 @@
                 <!-- Logo-->
                 <div class="card-header text-center bg-primary">
                     <a href="{{ route('register')}}">
-                        <span><img src="{{ asset('images/logo.png') }}" alt="" height="50"></span>
+                        <span><img src="{{ asset('images/logo.png') }}" alt="" height="60"></span>
                     </a>
                 </div>
 
@@ -16,7 +20,7 @@
                     
                     <div class="text-center w-75 m-auto">
                         <h4 class="text-dark-50 text-center mt-0 fw-bold">Free Sign Up</h4>
-                        <p class="text-muted mb-4">Don't have an account? Create your account, it takes less than a minute </p>
+                        <p class="text-muted mb-4">Sign up takes less than 60 seconds. Get started today! </p>
                     </div>
 
                     <form method="POST" action="{{ route('register') }}">
@@ -53,7 +57,7 @@
                             </div>
                             <div class="form-check">
                                 <input type="radio" id="teacher" name="user_type" class="form-check-input" value="3">
-                                <label class="form-check-label" for="teacher">Teacher</label>
+                                <label class="form-check-label" for="teacher">Teacher/Business</label>
                             </div>
                         </div> 
 
@@ -103,7 +107,7 @@
                         </div>
 
                         <div class="mb-3 text-center">
-                            <button class="btn btn-primary" type="submit"> Sign Up </button>
+                            <button class="btn btn-success" type="submit"> Sign Up </button>
                         </div>
 
                     </form>
