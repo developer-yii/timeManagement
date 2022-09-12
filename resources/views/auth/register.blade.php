@@ -12,7 +12,7 @@
                 <!-- Logo-->
                 <div class="card-header text-center bg-primary">
                     <a href="{{ route('register')}}">
-                        <span><img src="{{ asset('images/logo.png') }}" alt="" height="60"></span>
+                        <span><img src="{{ asset('images/logo.png') }}" alt="" height="100"></span>
                     </a>
                 </div>
 
