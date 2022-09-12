@@ -1,5 +1,9 @@
 @extends('layouts.login')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/page/login.css') }}" />
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -7,9 +11,9 @@
             <div class="card">
 
                 <!-- Logo -->
-                <div class="card-header pt-4 pb-4 text-center bg-primary">
+                <div class="card-header text-center bg-primary">
                     <a href="index.html">
-                        <span><img src="{{ asset('images/logo.png') }}" alt="" height="18"></span>
+                        <span><img src="{{ asset('images/logo.png') }}" alt="" height="60"></span>
                     </a>
                 </div>
 
@@ -59,7 +63,7 @@
                         </div>
 
                         <div class="mb-3 mb-0 text-center">
-                            <button class="btn btn-primary" type="submit"> Log In </button>
+                            <button class="btn btn-success" type="submit"> Log In </button>
                         </div>
 
                     </form>

@@ -1,0 +1,21 @@
+.btn-success {
+    color: #fff;
+    background-color: #63bb65;
+    border-color: #63bb65;
+}
+
+.btn-success:hover {
+    color: #fff;
+    background-color: #59a85a;
+    border-color: #59a85a;
+}
+
+.form-check-input:checked {
+    background-color: #63bb65;
+    border-color: #63bb65;
+}
+
+.bg-primary {
+    --ct-bg-opacity: 1;
+    background-color: #313a46!important;
+}
