@@ -49,12 +49,18 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $message = array(
+            'checkbox-email.required' => 'Please Accept to receive mails from Homeschool',
+            'checkbox-signup.required' => 'Please Accept Terms and Conditions',
+        );
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'referral_id' => ['nullable','min:8','string']
-        ]);
+            'referral_id' => ['nullable','min:8','string'],
+            'checkbox-email' => ['required'],
+            'checkbox-signup' => ['required'],
+        ],$message);
     }
 
     /**

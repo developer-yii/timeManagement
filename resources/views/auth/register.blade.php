@@ -101,8 +101,22 @@
 
                         <div class="mb-3">
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="checkbox-signup">
+                                <input type="checkbox" class="form-check-input" id="checkbox-email" name="checkbox-email">
+                                <label class="form-check-label" for="checkbox-email">I agree to receive mails from Homeschool Hours. We never spam!</label>
+                                @error('checkbox-email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            </div>
+                            <div class="form-check pt-2">
+                                <input type="checkbox" class="form-check-input" id="checkbox-signup" name="checkbox-signup">
                                 <label class="form-check-label" for="checkbox-signup">I accept <a href="#" class="text-muted">Terms and Conditions</a></label>
+                                @error('checkbox-signup')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                             </div>
                         </div>
 
