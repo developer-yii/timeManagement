@@ -42,17 +42,17 @@
                     <img src="{{ asset('images/logo.png') }}" alt="" height="60">
                 </span>
                 <span class="logo-sm">
-                    <img src="{{ asset('images/logo_sm.png') }}" alt="" height="16">
+                    <img src="{{ asset('images/logo.png') }}" alt="" height="16">
                 </span>
             </a>
 
             <!-- LOGO -->
             <a href="index.html" class="logo text-center logo-dark">
                 <span class="logo-lg">
-                    <img src="{{ asset('images/logo-dark.png') }}" alt="" height="16">
+                    <img src="{{ asset('images/logo.png') }}" alt="" height="16">
                 </span>
                 <span class="logo-sm">
-                    <img src="{{ asset('images/logo_sm_dark.png') }}" alt="" height="16">
+                    <img src="{{ asset('images/logo.png') }}" alt="" height="16">
                 </span>
             </a>
 
@@ -256,8 +256,7 @@
                                 </a>
 
                             </div>
-                        </li>
-
+                        </li>                        
                         <li class="dropdown notification-list">
                             <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
                                 aria-expanded="false">
@@ -305,6 +304,12 @@
                         </li>
 
                     </ul>
+                    {{-- <ul class="list-unstyled topbar-menu float-end m-logo mb-0">
+                        <img src="{{ asset('images/logo.png') }}" alt="" height="60">
+                    </ul> --}}
+                    <a href="/" class="navbar-brand">
+                        <img src="{{ asset('images/logo.png') }}" alt="" height="60">
+                    </a>
                     <button class="button-menu-mobile open-left">
                         <i class="mdi mdi-menu"></i>
                     </button>

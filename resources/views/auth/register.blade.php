@@ -111,7 +111,7 @@
                             </div>
                             <div class="form-check pt-2">
                                 <input type="checkbox" class="form-check-input" id="checkbox-signup" name="checkbox-signup">
-                                <label class="form-check-label" for="checkbox-signup">I accept <a href="#" class="text-muted">Terms and Conditions</a></label>
+                                <label class="form-check-label" for="checkbox-signup">I accept <a href="{{ route('tnc') }}" class="text-muted">Terms and Conditions</a></label>
                                 @error('checkbox-signup')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
