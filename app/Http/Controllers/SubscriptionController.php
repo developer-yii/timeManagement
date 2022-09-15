@@ -4,10 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Plan;
+use Validator;
 use Auth;
+use Carbon\Carbon;
 
 class SubscriptionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin.user')->only(['addPriceShow']);;
+    }
+
     public function create(Request $request, Plan $plan)
     {
         $plan = Plan::findOrFail($request->get('plan'));        
@@ -48,5 +55,85 @@ class SubscriptionController extends Controller
         }
 
         return response()->json($result);
+    }
+
+    public function addPriceShow()
+    {
+        $plan = Plan::where('name','Basic')->latest()->first();
+
+        return view('plans.price',compact('plan'));
+    }
+
+    public function addPrice(Request $request)
+    {
+        if($request->ajax()) {
+
+            $rules = array(
+                'price'=>'required|numeric',                
+            );
+
+            $validator = Validator::make($request->all(), $rules);
+
+            if($validator->fails()){
+                $result = ['status' => false, 'message' => $validator->errors(), 'data' => []];
+                return response()->json($result);
+            }
+            else
+            {
+                $price = $request->price*100;
+
+                $stpSecret = env('STRIPE_SECRET');
+
+                try{
+
+                    $stripe = new \Stripe\StripeClient($stpSecret);
+
+                    $product = $stripe->products->all(['limit' => 1]);
+                    
+                    $product_key = $product->data['0']->id;
+                    
+
+                } catch (\Exception $e){
+                    $result = ['status' => false, 'Error' => true, 'message' => $e->getMessage(), 'data' => []];
+                    return response()->json($result);
+                }
+
+                try{
+                    $stripe = new \Stripe\StripeClient($stpSecret);
+
+                    $response = $stripe->prices->create([
+                        'product' => $product_key,
+                        'unit_amount' => $price,
+                        'currency' => 'usd',
+                        'recurring' => ['interval' => 'month'],
+                    ]);                    
+
+                    $prevPlan = Plan::where('cost','>',0)->latest()->first();
+
+                    if($prevPlan)
+                    {                        
+                        $plan = new Plan;
+                        $plan->name = $prevPlan->name;
+                        $plan->slug = $prevPlan->name.time();
+                        $plan->stripe_plan = $response->id;
+                        $plan->cost = $request->price;
+                        $plan->description = $prevPlan->description;
+                        $plan->save();
+
+                        $result = ['status' => true, 'message' => 'Price updated successfully', 'data' => []];
+                        return response()->json($result);
+                    }
+                    else
+                    {
+                        $result = ['status' => false, 'Error' => true, 'message' => 'Error in creating New Price', 'data' => []];
+                        return response()->json($result);    
+                    }
+                }
+                catch (\Exception $e){                                  
+                    $result = ['status' => false, 'Error' => true, 'message' => $e->getMessage(), 'data' => []];
+                    return response()->json($result);
+                }
+            }            
+        }
     }
 }

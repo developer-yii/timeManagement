@@ -11,7 +11,21 @@ class PlanController extends Controller
 {
     public function index()
     {
-        $plans = Plan::all();
+        $user = Auth::user();
+
+        $plans = Plan::all()->sortByDesc('created_at')->unique('name')->reverse();
+        
+        if($user->trial_ends_at || $user->is_sub_cancel)
+        {
+            // foreach($plans as $key => $plan)
+            // {
+            //     if($plan->slug == 'trial')
+            //     {
+            //         $plans->forget($key);
+            //     }
+            // }
+            $plans = Plan::where('name','Basic')->latest()->limit(1)->get();
+        }       
 
         return view('plans.index', compact('plans'));
     }
@@ -23,6 +37,14 @@ class PlanController extends Controller
         }
 
         $user = Auth::user();
+
+        if($plan->slug == 'trial')
+        {
+            $user->trial_ends_at = now()->addDays(30);
+            $user->save();
+
+            return redirect()->route('home')->with('success', 'You are now on 30 days trial period');
+        }        
 
         $intent = $user->createSetupIntent();
 
