@@ -20,7 +20,7 @@ class PlanSeeder extends Seeder
             'slug' => 'trial',
             'stripe_plan' => '',
             'cost' => 0,
-            'description' => 'trial with 30 days',      
+            'description' => 'trial with 7 days',      
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);

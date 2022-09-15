@@ -40,10 +40,10 @@ class PlanController extends Controller
 
         if($plan->slug == 'trial')
         {
-            $user->trial_ends_at = now()->addDays(30);
+            $user->trial_ends_at = now()->addDays(7);
             $user->save();
 
-            return redirect()->route('home')->with('success', 'You are now on 30 days trial period');
+            return redirect()->route('home')->with('success', 'You are now on 7 days trial period');
         }        
 
         $intent = $user->createSetupIntent();
