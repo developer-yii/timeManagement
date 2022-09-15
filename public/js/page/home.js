@@ -4,7 +4,7 @@ function randomColor(){
 
 if(sesMessage)
 {
-    show_toast(sesMessage, 'sucess');
+    show_toast(sesMessage, 'success');
 }
 
 var options = {

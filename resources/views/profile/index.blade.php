@@ -41,8 +41,12 @@
         </div>
     </form>
     <div class="row pt-4">
+    @if($user->user_type != 1)
         <div class="col-12 font-bold">Subscription :</div>
-        @if(!$user->is_sub_cancel)
+        @if($user->onTrial())
+            <div class="col-12 font-bold">Trial Subscription: <span class="badge badge-success-lighten">Active</span></div>
+            <div>Trial Ends At: <span class="badge badge-dark-lighten rounded-pill">{{ $user->trial_ends_at }}</span></div>
+        @elseif(!$user->is_sub_cancel)
             <div class="col-12">
                 <span><h3><span class="badge badge-success-lighten">{{ (isSubscriptionActive())?"Active":"Inactive"}}</span></h3></span>
             </div>
@@ -55,6 +59,12 @@
             </div>
         @endif
     </div>
+    {{-- @if($user->onTrial())
+    <div class="row pt-4">
+        <div class="col-12 font-bold">Trial Subscription: <span class="badge badge-success-lighten">Active</span></div>
+        <div>Trial Ends At: <span class="badge badge-dark-lighten rounded-pill">{{ $user->trial_ends_at }}</span></div>
+    </div>
+    @endif --}}
 
     <div class="row pt-4">
         @if($user->pm_type)
@@ -68,6 +78,7 @@
         
         @endif
     </div>
+    @endif
 
     <div class="row pt-4">
         <div class="col-12 font-bold">Referral Code:</div>

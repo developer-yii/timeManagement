@@ -289,6 +289,14 @@
                                     <span>My Account</span>
                                 </a>
 
+                                @if(auth()->user()->user_type == 1)
+                                <!-- item-->
+                                <a href="{{ route('subscription.price.show')}}" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-currency-usd me-1"></i>
+                                    <span>Change Subscription Amount</span>
+                                </a>
+                                @endif
+
                                 <!-- item-->
                                 <a href="{{ route('profile.password') }}" class="dropdown-item notify-item">
                                     <i class="mdi mdi-form-textbox-password me-1"></i>
@@ -378,8 +386,11 @@
         });
         
         function show_toast(toast_message,toast_type) {
-            $.NotificationApp.send("Well Done!", toast_message, "top-right", "rgba(0,0,0,0.2)", toast_type);
-        }
+            if(toast_type == 'success')
+                $.NotificationApp.send("Success!", toast_message, "top-right", "rgba(0,0,0,0.2)", toast_type);
+            else if(toast_type == 'error')
+                $.NotificationApp.send("", toast_message, "top-right", "rgba(0,0,0,0.2)", toast_type);
+        }       
 
     </script>
     @yield('js')

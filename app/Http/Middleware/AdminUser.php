@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Auth;
 
-class SubscriptionCheck
+class AdminUser
 {
     /**
      * Handle an incoming request.
@@ -18,24 +18,9 @@ class SubscriptionCheck
     public function handle(Request $request, Closure $next)
     {
         $user = Auth::user();
-
-        if($user->user_type != 1)
-        {
-            if($user->onTrial())
-            {
-                return $next($request);
-            }
-            else if(isSubscriptionActive())
-            {
-                return $next($request);
-            }
-            else{
-                return redirect()->route('plans.index')->with('subMessage','Subscribe plan to access site');
-            }
-        }
-        else
-        {
+        if($user->user_type == 1)
             return $next($request);
-        }
+        else
+            return redirect()->route('home');
     }
 }
