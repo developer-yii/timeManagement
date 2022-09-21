@@ -67,6 +67,15 @@
                         </a>
                     </li>
 
+                    @if(auth()->user()->user_type == 1)
+                    <li class="side-nav-item">
+                        <a href="{{ route('users') }}" class="side-nav-link">
+                            <i class="mdi mdi-human-queue"></i>
+                            <span> Users </span>
+                        </a>
+                    </li>
+                    @endif
+
                     <li class="side-nav-item">
                         <a href="{{ route('student') }}" class="side-nav-link">
                             <i class="mdi mdi-human-female-boy"></i>

@@ -44,6 +44,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/password', 'HomeController@password')->name('profile.password');
         Route::get('/referral', 'HomeController@getReferral')->name('referral.list');
         Route::post('/password/update', 'HomeController@passwordUpdate')->name('profile.passwordUpdate');
+        Route::get('/users', 'UserController@index')->name('users');
+        Route::get('/users/get', 'UserController@get')->name('users.list');
+        Route::post('/user/login', 'UserController@login')->name('user.login');
     });
 
     Route::group(['prefix' => 'subject'], function () {
