@@ -12,8 +12,10 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(result) {
                 if (result.status == true) {
-                    window.open(homeUrl);    
-                    window.open('', '_self', '').close();
+                    show_toast(result.message, 'success');
+                    setTimeout(function () {
+                        location.reload();
+                     }, 1000);
                                         
                 } else {
                     show_toast(result.message, 'error');
