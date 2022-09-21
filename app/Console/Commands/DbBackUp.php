@@ -52,7 +52,7 @@ class DbBackUp extends Command
 
         exec($command, $output, $returnVar);
 
-        Storage::disk('s3')->put("db-backup/".$filename, Storage::disk('public')->get('db-backup/' . $filename));
+        // Storage::disk('s3')->put("db-backup/".$filename, Storage::disk('public')->get('db-backup/' . $filename));
 
         if(file_exists($file_path)) {
             unlink($file_path);
