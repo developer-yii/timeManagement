@@ -63,7 +63,7 @@
                         </div>
 
                         <div class="mb-3 mb-0 text-center">
-                            <button class="btn btn-success" type="submit"> Log In </button>
+                            <button class="btn btn-green" type="submit"> Log In </button>
                         </div>
 
                     </form>

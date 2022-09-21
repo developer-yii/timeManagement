@@ -80,6 +80,7 @@
     </div>
     @endif
 
+    @if($user->user_type == 4)
     <div class="row pt-4">
         <div class="col-12 font-bold">Referral Code:</div>
         <div class="col-12">
@@ -105,6 +106,7 @@
             </div>
         </div>
     </div>	
+    @endif
 </div>
 @endsection
 

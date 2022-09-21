@@ -19,12 +19,13 @@ function sectoHH($seconds)
 }
 
 function timeDiffHHmm($firstTime,$lastTime) {
-	hhmmToSec($lastTime);
-    
-    $firstTime=hhmmToSec($firstTime);
+	
+	$firstTime=hhmmToSec($firstTime);
     $lastTime=hhmmToSec($lastTime);
     
     $timeDiff=$lastTime-$firstTime;
+    if($timeDiff < 0)
+    	return "00:00";    
     return secToHHmm($timeDiff);    
 }
 function getWidth($value,$max)

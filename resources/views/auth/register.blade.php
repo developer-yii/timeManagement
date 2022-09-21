@@ -57,8 +57,12 @@
                             </div>
                             <div class="form-check">
                                 <input type="radio" id="teacher" name="user_type" class="form-check-input" value="3">
-                                <label class="form-check-label" for="teacher">Teacher/Business</label>
+                                <label class="form-check-label" for="teacher">Teacher</label>
                             </div>
+                            <div class="form-check">
+                                <input type="radio" id="affiliate" name="user_type" class="form-check-input" value="4">
+                                <label class="form-check-label" for="affiliate">Affiliate/Business</label>
+                            </div>                            
                         </div> 
 
                         <div class="mb-3">
@@ -102,7 +106,7 @@
                         <div class="mb-3">
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="checkbox-email" name="checkbox-email">
-                                <label class="form-check-label" for="checkbox-email">I agree to receive mails from Homeschool Hours. We never spam!</label>
+                                <label class="form-check-label" for="checkbox-email">I agree to receive emails from Homeschool Hours. We never spam!</label>
                                 @error('checkbox-email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -121,7 +125,7 @@
                         </div>
 
                         <div class="mb-3 text-center">
-                            <button class="btn btn-success" type="submit"> Sign Up </button>
+                            <button class="btn btn-green" type="submit"> Sign Up </button>
                         </div>
 
                     </form>

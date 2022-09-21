@@ -87,7 +87,29 @@ body.authentication-bg {
   align-items: center;
 }
 
-/*.monthly_view_table table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}*/
+.btn-green{
+		color: #fff;
+    background-color: #63bb65;
+    border-color: #63bb65;
+}
+
+.btn-check:active+.btn-green, .btn-check:checked+.btn-green, .btn-green.active, .btn-green:active, .show>.btn-green.dropdown-toggle {
+    color: #fff;
+    background-color: #4f9550;
+    border-color: #4f9550;
+}
+
+.btn-green:hover {
+    color: #fff;
+    background-color: #4f9550;
+    border-color: #4f9550;
+}
+
+.btn-green {
+    -webkit-box-shadow: 0 2px 6px 0 rgb(99 187 101 / 50%);
+    box-shadow: 0 2px 6px 0 rgb(99 187 101 / 50%);
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator{
+	filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(130deg) brightness(95%) contrast(80%);
+}

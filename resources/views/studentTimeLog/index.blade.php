@@ -27,7 +27,7 @@ $lable = "Student Time Log";
                 <div class="row mb-2">
                     <div class="col-xl-3">
                        <div class="text-xl-start mt-xl-0 mt-2">
-                           <button type="button" class="btn btn-warning mb-2 me-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal"> Add Student Time/Activity</button>
+                           <button type="button" class="btn btn-green mb-2 me-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal"> Add Student Time/Activity</button>
                            
                        </div>
                    </div><!-- end col-->
@@ -57,8 +57,8 @@ $lable = "Student Time Log";
                            </div>
                            <div class="col-auto">
                                 <div class="d-flex align-items-center button-list">
-                                    <button type="submit" class="btn btn-warning"> <i class="dripicons-search"></i></button>
-                                    <button type="reset" class="btn btn-danger reset-form"> <i class="dripicons-clockwise"></i></button>
+                                    <button type="submit" class="btn btn-green"> <i class="dripicons-search"></i></button>
+                                    <button type="reset" class="btn btn-warning reset-form"> <i class="dripicons-clockwise"></i></button>
                                 </div>
                             </div>
                        </form>                            
@@ -128,19 +128,19 @@ $lable = "Student Time Log";
                 </div>                
                 <div class="mb-3">
                     <label class="form-label">Start time</label>
-                    <div class="input-group">
+                    {{-- <div class="input-group"> --}}
                         <input id="start_time" name="start_time" type="time" value="08:56 AM" class="form-control">
-                        <span class="input-group-text"><i class="dripicons-clock"></i></span>
-                    </div>
+                        {{-- <span class="input-group-text"><i class="dripicons-clock"></i></span> --}}
+                    {{-- </div> --}}
                 </div>
                 <div class="mb-3">
                     <label class="form-label">End time</label>
-                    <div class="input-group">
+                    {{-- <div class="input-group"> --}}
                         <input id="end_time" name="end_time" type="time" value="09:00 AM" class="form-control">
-                        <span class="input-group-text"><i class="dripicons-clock"></i></span>
-                    </div>
+                        {{-- <span class="input-group-text"><i class="dripicons-clock"></i></span> --}}
+                    {{-- </div> --}}
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 d-none">
                     <label for="log_time" class="control-label">Log Time:</label>
                     <div class="input-group">
                         <input type="time" name="log_time" id="log_time" class="form-control" readonly>
@@ -150,8 +150,10 @@ $lable = "Student Time Log";
                 </div>
 
                 <div class="mb-3">
-                    <label for="name" class="control-label">Attendance:</label>
-                    <input type="checkbox" id="attendance" name="attendance">
+                    <div class="form-check">
+                        <input type="checkbox" id="attendance" name="attendance" class="form-check-input">
+                        <label for="attendance" class="form-check-label">Attended: <i>(this will count toward your daily attendance)</i></label>
+                    </div>
                     <span class="error"></span>
                 </div>
 
@@ -162,7 +164,7 @@ $lable = "Student Time Log";
                 </div>
 
                 <div class="mb-3 text-center">
-                    <button class="btn btn-primary" type="submit">Save changes</button>
+                    <button class="btn btn-green" type="submit">Save changes</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                 </div>                
             </form>
@@ -343,4 +345,5 @@ $lable = "Student Time Log";
 @section('css')
     <!-- third party css -->
     <link href="{{ asset('css/vendor/fullcalendar.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/page/student-time-log.css') }}" rel="stylesheet" type="text/css" />
 @endsection

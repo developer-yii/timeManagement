@@ -155,8 +155,8 @@ $(document).ready(function() {
             }
         });    
 
-        $('body').on('change','#end_time1',function(e){
-            e.preventDefault();
+        $('body').on('change','#end_time1, #start_time1',function(e){
+            e.preventDefault();            
             $('#log_time').val(calculateTimeEdit());            
         })            
     });

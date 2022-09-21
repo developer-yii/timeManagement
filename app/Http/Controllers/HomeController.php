@@ -193,8 +193,10 @@ class HomeController extends Controller
         $stillReq = $attendance_required - $attendance;
         
         $attendanceArray[0] = $attendance;
-        $attendanceArray[1] = $stillReq;
-        
+        if($stillReq < 0) // if attendance required is 0
+            $attendanceArray[1] = 0;
+        else
+            $attendanceArray[1] = $stillReq;        
         
         $attendanceArray = json_encode($attendanceArray);        
 

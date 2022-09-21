@@ -31,7 +31,7 @@
                             @endforeach                            
                         </select>
                         {{-- </div> --}}
-                        <button type="submi" class="btn btn-info ml-10">Update</button>
+                        <button type="submi" class="btn btn-green ml-10">Update</button>
                     </form>
                 </div>
                 <h4 class="page-title">Dashboard</h4>
