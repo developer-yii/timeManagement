@@ -73,7 +73,7 @@ $lable = "Student Time Log";
                         <span class="error"></span>
                     </div>    
                     <div class="col-3">
-                        <button class="btn btn-primary search_log mt-3" type="submit">Search</button>
+                        <button class="btn btn-green search_log mt-3" type="submit">Search</button>
                     </div>
                     </form>
                 </div>
@@ -175,20 +175,22 @@ $lable = "Student Time Log";
 
                 <div class="mb-3">
                     <label class="form-label">Start time</label>
-                    <div class="input-group" id="timepicker-input-group4">
-                        <input id="start_time1" name="start_time" type="text" class="form-control timepicker" data-provide="timepicker">
-                        <span class="input-group-text"><i class="dripicons-clock"></i></span>
-                    </div>
+                    {{-- <div class="input-group" id="timepicker-input-group4"> --}}
+                        <input id="start_time1" name="start_time" type="time" class="form-control">
+                        {{-- <span class="input-group-text"><i class="dripicons-clock"></i></span> --}}
+                    {{-- </div> --}}
+                    <span class="error"></span>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">End time</label>
-                    <div class="input-group" id="timepicker-input-group5">
-                        <input id="end_time1" name="end_time" type="text" class="form-control timepicker" data-provide="timepicker">
-                        <span class="input-group-text"><i class="dripicons-clock"></i></span>
-                    </div>
+                    {{-- <div class="input-group" id="timepicker-input-group5"> --}}
+                        <input id="end_time1" name="end_time" type="time" class="form-control">
+                        {{-- <span class="input-group-text"><i class="dripicons-clock"></i></span> --}}
+                    {{-- </div> --}}
+                    <span class="error"></span>
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3 d-none">
                     <label for="log_time" class="control-label">Log Time:</label>                    
                     <input type="time" name="log_time" id="log_time" class="form-control">
                     <span class="error"></span>
@@ -196,8 +198,10 @@ $lable = "Student Time Log";
 
 
                 <div class="mb-3">
-                    <label for="name" class="control-label">Attendance:</label>
-                    <input type="checkbox" id="attendance" name="attendance">
+                    <div class="form-check">
+                        <input type="checkbox" id="attendance" name="attendance" class="form-check-input">
+                        <label for="attendance" class="form-check-label">Attended: <i>(this will count toward your daily attendance)</i></label>
+                    </div>
                     <span class="error"></span>
                 </div>
 
@@ -208,7 +212,7 @@ $lable = "Student Time Log";
                 </div>
 
                 <div class="mb-3 text-center">
-                    <button class="btn btn-primary" type="submit">Save changes</button>
+                    <button class="btn btn-green" type="submit">Save changes</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                 </div>                
             </form>
@@ -232,7 +236,7 @@ $lable = "Student Time Log";
 @section('pagejs')
 
 <!-- demo app -->
-<script src="{{ asset('js/vendor/demo.timepicker.js') }}"></script>
+{{-- <script src="{{ asset('js/vendor/demo.timepicker.js') }}"></script> --}}
 <!-- end demo js-->
 
 <script src="{{asset('/js')}}/page/studentMonthlyLog.js"></script>

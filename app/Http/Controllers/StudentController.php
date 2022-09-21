@@ -43,11 +43,11 @@ class StudentController extends Controller
         if($request->ajax()) {
             $rules = array(
                 'first_name'=>'required',
-                'last_name'=>'required',
+                // 'last_name'=>'required',
                 'student_color'=>'required',
                 'attendance'=>'required',
                 'hours'=>'required',
-                'email'=>'email',
+                'email'=>'nullable|email',
             );
             $msg = '';
             $validator = Validator::make($request->all(), $rules);

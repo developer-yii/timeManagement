@@ -27,7 +27,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <button type="button" class="btn btn-primary mb-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal">Add {{$lable}}</button><img src="{{asset('images/bulb.png')}}" class="bulb-icon"><span class="font-bold">Keep track of your homeschool schedule quickly and easily. Add holidays, days off, weekends, field trips & more!</span>
+                <button type="button" class="btn btn-green mb-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal">Add {{$lable}}</button><img src="{{asset('images/bulb.png')}}" class="bulb-icon"><span class="font-bold">Keep track of your homeschool schedule quickly and easily. Add holidays, days off, weekends, field trips & more!</span>
                 <div id="flash-message"></div>
                 <div class="table-responsive">
                     <table id="holidayTable" class="table table-hover dataTable">
@@ -110,7 +110,7 @@
                 </div>
                 
                 <div class="mb-3 text-center">
-                    <button class="btn btn-primary" type="submit">Save changes</button>
+                    <button class="btn btn-green" type="submit">Save changes</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                 </div>
 
@@ -168,7 +168,7 @@
                 </div>
                 
                 <div class="mb-3 text-center">
-                    <button class="btn btn-primary" type="submit">Save changes</button>
+                    <button class="btn btn-green" type="submit">Save changes</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                 </div>
 

@@ -28,7 +28,7 @@ $lable = "Subject";
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <button type="button" class="btn btn-primary mb-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal">Add {{$lable}}</button><img src="{{asset('images/bulb.png')}}" class="bulb-icon"><span class="font-bold">Add each subject, sport, and extracurricular your children/students may participate in. These subjects can also be classified as core or non-core.</span>
+                <button type="button" class="btn btn-green mb-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal">Add {{$lable}}</button><img src="{{asset('images/bulb.png')}}" class="bulb-icon"><span class="font-bold">Add each subject, sport, and extracurricular your children/students may participate in. These subjects can also be classified as core or non-core.</span>
                 <div id="flash-message"></div>
                 <div class="table-responsive">
                     <table id="subjectTable" class="table table-hover dataTable">
@@ -86,7 +86,7 @@ $lable = "Subject";
                 </div> --}}
                 
                 <div class="mb-3 text-center">
-                    <button class="btn btn-primary" type="submit">Save changes</button>
+                    <button class="btn btn-green" type="submit">Save changes</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                 </div>
 

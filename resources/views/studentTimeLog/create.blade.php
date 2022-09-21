@@ -56,20 +56,20 @@ $lable = "Student Time Log";
                                 <span class="error"></span>
                             </div>                
                             <div class="mb-3">
-                                <label class="form-label">Start time</label>
-                                <div class="input-group">
+                                <label class="form-label">Start time <i>(click clock button to the right)</i></label>
+                                {{-- <div class="input-group"> --}}
                                     <input id="start_time" name="start_time" type="time" value="08:56 AM" class="form-control">
-                                    <span class="input-group-text"><i class="dripicons-clock"></i></span>
-                                </div>
+                                    {{-- <span class="input-group-text"><i class="dripicons-clock"></i></span> --}}
+                                {{-- </div> --}}
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">End time</label>
-                                <div class="input-group">
+                                <label class="form-label">End time <i>(click clock button to the right)</i></label>
+                                {{-- <div class="input-group"> --}}
                                     <input id="end_time" name="end_time" type="time" value="09:00 AM" class="form-control">
-                                    <span class="input-group-text"><i class="dripicons-clock"></i></span>
-                                </div>
+                                    {{-- <span class="input-group-text"><i class="dripicons-clock"></i></span> --}}
+                                {{-- </div> --}}
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 d-none">
                                 <label for="log_time" class="control-label">Log Time:</label>
                                 <div class="input-group">
                                     <input type="time" name="log_time" id="log_time" class="form-control" readonly>
@@ -79,8 +79,10 @@ $lable = "Student Time Log";
                             </div>
 
                             <div class="mb-3">
-                                <label for="name" class="control-label">Attendance:</label>
-                                <input type="checkbox" id="attendance" name="attendance">
+                                <div class="form-check">
+                                    <input type="checkbox" id="attendance" name="attendance" class="form-check-input">
+                                    <label for="attendance" class="form-check-label">Attended: <i>(this will count toward your daily attendance)</i></label>
+                                </div>
                                 <span class="error"></span>
                             </div>
                             <div class="mb-3">
@@ -89,7 +91,7 @@ $lable = "Student Time Log";
                                 <span class="error"></span>
                             </div>
                             <div class="mb-3 text-right">
-                                <button class="btn btn-primary" type="submit">Save changes</button>                                
+                                <button class="btn btn-green" type="submit">Save changes</button>                                
                             </div>                
                         </form>
                         </div>

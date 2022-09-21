@@ -28,7 +28,7 @@ $lable = "Student";
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <button type="button" class="btn btn-primary mb-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal">Add {{$lable}}</button><img src="{{asset('images/bulb.png')}}" class="bulb-icon"><span class="font-bold">Add all children, even those not attending school. You will still be able to keep track of projects, schedules, doctor's appointments, and more.</span>
+                <button type="button" class="btn btn-green mb-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal">Add {{$lable}}</button><img src="{{asset('images/bulb.png')}}" class="bulb-icon"><span class="font-bold">Add all children, even those not attending school. You will still be able to keep track of projects, schedules, doctor's appointments, and more.</span>
                 <div id="flash-message"></div>
                 <div class="table-responsive">
                     <table id="studentTable" class="table table-hover dataTable">
@@ -94,13 +94,13 @@ $lable = "Student";
                 </div>
 
                 <div class="mb-3">
-                    <label for="attendance" class="control-label">Attendance Required:</label>
+                    <label for="attendance" class="control-label">Attendance Days Required:<i> (Please put 0 if this is not required)</i></label>
                     <input type="number" step="1" class="form-control" id="attendance" name="attendance"> 
                     <span class="error"></span>
                 </div>
 
                 <div class="mb-3">
-                    <label for="hours" class="control-label">Hours Required:</label>
+                    <label for="hours" class="control-label">Hours Required:<i> (Please put 0 if this is not required)</i></label>
                     <input type="number" step="1" class="form-control" id="hours" name="hours"> 
                     <span class="error"></span>
                 </div>
@@ -123,7 +123,7 @@ $lable = "Student";
                 </div>
                 
                 <div class="mb-3 text-center">
-                    <button class="btn btn-primary" type="submit">Save changes</button>
+                    <button class="btn btn-green" type="submit">Save changes</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                 </div>
 
