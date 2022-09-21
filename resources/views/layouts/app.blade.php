@@ -273,6 +273,8 @@
                                                 echo 'Parent';
                                             else if(Auth::user()->user_type == 3)
                                                 echo 'Teacher';
+                                            else if(Auth::user()->user_type == 4)
+                                                echo 'Affiliate/Business';
                                         @endphp
                                     </span>
                                 </span>
