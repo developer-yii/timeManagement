@@ -94,7 +94,7 @@ $lable = "Student Time Log";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
             </div>
             <div class="modal-body">
-            <form id="add-form" method="post" class="ps-3 pe-3" action="{{route('student-time-log.addupdate')}}">
+            <form id="add-form" method="post" class="ps-3 pe-3" action="{{route('student-time-log.addupdate')}}" autocomplete="off">
                 @csrf
                 <input type="hidden" name="id" value="0" id="edit-id">
                 <div id="add_error_message"></div>
@@ -127,16 +127,16 @@ $lable = "Student Time Log";
                     <span class="error"></span>
                 </div>                
                 <div class="mb-3">
-                    <label class="form-label">Start time</label>
+                    <label class="form-label">Start time <i>(click clock button to the right)</i></label>
                     {{-- <div class="input-group"> --}}
-                        <input id="start_time" name="start_time" type="time" value="08:56 AM" class="form-control">
+                        <input id="start_time" name="start_time" type="time" value="08:56 AM" class="form-control" autocomplete="off">
                         {{-- <span class="input-group-text"><i class="dripicons-clock"></i></span> --}}
                     {{-- </div> --}}
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">End time</label>
+                    <label class="form-label">End time <i>(click clock button to the right)</i></label>
                     {{-- <div class="input-group"> --}}
-                        <input id="end_time" name="end_time" type="time" value="09:00 AM" class="form-control">
+                        <input id="end_time" name="end_time" type="time" value="09:00 AM" class="form-control" autocomplete="off">
                         {{-- <span class="input-group-text"><i class="dripicons-clock"></i></span> --}}
                     {{-- </div> --}}
                 </div>
@@ -201,13 +201,13 @@ $lable = "Student Time Log";
                 </div>
 
                 <div class="mb-3">
-                    <label for="edit_end_date" class="control-label">End Date:</label>
+                    <label for="edit_end_date" class="control-label">End Date: <i>(click clock button to the right)</i></label>
                     <input type="text" class="form-control date" id="edit_end_date" data-provide="datepicker" data-single-date-picker="true" name="end_date" data-date-format="yyyy-mm-dd">
                     <span class="error"></span>
                 </div>
 
                 <div class="mb-3">
-                    <label for="edit_event_color" class="control-label">Event Color:</label>
+                    <label for="edit_event_color" class="control-label">Event Color: <i>(click clock button to the right)</i></label>
                     <input type="text" class="form-control" name="event_color" id="edit_event_color" data-coloris value="#fa5c7c">
                     <span class="error"></span>
                 </div>
