@@ -44,6 +44,11 @@
 		font-size: 130px;
 	}
 }
+@media only screen and (max-width: 414px) {
+	 .font-40{
+		font-size: 76px;
+	}
+}
 @media only screen and (max-width: 390px) {
 	 .font-40{
 		font-size: 76px;
