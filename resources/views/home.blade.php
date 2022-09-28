@@ -237,7 +237,7 @@
                         <div class="font-40">{{($hoursCompleted)?$hoursCompleted:"00:00"}}</div>
                     </div>
                     <div class="row">
-                        <div class="text-right">
+                        <div class="text-right arrow-right">
                             <img src="{{asset('/images/upArrow.png')}}" style="height:60px">
                         </div>
                     </div>  

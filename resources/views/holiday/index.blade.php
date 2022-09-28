@@ -73,9 +73,13 @@
                     {{-- <select name="student_id[]" id="student_id" class="form-control"> --}}
                         {{-- <option value="">Select Student</option> --}}
                         <div class="flex">
+                            <div class="form-check">
+                                <input type='checkbox' name='student_id' value="all" id="student_id_all" class="form-check-input"/>
+                                <label class="form-check-label form-label" for="student_id_all">All</label>    
+                            </div>
                         @foreach($student_list as $stkey=>$stlist)                                                    
                         <div class="form-check">
-                            <input type='checkbox' name='student_id[]' value="{{ $stkey }}" id="student_id_{{ $stkey }}" class="form-check-input"/>
+                            <input type='checkbox' name='student_id[]' value="{{ $stkey }}" id="student_id_{{ $stkey }}" class="form-check-input student-checkbox"/>
                             <label class="form-check-label form-label" for="student_id_{{ $stkey }}">{{ $stlist }}</label>
                         </div>
                         @endforeach

@@ -36,7 +36,7 @@
     <!-- end page -->
 
     <footer class="footer footer-alt">
-        2018 - <script>document.write(new Date().getFullYear())</script> © HomeSchoolHours
+        2018 - <script>document.write(new Date().getFullYear())</script> © HomeSchoolMinutes
     </footer>
 
     <!-- bundle -->

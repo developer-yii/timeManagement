@@ -157,8 +157,9 @@ class HomeController extends Controller
 
         $totalHoursRequired = (int) $hours_required;
         
-        $hoursCompleted = secToHHmm($coreHoursinSec + $nonCoreHoursinSec);
-        $hoursCompletedHH = convertToHH($hoursCompleted);
+        $hoursCompleted = secToHHmm4($coreHoursinSec + $nonCoreHoursinSec);
+        $hoursCompletedA = secToHHmm($coreHoursinSec + $nonCoreHoursinSec);
+        $hoursCompletedHH = convertToHH($hoursCompletedA);
 
         $hoursRequiredHH = $totalHoursRequired - $hoursCompletedHH;
 

@@ -27,7 +27,10 @@
 }
 
 .font-40{
-	font-size: 40px;
+	font-size: 26px;
+}
+.arrow-right{
+	padding-right: 0px;
 }
 .text-right{
 	float: right;
@@ -35,18 +38,34 @@
 .text-left{
 	float: left;
 }
+
+@media only screen and (max-width: 640px) {
+	 .font-40{
+		font-size: 75px;
+	}
+}
+@media only screen and (max-width: 533px) {
+	 .font-40{
+		font-size: 58px;
+	}
+}
+@media only screen and (min-width: 1500px) {
+	 .font-40{
+		font-size: 34px;
+	}
+}
 @media only screen and (min-width: 1700px) {
 	 .font-40{
-		font-size: 60px;
+		font-size: 40px;
 	}
 }
 @media only screen and (min-width: 1800px) {
 	 .font-40{
-		font-size: 68px;
+		font-size: 47px;
 	}
 }
 @media only screen and (min-width: 2000px) {
 	 .font-40{
-		font-size: 80px;
+		font-size: 56px;
 	}
 }

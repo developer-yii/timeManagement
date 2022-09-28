@@ -5,6 +5,11 @@ function secToHHmm($seconds = 0)
 	return sprintf('%02d:%02d', ($seconds/ 3600),$seconds/ 60 % 60);
 }
 
+function secToHHmm4($seconds = 0)
+{
+	return sprintf('%04d:%02d', ($seconds/ 3600),$seconds/ 60 % 60);
+}
+
 function hhmmToSec($time)
 {
 	$a = explode(':', $time);

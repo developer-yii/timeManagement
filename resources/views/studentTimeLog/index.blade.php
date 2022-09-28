@@ -94,7 +94,7 @@ $lable = "Student Time Log";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
             </div>
             <div class="modal-body">
-            <form id="add-form" method="post" class="ps-3 pe-3" action="{{route('student-time-log.addupdate')}}">
+            <form id="add-form" method="post" class="ps-3 pe-3" action="{{route('student-time-log.addupdate')}}" autocomplete="off">
                 @csrf
                 <input type="hidden" name="id" value="0" id="edit-id">
                 <div id="add_error_message"></div>
@@ -127,16 +127,16 @@ $lable = "Student Time Log";
                     <span class="error"></span>
                 </div>                
                 <div class="mb-3">
-                    <label class="form-label">Start time</label>
+                    <label class="form-label">Start time <i>(click clock button to the right)</i></label>
                     {{-- <div class="input-group"> --}}
-                        <input id="start_time" name="start_time" type="time" value="08:56 AM" class="form-control">
+                        <input id="start_time" name="start_time" type="time" value="08:56 AM" class="form-control" autocomplete="off">
                         {{-- <span class="input-group-text"><i class="dripicons-clock"></i></span> --}}
                     {{-- </div> --}}
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">End time</label>
+                    <label class="form-label">End time <i>(click clock button to the right)</i></label>
                     {{-- <div class="input-group"> --}}
-                        <input id="end_time" name="end_time" type="time" value="09:00 AM" class="form-control">
+                        <input id="end_time" name="end_time" type="time" value="09:00 AM" class="form-control" autocomplete="off">
                         {{-- <span class="input-group-text"><i class="dripicons-clock"></i></span> --}}
                     {{-- </div> --}}
                 </div>
@@ -178,14 +178,14 @@ $lable = "Student Time Log";
         <div class="modal-content">
             
             <div class="modal-header">
-                <h4 class="modal-title"><span class="modal-lable-class">View Holiday</h4> 
+                <h4 class="modal-title"><span class="modal-lable-class">View/Edit Holiday</h4> 
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
             </div>
 
             <div class="modal-body">
-            <form id="edit-form" method="post" class="ps-3 pe-3" action="">
+            <form id="edit-form" method="post" class="ps-3 pe-3" action="{{ route('holiday.update')}}">
                 @csrf
-                {{-- <input type="hidden" name="id" value="" id="edit-id"> --}}
+                <input type="hidden" name="id" value="" id="edit-id">
                 <div id="add_error_message"></div>
                 
                 <div class="mb-3" >
@@ -219,7 +219,7 @@ $lable = "Student Time Log";
                 </div>
                 
                 <div class="mb-3 text-center">
-                    {{-- <button class="btn btn-primary" type="submit">Save changes</button> --}}
+                    <button class="btn btn-primary" type="submit">Save changes</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                 </div>                
             </form>
@@ -319,6 +319,7 @@ $lable = "Student Time Log";
 @endsection
 
 @section('js')
+<script src="{{ asset('js/vendor/coloris.js') }}"></script>
 <script>
     var data_json = {!! $data_json !!};
     var apiUrl = "{{ route('student-time-log.list') }}";
@@ -326,6 +327,7 @@ $lable = "Student Time Log";
     var holidayDetailUrl = "{{ route('holiday.detail') }}";
     var deleteUrl = "{{ route('student-time-log.delete') }}";    
     var addUrl = $('#add-form').attr('action');
+    var editUrl = $('#edit-form').attr('action');
     var page_reload = false;
 </script>
 @endsection
@@ -344,6 +346,7 @@ $lable = "Student Time Log";
 
 @section('css')
     <!-- third party css -->
+    <link rel="stylesheet" href="{{ asset('css/vendor/coloris.css') }}" />
     <link href="{{ asset('css/vendor/fullcalendar.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/page/student-time-log.css') }}" rel="stylesheet" type="text/css" />
 @endsection

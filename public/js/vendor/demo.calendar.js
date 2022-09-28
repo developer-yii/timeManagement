@@ -70,6 +70,7 @@
                         dataType: 'json',
                         success: function(result) {
                             $('#edit-modal').modal('show');
+                            $('#edit-form').find('#edit-id').val(hId);
                             $('#edit-form').find('#edit_start_date').val(result.data.start_date);
                             $('#edit-form').find('#edit_end_date').val(result.data.end_date);
                             $('#edit-form').find('#edit_note').val(result.data.note);

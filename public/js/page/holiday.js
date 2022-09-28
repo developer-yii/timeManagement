@@ -28,6 +28,32 @@ $(document).ready(function() {
             $('#add-form')[0].reset();
         });
 
+        $('body').on('click','input[type="checkbox"]',function(e){
+            var currentElement = $(this);
+            var i = $(this).val();
+            
+            if(i == 'all')
+            {
+                if($("body #student_id_all").prop('checked') == true){
+                    console.log('enter');
+                    $("body .student-checkbox").each(function(){
+                        $(this).prop('checked',false);     
+                        $(this).change();  
+                        $(this).prop('disabled', true);
+                    });
+
+                }
+                else
+                {
+                    $("body .student-checkbox").each(function(){
+                        $(this).prop('checked',false);     
+                        $(this).change();  
+                        $(this).prop('disabled', false);
+                    });                           
+                }
+            }
+        })
+
         $('#add-form').submit(function(event) {
             event.preventDefault();
             var $this = $(this);
@@ -48,6 +74,12 @@ $(document).ready(function() {
                             $('#holidayTable').DataTable().ajax.reload();
                         else
                             location.reload();
+
+                        $("body .student-checkbox").each(function(){
+                            $(this).prop('checked',false);     
+                            $(this).change();  
+                            $(this).prop('disabled', false);
+                        });
 
                         setTimeout(function() {
                             $('#add-modal').modal('hide');
