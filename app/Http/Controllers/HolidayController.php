@@ -54,19 +54,50 @@ class HolidayController extends Controller
             }else{
                                 
                 $msg = 'Holiday added successfully';   
-                foreach($request->student_id as $key => $studentId)
-                {
-                    $holiday = new Holiday;
-                    $holiday->student_id = $studentId;
-                    $holiday->start_date = date('Y-m-d',strtotime($request->start_date));
-                    $holiday->end_date = date('Y-m-d',strtotime($request->end_date));
-                    $holiday->user_id = Auth::user()->id;
-                    $holiday->event_color = $request->event_color;
-                    $holiday->note = $request->note;
-                    $holiday->created_at = Carbon::now();
-                    $holiday->updated_at = Carbon::now();
-                    $r = $holiday->save();
+
+                if(is_array($request->student_id))
+                {                    
+                    foreach($request->student_id as $key => $studentId)
+                    {
+                        $holiday = new Holiday;
+                        $holiday->student_id = $studentId;
+                        $holiday->start_date = date('Y-m-d',strtotime($request->start_date));
+                        $holiday->end_date = date('Y-m-d',strtotime($request->end_date));
+                        $holiday->user_id = Auth::user()->id;
+                        $holiday->event_color = $request->event_color;
+                        $holiday->note = $request->note;
+                        $holiday->created_at = Carbon::now();
+                        $holiday->updated_at = Carbon::now();
+                        $r = $holiday->save();
+                    }
                 }
+                else{
+                    $students = Student::where('user_id',Auth::user()->id)->where('deleted_at',null)->get();
+                    $tmp = [];
+                    if($students->count())
+                    {
+                        foreach($students as $key => $stu)
+                        {
+                            $tmp[$key] = $stu->id;
+                        }
+                        $request->student_id = $tmp;                        
+
+                        foreach($request->student_id as $key => $studentId)
+                        {
+                            $holiday = new Holiday;
+                            $holiday->student_id = $studentId;
+                            $holiday->start_date = date('Y-m-d',strtotime($request->start_date));
+                            $holiday->end_date = date('Y-m-d',strtotime($request->end_date));
+                            $holiday->user_id = Auth::user()->id;
+                            $holiday->event_color = $request->event_color;
+                            $holiday->note = $request->note;
+                            $holiday->created_at = Carbon::now();
+                            $holiday->updated_at = Carbon::now();
+                            $r = $holiday->save();
+                        }
+                    }
+                }
+
 
                 if($r){
                     $result = ['status' => true, 'message' => $msg, 'data' => []];

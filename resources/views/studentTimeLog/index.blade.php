@@ -178,14 +178,14 @@ $lable = "Student Time Log";
         <div class="modal-content">
             
             <div class="modal-header">
-                <h4 class="modal-title"><span class="modal-lable-class">View Holiday</h4> 
+                <h4 class="modal-title"><span class="modal-lable-class">View/Edit Holiday</h4> 
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
             </div>
 
             <div class="modal-body">
-            <form id="edit-form" method="post" class="ps-3 pe-3" action="">
+            <form id="edit-form" method="post" class="ps-3 pe-3" action="{{ route('holiday.update')}}">
                 @csrf
-                {{-- <input type="hidden" name="id" value="" id="edit-id"> --}}
+                <input type="hidden" name="id" value="" id="edit-id">
                 <div id="add_error_message"></div>
                 
                 <div class="mb-3" >
@@ -201,13 +201,13 @@ $lable = "Student Time Log";
                 </div>
 
                 <div class="mb-3">
-                    <label for="edit_end_date" class="control-label">End Date: <i>(click clock button to the right)</i></label>
+                    <label for="edit_end_date" class="control-label">End Date:</label>
                     <input type="text" class="form-control date" id="edit_end_date" data-provide="datepicker" data-single-date-picker="true" name="end_date" data-date-format="yyyy-mm-dd">
                     <span class="error"></span>
                 </div>
 
                 <div class="mb-3">
-                    <label for="edit_event_color" class="control-label">Event Color: <i>(click clock button to the right)</i></label>
+                    <label for="edit_event_color" class="control-label">Event Color:</label>
                     <input type="text" class="form-control" name="event_color" id="edit_event_color" data-coloris value="#fa5c7c">
                     <span class="error"></span>
                 </div>
@@ -219,7 +219,7 @@ $lable = "Student Time Log";
                 </div>
                 
                 <div class="mb-3 text-center">
-                    {{-- <button class="btn btn-primary" type="submit">Save changes</button> --}}
+                    <button class="btn btn-primary" type="submit">Save changes</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                 </div>                
             </form>
@@ -319,6 +319,7 @@ $lable = "Student Time Log";
 @endsection
 
 @section('js')
+<script src="{{ asset('js/vendor/coloris.js') }}"></script>
 <script>
     var data_json = {!! $data_json !!};
     var apiUrl = "{{ route('student-time-log.list') }}";
@@ -326,6 +327,7 @@ $lable = "Student Time Log";
     var holidayDetailUrl = "{{ route('holiday.detail') }}";
     var deleteUrl = "{{ route('student-time-log.delete') }}";    
     var addUrl = $('#add-form').attr('action');
+    var editUrl = $('#edit-form').attr('action');
     var page_reload = false;
 </script>
 @endsection
@@ -344,6 +346,7 @@ $lable = "Student Time Log";
 
 @section('css')
     <!-- third party css -->
+    <link rel="stylesheet" href="{{ asset('css/vendor/coloris.css') }}" />
     <link href="{{ asset('css/vendor/fullcalendar.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/page/student-time-log.css') }}" rel="stylesheet" type="text/css" />
 @endsection

@@ -348,8 +348,9 @@
                         <div class="col-md-6">
                             <div class="text-md-end footer-links d-none d-md-block">
                                 {{-- <a href="javascript: void(0);">About</a> --}}
-                                <a href="javascript: void(0);">Support</a>
-                                <a href="javascript: void(0);">Contact Us</a>
+
+                                <a href="mailto:email@homeschoolhours.com">Support</a>
+                                <a href="mailto:email@homeschoolhours.com">Contact Us</a>
                             </div>
                         </div>
                     </div>
@@ -402,6 +403,10 @@
             else if(toast_type == 'error')
                 $.NotificationApp.send("", toast_message, "top-right", "rgba(0,0,0,0.2)", toast_type);
         }       
+
+        $(document).ready(function(){
+            $("form").attr('autocomplete', 'off');
+        });
 
     </script>
     @yield('js')
