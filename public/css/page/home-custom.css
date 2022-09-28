@@ -39,12 +39,23 @@
 	float: left;
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 638px) {
 	 .font-40{
-		font-size: 75px;
+		font-size: 130px;
 	}
 }
-@media only screen and (max-width: 533px) {
+@media only screen and (max-width: 390px) {
+	 .font-40{
+		font-size: 76px;
+	}
+}
+
+@media only screen and (max-width: 360px) {
+	 .font-40{
+		font-size: 68px;
+	}
+}
+@media only screen and (max-width: 320px) {
 	 .font-40{
 		font-size: 58px;
 	}
