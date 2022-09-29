@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\SiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,7 @@ use App\Http\Controllers\Auth\RegisterController;
 */
 
 Route::get('/', function () {
-    return redirect(route('login'));
+    return redirect(route('index'));
 });
 
 Auth::routes();
@@ -24,6 +25,7 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/tnc', 'RegisterController@tnc')->name('tnc');
 Route::get('/tnc', [RegisterController::class, 'tnc'])->name('tnc');
+Route::get('/index', [SiteController::class, 'index'])->name('index');
 
 
 Route::middleware(['auth'])->group(function () {
