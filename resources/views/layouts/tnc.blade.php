@@ -13,6 +13,12 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-touch-icon.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon-16x16.png')}}">
+    <link rel="manifest" href="{{ asset('images/site.webmanifest')}}">
+
     <!-- Styles -->
     <link href="{{ asset('css/app.min.css') }}" rel="stylesheet" id="app-style">
     <link href="{{ asset('css/icons.min.css') }}" rel="stylesheet">
@@ -25,8 +31,8 @@
         <!-- Topbar Start -->
                 <div class="navbar-custom center-flex">
                     <ul class="list-unstyled topbar-menu mb-0">
-                        <a href="/" class="">
-                        <img src="{{ asset('images/logo.png') }}" alt="" height="60">
+                        <a href="{{ route('index') }}" class="">
+                        <img src="{{ asset('images/landing/logo.png') }}" alt="" height="60">
                     </a>
                     </ul>                    
                 </div>
@@ -36,7 +42,7 @@
     <!-- end page -->
 
     <footer class="footer footer-alt">
-        2018 - <script>document.write(new Date().getFullYear())</script> © HomeSchoolMinutes
+        <script>document.write(new Date().getFullYear())</script> © HomeSchool Minutes
     </footer>
 
     <!-- bundle -->

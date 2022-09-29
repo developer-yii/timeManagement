@@ -13,6 +13,12 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-touch-icon.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon-16x16.png')}}">
+    <link rel="manifest" href="{{ asset('images/site.webmanifest')}}">
+
     <!-- Styles -->
     <!-- Datatables css -->
     <link href="{{asset('/')}}theme/css/vendor/dataTables.bootstrap5.css" rel="stylesheet" type="text/css" />
@@ -343,7 +349,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-6">
-                            <script>document.write(new Date().getFullYear())</script> © HomeSchoolMinutes
+                            <script>document.write(new Date().getFullYear())</script> © HomeSchool Minutes
                         </div>
                         <div class="col-md-6">
                             <div class="text-md-end footer-links d-none d-md-block">
