@@ -97,7 +97,7 @@ button:focus {
 
 .navbar-brand img {
     max-width: 554px;
-    max-height: 90px;
+    max-height: 80px;
 }
 
 .navbar-toggler {
@@ -115,7 +115,7 @@ button:focus {
 
 .navbar-nav .nav-link {
     font-weight: 700;
-    font-size: 30px;
+    font-size: 18px;
     color: #000000;
     padding: 0!important;
     margin-left: 25px;
@@ -134,11 +134,11 @@ button:focus {
 
 .navbar-nav li:last-of-type a {
     width: 137px;
-    height: 52px;
+    height: 40px;
     background: #61BA61;
     margin-left: 45px;
     border-radius: 8px;
-    font-size: 20px;
+    font-size: 18px;
     text-transform: capitalize;
     color: #fff;
 }
@@ -265,7 +265,7 @@ button:focus {
 }
 
 .planner-item2 h2 {
-    font-size: 60px;
+    font-size: 38px;
     font-weight: 700;
     color: #fff;
     text-align: center;
@@ -293,14 +293,14 @@ button:focus {
 }
 
 .planner-item2 a {
-    font-size: 67px;
+    font-size: 38px;
     font-weight: 700;
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 721px;
-    height: 99px;
+    width: 600px;
+    height: 60px;
     background: #20B6DA;
     border-radius: 8px;
     margin: 55px auto 0;
@@ -323,7 +323,7 @@ button:focus {
 }
 
 .tracking-item h2 {
-    font-size: 62px;
+    font-size: 38px;
     font-weight: 700;
     color: #000000;
     text-align: center;
@@ -340,7 +340,7 @@ button:focus {
 
 .tracking-item ul li {
     font-family: 'CenturyGothic';
-    font-size: 56px;
+    font-size: 38px;
     font-weight: 400;
     color: #010101;
     margin-bottom: 30px;
@@ -348,18 +348,19 @@ button:focus {
 }
 
 .tracking-item ul li span {
-    height: 261px;
+    height: 160px;
     display: block;
     margin-bottom: 30px;
 }
 
 .tracking-item ul li img {
     max-width: 100%;
+    max-height: 150px;
 }
 
 .tracking-item p {
     font-family: 'CenturyGothic';
-    font-size: 46px;
+    font-size: 28px;
     font-weight: 400;
     color: #000000;
     text-align: center;
@@ -373,7 +374,7 @@ button:focus {
 }
 
 .tracking-item h4 {
-    font-size: 46px;
+    font-size: 28px;
     font-weight: 700;
     color: #000000;
     text-align: center;
@@ -381,14 +382,14 @@ button:focus {
 }
 
 .tracking-item a {
-    font-size: 67px;
+    font-size: 38px;
     font-weight: 700;
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 721px;
-    height: 99px;
+    width: 600px;
+    height: 60px;
     background: #20B6DA;
     border-radius: 8px;
     margin: 55px auto 0;
