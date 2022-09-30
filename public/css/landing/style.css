@@ -122,7 +122,7 @@ button:focus {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-transform: uppercase;
+    text-transform: none;
     transition: 0.2s all ease;
     -webkit-transition: 0.2s all ease;
     -moz-transition: 0.2s all ease;
@@ -135,9 +135,11 @@ button:focus {
 .navbar-nav li:last-of-type a {
     width: 137px;
     height: 40px;
-    background: #61BA61;
+    /*background: #61BA61;*/
+    background: #20B6DA;
     margin-left: 45px;
-    border-radius: 8px;
+    /*border-radius: 8px;*/
+    border-radius: 2px;
     font-size: 18px;
     text-transform: capitalize;
     color: #fff;
@@ -397,4 +399,11 @@ button:focus {
 
 .tracking-item a:hover {
     opacity: .8;
+}
+
+.navbar-brand{
+    margin-left: 1rem;
+}
+.nav-link.mr-1{
+    margin-right: 1rem;
 }

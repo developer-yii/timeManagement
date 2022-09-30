@@ -5,12 +5,6 @@ large Screen - Others
 */
 @media screen and (min-width: 1201px) and (max-width: 1399px) {
 
-
-
-
-
-
-
 /*=== planner area start ===*/
 
 .planner-area-inner {
@@ -38,6 +32,82 @@ large Screen - Others
 
 .tracking-item h4 {
     font-size: 28px;
+}
+}
+
+@media screen and (min-width: 1201px) and (max-width: 1399px) {
+    .ml-9{
+        margin-left: 9rem;
+    }
+}
+
+@media screen and (min-width: 1399px) and (max-width: 1599px) {
+    .planner-item2 h2 {
+        font-size: 38px;
+    }
+
+    .planner-item2 ul li {
+        font-size: 22px;
+    }
+
+    .planner-item2 ul li img {
+        max-width: 28px;
+    }
+    .ml-9{
+        margin-left: 16.5rem;
+    }
+
+}
+@media screen and (min-width: 1599px) and (max-width: 1799px) {
+    .planner-item2 h2 {
+        font-size: 38px;
+    }
+
+    .planner-item2 ul li {
+        font-size: 22px;
+    }
+
+    .planner-item2 ul li img {
+        max-width: 28px;
+    }
+    .ml-9{
+        margin-left: 16.5rem;
+    }
+
+}
+@media screen and (min-width: 1799px) and (max-width: 1899px) {
+    .planner-item2 h2 {
+        font-size: 38px;
+    }
+
+    .planner-item2 ul li {
+        font-size: 22px;
+    }
+
+    .planner-item2 ul li img {
+        max-width: 28px;
+    }
+    .ml-9{
+        margin-left: 16.5rem;
+    }
+
+}
+@media screen and (min-width: 1899px) and (max-width: 2099px) {
+    .planner-item2 h2 {
+        font-size: 38px;
+    }
+
+    .planner-item2 ul li {
+        font-size: 22px;
+    }
+
+    .planner-item2 ul li img {
+        max-width: 28px;
+    }
+    .ml-9{
+        margin-left: 16.5rem;
+    }
+
 }
 
 

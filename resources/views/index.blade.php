@@ -47,19 +47,19 @@
 					    <div class="collapse navbar-collapse" id="navbarNav">
 					      <ul class="navbar-nav">
 						      	<li class="nav-item">
-						        	<a class="nav-link" href="#">HOME</a>
+						        	<a class="nav-link" href="#">Home</a>
 						      	</li>
 						      	<li class="nav-item">
-						        	<a class="nav-link" href="#">PRICE</a>
+						        	<a class="nav-link" href="#">Price</a>
 						      	</li>
 						      	<li class="nav-item">
 						        	<a class="nav-link" href="#">FAQ</a>
 						      	</li>
 						      	<li class="nav-item">
-						        	<a class="nav-link" href="{{ route('login')}}">LOGIN</a>
+						        	<a class="nav-link" href="{{ route('login')}}">Login</a>
 						      	</li>
 						      	<li class="nav-item">
-						        	<a class="nav-link" href="{{ route('register')}}">Join Today!</a>
+						        	<a class="nav-link mr-1" href="{{ route('register')}}">FREE TRIAL</a>
 						      	</li>
 					    	</ul>
 					    </div>
@@ -77,14 +77,14 @@
 			<div class="planner-area-inner">
 				<div class="container">
 					<div class="planner-item2">
-						<h2>An online homeschool planner that will give you more time for the <span>fun</span> things in life.</h2>
-						<ul>
+						<h2><p>An online homeschool planner </p><p>that will give you more time for the <span>fun</span> things in life.</p></h2>
+						<ul class="ml-9">
 							<li><img src="{{ asset('images/landing/02.png')}}" alt="" />A planner that you can use for the whole family.</li>
 							<li><img src="{{ asset('images/landing/02.png')}}" alt="" />Calculates ongoing hours & attendance, so you don’t have to.</li>
 							<li><img src="{{ asset('images/landing/02.png')}}" alt="" />Dashboard with graphs to quickly see your child’s progress.</li>
 							<li><img src="{{ asset('images/landing/02.png')}}" alt="" />Super easy to use and available on your phone, tablet or PC!</li>
 						</ul>
-						<a href="{{ route('register') }}">FREE TRIAL</a>
+						<a href="{{ route('register') }}">FREE 14 DAY TRIAL</a>
 					</div>
 				</div>
 			</div>
@@ -110,7 +110,7 @@
 					<h4>* Their attendance accrued and remaining.</h4>
 					<h4>* Core vs Non-core hours.</h4>
 					<h4>* We even breakdown each subject so you can make <br>sure your child is getting a well rounded education.</h4>
-					<a href="#">FREE TRIAL</a>
+					<a href="#">FREE 14 DAY TRIAL</a>
 				</div>
 			</div>
 		</div>	
