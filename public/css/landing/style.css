@@ -403,6 +403,7 @@ button:focus {
 
 .navbar-brand{
     margin-left: 1rem;
+    margin-bottom: 0.8125rem;
 }
 .nav-link.mr-1{
     margin-right: 1rem;
