@@ -56,6 +56,7 @@ $lable = "User";
 <script>
     var apiUrl = "{{ route('users.list') }}";
     var loginUrl = "{{ route('user.login') }}";    
+    var deleteUrl = "{{ route('users.delete') }}";    
     var page_reload = false;
 </script>
 @endsection

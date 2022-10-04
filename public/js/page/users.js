@@ -26,6 +26,25 @@ $(document).ready(function() {
                 // location.reload();
             }
         });       
+    });    
+
+    $('body').on('click','.user-delete',function(event) {
+        var id = $(this).attr('data-id');
+        if(confirm('Are you sure want to delete?')){
+            $.ajax({
+                url: deleteUrl+'?id='+id,
+                type: 'POST',
+                dataType: 'json',
+                success: function(result) {
+                    element = $('#flash-message');
+                    show_toast(result.message, 'success');
+                    if($('#subjectTable').length>0)
+                        $('#subjectTable').DataTable().ajax.reload();
+                    else
+                        location.reload();
+                }
+            });    
+        }
     });
 
     var userTable = $('#userTable').DataTable({
@@ -51,7 +70,8 @@ $(document).ready(function() {
 
                     if(contactId) {
                         actions = "";
-                        actions += ' <a href="javascript:void(0)" data-toggle="tooltip" title="click to login" data-id="'+ contactId +'" class="btn-sm btn-warning user-login"><i class="mdi mdi-login-variant"></i></a>';                        
+                        actions += ' <a href="javascript:void(0)" data-toggle="tooltip" title="click to login" data-id="'+ contactId +'" class="btn-sm btn-warning user-login"><i class="mdi mdi-login-variant"></i></a>';
+                        actions += ' <a href="javascript:void(0)" data-toggle="tooltip" title="click to delete" data-id="'+ contactId +'" class="btn-sm btn-danger user-delete"><i class="mdi mdi-delete"></i></a>';
                         
                         return actions;
                     }

@@ -61,4 +61,21 @@ class UserController extends Controller
             return response()->json($result);
         }
     }
+
+    public function delete(Request $request){
+
+        $t = time();       
+
+        $user = User::find($request->id);        
+        $user->email = $user->email.'_'.$t;
+        $r = $user->save();        
+        $user->delete();
+
+        if($r){
+            $result = ['status' => true, 'message' => 'Delete successfully'];
+        }else{
+            $result = ['status' => false, 'message' => 'Delete fail'];
+        }
+        return response()->json($result);
+    }
 }

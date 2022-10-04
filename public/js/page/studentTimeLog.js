@@ -192,6 +192,26 @@ $(document).ready(function() {
             }
         });
 
+        $('body').on('click','#event-del',function(event) {
+            var eventId = $('#edit-modal').find('#edit-id').val()
+            if(confirm('Are you sure want to delete this log?'))
+            {
+                $.ajax({
+                    url: deleteEventUrl+'?id='+eventId,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(result) {            
+                        $('#edit-modal').hide();
+                        show_toast(result.message, 'success');
+
+                        setTimeout(function() {                        
+                            location.reload();
+                        }, 1500);
+                    }
+                });
+            }
+        });
+
         $('body').on('click','.reset-form',function(){
 
             window.location.href = window.location.pathname;            

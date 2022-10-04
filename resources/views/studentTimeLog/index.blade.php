@@ -178,7 +178,7 @@ $lable = "Student Time Log";
         <div class="modal-content">
             
             <div class="modal-header">
-                <h4 class="modal-title"><span class="modal-lable-class">View/Edit Holiday</h4> 
+                <h4 class="modal-title"><span class="modal-lable-class" id="edit-event-lable">View/Edit Holiday</h4> 
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
             </div>
 
@@ -326,6 +326,7 @@ $lable = "Student Time Log";
     var detailUrl = "{{ route('student-time-log.detail') }}";
     var holidayDetailUrl = "{{ route('holiday.detail') }}";
     var deleteUrl = "{{ route('student-time-log.delete') }}";    
+    var deleteEventUrl = "{{ route('holiday.delete') }}";    
     var addUrl = $('#add-form').attr('action');
     var editUrl = $('#edit-form').attr('action');
     var page_reload = false;

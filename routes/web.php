@@ -26,6 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/tnc', 'RegisterController@tnc')->name('tnc');
 Route::get('/tnc', [RegisterController::class, 'tnc'])->name('tnc');
 Route::get('/index', [SiteController::class, 'index'])->name('index');
+Route::get('/faq', [SiteController::class, 'faq'])->name('faq');
 
 
 Route::middleware(['auth'])->group(function () {
@@ -48,6 +49,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/password/update', 'HomeController@passwordUpdate')->name('profile.passwordUpdate');
         Route::get('/users', 'UserController@index')->name('users');
         Route::get('/users/get', 'UserController@get')->name('users.list');
+        Route::post('/users/delete', 'UserController@delete')->name('users.delete');
         Route::post('/user/login', 'UserController@login')->name('user.login');
     });
 
