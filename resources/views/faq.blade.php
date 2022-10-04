@@ -120,16 +120,16 @@
 		
 		
 		<!-- Main jQuery -->
-		<script src="js/jquery-3.4.1.min.js"></script>		
+		<script src="{{ asset('js/landing/jquery-3.4.1.min.js')}}"></script>
 
 		<!-- Bootstrap Bundle jQuery -->
-		<script src="js/bootstrap.bundle.min.js"></script>
+		<script src="{{ asset('js/landing/bootstrap.bundle.min.js')}}"></script>
 
 		<!-- Fontawesome Script -->
 		<script src="https://kit.fontawesome.com/7749c9f08a.js"></script>
 		
 		<!-- Custom jQuery -->
-		<script src="js/scripts.js"></script>
+		<script src="{{ asset('js/landing/scripts.js')}}"></script>
 		
 		<!-- Scroll-Top button -->
 		<a href="#" class="scrolltotop"><i class="fas fa-angle-up"></i></a>
