@@ -12,4 +12,9 @@ class SiteController extends Controller
     {
         return view('index');
     }
+
+    public function faq(Request $request)
+    {
+        return view('faq');
+    }
 }

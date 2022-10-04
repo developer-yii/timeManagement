@@ -78,6 +78,10 @@
                             $('#edit_modal').html('');
                             $('#edit_modal').html(result.data.studentName);
                             document.querySelector('#edit_event_color').dispatchEvent(new Event('input', { bubbles: true }));
+
+                            var htm = 'View/Edit Holiday';
+                            htm += '<a href="javascript:void(0)" class="delete_log ml-10" id="event-del"><i class="dripicons-trash"></i></a>';
+                            $('#edit-event-lable').html(htm);
                         }
                     });
               }
@@ -106,8 +110,8 @@
                 // right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth"
             },
             initialEvents: t,
-            editable: !0,
-            droppable: !0,
+            editable: !1,
+            droppable: !0,            
             selectable: !0,
             dateClick: function(e) {
                 a.onSelect(e)

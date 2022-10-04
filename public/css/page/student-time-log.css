@@ -39,3 +39,6 @@
     -webkit-box-shadow: 0 0 0 0.2rem rgb(32 182 218 / 50%);
     box-shadow: 0 0 0 0.2rem rgb(32 182 218 / 50%);
 }
+.fc-event {
+    cursor: pointer;
+}

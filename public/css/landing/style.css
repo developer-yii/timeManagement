@@ -295,7 +295,7 @@ button:focus {
 }
 
 .planner-item2 a {
-    font-size: 38px;
+    font-size: 30px;
     font-weight: 700;
     color: #fff;
     display: flex;
@@ -406,4 +406,60 @@ button:focus {
 }
 .nav-link.mr-1{
     margin-right: 1rem;
+}
+
+/*=== faq page start ===*/ 
+
+.planner-area2 {
+    padding-top: 15px;
+    padding-bottom: 40px;
+}
+
+.planner-area2 .planner-area-inner {
+    transform: translateY(-00px);
+    margin-bottom: -0px;
+    padding-top: 100px;
+}
+
+.planner-area2 .planner-item2 a {
+    width: 350px;
+}
+
+/*=== tracking area2 start ===*/
+
+.tracking-area2 .tracking-item {
+    padding: 45px 60px 50px;
+}
+
+.tracking-item h3 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 25px;
+}
+
+.tracking-item h5 {
+    font-family: 'CenturyGothic';
+    font-size: 23px;
+    font-weight: 400;
+    color: #000;
+    text-align: left;
+    margin: 0 0 35px;
+}
+
+.tracking-item h5 span {
+    display: block;
+    margin-top: 23px;
+}
+
+.tracking-area2 .tracking-item a {
+    width: 350px;
+}
+
+.tracking-area2 .tracking-item h2 {
+    margin-top: 10px;
+}
+
+.selected{
+    color: #20B6DA !important;
 }

@@ -6,6 +6,7 @@ if(sesMessage)
 {
     show_toast(sesMessage, 'success');
 }
+var pieColors = ['#61ba61','#fa5c7c'];
 
 var options = {
       	series: attendance,
@@ -16,6 +17,7 @@ var options = {
     legend: {
         position: 'bottom'
     },
+    colors: pieColors,
     labels: ['Attendance', 'Attendance Needed'],
     responsive: [{
       	breakpoint: 800,
@@ -33,7 +35,7 @@ var options = {
 var chart = new ApexCharts(document.querySelector("#chart"), options);
 chart.render();
 
-var colors = ['#008ffbd9','#00e396d9','#feb019d9','#ff4560d9','#775dd0d9'];
+var colorsTotalHours = ['#20b6da','#f4a261','#61ba61','#fa5c7c','#775dd0d9'];
 
 var optionsColumnTotalHours = {
           series: [{
@@ -49,7 +51,7 @@ var optionsColumnTotalHours = {
             }
           }
         },
-        colors: colors,
+        colors: colorsTotalHours,
         plotOptions: {
           bar: {
             columnWidth: '45%',
@@ -71,7 +73,7 @@ var optionsColumnTotalHours = {
           ],
           labels: {
             style: {
-              colors: colors,
+              colors: colorsTotalHours,
               fontSize: '12px'
             }
           }
@@ -80,6 +82,8 @@ var optionsColumnTotalHours = {
 
         var chart1 = new ApexCharts(document.querySelector("#column-chart-totalHours"), optionsColumnTotalHours);
         chart1.render();
+
+var hourProgressColor = ['#fa5c7c','#61ba61'];
 
 var optionsHourProgress = {
           series: [{
@@ -99,7 +103,7 @@ var optionsHourProgress = {
             },
           }
         },
-        colors: ['#f48024', '#69d2e7'],
+        colors: hourProgressColor,
         dataLabels: {
           enabled: true,
           textAnchor: 'start',
@@ -158,7 +162,7 @@ var optionsHourProgress = {
         var chart2 = new ApexCharts(document.querySelector("#hour-progress"), optionsHourProgress);
         chart2.render();
 
-var colorsCoreNonCore = ['#00e396d9','#feb019d9'];
+var colorsCoreNonCore = ['#20b6da','#e9c46e'];
 var optionsColumnCoreNonCore = {
           series: [{
             name: "hours",

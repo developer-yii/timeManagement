@@ -43,7 +43,7 @@
         <div class="leftside-menu">
 
             <!-- LOGO -->
-            <a href="index.html" class="logo text-center logo-light">
+            <a href="{{ route('home') }}" class="logo text-center logo-light">
                 <span class="logo-lg">
                     <img src="{{ asset('images/logo.png') }}" alt="" height="60">
                 </span>
@@ -53,7 +53,7 @@
             </a>
 
             <!-- LOGO -->
-            <a href="index.html" class="logo text-center logo-dark">
+            <a href="{{ route('home') }}" class="logo text-center logo-dark">
                 <span class="logo-lg">
                     <img src="{{ asset('images/logo.png') }}" alt="" height="16">
                 </span>
@@ -333,7 +333,7 @@
                         <img src="{{ asset('images/logo.png') }}" alt="" height="60">
                     </ul> --}}
                     <a href="/" class="navbar-brand">
-                        <img src="{{ asset('images/logo.png') }}" alt="" height="60">
+                        <img src="{{ asset('images/landing/logo.png') }}" alt="" height="60">
                     </a>
                     <button class="button-menu-mobile open-left">
                         <i class="mdi mdi-menu"></i>
@@ -355,8 +355,8 @@
                             <div class="text-md-end footer-links d-none d-md-block">
                                 {{-- <a href="javascript: void(0);">About</a> --}}
 
-                                <a href="mailto:email@homeschoolhours.com">Support</a>
-                                <a href="mailto:email@homeschoolhours.com">Contact Us</a>
+                                <a href="mailto:info@homeschoolminutes.com">Support</a>
+                                <a href="mailto:info@homeschoolminutes.com">Contact Us</a>
                             </div>
                         </div>
                     </div>
