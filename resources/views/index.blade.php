@@ -49,11 +49,11 @@
 						      	<li class="nav-item">
 						        	<a class="nav-link selected" href="{{ route('index') }}">Home</a>
 						      	</li>
-						      	<li class="nav-item">
+						      	{{-- <li class="nav-item">
 						        	<a class="nav-link" href="#">Price</a>
-						      	</li>
+						      	</li> --}}
 						      	<li class="nav-item">
-						        	<a class="nav-link" href="{{ route('faq') }}">FAQ</a>
+						        	<a class="nav-link" href="{{ route('faq') }}">Price & FAQ</a>
 						      	</li>
 						      	<li class="nav-item">
 						        	<a class="nav-link" href="{{ route('login')}}">Login</a>

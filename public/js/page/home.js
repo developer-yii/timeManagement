@@ -197,7 +197,7 @@ var optionsColumnCoreNonCore = {
           ],
           labels: {
             style: {
-              colors: colors,
+              colors: colorsCoreNonCore,
               fontSize: '12px'
             }
           }
