@@ -83,6 +83,7 @@ class HomeController extends Controller
                             ->where('student_time_log.log_date','>',$firstDay)
                             ->where('student_time_log.log_date','<',$lastDay);
                         })
+                    ->where('student_time_log.deleted_at',null)
                     ->where('subjects.user_id',$user_id)                    
                     ->where('subjects.subject_type',1)
                     ->where('subjects.deleted_at',null)
@@ -110,6 +111,7 @@ class HomeController extends Controller
                             ->where('student_time_log.log_date','>',$firstDay)
                             ->where('student_time_log.log_date','<',$lastDay);
                         })
+                    ->where('student_time_log.deleted_at',null)
                     ->where('subjects.user_id',$user_id)                    
                     ->where('subjects.subject_type',2)  
                     ->where('subjects.deleted_at',null)                  
@@ -131,6 +133,7 @@ class HomeController extends Controller
 
         $coreHoursinSec = DB::table('student_time_log')
             ->join('subjects','student_time_log.subject_id','subjects.id')
+            ->where('student_time_log.deleted_at',null)
             ->where('student_time_log.user_id',$user_id)
             ->where('student_time_log.student_id',$s)
             ->where('subjects.subject_type',1)
@@ -144,6 +147,7 @@ class HomeController extends Controller
 
         $nonCoreHoursinSec = DB::table('student_time_log')
             ->join('subjects','student_time_log.subject_id','subjects.id')
+            ->where('student_time_log.deleted_at',null)
             ->where('student_time_log.user_id',$user_id)
             ->where('student_time_log.student_id',$s)
             ->where('subjects.subject_type',2)
@@ -182,6 +186,7 @@ class HomeController extends Controller
         $hourCoreNonCoreArray = json_encode($hourCoreNonCoreArray);   
         
         $attendance = DB::table('student_time_log')
+              ->where('student_time_log.deleted_at',null)
               ->where('user_id',$user_id)
               ->where('student_id',$s) 
               ->where('log_date','>',$firstDay)
