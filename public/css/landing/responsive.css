@@ -412,12 +412,7 @@ Small Screen - Tablate
 Small Screen - Mobile
 ====================================
 */
-@media screen and (max-width: 767px) {	
-
-
-
-
-
+@media screen and (max-width: 767px) {
 
 .navbar {
     align-items: center;
@@ -460,7 +455,7 @@ Small Screen - Mobile
 }
 
 .planner-item2 h2 {
-    font-size: 32px;
+    font-size: 14px;
     margin: 0 0 30px;
 }
 
