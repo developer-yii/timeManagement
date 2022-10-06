@@ -110,6 +110,18 @@ large Screen - Others
 
 }
 
+@media screen and (min-width: 320px) and (max-width: 844px) {
+    .tracking-area2 .tracking-item a {
+        width: 100%;
+        font-size: 18px;
+    }
+
+    .planner-area2 .planner-item2 a {
+        width: 100%;
+        font-size: 18px;
+    }
+}
+
 
 
 

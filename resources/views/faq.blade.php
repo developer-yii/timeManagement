@@ -48,11 +48,11 @@
 						      	<li class="nav-item">
 						        	<a class="nav-link" href="{{ route('index')}}">Home</a>
 						      	</li>
-						      	<li class="nav-item">
+						      	{{-- <li class="nav-item">
 						        	<a class="nav-link" href="#">Price</a>
-						      	</li>
+						      	</li> --}}
 						      	<li class="nav-item">
-						        	<a class="nav-link selected" href="{{ route('faq') }}">FAQ</a>
+						        	<a class="nav-link selected" href="{{ route('faq') }}">Price & FAQ</a>
 						      	</li>
 						      	<li class="nav-item">
 						        	<a class="nav-link" href="{{ route('login')}}">Login</a>
@@ -101,7 +101,8 @@
 					<h3>Q. How much does it cost?</h3>
 					<h5>Only $5.95 per month!  That’s it.</h5>
 					<h3>Q. What do I get for $5.95 per month?</h3>
-					<h5>Besides your sanity?<span>Less clutter and paper.</span><span>A full day planner not just for the kiddos, but the adults as well.</span> <span>Automatically calculated hours and attendance.</span><span>One place for all your kids information without having to purchase mutiple charts and planners.and much more!</span></h5>
+					<h5>Besides your sanity?<span>Less clutter and paper.</span><span>A full day planner not just for the kiddos, but the adults as well.</span> <span>Automatically calculated hours and attendance.</span><span>One place for all of your child’s information without having to
+					purchase multiple charts and planners!</span></h5>
 					<h2>Try our Free Trial and see how much value it brings to your homeschool family.</h2>
 					<a href="{{ route('register')}}">FREE 14 DAY TRIAL</a>
 				</div>
