@@ -42,7 +42,7 @@
     <!-- end page -->
 
     <footer class="footer footer-alt">
-        <script>document.write(new Date().getFullYear())</script> © HomeSchool Minutes
+        <script>document.write(new Date().getFullYear())</script> © Homeschool Minutes
     </footer>
 
     <!-- bundle -->

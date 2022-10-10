@@ -59,12 +59,92 @@ $(document).ready(function() {
             return hr+':'+min;
         }
 
+        $('.add-new-holiday').click(function(event) {
+            $('#add-holiday-form')[0].reset();
+        });
+
+        $('body').on('click','input[type="checkbox"]',function(e){
+            var currentElement = $(this);
+            var i = $(this).val();
+            
+            if(i == 'all')
+            {
+                if($("body #student_id_all").prop('checked') == true){
+                    console.log('enter');
+                    $("body .student-checkbox").each(function(){
+                        $(this).prop('checked',false);     
+                        $(this).change();  
+                        $(this).prop('disabled', true);
+                    });
+
+                }
+                else
+                {
+                    $("body .student-checkbox").each(function(){
+                        $(this).prop('checked',false);     
+                        $(this).change();  
+                        $(this).prop('disabled', false);
+                    });                           
+                }
+            }
+        })
+
         $('.add-new').click(function(event) {
             $('#add-form-lable').html('');
             $('#add-form-lable').html('Add Student Time Log');
             $('#add-form').find('button[type="submit"]').show();
             $('#add-form').find('#edit-id').val(0);
             $('#add-form')[0].reset()
+        });
+
+        $('#add-holiday-form').submit(function(event) {
+            event.preventDefault();
+            var $this = $(this);
+            $.ajax({
+                url: addHolidayUrl,
+                type: 'POST',
+                data: $('#add-holiday-form').serialize(),
+                dataType: 'json',
+                beforeSend: function() {
+                    $($this).find('button[type="submit"]').prop('disabled', true);
+                },
+                success: function(result) {
+                    $($this).find('button[type="submit"]').prop('disabled', false);
+                    if (result.status == true) {
+                        $this[0].reset();
+
+                        setTimeout(function() {
+                            $('#add-holiday-modal').modal('hide');                            
+                            show_toast(result.message, 'success');
+                        }, 300);
+                        location.reload();
+
+                        $('.error').html("");
+                        
+                        $("body .student-checkbox").each(function(){
+                            $(this).prop('checked',false);     
+                            $(this).change();  
+                            $(this).prop('disabled', false);
+                        });                        
+
+                    } else {
+                        first_input = "";
+                        $('.error').html("");
+                        $.each(result.message, function(key) {
+                            if(first_input=="") first_input=key;
+                            $('#'+key).closest('.mb-3').find('.error').html(result.message[key]);
+                            if(key == 'student_id')
+                                $('.student_id').html(result.message[key]);
+                        });
+                        $('#add-holiday-form').find("#"+first_input).focus();
+                    }
+                },
+                error: function(error) {
+                    $($this).find('button[type="submit"]').prop('disabled', false);
+                    alert('Something went wrong!', 'error');
+                    // location.reload();
+                }
+            });
         });
 
         $('#add-form').submit(function(event) {

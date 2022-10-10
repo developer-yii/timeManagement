@@ -2,6 +2,7 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/vendor/coloris.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/page/holiday-index.css') }}" />
 @endsection
 
 @section('content')

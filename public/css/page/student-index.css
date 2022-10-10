@@ -1,0 +1,11 @@
+@media screen and (min-width: 320px) and (max-width: 844px) {
+	    .add-new{
+		display: flex;
+	}
+	.font-bold{
+		vertical-align: bottom;
+	}
+	.bulb-icon{
+		margin-left: 0px;
+	}
+}
