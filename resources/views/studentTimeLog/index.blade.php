@@ -25,13 +25,20 @@ $lable = "Student Time Log";
         <div class="card">
             <div class="card-body">
                 <div class="row mb-2">
-                    <div class="col-xl-3">
-                       <div class="text-xl-start mt-xl-0 mt-2">
-                           <button type="button" class="btn btn-green mb-2 me-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal"> Add Student Time/Activity</button>
-                           
+                    <div class="col-xl-4">
+                        <div class="col-auto">
+                           <div class="text-xl-start mt-xl-0 mt-2">
+                               <button type="button" class="btn btn-green mb-2 me-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal"> Add Student Time/Activity</button>
+                               
+                           </div>
+                       </div>
+                       <div class="col-auto">
+                            <div class="text-xl-start mt-xl-0 mt-2">
+                               <button type="button" class="btn btn-green mb-2 me-2 add-new-holiday" data-bs-toggle="modal" data-bs-target="#add-holiday-modal"> Add Holiday/Events</button>                               
+                           </div>
                        </div>
                    </div><!-- end col-->
-                   <div class="col-xl-9">
+                   <div class="col-xl-8">
                        <form id="search-form" class="row gy-2 gx-2 align-items-center justify-content-xl-start justify-content-between" action="{{route('student-time-log')}}" method="GET">                           
                            <div class="col-auto">
                                <div class="d-flex align-items-center">
@@ -228,6 +235,78 @@ $lable = "Student Time Log";
     </div>
 </div>
 
+<div id="add-holiday-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+                <h4 class="modal-title"><span class="modal-lable-class">Add</span> Holiday/Events</h4> 
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+
+            <div class="modal-body">
+            <form id="add-holiday-form" method="post" class="ps-3 pe-3" action="{{route('holiday.addupdate')}}">
+                @csrf
+                {{-- <input type="hidden" name="id" value="" id="edit-id"> --}}
+                <div id="add_error_message"></div>
+                
+                <div class="mb-3" >
+                    <label for="student_id" class="control-label">Student:</label>
+                    {{-- <select name="student_id[]" id="student_id" class="form-control"> --}}
+                        {{-- <option value="">Select Student</option> --}}
+                        <div class="flex">
+                            <div class="form-check">
+                                <input type='checkbox' name='student_id' value="all" id="student_id_all" class="form-check-input"/>
+                                <label class="form-check-label form-label" for="student_id_all">All</label>    
+                            </div>
+                        @foreach($student_list as $stkey=>$stlist)                                                    
+                        <div class="form-check">
+                            <input type='checkbox' name='student_id[]' value="{{ $stkey }}" id="student_id_{{ $stkey }}" class="form-check-input student-checkbox"/>
+                            <label class="form-check-label form-label" for="student_id_{{ $stkey }}">{{ $stlist }}</label>
+                        </div>
+                        @endforeach
+                        </div>
+                    <span class="error student_id"></span>
+                    {{-- </select> --}}
+                    
+                </div>
+
+                <div class="mb-3">
+                    <label for="start_date" class="control-label">Start Date:</label>
+                    <input type="text" class="form-control date" id="start_date" data-provide="datepicker" data-single-date-picker="true" name="start_date" data-date-format="yyyy-mm-dd" data-date-autoclose="true">
+                    <span class="error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="name" class="control-label">End Date:</label>
+                    <input type="text" class="form-control date" id="end_date" data-provide="datepicker" data-single-date-picker="true" name="end_date" data-date-format="yyyy-mm-dd">
+                    <span class="error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="event_color" class="control-label">Event Color:</label>
+                    <input type="text" class="form-control" name="event_color" id="event_color" data-coloris value="#fa5c7c">
+                    <span class="error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="note" class="control-label">Notes:</label>
+                    <textarea class="form-control" name="note" id="note" rows="5"></textarea>
+                    <span class="error"></span>
+                </div>
+                
+                <div class="mb-3 text-center">
+                    <button class="btn btn-green" type="submit">Save changes</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                </div>
+
+                
+            </form>
+                </div>
+        </div>
+    </div>
+</div>
+
 <!-- /.modal -->
 {{-- <div id="edit-log-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -329,6 +408,7 @@ $lable = "Student Time Log";
     var deleteEventUrl = "{{ route('holiday.delete') }}";    
     var addUrl = $('#add-form').attr('action');
     var editUrl = $('#edit-form').attr('action');
+    var addHolidayUrl = $('#add-holiday-form').attr('action');
     var page_reload = false;
 </script>
 @endsection

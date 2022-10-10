@@ -330,7 +330,7 @@ class StudentTimeLogController extends Controller
                 } 
                 $html.=            
                 '<tr>
-                    <td>'.$d.'-'.$month.'-'.$year.'</td>
+                    <td>'.$month.'-'.$d.'-'.$year.'</td>
                     <td>'.$attendance.'</td>';
                     foreach($subject_list as $slist)
                     {

@@ -92,7 +92,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="referral_id" class="form-label">Refferal Code</label>
+                            <label for="referral_id" class="form-label">Referral Code (If Available)</label>
                             <div class="input-group input-group-merge">
                                 <input type="text" id="referral_id" class="form-control" name="referral_id" placeholder="Referral Code">
                             </div>
