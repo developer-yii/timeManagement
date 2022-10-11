@@ -208,7 +208,8 @@ var optionsColumnCoreNonCore = {
         chart3.render();
 
 var coreSubjectsColumnColors = [];
-var colorArray = ['#e9c46e','#f4a261','#20b6da','#fa5c7c','#61ba61','#b883c2']
+// var colorArray = ['#61ba61','#f4a261','#20b6da','#fa5c7c','#61ba61','#b883c2']
+var colorArray = ['#61ba61'];
 for(var i = 0; i < coreSubjectsColumn.length; i++)
 {
   coreSubjectsColumnColors.push(colorArray[Math.floor(Math.random() * colorArray.length)]);  
