@@ -3,6 +3,9 @@ $(document).ready(function() {
         var msgElement = $('#add_error_message');
         var editmsgElement = $('#edit_error_message');
 
+        
+        $('[data-serialtip]').serialtip();        
+
         Coloris({
           swatches: [
             '#d1652b',

@@ -30,6 +30,7 @@
 
     <!-- third party css -->
     <link href="{{ asset('css/vendor/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/vendor/jquery.serialtip.css') }}" rel="stylesheet" type="text/css" />
 
     <link href="{{ asset('/')}}theme/css/vendor/dataTables.bootstrap5.css" rel="stylesheet" type="text/css" />
     <!-- third party css end -->
@@ -67,11 +68,29 @@
                 <!--- Sidemenu -->
                 <ul class="side-nav">
                     <li class="side-nav-item">
-                        <a href="{{ route('home') }}" class="side-nav-link">
-                            <i class="mdi mdi-view-dashboard-outline"></i>
-                            <span> Dashboards </span>
+                        <a href="{{ route('student-time-log') }}" class="side-nav-link">
+                            {{-- <i class="mdi mdi-view-dashboard-outline"></i> --}}
+                            <i class="mdi mdi-calendar-month"></i>
+                            <span> Monthly Planner </span>
                         </a>
                     </li>
+
+                    <li class="side-nav-item">
+                        <a href="{{ route('student-time-log.monthly_view') }}" class="side-nav-link">
+                            {{-- <i class="mdi mdi-view-dashboard-outline"></i> --}}
+                            <i class="mdi mdi-calendar-check"></i>
+                            <span>  Monthly Student Log </span>
+                        </a>
+                    </li>
+
+ {{--                    <a href="{{ route('student-time-log.monthly_view') }}"><i class="mdi mdi-calendar-check"></i> Monthly Student Log</a> --}}
+                    <li class="side-nav-item">
+                        <a href="{{ route('home') }}" class="side-nav-link">
+                            <i class="mdi mdi-view-dashboard-outline"></i>
+                            <span> Progress Charts </span>
+                        </a>
+                    </li>
+                    {{-- <a href="{{ route('student-time-log') }}"><i class="mdi mdi-calendar-month"></i> Monthly Planner</a> --}}
 
                     @if(auth()->user()->user_type == 1)
                     <li class="side-nav-item">
@@ -84,23 +103,23 @@
 
                     <li class="side-nav-item">
                         <a href="{{ route('student') }}" class="side-nav-link">
-                            <i class="mdi mdi-human-female-boy"></i>
-                            <span> Students </span>
+                            {{-- <i class="mdi mdi-human-female-boy"></i> --}}
+                            <span><img src="{{ asset('images/plus.png')}}" height="25" /> Names/Students </span>
                         </a>
                     </li>
 
                     <li class="side-nav-item">
                         <a href="{{ route('subject') }}" class="side-nav-link">
-                            <i class="mdi mdi-notebook"></i>
-                            <span> Subjects </span>
+                            {{-- <i class="mdi mdi-notebook"></i> --}}
+                            <span><img src="{{ asset('images/plus.png')}}" height="25"/> Subject List </span>
                         </a>
                     </li>
 
 
                     <li class="side-nav-item">
                         <a href="{{ route('holiday') }}" class="side-nav-link">
-                            <i class="mdi mdi-dance-ballroom"></i>
-                            <span> Holidays/Events </span>
+                            {{-- <i class="mdi mdi-dance-ballroom"></i> --}}
+                            <span><img src="{{ asset('images/plus.png')}}" height="25"/> Events/Appointments </span>
                         </a>
                     </li>
 
@@ -115,14 +134,21 @@
                                 <li>
                                     <a href="{{ route('student-time-log.create') }}"><i class="mdi mdi-calendar-plus"></i> Add Student Time/Activity</a>
                                 </li>
-                                <li>
-                                    <a href="{{ route('student-time-log') }}"><i class="mdi mdi-calendar-month"></i> Calendar View</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('student-time-log.monthly_view') }}"><i class="mdi mdi-calendar-check"></i> Monthly View</a>
-                                </li>                                
+                                {{-- <li>
+                                    <a href="{{ route('student-time-log') }}"><i class="mdi mdi-calendar-month"></i> Monthly Planner</a>
+                                </li> --}}
+                                {{-- <li>
+                                    <a href="{{ route('student-time-log.monthly_view') }}"><i class="mdi mdi-calendar-check"></i> Monthly Student Log</a>
+                                </li> --}}                                
                             </ul>
                         </div>
+                    </li>
+
+                    <li class="side-nav-item">
+                        <a href="javascript:void(0)" class="side-nav-link">
+                            <i class="mdi mdi-human-queue"></i>
+                            <span> Help/Quick Tips </span>
+                        </a>
                     </li>
                 </ul>
 
@@ -389,6 +415,8 @@
     <script src="{{asset('/')}}theme/js/vendor/dataTables.bootstrap5.js"></script>
     <script src="{{asset('/')}}theme/js/vendor/dataTables.responsive.min.js"></script>
     <script src="{{asset('/')}}theme/js/vendor/responsive.bootstrap5.min.js"></script>
+    <script src="{{asset('/')}}js/vendor/jquery.serialtip.min.js"></script>
+    <script src="{{asset('/')}}js/vendor/jspdf.umd.min.js"></script>
 
     <!-- third party js ends -->
 

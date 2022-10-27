@@ -33,7 +33,8 @@ class PlanController extends Controller
     public function show(Plan $plan, Request $request)
     {
         if($request->user()->subscribed($plan->name)) {
-            return redirect()->route('home')->with('success', 'You have already subscribed the plan');
+            // return redirect()->route('home')->with('success', 'You have already subscribed the plan');
+            return redirect()->route('student-time-log')->with('success', 'You have already subscribed the plan');
         }
 
         $user = Auth::user();
@@ -43,7 +44,8 @@ class PlanController extends Controller
             $user->trial_ends_at = now()->addDays(14);
             $user->save();
 
-            return redirect()->route('home')->with('success', 'You are now on 14 days trial period');
+            // return redirect()->route('home')->with('success', 'You are now on 14 days trial period');
+            return redirect()->route('student-time-log')->with('success', 'You are now on 14 days trial period');
         }        
 
         $intent = $user->createSetupIntent();

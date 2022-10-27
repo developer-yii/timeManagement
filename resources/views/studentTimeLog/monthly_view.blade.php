@@ -74,11 +74,12 @@ $lable = "Student Time Log";
                     </div>    
                     <div class="col-3">
                         <button class="btn btn-green search_log mt-3" type="submit">Search</button>
+                        <button class="btn btn-green mt-3 print-pdf" type="button">Print</button>
                     </div>
                     </form>
                 </div>
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12" id="pdfs">
                         {{-- <button type="button" class="btn btn-warning mb-2 add-new mt-1" data-bs-toggle="modal" data-bs-target="#add-modal">Add Log</button> --}}
                         <div id="flash-message"></div>
                         <div class="mt-4 table-responsive monthly_view_table">
@@ -227,6 +228,9 @@ $lable = "Student Time Log";
     var apiUrl = "{{ route('student-time-log.list') }}";
     var detailUrl = "{{ route('student-time-log.detail') }}";
     var deleteUrl = "{{ route('student-time-log.delete') }}";
+    var appCssUrl = "{{ asset('css/app.min.css') }}";
+    var customCssUrl = "{{ asset('css/custom.css') }}";
+    var pdfdataUrl = "{{ route('pdfData')}}"
     var searchUrl = $('#search-form').attr('action');
     var editUrl = $('#edit-form').attr('action');
     var page_reload = false;

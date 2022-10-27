@@ -16,7 +16,8 @@ use App\Http\Controllers\SiteController;
 */
 
 Route::get('/', function () {
-    return redirect(route('index'));
+    // return redirect(route('index'));
+    return redirect(route('student-time-log'));
 });
 
 Auth::routes();
@@ -83,6 +84,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/addupdate', 'StudentTimeLogController@addupdate')->name('student-time-log.addupdate');
         Route::post('/delete', 'StudentTimeLogController@delete')->name('student-time-log.delete');
         Route::get('/timelog/search', 'StudentTimeLogController@logSearch')->name('student-time-log.search');
+        Route::post('/pdfData', 'StudentTimeLogController@pdfData')->name('pdfData');
     });
 
     Route::group(['prefix' => 'holiday'], function () {

@@ -20,7 +20,8 @@ class SubscriptionController extends Controller
         $plan = Plan::findOrFail($request->get('plan'));        
 
         if($request->user()->subscribed($plan->name)) {
-            return redirect()->route('home')->with('success', 'You have already subscribed the plan');
+            // return redirect()->route('home')->with('success', 'You have already subscribed the plan');
+            return redirect()->route('student-time-log')->with('success', 'You have already subscribed the plan');
         }
 
         $request->user()
@@ -31,7 +32,8 @@ class SubscriptionController extends Controller
         $user->is_sub_cancel = 0;
         $user->save();
         
-        return redirect()->route('home')->with('success', 'Your plan subscribed successfully');
+        // return redirect()->route('home')->with('success', 'Your plan subscribed successfully');
+        return redirect()->route('student-time-log')->with('success', 'Your plan subscribed successfully');
     }
 
     public function cancel()

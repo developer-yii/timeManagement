@@ -2,6 +2,40 @@ $(document).ready(function() {
 
         var msgElement = $('#add_error_message');
         var editmsgElement = $('#edit_error_message');
+        var searched = 0;
+
+        var doc = window.jspdf.jsPDF;
+
+        function printDiv(divId,title,appCssUrl,customCssUrl,name,month,year) 
+        {
+            let mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150');
+
+            mywindow.document.write(`<html><head><title>${title}</title>`);
+            mywindow.document.write('<link rel="stylesheet" type="text/css" href='+appCssUrl+'>');
+            mywindow.document.write('<link rel="stylesheet" type="text/css" href='+customCssUrl+'>');
+            mywindow.document.write('</head><body >');
+            mywindow.document.write('<div class="row">');
+            mywindow.document.write('<div class="col-md-4">');
+            mywindow.document.write('<h6>Name: '+name+'</h6></br>');
+            mywindow.document.write('</div>');
+            mywindow.document.write('<div class="col-md-4">');
+            mywindow.document.write('<h6>Month: '+month+'</h6></br>');
+            mywindow.document.write('</div>');
+            mywindow.document.write('<div class="col-md-4">');
+            mywindow.document.write('<h6>Year: '+year+'</h6></br>');
+            mywindow.document.write('</div>');
+            mywindow.document.write('</div>');
+            mywindow.document.write(document.getElementById(divId).innerHTML);
+            mywindow.document.write('</body></html>');
+
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10*/
+
+            mywindow.print();
+            // mywindow.close();
+
+            return true;
+        }
 
         function calculateTimeEdit()
         {
@@ -20,6 +54,36 @@ $(document).ready(function() {
 
             return hr+':'+min;
         }
+
+        $('body').on('click','.print-pdf', function(event){
+            event.preventDefault();
+            if(!searched)
+            {
+                alert('First search the Data !')
+            }
+            var student_id = $('#student_id').val();
+            var log_year = $('#year').val();
+            var log_month = $('#month').val();
+            // alert(student_id+' '+log_year+' '+log_month);
+
+            $.ajax({
+                url: pdfdataUrl,
+                type: 'POST',
+                data: {student_id:student_id, log_year:log_year,log_month:log_month},
+                dataType: 'json',
+                success: function(result) {
+                    if (result.status == true) {
+                        printDiv('pdfs','Student Monthly Log',appCssUrl,customCssUrl,result.name,result.month,result.year);                                            
+                    } else {                        
+                        
+                    }
+                },
+                error: function(error) {                    
+                }
+            });
+
+            // printDiv('pdfs','Student Monthly Log',appCssUrl,customCssUrl,);
+        });
 
         $('body').on('click','.editModal',function(event) {
             $('.modal-lable-class').html('Edit');
@@ -117,6 +181,7 @@ $(document).ready(function() {
                     if (result.status == true) {
                         $('#logData').html('');
                         $('#logData').html(result.data);
+                        searched = 1;
                         $('.error').html("");                        
                     } else {
                         first_input = "";

@@ -28,7 +28,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <button type="button" class="btn btn-green mb-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal">Add {{$lable}}</button><img src="{{asset('images/bulb.png')}}" class="bulb-icon"><span class="font-bold">Keep track of your homeschool schedule quickly and easily. Add holidays, days off, weekends, field trips & more!</span>
+                <button type="button" class="btn btn-green mb-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal">Add {{$lable}}</button><a href="javascript:void(0)" data-serialtip="ex1"><img src="{{asset('images/tooltip.png')}}" class="bulb-icon"></a>{{-- <img src="{{asset('images/bulb.png')}}" class="bulb-icon"><span class="font-bold">Keep track of your homeschool schedule quickly and easily. Add holidays, days off, weekends, field trips & more!</span> --}}
                 <div id="flash-message"></div>
                 <div class="table-responsive">
                     <table id="holidayTable" class="table table-hover dataTable">
@@ -53,6 +53,13 @@
 @endsection
 
 @section('modal')
+
+<div data-serialtip-target="ex1" class="serialtip-default">
+    <span class="serialtip-close"></span>
+    <h5 class="serialtip-title">Popover Example</h5>
+    <p>Tooltips and popovers are two very commonly used, customizable, interactive visual elements in creating websites and web applications.</p>
+</div>
+
 <!-- /.modal -->
 <div id="add-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
