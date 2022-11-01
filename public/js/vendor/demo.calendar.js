@@ -23,7 +23,9 @@
                     dataType: 'json',
                     success: function(result) {
                         if (result.status == true) {
-                            $('#add-modal').find()
+                            // $('#add-modal').find()
+                            $('#add-form').find('#completed').prop('checked',false);
+                            $('#add-form').find('#attendance').prop('checked',false);
                             $('#add-modal').find('#student_id').val(result.data.student_id);
                             $('#add-modal').find('#subject_id').val(result.data.subject_id);
                             $('#add-modal').find('#log_date').val(result.data.log_date);
@@ -36,7 +38,22 @@
                             $('#add-form-lable').html(htm);
                             // $('#edit-log-modal').find('button[type="submit"]').hide();
                             if(result.data.is_attendance)
-                                $('#add-form').find('#attendance').prop('checked',true);                                
+                                $('#add-form').find('#attendance').prop('checked',true);
+                            if(result.data.is_completed)
+                                $('#add-form').find('#completed').prop('checked',true);
+
+                            if(result.html)
+                            {
+                                $('.linkrow').parents(".mb-3").remove();
+                                $('#newinput').append(result.html);
+                            }
+
+                            if(result.fileHtml)
+                            {
+                                $('#ufiles').html('');
+                                $('#ufiles').html(result.fileHtml);                                
+                            }
+
                             $('.error').html("");                        
                             $('#add-modal').modal("show");
 
@@ -85,6 +102,16 @@
                         }
                     });
               }
+            },
+            eventDidMount: function(info) {
+                let selector = info.el.querySelector('.fc-event-title');
+                if (selector) { 
+                    var string = info.event.title;
+                    if(string.charAt(0) == '&')
+                    {
+                        selector.innerHTML = '<span style="font-size:120%; color:black">&check;  </span>' + info.event.title.slice(1) ;
+                    }
+                  }                
             },
             slotDuration: "00:15:00",
             slotMinTime: "08:00:00",

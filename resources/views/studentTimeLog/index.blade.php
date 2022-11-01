@@ -25,7 +25,7 @@ $lable = "Student Time Log";
         <div class="card">
             <div class="card-body">
                 <div class="row mb-2">
-                    <div class="col-xl-4">
+                    <div class="col-xl-2">
                         <div class="col-auto">
                            <div class="text-xl-start mt-xl-0 mt-2">
                                <button type="button" class="btn btn-green mb-2 me-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal"> Add Student Time/Activity</button>
@@ -38,7 +38,7 @@ $lable = "Student Time Log";
                            </div>
                        </div>
                    </div><!-- end col-->
-                   <div class="col-xl-8">
+                   <div class="col-xl-10">
                        <form id="search-form" class="row gy-2 gx-2 align-items-center justify-content-xl-start justify-content-between" action="{{route('student-time-log')}}" method="GET">                           
                            <div class="col-auto">
                                <div class="d-flex align-items-center">
@@ -64,8 +64,10 @@ $lable = "Student Time Log";
                            </div>
                            <div class="col-auto">
                                 <div class="d-flex align-items-center button-list">
-                                    <button type="submit" class="btn btn-green"> <i class="dripicons-search"></i></button>
-                                    <button type="reset" class="btn btn-warning reset-form"> <i class="dripicons-clockwise"></i></button>
+                                    <button type="submit" class="btn btn-green" title="Search"> <i class="dripicons-search"></i></button>
+                                    <button type="reset" class="btn btn-warning reset-form" title="reset"> <i class="dripicons-clockwise"></i></button>
+                                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#add-student-modal" title="Quick Add Names"> + Name </button>
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-subject-modal" title="Quick Add Subjects"> + Subject </button>
                                 </div>
                             </div>
                        </form>                            
@@ -93,6 +95,132 @@ $lable = "Student Time Log";
 
 
 <!-- /.modal -->
+
+<div id="add-subject-modal" class="modal fade" {{-- tabindex="-1" --}} role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+                <h4 class="modal-title"><span class="modal-lable-class">Add</span> Subject</h4> 
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+
+            <div class="modal-body">
+            <form id="add-subject-form" method="post" class="ps-3 pe-3" action="{{route('subject.addupdate')}}">
+                @csrf
+                {{-- <input type="hidden" name="id" value="0" id="edit-id"> --}}
+                <div id="add_error_message"></div>
+                
+                <div class="mb-3">
+                    <label for="name" class="control-label">Name:</label>
+                    <input type="text" class="form-control" id="subject_name" name="subject_name"> <span class="error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="subject_type" class="control-label">Subject Type:</label>
+                    <select name="subject_type" id="subject_type" class="form-control">
+                        <option value="">Select Subject Type</option>
+                        <option value="1">Core</option>
+                        <option value="2">Non Core</option>
+                    </select>
+                    <span class="error"></span>
+                </div>
+
+                {{-- <div class="mb-3">
+                    <label for="subject_color" class="control-label">Event Color:</label>
+                    <input type="text" class="form-control" name="subject_color" id="subject_color" data-coloris value="#727cf5">
+                    <span class="error"></span>
+                </div> --}}
+                
+                <div class="mb-3 text-center">
+                    <button class="btn btn-green" type="submit">Save changes</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                </div>
+
+                
+            </form>
+                </div>
+        </div>
+    </div>
+</div>
+
+<div id="add-student-modal" class="modal fade" {{-- tabindex="-1" --}} role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+                <h4 class="modal-title"><span class="modal-lable-class">Add</span> Student</h4> 
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+
+            <div class="modal-body">
+            <form id="add-student-form" method="post" class="ps-3 pe-3" action="{{route('student.addupdate')}}">
+                @csrf                
+                <div id="add_error_message"></div>
+                
+                <div class="mb-3">
+                    <label for="first_name" class="control-label">First Name:</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name"> 
+                    <span class="error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="last_name" class="control-label">Last Name:</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name"> 
+                    <span class="error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="control-label">Email:</label>
+                    <input type="text" class="form-control" id="email" name="email"> 
+                    <span class="error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="phone" class="control-label">Phone:</label>
+                    <input type="text" class="form-control" id="phone" name="phone"> 
+                    <span class="error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="attendance" class="control-label">Attendance Days Required:<i> (Please put 0 if this is not required)</i></label>
+                    <input type="number" step="1" class="form-control" id="attendance" name="attendance"> 
+                    <span class="error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="hours" class="control-label">Hours Required:<i> (Please put 0 if this is not required)</i></label>
+                    <input type="number" step="1" class="form-control" id="hours" name="hours"> 
+                    <span class="error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="student_color" class="control-label">Color:</label>
+                    <input type="text" class="form-control" name="student_color" id="student_color" data-coloris value="#727cf5">
+                    <span class="error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="phone" class="control-label">Grade Level:</label>
+                    <select id="grade_level" name="grade_level" class="form-control">
+                        <option value=""> -- Select Grade --</option>
+                        @foreach($gradeLevels as $key => $value)
+                            <option value="{{$key}}">{{$value}}</option>
+                        @endforeach
+                    </select>
+                    <span class="error"></span>
+                </div>
+                
+                <div class="mb-3 text-center">
+                    <button class="btn btn-green" type="submit">Save changes</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                </div>                
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="add-modal" class="modal fade" {{-- tabindex="-1" --}} role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">            
@@ -165,9 +293,71 @@ $lable = "Student Time Log";
                 </div>
 
                 <div class="mb-3">
-                    <label for="name" class="control-label">Activity/Notes:</label>
+                    <div class="form-check">
+                        <input type="checkbox" id="completed" name="completed" class="form-check-input">
+                        <label for="completed" class="form-check-label">Completed: <i>(calendar will feature a black checkmark)</i></label>
+                    </div>
+                    <span class="error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="activity_notes" class="control-label">Activity/Notes:</label>
                     <textarea class="form-control" name="activity_notes" id="activity_notes" rows="5"></textarea>
                     <span class="error"></span>
+                </div>
+
+                <div class="mb-1">
+                    <label for="formFileMultiple" class="form-label">Upload Files <i>(Pictures,Sample of work, Projects, Worksheets)</i></label>
+                    <input class="form-control" type="file" id="formFileMultiple" name="formFileMultiple[]" multiple>
+                    <span class="error formFileMultiple"></span>
+                </div>
+                <div class="mb-4">
+                    <div class="d-flex" id="ufiles">
+                        
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <label for="links" class="control-label">Link Name:</label>                            
+                        </div>
+                        <div class="col-sm-5">
+                            <label for="address" class="control-label">Link Address:</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="row linkrow">
+                        @php $temp = '';@endphp
+                        <div class="col-sm-5">                            
+                            <select name="links[]" id="links" class="form-control links">
+                                @foreach($links as $lkey => $link)
+                                    @if($lkey == '0')                                
+                                       @php $temp = $link->link; @endphp
+                                    @endif
+                                        <option value="{{ $link->id }}">{{ $link->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" name="address[]" value="{{ $temp }}" readonly>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-danger"
+                                id="DeleteRow" type="button">
+                                <i class="mdi mdi-delete"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <span class="error"></span>
+                </div>
+                <div id="newinput"></div>
+                <div class="text-right">
+                    <button id="rowAdder" type="button"
+                        class="btn btn-dark">
+                        <i class="mdi mdi-plus">
+                        </i> 
+                    </button>
                 </div>
 
                 <div class="mb-3 text-center">
@@ -406,9 +596,13 @@ $lable = "Student Time Log";
     var holidayDetailUrl = "{{ route('holiday.detail') }}";
     var deleteUrl = "{{ route('student-time-log.delete') }}";    
     var deleteEventUrl = "{{ route('holiday.delete') }}";    
+    var getLinkUrl = "{{ route('get.link') }}";    
     var addUrl = $('#add-form').attr('action');
+    var addStudentUrl = $('#add-student-form').attr('action');
+    var addSubjectUrl = $('#add-subject-form').attr('action');
     var editUrl = $('#edit-form').attr('action');
     var addHolidayUrl = $('#add-holiday-form').attr('action');
+    var linkhtml = $('.linkrow').html();
     var page_reload = false;
 </script>
 @endsection

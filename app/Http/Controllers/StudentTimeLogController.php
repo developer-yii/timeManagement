@@ -7,6 +7,8 @@ use App\Models\StudentTimeLog;
 use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Holiday;
+use App\Models\Link;
+use App\Models\LogFile;
 use DataTables;
 use Validator;
 use Auth;
@@ -23,6 +25,9 @@ class StudentTimeLogController extends Controller
 
     public function index(Request $request)
     {
+        $gradeLevels = Student::$gradeLevel;
+
+        $links = Link::where('user_id',Auth::user()->id)->where('deleted_at',null)->get();        
 
         $conditionHoliStu = [];
         
@@ -72,8 +77,15 @@ class StudentTimeLogController extends Controller
         $i=0;
         
         foreach($student_subject_log as $key => $list){
-            // $data[$i]['title'] = gmdate("H:i", $list['log_time']*60).' - '.$list['subject_name'].' ('.ucfirst($list['first_name']).' '.substr(ucfirst($list['last_name']),0,1).')';            
-            $data[$i]['title'] = $list['log_time'].' - '.$list['subject_name'].' ('.ucfirst($list['first_name']).' '.substr(ucfirst($list['last_name']),0,1).')';
+            // $data[$i]['title'] = gmdate("H:i", $list['log_time']*60).' - '.$list['subject_name'].' ('.ucfirst($list['first_name']).' '.substr(ucfirst($list['last_name']),0,1).')';     
+            if($list->is_completed)
+            {
+                $data[$i]['title'] = '&'.$list['log_time'].' - '.$list['subject_name'].' ('.ucfirst($list['first_name']).' '.substr(ucfirst($list['last_name']),0,1).')';
+            }
+            else
+            {
+                $data[$i]['title'] = $list['log_time'].' - '.$list['subject_name'].' ('.ucfirst($list['first_name']).' '.substr(ucfirst($list['last_name']),0,1).')';
+            }       
             $data[$i]['start'] = date('Y-m-d',strtotime($list['log_date']));
             $data[$i]['end'] = date('Y-m-d',strtotime($list['log_date']));
             $data[$i]['log_id'] = $list['log_id'];
@@ -104,7 +116,7 @@ class StudentTimeLogController extends Controller
 
         $data_json = json_encode($data);
 
-        return view('studentTimeLog.index',compact('student_list','subject_list','data_json','student','subjects'));
+        return view('studentTimeLog.index',compact('student_list','links','subject_list','data_json','student','subjects','gradeLevels'));
     }
     public function monthlyView()
     {
@@ -167,11 +179,16 @@ class StudentTimeLogController extends Controller
                 'log_time'=>'required',
                 'start_time'=>'required',
                 'end_time'=>'required',
+                'formFileMultiple.*' => 'mimes:pdf,txt,jpg,jpeg,png,xls,xlsx,doc,docx,zip','application/zip|max:5000',
             );
-            $msg = '';
-            $validator = Validator::make($request->all(), $rules);
+            $message = [
+                'formFileMultiple.*.mimes' => 'Only pdf,txt,jpg,jpeg,xlsx,docx and png types are allowed,',
+                'formFileMultiple.*.max' => 'Maximum allowed size for a file is 5MB',
+            ];
+            $validator = Validator::make($request->all(), $rules, $message);
             if($validator->fails()){
                 $result = ['status' => false, 'message' => $validator->errors(), 'data' => []];
+                return response()->json($result);
             }else{
                 if($request->id)
                 {
@@ -191,6 +208,13 @@ class StudentTimeLogController extends Controller
                     $studentTimeLog = new StudentTimeLog;
                 }
 
+                if(count($request->links))
+                {
+                    $links_array = array_unique($request->links);
+                    $links = implode(', ', $links_array);
+                    $studentTimeLog->links = $links;
+                }
+
                 $studentTimeLog->student_id = $request->student_id;
                 $studentTimeLog->start_time = $request->start_time;
                 $studentTimeLog->end_time = $request->end_time;
@@ -202,12 +226,33 @@ class StudentTimeLogController extends Controller
                 if($request->attendance == 'on'){
                     $studentTimeLog->is_attendance = 1;    
                 }
+
+                $studentTimeLog->is_completed = 0;    
+                if($request->completed == 'on'){
+                    $studentTimeLog->is_completed = 1;    
+                }
                 
                 $studentTimeLog->activity_notes = $request->activity_notes;
                 $studentTimeLog->created_at = Carbon::now();
                 $studentTimeLog->updated_at = Carbon::now();
+                $r = $studentTimeLog->save();
+                
+                if($request->hasFile('formFileMultiple'))
+                {
+                    foreach ($request->file('formFileMultiple') as $file) 
+                    {
+                        $fileName = $file->hashName();
+                        $path = public_path('storage/uploads/linkFiles');
+                        $file->move($path, $fileName);
 
-                if($studentTimeLog->save()){
+                        $logfile = new LogFile;
+                        $logfile->log_id = $studentTimeLog->id;
+                        $logfile->file_name = $fileName;
+                        $logfile->save();
+                    }
+                }
+
+                if($r){
                     $result = ['status' => true, 'message' => $msg, 'data' => []];
                 }else{
                     $result = ['status' => false, 'message' => 'Error in saving data', 'data' => []];
@@ -242,7 +287,66 @@ class StudentTimeLogController extends Controller
     
     public function detail(Request $request){
         $c = StudentTimeLog::find($request->id);
-        $result = ['status' => true, 'message' => '', 'data' => $c];
+        $fs = $c->files;
+        $paths = [];
+        $fileHtml = '';
+
+        if($fs)
+        {            
+            foreach($fs as $fk => $f)
+            {
+
+                $fileHtml .= '<span class="file">';
+                $fileHtml .= '<a href="'.url('/storage/uploads/linkFiles\/').$f->file_name.'" class="" download></a>';
+                $fileHtml .= '</span>';
+            }
+        }
+
+        $links = Link::where('user_id',Auth::user()->id)->where('deleted_at',null)->get();
+        $html = '';
+        if($c->links)
+        {
+            $link_arr = explode (",", $c->links); 
+            $log_lnk = Link::whereIn('id',$link_arr)->get();
+            $html = '';
+            
+            foreach($log_lnk as $k => $loglink)
+            {                
+                $html .= '<div class="mb-3">
+                        <div class="row linkrow">';
+                            $temp = '';
+                            $html .='<div class="col-sm-5">                            
+                                <select name="links[]" id="links" class="form-control links">';
+                                    foreach($links as $key => $link)
+                                    {
+                                        if($loglink->id == $link->id)
+                                        {
+                                            $temp = $link->link;
+                                            $html .= '<option value="'.$link->id.'" selected>'.$link->name.'</option>';
+                                        }
+                                        else
+                                        {
+                                            $html .= '<option value="'.$link->id.'">'.$link->name.'</option>';   
+                                        }
+                                    }
+                                $html .='</select>';
+                            $html .='</div>';
+                            $html .= '<div class="col-sm-5">';
+                                $html .='<input type="text" class="form-control" name="address[]" value="'. $temp .'" readonly>';
+                            $html .= '</div>
+                            <div class="col-sm-2">
+                                <button class="btn btn-danger"
+                                    id="DeleteRow" type="button">
+                                    <i class="mdi mdi-delete"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <span class="error"></span>
+                    </div>';
+            }
+ 
+        }
+        $result = ['status' => true, 'message' => '', 'data' => $c, 'html' => $html, 'fileHtml' => $fileHtml];
         return response()->json($result);
     }
     
@@ -295,7 +399,20 @@ class StudentTimeLogController extends Controller
                 ->whereYear('log_date', '=', $year)
                 ->whereMonth('log_date', '=', $month)
                 ->select('student_time_log.id','student_time_log.subject_id','student_time_log.log_date','student_time_log.student_id','student_time_log.log_time')
-                ->get();                            
+                ->get();        
+
+            // For total hours monthwise per subject          
+            $sub_array = [];
+            
+            foreach($student_subject_log as $slist){
+                $id = $slist['subject_id'];
+                $sub_array[$id][] = hhmmToSec($slist['log_time']);
+            }
+            foreach($sub_array as $k => $v)
+            {
+                $new[$k] = secToHHmm(array_sum($v)); 
+            }            
+            // For total hours monthwise per subject  : Ends
 
             $student_log_data = array();
             foreach($student_subject_log as $slist){
@@ -328,6 +445,7 @@ class StudentTimeLogController extends Controller
                         $attendance = 1;
                     }
                 } 
+
                 $html.=            
                 '<tr>
                     <td>'.$month.'-'.$d.'-'.$year.'</td>
@@ -352,6 +470,18 @@ class StudentTimeLogController extends Controller
                 $html.='</tr>';
               
             }
+            $html.=            
+                '<tr>
+                    <td colspan="2" class="font-bold"> Total</td>';
+                    
+                    foreach($subject_list as $slist)
+                    {
+                        if(isset($new[$slist['id']]))
+                            $html.='<td class="font-bold">'.$new[$slist['id']].'</td>';
+                        else
+                            $html.='<td class="font-bold">00:00</td>';
+                    }
+                    $html.='</tr>';
             $result = ['status' => true, 'data' => $html];
         }  
         return response()->json($result);      

@@ -14,4 +14,9 @@ class StudentTimeLog extends Model
     use SoftDeletes;
     
     protected $table = 'student_time_log';
+
+    public function files()
+    {
+        return $this->hasMany('App\Models\LogFile', 'log_id');
+    }
 }

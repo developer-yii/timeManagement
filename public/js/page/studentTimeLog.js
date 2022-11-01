@@ -21,7 +21,7 @@ Coloris({
 $(document).ready(function() {
 
         var msgElement = $('#add_error_message');
-        var editmsgElement = $('#edit_error_message');
+        var editmsgElement = $('#edit_error_message');        
 
         function calculateTime()
         {
@@ -63,6 +63,35 @@ $(document).ready(function() {
             $('#add-holiday-form')[0].reset();
         });
 
+        $("#rowAdder").click(function () {
+            newRowAdd = '';
+            newRowAdd += '<div class="mb-3"><div class="row linkrow">';
+            newRowAdd += linkhtml;
+            newRowAdd += '</div></div>';
+ 
+            $('#newinput').append(newRowAdd);
+        });
+ 
+        $("body").on("click", "#DeleteRow", function () {
+            $(this).parents(".mb-3").remove();
+        })
+
+        $("body").on("change", ".links", function () {
+            var lid = $(this).val()
+            var el = $(this).parents(".mb-3");
+
+            $.ajax({
+                url: getLinkUrl,
+                type: 'POST',
+                data: {id:lid},
+                dataType: 'json',
+                success: function(result) {                    
+                    el.contents().find("input").val(result.link);
+                }
+            });
+            
+        });
+
         $('body').on('click','input[type="checkbox"]',function(e){
             var currentElement = $(this);
             var i = $(this).val();
@@ -70,7 +99,6 @@ $(document).ready(function() {
             if(i == 'all')
             {
                 if($("body #student_id_all").prop('checked') == true){
-                    console.log('enter');
                     $("body .student-checkbox").each(function(){
                         $(this).prop('checked',false);     
                         $(this).change();  
@@ -147,14 +175,109 @@ $(document).ready(function() {
             });
         });
 
-        $('#add-form').submit(function(event) {
+        $('#add-student-form').submit(function(event) {
             event.preventDefault();
             var $this = $(this);
             $.ajax({
+                url: addStudentUr,
+                type: 'POST',
+                data: $('#add-student-form').serialize(),
+                dataType: 'json',
+                beforeSend: function() {
+                    $($this).find('button[type="submit"]').prop('disabled', true);
+                },
+                success: function(result) {
+                    $($this).find('button[type="submit"]').prop('disabled', false);
+                    if (result.status == true) {
+                        $this[0].reset();                        
+
+                        $('#add-student-modal').modal('hide');
+                        show_toast(result.message, 'success');
+                        // setTimeout(function() {
+                        //     location.reload();
+                        // }, 1000);
+
+                        $('.error').html("");                        
+
+                    } else {
+                        first_input = "";
+                        $('.error').html("");
+                        $.each(result.message, function(key) {
+                            if(first_input=="") first_input=key;
+                            $('#'+key).closest('.mb-3').find('.error').html(result.message[key]);
+                        });
+                        $('#add-student-form').find("#"+first_input).focus();
+                    }
+                },
+                error: function(error) {
+                    $($this).find('button[type="submit"]').prop('disabled', false);
+                    alert('Something went wrong!', 'error');
+                    // location.reload();
+                }
+            });
+        });
+
+        $('#add-subject-form').submit(function(event) {
+            event.preventDefault();
+            var $this = $(this);
+            $.ajax({
+                url: addSubjectUrl,
+                type: 'POST',
+                data: $('#add-subject-form').serialize(),
+                dataType: 'json',
+                beforeSend: function() {
+                    $($this).find('button[type="submit"]').prop('disabled', true);
+                },
+                success: function(result) {
+                    $($this).find('button[type="submit"]').prop('disabled', false);
+                    if (result.status == true) {
+                        $this[0].reset();                       
+
+                        setTimeout(function() {
+                            $('#add-subject-modal').modal('hide');
+                            show_toast(result.message, 'success');
+                        }, 300);
+
+                        $('.error').html("");                        
+
+                    } else {
+                        first_input = "";
+                        $('.error').html("");
+                        $.each(result.message, function(key) {
+                            if(first_input=="") first_input=key;
+                            $('#'+key).closest('.mb-3').find('.error').html(result.message[key]);
+                        });
+                        $('#add-subject-form').find("#"+first_input).focus();
+                    }
+                },
+                error: function(error) {
+                    $($this).find('button[type="submit"]').prop('disabled', false);
+                    alert('Something went wrong!', 'error');
+                    // location.reload();
+                }
+            });
+        });
+
+        $('#add-form').submit(function(event) {
+            event.preventDefault();
+            var $this = $(this);
+            var dataString = new FormData($('#add-form')[0]);
+
+            var fileLength = $('#add-form #formFileMultiple')[0].files.length;
+            let files = $('#formFileMultiple')[0];
+            
+            for (let i = 0; i < fileLength; i++) {
+                dataString.append('formFileMultiple' + i, files.files[i]);
+            }  
+                        
+            $.ajax({
                 url: addUrl,
                 type: 'POST',
-                data: $('#add-form').serialize(),
-                dataType: 'json',
+                data: dataString,
+                // dataType: 'json',
+                cache: false,
+                contentType: false,
+                processData: false,
                 beforeSend: function() {
                     $($this).find('button[type="submit"]').prop('disabled', true);
                 },
@@ -163,12 +286,12 @@ $(document).ready(function() {
                     if (result.status == true) {
                         $this[0].reset();
 
+                        show_toast(result.message, 'success');
 
+                        $('#add-modal').modal('hide');                            
                         setTimeout(function() {
-                            $('#add-modal').modal('hide');                            
-                            show_toast(result.message, 'success');
-                        }, 300);
-                        location.reload();
+                            location.reload();
+                        }, 1500);
 
                         $('.error').html("");
                         $('#edit-id').val(0);
@@ -178,7 +301,14 @@ $(document).ready(function() {
                         $('.error').html("");
                         $.each(result.message, function(key) {
                             if(first_input=="") first_input=key;
-                            $('#'+key).closest('.mb-3').find('.error').html(result.message[key]);
+                            if(key.match(/formFileMultiple.*/))
+                            {
+                                $('.formFileMultiple').html(result.message[key]);    
+                            }
+                            else
+                            {
+                                $('#'+key).closest('.mb-3').find('.error').html(result.message[key]);
+                            }
                         });
                         $('#add-form').find("#"+first_input).focus();
                     }

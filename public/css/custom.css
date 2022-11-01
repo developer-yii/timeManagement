@@ -113,3 +113,43 @@ body.authentication-bg {
 input[type="time"]::-webkit-calendar-picker-indicator{
 	filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(130deg) brightness(95%) contrast(80%);
 }
+
+span.file {
+  display: block;
+  padding: 1px 0px;
+}
+span.file a[href$=".docx"] {
+  background: url('../images/file-icons/doc.png') left center no-repeat;
+  padding-left: 35px;
+  padding-bottom: 30px;
+}
+span.file a[href$=".pdf"] {
+  background: url('../images/file-icons/pdf.png') left center no-repeat;
+  padding-left: 35px;
+  padding-bottom: 30px;
+}
+span.file a[href$=".jpg"] {
+  background: url('../images/file-icons/jpg.png') left center no-repeat;
+  padding-left: 35px;
+  padding-bottom: 30px;
+}
+span.file a[href$=".png"] {
+  background: url('../images/file-icons/png.png') left center no-repeat;
+  padding-left: 35px;
+  padding-bottom: 30px;
+}
+span.file a[href$=".xls"] {
+  background: url('../images/file-icons/xls.png') left center no-repeat;
+  padding-left: 35px;
+  padding-bottom: 30px;
+}
+span.file a[href$=".xlsx"] {
+  background: url('../images/file-icons/xls.png') left center no-repeat;
+  padding-left: 35px;
+  padding-bottom: 30px;
+}
+span.file a[href$=".txt"] {
+  background: url('../images/file-icons/txt.png') left center no-repeat;
+  padding-left: 35px;
+  padding-bottom: 30px;
+}

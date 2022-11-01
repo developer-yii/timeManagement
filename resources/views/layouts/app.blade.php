@@ -150,6 +150,13 @@
                             <span> Help/Quick Tips </span>
                         </a>
                     </li>
+
+                    <li class="side-nav-item">
+                        <a href="{{ route('links.index')}}" class="side-nav-link">
+                            <i class="mdi mdi-human-queue"></i>
+                            <span> Saved Link </span>
+                        </a>
+                    </li>
                 </ul>
 
                 <!-- End Sidebar -->

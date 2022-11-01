@@ -39,6 +39,14 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/subscription/price/show', 'SubscriptionController@addPriceShow')->name('subscription.price.show');
     Route::post('subscription/price/change', 'SubscriptionController@addPrice')->name('subscription.price.change');
+
+    Route::get('/links', 'LinkController@index')->name('links.index');
+    Route::post('/links/addupdate', 'LinkController@addupdate')->name('link.addupdate');
+    Route::get('/links/detail', 'LinkController@detail')->name('link.detail');
+    Route::get('/links/get', 'LinkController@get')->name('links.list');
+    Route::post('/links/delete', 'LinkController@delete')->name('link.delete');
+    Route::post('/get/link', 'LinkController@getlink')->name('get.link');
+
     // Route::get('/profileDetail', 'HomeController@profileDetail')->name('profileDetail');
     // Route::post('/updateProfile', 'HomeController@updateProfile')->name('updateProfile');
     // Route::post('/getDealerOfBrand', 'DealerBrandController@getDealerOfBrand')->name('getDealerOfBrand');
