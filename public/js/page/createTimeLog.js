@@ -21,14 +21,57 @@ $(document).ready(function() {
             return hr+':'+min;
         }
 
+        $("#rowAdder").click(function () {
+            newRowAdd = '';
+            newRowAdd += '<div class="mb-3"><div class="row linkrow">';
+            newRowAdd += linkhtml;
+            newRowAdd += '</div></div>';
+ 
+            $('#newinput').append(newRowAdd);
+        });
+ 
+        $("body").on("click", "#DeleteRow", function () {
+            $(this).parents(".mb-3").remove();
+        })
+
+        $("body").on("change", ".links", function () {
+            var lid = $(this).val()
+            var el = $(this).parents(".mb-3");
+
+            $.ajax({
+                url: getLinkUrl,
+                type: 'POST',
+                data: {id:lid},
+                dataType: 'json',
+                success: function(result) {                    
+                    el.contents().find("input").val(result.link);
+                }
+            });
+            
+        });
+
         $('#add-form').submit(function(event) {
             event.preventDefault();
             var $this = $(this);
+
+            var dataString = new FormData($('#add-form')[0]);
+
+            var fileLength = $('#add-form #formFileMultiple')[0].files.length;
+            let files = $('#formFileMultiple')[0];
+            
+            for (let i = 0; i < fileLength; i++) {
+                dataString.append('formFileMultiple' + i, files.files[i]);
+            }
+
             $.ajax({
                 url: addUrl,
                 type: 'POST',
-                data: $('#add-form').serialize(),
-                dataType: 'json',
+                // data: $('#add-form').serialize(),
+                data: dataString,
+                cache: false,
+                contentType: false,
+                processData: false,
+                // dataType: 'json',
                 beforeSend: function() {
                     $($this).find('button[type="submit"]').prop('disabled', true);
                 },
@@ -51,7 +94,15 @@ $(document).ready(function() {
                         $('.error').html("");
                         $.each(result.message, function(key) {
                             if(first_input=="") first_input=key;
-                            $('#'+key).closest('.mb-3').find('.error').html(result.message[key]);
+                            // $('#'+key).closest('.mb-3').find('.error').html(result.message[key]);
+                            if(key.match(/formFileMultiple.*/))
+                            {
+                                $('.formFileMultiple').html(result.message[key]);    
+                            }
+                            else
+                            {
+                                $('#'+key).closest('.mb-3').find('.error').html(result.message[key]);
+                            }
                         });
                         $('#add-form').find("#"+first_input).focus();
                     }
