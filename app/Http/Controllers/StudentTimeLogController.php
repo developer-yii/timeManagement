@@ -210,7 +210,7 @@ class StudentTimeLogController extends Controller
                     $studentTimeLog = new StudentTimeLog;
                 }
 
-                if(count($request->links))
+                if(isset($request->links))
                 {
                     $links_array = array_unique($request->links);
                     $links = implode(', ', $links_array);
