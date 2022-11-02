@@ -85,12 +85,81 @@ $lable = "Student Time Log";
                                 </div>
                                 <span class="error"></span>
                             </div>
+
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input type="checkbox" id="completed" name="completed" class="form-check-input">
+                                    <label for="completed" class="form-check-label">Completed: <i>(calendar will feature a black checkmark)</i></label>
+                                </div>
+                                <span class="error"></span>
+                            </div>
+
                             <div class="mb-3">
                                 <label for="name" class="control-label">Activity/Notes:</label>
                                 <textarea class="form-control" name="activity_notes" id="activity_notes" rows="5"></textarea>
                                 <span class="error"></span>
                             </div>
-                            <div class="mb-3 text-right">
+
+                            <div class="mb-1">
+                                <label for="formFileMultiple" class="form-label">Upload Files <i>(Pictures,Sample of work, Projects, Worksheets)</i></label>
+                                <input class="form-control" type="file" id="formFileMultiple" name="formFileMultiple[]" multiple>
+                                <span class="error formFileMultiple"></span>
+                            </div>
+                            <div class="mb-4">
+                                <div class="d-flex" id="ufiles">
+                                    
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <label for="links" class="control-label">Link Name:</label>                            
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <label for="address" class="control-label">Link Address:</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="row linkrow">
+                                    @php $temp = '';@endphp
+                                    <div class="col-sm-5">                            
+                                        <select name="links[]" id="links" class="form-control links">
+                                            @foreach($links as $lkey => $link)
+                                                @if($lkey == '0')                                
+                                                   @php $temp = $link->link; @endphp
+                                                @endif
+                                                    <option value="{{ $link->id }}">{{ $link->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" name="address[]" value="{{ $temp }}" readonly>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button class="btn btn-danger"
+                                            id="DeleteRow" type="button">
+                                            <i class="mdi mdi-delete"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <span class="error"></span>
+                            </div>
+                            <div id="newinput"></div>
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    
+                                </div>
+                                <div class="col-md-2">
+                                <button id="rowAdder" type="button"
+                                    class="btn btn-dark">
+                                    <i class="mdi mdi-plus">
+                                    </i> 
+                                </button>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 text-right mt-3">
                                 <button class="btn btn-green" type="submit">Save changes</button>                                
                             </div>                
                         </form>
@@ -109,6 +178,8 @@ $lable = "Student Time Log";
 @section('js')
 <script>
     var addUrl = $('#add-form').attr('action');
+    var getLinkUrl = "{{ route('get.link') }}";
+    var linkhtml = $('.linkrow').html();
     var page_reload = false;
 </script>
 @endsection

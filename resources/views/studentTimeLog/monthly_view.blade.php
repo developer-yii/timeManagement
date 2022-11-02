@@ -207,9 +207,71 @@ $lable = "Student Time Log";
                 </div>
 
                 <div class="mb-3">
+                    <div class="form-check">
+                        <input type="checkbox" id="completed" name="completed" class="form-check-input">
+                        <label for="completed" class="form-check-label">Completed: <i>(calendar will feature a black checkmark)</i></label>
+                    </div>
+                    <span class="error"></span>
+                </div>
+
+                <div class="mb-3">
                     <label for="name" class="control-label">Activity/Notes:</label>
                     <textarea class="form-control" name="activity_notes" id="activity_notes" rows="5"></textarea>
                     <span class="error"></span>
+                </div>
+
+                <div class="mb-1">
+                    <label for="formFileMultiple" class="form-label">Upload Files <i>(Pictures,Sample of work, Projects, Worksheets)</i></label>
+                    <input class="form-control" type="file" id="formFileMultiple" name="formFileMultiple[]" multiple>
+                    <span class="error formFileMultiple"></span>
+                </div>
+                <div class="mb-4">
+                    <div class="d-flex" id="ufiles">
+                        
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <label for="links" class="control-label">Link Name:</label>                            
+                        </div>
+                        <div class="col-sm-5">
+                            <label for="address" class="control-label">Link Address:</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="row linkrow">
+                        @php $temp = '';@endphp
+                        <div class="col-sm-5">                            
+                            <select name="links[]" id="links" class="form-control links">
+                                @foreach($links as $lkey => $link)
+                                    @if($lkey == '0')                                
+                                       @php $temp = $link->link; @endphp
+                                    @endif
+                                        <option value="{{ $link->id }}">{{ $link->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" name="address[]" value="{{ $temp }}" readonly>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-danger"
+                                id="DeleteRow" type="button">
+                                <i class="mdi mdi-delete"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <span class="error"></span>
+                </div>
+                <div id="newinput"></div>
+                <div class="text-right">
+                    <button id="rowAdder" type="button"
+                        class="btn btn-dark">
+                        <i class="mdi mdi-plus">
+                        </i> 
+                    </button>
                 </div>
 
                 <div class="mb-3 text-center">
@@ -233,6 +295,8 @@ $lable = "Student Time Log";
     var pdfdataUrl = "{{ route('pdfData')}}"
     var searchUrl = $('#search-form').attr('action');
     var editUrl = $('#edit-form').attr('action');
+    var linkhtml = $('.linkrow').html();
+    var getLinkUrl = "{{ route('get.link') }}";
     var page_reload = false;
 </script>
 @endsection

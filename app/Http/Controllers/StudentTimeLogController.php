@@ -122,6 +122,8 @@ class StudentTimeLogController extends Controller
     {
         $user_id = Auth::user()->id;
 
+        $links = Link::where('user_id',Auth::user()->id)->where('deleted_at',null)->get();
+
         $student_list = Student::query()
             ->where('user_id',$user_id)
             ->get()
@@ -160,7 +162,7 @@ class StudentTimeLogController extends Controller
         // }
 
         // return view('studentTimeLog.monthly_view',compact('subject_list','days','month','year','student_log_data','student_list','student_attendances'));
-            return view('studentTimeLog.monthly_view',compact('subject_list','student_list'));
+            return view('studentTimeLog.monthly_view',compact('subject_list','student_list','links'));
     }
     public function get()
     {
@@ -270,6 +272,8 @@ class StudentTimeLogController extends Controller
     {
         $user_id = Auth::user()->id;
 
+        $links = Link::where('user_id',Auth::user()->id)->where('deleted_at',null)->get();
+
         $student_list = Student::query()
             ->where('user_id',$user_id)
             ->get()
@@ -282,7 +286,7 @@ class StudentTimeLogController extends Controller
             ->pluck('subject_name','id')
             ->toArray();
 
-        return view('studentTimeLog.create',compact('student_list','subject_list'));
+        return view('studentTimeLog.create',compact('student_list','subject_list','links'));
     }
     
     public function detail(Request $request){
@@ -396,6 +400,8 @@ class StudentTimeLogController extends Controller
                 ->join('students','students.id','=','student_time_log.student_id')
                 ->join('subjects','subjects.id','=','student_time_log.subject_id')
                 ->where('student_time_log.user_id',$user_id)
+                ->where('student_time_log.deleted_at',null)
+                ->where('student_time_log.student_id',$request->student_id)
                 ->whereYear('log_date', '=', $year)
                 ->whereMonth('log_date', '=', $month)
                 ->select('student_time_log.id','student_time_log.subject_id','student_time_log.log_date','student_time_log.student_id','student_time_log.log_time')
@@ -424,6 +430,7 @@ class StudentTimeLogController extends Controller
             }            
 
             $student_attendances = StudentTimeLog::query()
+                ->where('student_time_log.deleted_at',null)
                 ->where('student_time_log.user_id',$user_id)
                 ->where('student_id',$request->student_id)
                 ->whereYear('log_date', '=', $year)

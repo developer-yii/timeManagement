@@ -6,6 +6,35 @@ $(document).ready(function() {
 
         var doc = window.jspdf.jsPDF;
 
+        $("#rowAdder").click(function () {
+            newRowAdd = '';
+            newRowAdd += '<div class="mb-3"><div class="row linkrow">';
+            newRowAdd += linkhtml;
+            newRowAdd += '</div></div>';
+ 
+            $('#newinput').append(newRowAdd);
+        });
+ 
+        $("body").on("click", "#DeleteRow", function () {
+            $(this).parents(".mb-3").remove();
+        })
+
+        $("body").on("change", ".links", function () {
+            var lid = $(this).val()
+            var el = $(this).parents(".mb-3");
+
+            $.ajax({
+                url: getLinkUrl,
+                type: 'POST',
+                data: {id:lid},
+                dataType: 'json',
+                success: function(result) {                    
+                    el.contents().find("input").val(result.link);
+                }
+            });
+            
+        });
+
         function printDiv(divId,title,appCssUrl,customCssUrl,name,month,year) 
         {
             let mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150');
@@ -105,6 +134,20 @@ $(document).ready(function() {
                         $('#edit-form').find("textarea#activity_notes").val(result.data.activity_notes); 
                         if(result.data.is_attendance)
                             $('#edit-form').find('#attendance').prop('checked',true);
+                        if(result.data.is_completed)
+                            $('#add-form').find('#completed').prop('checked',true);
+
+                        $('.linkrow').parents(".mb-3").remove();
+                        if(result.html)
+                        {
+                            $('#newinput').append(result.html);
+                        }
+
+                        $('#ufiles').html('');
+                        if(result.fileHtml)
+                        {
+                            $('#ufiles').html(result.fileHtml);                                
+                        }
                         
                         $('.error').html("");                        
                     } else {                        
@@ -123,11 +166,26 @@ $(document).ready(function() {
         $('#edit-form').submit(function(event) {
             event.preventDefault();
             var $this = $(this);
+
+            var dataString = new FormData($('#edit-form')[0]);
+
+            var fileLength = $('#edit-form #formFileMultiple')[0].files.length;
+            console.log('length: '+fileLength);
+            let files = $('#formFileMultiple')[0];
+            
+            for (let i = 0; i < fileLength; i++) {
+                dataString.append('formFileMultiple' + i, files.files[i]);
+            }
+
             $.ajax({
                 url: editUrl,
                 type: 'POST',
-                data: $('#edit-form').serialize(),
-                dataType: 'json',
+                // data: $('#edit-form').serialize(),
+                data: dataString,
+                // dataType: 'json',
+                cache: false,
+                contentType: false,
+                processData: false,
                 beforeSend: function() {
                     $($this).find('button[type="submit"]').prop('disabled', true);
                 },
@@ -151,7 +209,16 @@ $(document).ready(function() {
                         $('.error').html("");
                         $.each(result.message, function(key) {
                             if(first_input=="") first_input=key;
-                            $('#'+key).closest('.mb-3').find('.error').html(result.message[key]);
+                            // $('#'+key).closest('.mb-3').find('.error').html(result.message[key]);
+
+                            if(key.match(/formFileMultiple.*/))
+                            {
+                                $('.formFileMultiple').html(result.message[key]);    
+                            }
+                            else
+                            {
+                                $('#'+key).closest('.mb-3').find('.error').html(result.message[key]);
+                            }
                         });
                         $('#edit-form').find("#"+first_input).focus();
                     }
