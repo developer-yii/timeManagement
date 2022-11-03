@@ -32,7 +32,7 @@ class HolidayController extends Controller
     public function get()
     {
         $data = Holiday::where('student_holidays.user_id',Auth::user()->id)
-            ->join('students','students.id','=','student_holidays.student_id')
+            ->leftjoin('students','students.id','=','student_holidays.student_id')
             ->select('student_holidays.id','start_date','end_date','note','students.first_name','students.last_name','student_holidays.event_color');
 
         return DataTables::eloquent($data)->toJson();
@@ -72,20 +72,21 @@ class HolidayController extends Controller
                     }
                 }
                 else{
-                    $students = Student::where('user_id',Auth::user()->id)->where('deleted_at',null)->get();
-                    $tmp = [];
-                    if($students->count())
-                    {
-                        foreach($students as $key => $stu)
-                        {
-                            $tmp[$key] = $stu->id;
-                        }
-                        $request->student_id = $tmp;                        
+                    // $students = Student::where('user_id',Auth::user()->id)->where('deleted_at',null)->get();
+                    // $tmp = [];
+                    // if($students->count())
+                    // {
+                    //     foreach($students as $key => $stu)
+                    //     {
+                    //         $tmp[$key] = $stu->id;
+                    //     }
+                    //     $request->student_id = $tmp;                        
 
-                        foreach($request->student_id as $key => $studentId)
-                        {
+                    //     foreach($request->student_id as $key => $studentId)
+                    //     {
                             $holiday = new Holiday;
-                            $holiday->student_id = $studentId;
+                            // $holiday->student_id = $studentId;
+                            $holiday->student_id = 0;
                             $holiday->start_date = date('Y-m-d',strtotime($request->start_date));
                             $holiday->end_date = date('Y-m-d',strtotime($request->end_date));
                             $holiday->user_id = Auth::user()->id;
@@ -94,8 +95,8 @@ class HolidayController extends Controller
                             $holiday->created_at = Carbon::now();
                             $holiday->updated_at = Carbon::now();
                             $r = $holiday->save();
-                        }
-                    }
+                        // }
+                    // }
                 }
 
 

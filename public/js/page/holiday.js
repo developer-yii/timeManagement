@@ -176,7 +176,10 @@ $(document).ready(function() {
                     $('#edit-form').find('#edit_note').val(result.data.note);
                     $('#edit-form').find('#edit_event_color').val(result.data.event_color);
                     $('#edit_modal').html('');
-                    $('#edit_modal').html(result.data.studentName);
+                    if(result.data.studentName)
+                        $('#edit_modal').html(result.data.studentName);
+                    else
+                        $('#edit_modal').html('All');
                     document.querySelector('#edit_event_color').dispatchEvent(new Event('input', { bubbles: true }));
                     // $('#add-form').find('#student_id').val(result.data.student_id);
                 }
