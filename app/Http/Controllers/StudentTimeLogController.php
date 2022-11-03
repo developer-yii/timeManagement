@@ -67,7 +67,7 @@ class StudentTimeLogController extends Controller
         $student_subject_log = $student_subject_log->get();        
 
         $student_holiday_log = Holiday::query()
-            ->join('students','students.id','=','student_holidays.student_id')
+            ->leftjoin('students','students.id','=','student_holidays.student_id')
             ->where('student_holidays.user_id',$user_id)
             ->where($conditionHoliStu)
             ->select('student_holidays.*','students.*','student_holidays.id as holiday_id')
@@ -99,7 +99,14 @@ class StudentTimeLogController extends Controller
         }
 
         foreach($student_holiday_log as $hkey => $hlist){
-            $data[$i]['title'] = $hlist['note'].' ('.ucfirst($hlist['first_name']).' '.substr(ucfirst($hlist['last_name']),0,1).')';
+            if($hlist['student_id'] == 0)
+            {
+                $data[$i]['title'] = $hlist['note'].' (All)';
+            }
+            else
+            {
+                $data[$i]['title'] = $hlist['note'].' ('.ucfirst($hlist['first_name']).' '.substr(ucfirst($hlist['last_name']),0,1).')';
+            }
             $data[$i]['start'] = date('Y-m-d',strtotime($hlist['start_date']));
             $data[$i]['end'] = date('Y-m-d',strtotime($hlist['end_date'].'+ 1 day')); // 1 day added as fullcalender doesnt count endday
             // $data[$i]['className'] = 'bg-danger';    

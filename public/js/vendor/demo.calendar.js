@@ -93,7 +93,11 @@
                             $('#edit-form').find('#edit_note').val(result.data.note);
                             $('#edit-form').find('#edit_event_color').val(result.data.event_color);
                             $('#edit_modal').html('');
-                            $('#edit_modal').html(result.data.studentName);
+                            if(result.data.studentName)
+                                $('#edit_modal').html(result.data.studentName);
+                            else
+                                $('#edit_modal').html('All');
+                            // $('#edit_modal').html(result.data.studentName);
                             document.querySelector('#edit_event_color').dispatchEvent(new Event('input', { bubbles: true }));
 
                             var htm = 'View/Edit Holiday';
@@ -107,10 +111,12 @@
                 let selector = info.el.querySelector('.fc-event-title');
                 if (selector) { 
                     var string = info.event.title;
-                    if(string.charAt(0) == '&')
+                    
+                    if(string.charAt(0) == '&' || string.charAt(0) == '<')
                     {
-                        selector.innerHTML = '<span style="font-size:120%; color:black">&check;  </span>' + info.event.title.slice(1) ;
-                    }
+                        selector.innerHTML = '';
+                        selector.innerHTML = '<span style="font-size:120%; color:black">&check;  </span>' + info.event.title.slice(1);
+                    }                    
                   }                
             },
             slotDuration: "00:15:00",
