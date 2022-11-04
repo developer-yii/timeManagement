@@ -128,9 +128,8 @@ $(document).ready(function() {
                         $('#edit-form').find('#student_id').val(result.data.student_id);
                         $('#edit-form').find('#subject_id').val(result.data.subject_id);
                         $('#edit-form').find('#log_date').val(result.data.log_date);
-                        $('#edit-form').find('#log_time').val(result.data.log_time);
-                        $('#edit-form').find('#start_time1').val(result.data.start_time);
-                        $('#edit-form').find('#end_time1').val(result.data.end_time);
+                        $('#edit-form').find('#hrs').val(result.hrs);
+                        $('#edit-form').find('#minutes').val(result.minutes);
                         $('#edit-form').find("textarea#activity_notes").val(result.data.activity_notes); 
                         if(result.data.is_attendance)
                             $('#edit-form').find('#attendance').prop('checked',true);
@@ -209,9 +208,15 @@ $(document).ready(function() {
                         $('.error').html("");
                         $.each(result.message, function(key) {
                             if(first_input=="") first_input=key;
-                            // $('#'+key).closest('.mb-3').find('.error').html(result.message[key]);
-
-                            if(key.match(/formFileMultiple.*/))
+                            if(key == 'hrs')
+                            {
+                                $('#'+key).closest('.col-4').find('.error').html(result.message[key]);                            
+                            }
+                            else if(key == 'minutes')
+                            {
+                                $('#'+key).closest('.col-4').find('.error').html(result.message[key]);
+                            }
+                            else if(key.match(/formFileMultiple.*/))
                             {
                                 $('.formFileMultiple').html(result.message[key]);    
                             }

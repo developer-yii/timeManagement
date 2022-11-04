@@ -6,7 +6,7 @@
 
 @section('content')
 @php
-$lable = "Link";
+$lable = "Saved Links";
 
 @endphp
 <div class="row">
@@ -15,10 +15,10 @@ $lable = "Link";
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-                    <li class="breadcrumb-item active">{{$lable}} List</li>
+                    <li class="breadcrumb-item active">{{$lable}}</li>
                 </ol>
             </div>
-            <h4 class="page-title">{{$lable}} List</h4>
+            <h4 class="page-title">{{$lable}}</h4>
         </div>
     </div>
 </div> 
@@ -28,7 +28,7 @@ $lable = "Link";
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <button type="button" class="btn btn-green mb-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal">Add {{$lable}}</button><a href="javascript:void(0)" data-serialtip="ex1"><img src="{{asset('images/tooltip.png')}}" class="bulb-icon"></a>{{-- <img src="{{asset('images/bulb.png')}}" class="bulb-icon"><span class="font-bold">Add each subject, sport, and extracurricular your children/students may participate in. These subjects can also be classified as core or non-core.</span> --}}
+                <button type="button" class="btn btn-green mb-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal">Add Link</button><a href="javascript:void(0)" data-serialtip="ex1"><img src="{{asset('images/tooltip.png')}}" class="bulb-icon"></a>{{-- <img src="{{asset('images/bulb.png')}}" class="bulb-icon"><span class="font-bold">Add each subject, sport, and extracurricular your children/students may participate in. These subjects can also be classified as core or non-core.</span> --}}
                 <div id="flash-message"></div>
                 <div class="table-responsive">
                     <table id="linkTable" class="table table-hover dataTable">

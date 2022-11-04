@@ -47,6 +47,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/links/delete', 'LinkController@delete')->name('link.delete');
     Route::post('/get/link', 'LinkController@getlink')->name('get.link');
 
+    Route::post('/file/delete', 'LogFileController@delete')->name('file.delete');
+    // 
+
     // Route::get('/profileDetail', 'HomeController@profileDetail')->name('profileDetail');
     // Route::post('/updateProfile', 'HomeController@updateProfile')->name('updateProfile');
     // Route::post('/getDealerOfBrand', 'DealerBrandController@getDealerOfBrand')->name('getDealerOfBrand');

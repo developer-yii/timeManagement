@@ -28,8 +28,10 @@
 
 .btn-primary.active, .btn-primary:active, .show>.btn-primary.dropdown-toggle {
     color: #fff;
-    background-color: #1991ae;
-    border-color: #1991ae;
+    background-color: #20b6da ;
+    /*background-color: #1991ae;*/
+    border-color: #20b6da;
+    /*border-color: #1991ae;*/
 }
 
 .btn-check:focus+.btn-primary, .btn-primary:focus {
@@ -41,4 +43,23 @@
 }
 .fc-event {
     cursor: pointer;
+}
+
+.btn-green{
+    width: auto;
+}
+
+.colon-hhmm{
+    margin-top: 2.1rem!important;
+    margin-left: 22px;
+    font-size: 24px;
+}
+
+.abcd {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
 }

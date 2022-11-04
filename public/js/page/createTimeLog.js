@@ -53,6 +53,21 @@ $(document).ready(function() {
         $('#add-form').submit(function(event) {
             event.preventDefault();
             var $this = $(this);
+            // var hrs = $('#hrs').val();
+            // var minute = $('#minutes').val();
+            // if(hrs == '' && minute == '')
+            // {
+            //     alert('Please enter Hrs or minute!');
+            //     return;
+            // }
+            // if(hrs == '')
+            // {
+            //     hrs = 0;
+            // }
+            // if(minute == '')
+            // {
+            //     minute = 0;
+            // }            
 
             var dataString = new FormData($('#add-form')[0]);
 

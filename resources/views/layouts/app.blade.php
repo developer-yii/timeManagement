@@ -86,7 +86,7 @@
  {{--                    <a href="{{ route('student-time-log.monthly_view') }}"><i class="mdi mdi-calendar-check"></i> Monthly Student Log</a> --}}
                     <li class="side-nav-item">
                         <a href="{{ route('home') }}" class="side-nav-link">
-                            <i class="mdi mdi-view-dashboard-outline"></i>
+                            <i class="mdi mdi-chart-bar-stacked"></i>
                             <span> Progress Charts </span>
                         </a>
                     </li>
@@ -101,42 +101,51 @@
                     </li>
                     @endif
 
-                    <li class="side-nav-item">
-                        <a href="{{ route('student') }}" class="side-nav-link">
+{{--                     <li class="side-nav-item">
+                        <a href="{{ route('student') }}" class="side-nav-link"> --}}
                             {{-- <i class="mdi mdi-human-female-boy"></i> --}}
-                            <span><img src="{{ asset('images/plus.png')}}" height="25" /> Names/Students </span>
+                            {{-- <span><img src="{{ asset('images/plus.png')}}" height="25" /> Names/Students </span>
                         </a>
-                    </li>
+                    </li> --}}
 
+                    {{-- <li class="side-nav-item">
+                        
+                    </li> --}}
+
+{{-- 
                     <li class="side-nav-item">
-                        <a href="{{ route('subject') }}" class="side-nav-link">
-                            {{-- <i class="mdi mdi-notebook"></i> --}}
-                            <span><img src="{{ asset('images/plus.png')}}" height="25"/> Subject List </span>
-                        </a>
-                    </li>
-
-
-                    <li class="side-nav-item">
-                        <a href="{{ route('holiday') }}" class="side-nav-link">
+                        <a href="{{ route('holiday') }}" class="side-nav-link"> --}}
                             {{-- <i class="mdi mdi-dance-ballroom"></i> --}}
-                            <span><img src="{{ asset('images/plus.png')}}" height="25"/> Events/Appointments </span>
+                            {{-- <span><img src="{{ asset('images/plus.png')}}" height="25"/> Events/Appointments </span>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#sidebarCrm" aria-expanded="false" aria-controls="sidebarCrm" class="side-nav-link">
-                            <i class="uil uil-tachometer-fast"></i>
+                            <img src="{{ asset('images/plus.png')}}" height="25"/>
                             <span class="menu-arrow"></span>
-                            <span> Hours/Attendance </span>
+                            <span> Add Names/Subjects/Events </span>
                         </a>
                         <div class="collapse" id="sidebarCrm">
                             <ul class="side-nav-second-level">
                                 <li>
                                     <a href="{{ route('student-time-log.create') }}"><i class="mdi mdi-calendar-plus"></i> Add Student Time/Activity</a>
                                 </li>
-                                {{-- <li>
-                                    <a href="{{ route('student-time-log') }}"><i class="mdi mdi-calendar-month"></i> Monthly Planner</a>
-                                </li> --}}
+                                <li>
+                                    <a href="{{ route('student') }}" class="side-nav-link">
+                                        <span><i class="mdi mdi-human-female-boy"></i> Names/Students </span>
+                                    </a>                                    
+                                </li>
+                                <li>
+                                    <a href="{{ route('subject') }}" class="side-nav-link">
+                                        <span><i class="mdi mdi-notebook"></i> Subject List </span>
+                                    </a>                                  
+                                </li>
+                                <li>
+                                    <a href="{{ route('holiday') }}" class="side-nav-link">
+                                        <span><i class="mdi mdi-dance-ballroom"></i> Events/Appointments </span>
+                                    </a>                                  
+                                </li>
                                 {{-- <li>
                                     <a href="{{ route('student-time-log.monthly_view') }}"><i class="mdi mdi-calendar-check"></i> Monthly Student Log</a>
                                 </li> --}}                                
@@ -146,15 +155,15 @@
 
                     <li class="side-nav-item">
                         <a href="javascript:void(0)" class="side-nav-link">
-                            <i class="mdi mdi-human-queue"></i>
+                            <i class="mdi mdi-lightbulb-on-outline"></i>
                             <span> Help/Quick Tips </span>
                         </a>
                     </li>
 
                     <li class="side-nav-item">
                         <a href="{{ route('links.index')}}" class="side-nav-link">
-                            <i class="mdi mdi-human-queue"></i>
-                            <span> Saved Link </span>
+                            <i class="mdi mdi-vector-link"></i>
+                            <span> Saved Links </span>
                         </a>
                     </li>
                 </ul>

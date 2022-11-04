@@ -56,27 +56,29 @@ $lable = "Student Time Log";
                                 <span class="error"></span>
                             </div>                
                             <div class="mb-3">
-                                <label class="form-label">Start time <i>(click clock button to the right)</i></label>
+                                <label class="form-label">Hrs <i>(Enter Hours)</i></label>
                                 {{-- <div class="input-group"> --}}
-                                    <input id="start_time" name="start_time" type="time" value="08:56 AM" class="form-control">
+                                    <input id="hrs" name="hrs" type="number" step="1" class="form-control">
                                     {{-- <span class="input-group-text"><i class="dripicons-clock"></i></span> --}}
                                 {{-- </div> --}}
+                                <span class="error"></span>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">End time <i>(click clock button to the right)</i></label>
+                                <label class="form-label">Minutes <i>(Enter Minutes)</i></label>
                                 {{-- <div class="input-group"> --}}
-                                    <input id="end_time" name="end_time" type="time" value="09:00 AM" class="form-control">
+                                    <input id="minutes" name="minutes" type="number" step="1" class="form-control">
                                     {{-- <span class="input-group-text"><i class="dripicons-clock"></i></span> --}}
                                 {{-- </div> --}}
+                                <span class="error"></span>
                             </div>
-                            <div class="mb-3 d-none">
+                            {{-- <div class="mb-3 d-none">
                                 <label for="log_time" class="control-label">Log Time:</label>
                                 <div class="input-group">
                                     <input type="time" name="log_time" id="log_time" class="form-control" readonly>
                                     <span class="input-group-text"><i class="dripicons-clock"></i></span>
                                 </div>
                                 <span class="error"></span>
-                            </div>
+                            </div> --}}
 
                             <div class="mb-3">
                                 <div class="form-check">
