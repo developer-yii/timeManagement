@@ -1,0 +1,14 @@
+.colon-hhmm{
+    margin-top: 2.1rem!important;
+    margin-left: 22px;
+    font-size: 24px;
+}
+
+.abcd {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+}

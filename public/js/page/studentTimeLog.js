@@ -21,7 +21,11 @@ Coloris({
 $(document).ready(function() {
 
         var msgElement = $('#add_error_message');
-        var editmsgElement = $('#edit_error_message');        
+        var editmsgElement = $('#edit_error_message');     
+
+        $(function(){
+            $('[data-serialtip]').serialtip();
+        });   
 
         function calculateTime()
         {
@@ -123,6 +127,27 @@ $(document).ready(function() {
             $('#add-form').find('button[type="submit"]').show();
             $('#add-form').find('#edit-id').val(0);
             $('#add-form')[0].reset()
+        });
+
+        $('body').on('click','.delete-u-file',function(e){
+            e.preventDefault();
+            var fileId = $(this).attr('data-id');
+            var $this = $(this);
+            
+            if(confirm('Are you sure want to delete this file?')){
+                $.ajax({
+                    url: deleteFileUrl+'?id='+fileId,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(result) {
+                        if(result.status == true)
+                        {                            
+                            show_toast(result.message, 'success');
+                            $this.closest(".file").remove();
+                        }
+                    }
+                });    
+            }
         });
 
         $('#add-holiday-form').submit(function(event) {
@@ -301,7 +326,15 @@ $(document).ready(function() {
                         $('.error').html("");
                         $.each(result.message, function(key) {
                             if(first_input=="") first_input=key;
-                            if(key.match(/formFileMultiple.*/))
+                            if(key == 'hrs')
+                            {
+                                $('#'+key).closest('.col-4').find('.error').html(result.message[key]);                            
+                            }
+                            else if(key == 'minutes')
+                            {
+                                $('#'+key).closest('.col-4').find('.error').html(result.message[key]);
+                            }
+                            else if(key.match(/formFileMultiple.*/))
                             {
                                 $('.formFileMultiple').html(result.message[key]);    
                             }

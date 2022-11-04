@@ -185,9 +185,11 @@ class StudentTimeLogController extends Controller
                 'student_id'=>'required',
                 'subject_id'=>'required',
                 'log_date'=>'required',
-                'log_time'=>'required',
-                'start_time'=>'required',
-                'end_time'=>'required',
+                'hrs' => 'required|numeric|gte:0|max:23',
+                'minutes'=> 'required|integer|gte:0|max:59',
+                // 'log_time'=>'required',
+                // 'start_time'=>'required',
+                // 'end_time'=>'required',
                 'formFileMultiple.*' => 'mimes:pdf,txt,jpg,jpeg,png,xls,xlsx,doc,docx,zip','application/zip|max:5000',
             );
             $message = [
@@ -225,9 +227,9 @@ class StudentTimeLogController extends Controller
                 }
 
                 $studentTimeLog->student_id = $request->student_id;
-                $studentTimeLog->start_time = $request->start_time;
-                $studentTimeLog->end_time = $request->end_time;
-                $studentTimeLog->log_time = $request->log_time;
+                // $studentTimeLog->start_time = $request->start_time;
+                // $studentTimeLog->end_time = $request->end_time;
+                $studentTimeLog->log_time = $request->hrs.':'.$request->minutes;
                 $studentTimeLog->subject_id = $request->subject_id;
                 $studentTimeLog->log_date = date('Y-m-d',strtotime($request->log_date));
                 $studentTimeLog->user_id = Auth::user()->id;
@@ -298,6 +300,11 @@ class StudentTimeLogController extends Controller
     
     public function detail(Request $request){
         $c = StudentTimeLog::find($request->id);
+        
+        $a = explode(':', $c->log_time);
+        $hrs = $a[0];
+        $minutes = $a[1];
+
         $fs = $c->files;
         $paths = [];
         $fileHtml = '';
@@ -309,6 +316,7 @@ class StudentTimeLogController extends Controller
 
                 $fileHtml .= '<span class="file">';
                 $fileHtml .= '<a href="'.url('/storage/uploads/linkFiles\/').$f->file_name.'" class="" download></a>';
+                $fileHtml .= '<a class="delete-u-file" data-id="'.$f->id.'" href="#"><img src="'.asset("images/file-icons/circle_remove.png").'"/></a>';
                 $fileHtml .= '</span>';
             }
         }
@@ -357,7 +365,7 @@ class StudentTimeLogController extends Controller
             }
  
         }
-        $result = ['status' => true, 'message' => '', 'data' => $c, 'html' => $html, 'fileHtml' => $fileHtml];
+        $result = ['status' => true, 'message' => '', 'data' => $c, 'html' => $html, 'fileHtml' => $fileHtml,'hrs' => $hrs, 'minutes' => $minutes];
         return response()->json($result);
     }
     

@@ -2,7 +2,7 @@
 
 @section('content')
 @php
-$lable = "Student Time Log";
+$lable = "Monthly Planner";
 
 @endphp
 <div class="row">
@@ -11,10 +11,10 @@ $lable = "Student Time Log";
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-                    <li class="breadcrumb-item active">{{$lable}} List</li>
+                    <li class="breadcrumb-item active">{{$lable}}</li>
                 </ol>
             </div>
-            <h4 class="page-title">{{$lable}} List</h4>
+            <h4 class="page-title">{{$lable}}</h4>
         </div>
     </div>
 </div> 
@@ -24,9 +24,16 @@ $lable = "Student Time Log";
     <div class="col-12">
         <div class="card">
             <div class="card-body">
+                <div class="row mb-2 button-list">
+                    <button type="button" class="btn btn-green mb-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal"> Add Student Time/Activity</button>
+                    <button type="button" class="btn btn-green mb-2 add-new-holiday" data-bs-toggle="modal" data-bs-target="#add-holiday-modal"> Add Holiday/Events</button>
+                    <button type="button" class="btn btn-green" data-bs-toggle="modal" data-bs-target="#add-student-modal" title="Quick Add Names"> Add Names/Students </button>
+                    <button type="button" class="btn btn-green" data-bs-toggle="modal" data-bs-target="#add-subject-modal" title="Quick Add Subjects"> Add Subjects </button>
+                    <a href="javascript:void(0)" data-serialtip="student-tooltip" class="w-auto"><img src="{{asset('images/tooltip.png')}}" class="bulb-icon"></a>
+                </div>
                 <div class="row mb-2">
                     <div class="col-xl-2">
-                        <div class="col-auto">
+                        {{-- <div class="col-auto">
                            <div class="text-xl-start mt-xl-0 mt-2">
                                <button type="button" class="btn btn-green mb-2 me-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal"> Add Student Time/Activity</button>
                                
@@ -36,11 +43,11 @@ $lable = "Student Time Log";
                             <div class="text-xl-start mt-xl-0 mt-2">
                                <button type="button" class="btn btn-green mb-2 me-2 add-new-holiday" data-bs-toggle="modal" data-bs-target="#add-holiday-modal"> Add Holiday/Events</button>                               
                            </div>
-                       </div>
+                       </div> --}}
                    </div><!-- end col-->
                    <div class="col-xl-10">
                        <form id="search-form" class="row gy-2 gx-2 align-items-center justify-content-xl-start justify-content-between" action="{{route('student-time-log')}}" method="GET">                           
-                           <div class="col-auto">
+                           <div class="col-4">
                                <div class="d-flex align-items-center">
                                    <label for="subject-select" class="me-2">Student</label>
                                    <select class="form-select" id="student-select" name="st">
@@ -66,8 +73,7 @@ $lable = "Student Time Log";
                                 <div class="d-flex align-items-center button-list">
                                     <button type="submit" class="btn btn-green" title="Search"> <i class="dripicons-search"></i></button>
                                     <button type="reset" class="btn btn-warning reset-form" title="reset"> <i class="dripicons-clockwise"></i></button>
-                                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#add-student-modal" title="Quick Add Names"> + Name </button>
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add-subject-modal" title="Quick Add Subjects"> + Subject </button>
+                                    
                                 </div>
                             </div>
                        </form>                            
@@ -93,6 +99,11 @@ $lable = "Student Time Log";
 
 @section('modal')
 
+<div data-serialtip-target="student-tooltip" class="serialtip-default">
+    <span class="serialtip-close"></span>
+    <h5 class="serialtip-title">Popover Example</h5>
+    <p>Tooltips and popovers are two very commonly used, customizable, interactive visual elements in creating websites and web applications.</p>
+</div>
 
 <!-- /.modal -->
 
@@ -262,27 +273,33 @@ $lable = "Student Time Log";
                     <span class="error"></span>
                 </div>                
                 <div class="mb-3">
-                    <label class="form-label">Start time <i>(click clock button to the right)</i></label>
-                    {{-- <div class="input-group"> --}}
-                        <input id="start_time" name="start_time" type="time" value="08:56 AM" class="form-control" autocomplete="off">
-                        {{-- <span class="input-group-text"><i class="dripicons-clock"></i></span> --}}
-                    {{-- </div> --}}
+                    <div class="row abcd">
+                        <div class="col-4">                            
+                            <label class="form-label" for="hrs">Log Hrs {{-- <i>(Enter Hours)</i> --}}</label>
+                            <input id="hrs" name="hrs" type="number" step="1" class="form-control" autocomplete="off">
+                            <span class="error"></span>      
+                        </div>
+                        <div class="col-auto">
+                            <p class="colon-hhmm">:</p>                            
+                        </div>
+                        <div class="col-4">
+                            <label class="form-label" for="minutes">Log Minutes {{-- <i>(Enter Minutes)</i> --}}</label>
+                            <input id="minutes" name="minutes" type="number" step="1" class="form-control" autocomplete="off">
+                            <span class="error"></span>
+                        </div>                        
+                    </div>                        
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">End time <i>(click clock button to the right)</i></label>
-                    {{-- <div class="input-group"> --}}
-                        <input id="end_time" name="end_time" type="time" value="09:00 AM" class="form-control" autocomplete="off">
-                        {{-- <span class="input-group-text"><i class="dripicons-clock"></i></span> --}}
-                    {{-- </div> --}}
-                </div>
-                <div class="mb-3 d-none">
+                {{-- <div class="mb-3">
+                        
+                </div> --}}
+                {{-- <div class="mb-3 d-none">
                     <label for="log_time" class="control-label">Log Time:</label>
                     <div class="input-group">
                         <input type="time" name="log_time" id="log_time" class="form-control" readonly>
                         <span class="input-group-text"><i class="dripicons-clock"></i></span>
                     </div>
                     <span class="error"></span>
-                </div>
+                </div> --}}
 
                 <div class="mb-3">
                     <div class="form-check">
@@ -596,7 +613,8 @@ $lable = "Student Time Log";
     var holidayDetailUrl = "{{ route('holiday.detail') }}";
     var deleteUrl = "{{ route('student-time-log.delete') }}";    
     var deleteEventUrl = "{{ route('holiday.delete') }}";    
-    var getLinkUrl = "{{ route('get.link') }}";    
+    var getLinkUrl = "{{ route('get.link') }}";
+    var deleteFileUrl = "{{ route('file.delete')}}";    
     var addUrl = $('#add-form').attr('action');
     var addStudentUrl = $('#add-student-form').attr('action');
     var addSubjectUrl = $('#add-subject-form').attr('action');
