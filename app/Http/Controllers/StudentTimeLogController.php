@@ -219,17 +219,10 @@ class StudentTimeLogController extends Controller
                     $studentTimeLog = new StudentTimeLog;
                 }
 
-                if(isset($request->links))
-                {
-                    $links_array = array_unique($request->links);
-                    $links = implode(', ', $links_array);
-                    $studentTimeLog->links = $links;
-                }
-
                 $studentTimeLog->student_id = $request->student_id;
                 // $studentTimeLog->start_time = $request->start_time;
                 // $studentTimeLog->end_time = $request->end_time;
-                $studentTimeLog->log_time = $request->hrs.':'.$request->minutes;
+                $studentTimeLog->log_time = $request->hrs.':'.sprintf("%02d", $request->minutes);
                 $studentTimeLog->subject_id = $request->subject_id;
                 $studentTimeLog->log_date = date('Y-m-d',strtotime($request->log_date));
                 $studentTimeLog->user_id = Auth::user()->id;
@@ -247,6 +240,25 @@ class StudentTimeLogController extends Controller
                 $studentTimeLog->created_at = Carbon::now();
                 $studentTimeLog->updated_at = Carbon::now();
                 $r = $studentTimeLog->save();
+
+                if(isset($request->links))
+                {
+                    $addresses = $request->address;
+                    // $links_array = array_unique($request->links);
+                    // $links = implode(', ', $links_array);
+                    // $studentTimeLog->links = $links;
+                    foreach ($request->links as $klink => $link) {
+                        if($link && $addresses[$klink])
+                        {                            
+                            $linkObj = new Link;
+                            $linkObj->name = $link;
+                            $linkObj->link = $addresses[$klink];
+                            $linkObj->log_id = $studentTimeLog->id;
+                            $linkObj->user_id = Auth::user()->id;
+                            $linkObj->save();
+                        }
+                    }
+                }
                 
                 if($request->hasFile('formFileMultiple'))
                 {
@@ -313,58 +325,65 @@ class StudentTimeLogController extends Controller
         {            
             foreach($fs as $fk => $f)
             {
+                $fileExt = pathinfo($f->file_name,PATHINFO_EXTENSION);
 
                 $fileHtml .= '<span class="file">';
-                $fileHtml .= '<a href="'.url('/storage/uploads/linkFiles\/').$f->file_name.'" class="" download></a>';
+                if($fileExt == 'jpg' || $fileExt == 'jpeg' || $fileExt == 'png')
+                {
+
+                    $fileHtml .= '<a href="'.url('/storage/uploads/linkFiles\/').$f->file_name.'" class="" download><img src="'.url('/storage/uploads/linkFiles\/').$f->file_name.'" height="25" /></a>';
+                }
+                else
+                {
+                    $fileHtml .= '<a href="'.url('/storage/uploads/linkFiles\/').$f->file_name.'" class="" download></a>';
+                }
+
                 $fileHtml .= '<a class="delete-u-file" data-id="'.$f->id.'" href="#"><img src="'.asset("images/file-icons/circle_remove.png").'"/></a>';
                 $fileHtml .= '</span>';
             }
         }
 
-        $links = Link::where('user_id',Auth::user()->id)->where('deleted_at',null)->get();
+        $links = Link::where('user_id',Auth::user()->id)->where('log_id',$request->id)->where('deleted_at',null)->get();
         $html = '';
-        if($c->links)
-        {
-            $link_arr = explode (",", $c->links); 
-            $log_lnk = Link::whereIn('id',$link_arr)->get();
-            $html = '';
-            
-            foreach($log_lnk as $k => $loglink)
-            {                
-                $html .= '<div class="mb-3">
-                        <div class="row linkrow">';
-                            $temp = '';
-                            $html .='<div class="col-sm-5">                            
-                                <select name="links[]" id="links" class="form-control links">';
-                                    foreach($links as $key => $link)
-                                    {
-                                        if($loglink->id == $link->id)
-                                        {
-                                            $temp = $link->link;
-                                            $html .= '<option value="'.$link->id.'" selected>'.$link->name.'</option>';
-                                        }
-                                        else
-                                        {
-                                            $html .= '<option value="'.$link->id.'">'.$link->name.'</option>';   
-                                        }
-                                    }
-                                $html .='</select>';
-                            $html .='</div>';
-                            $html .= '<div class="col-sm-5">';
-                                $html .='<input type="text" class="form-control" name="address[]" value="'. $temp .'" readonly>';
-                            $html .= '</div>
-                            <div class="col-sm-2">
-                                <button class="btn btn-danger"
-                                    id="DeleteRow" type="button">
-                                    <i class="mdi mdi-delete"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <span class="error"></span>
-                    </div>';
-            }
- 
+        
+        foreach($links as $k => $loglink)
+        {                
+            $html .= '<div class="mb-1">
+                    <div class="row linkrow">';
+                        $temp = '';
+                        $html .='<div class="col-sm-5">';                            
+                            // <select name="links[]" id="links" class="form-control links">';
+                                // foreach($links as $key => $link)
+                                // {
+                                    // if($loglink->id == $link->id)
+                                    // {
+                                        $html .= '<p>'.$loglink->name.'</p>';
+                                        // $temp = $link->link;
+                                        // $html .= '<option value="'.$link->id.'" selected>'.$link->name.'</option>';
+                                    // }
+                                    // else
+                                    // {
+                                    //     $html .= '<option value="'.$link->id.'">'.$link->name.'</option>';   
+                                    // }
+                                // }
+                            // $html .='</select>';
+                        $html .='</div>';
+                        $html .= '<div class="col-sm-5">';
+                            // $html .='<input type="text" class="form-control" name="address[]" value="'. $temp .'" readonly>';
+                        $html .= '<p><a href="'.$loglink->link.'" target="_blank">'.$loglink->link.'</a></p>';
+                        $html .= '</div>
+                        <div class="col-sm-2">';
+                            // <button class="btn btn-danger"
+                            //     id="DeleteRow" type="button">
+                            //     <i class="mdi mdi-delete"></i>
+                            // </button>
+                        $html .='</div>
+                    </div>
+                    <span class="error"></span>
+                </div>';
         }
+ 
+        
         $result = ['status' => true, 'message' => '', 'data' => $c, 'html' => $html, 'fileHtml' => $fileHtml,'hrs' => $hrs, 'minutes' => $minutes];
         return response()->json($result);
     }

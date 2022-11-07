@@ -134,14 +134,16 @@ span.file a[href$=".pdf"] {
   padding-bottom: 30px;
 }
 span.file a[href$=".jpg"] {
-  background: url('../images/file-icons/jpg.png') left center no-repeat;
-  padding-left: 35px;
-  padding-bottom: 30px;
+  /*background: url('../images/file-icons/jpg.png') left center no-repeat;*/
+  padding-left: 5px;
+  padding-right: 10px;  
+  /*padding-bottom: 30px;*/
 }
 span.file a[href$=".png"] {
-  background: url('../images/file-icons/png.png') left center no-repeat;
-  padding-left: 35px;
-  padding-bottom: 30px;
+  /*background: url('../images/file-icons/png.png') left center no-repeat;*/
+  padding-left: 5px;
+  padding-right: 10px;
+  /*padding-bottom: 30px;*/
 }
 span.file a[href$=".xls"] {
   background: url('../images/file-icons/xls.png') left center no-repeat;
@@ -161,4 +163,8 @@ span.file a[href$=".txt"] {
 .delete-u-file{
   color: red;
   margin-left: -7px;
+}
+
+.col-sm-5 a{
+  word-break: break-all;
 }

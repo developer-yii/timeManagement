@@ -69,7 +69,7 @@ $(document).ready(function() {
 
         $("#rowAdder").click(function () {
             newRowAdd = '';
-            newRowAdd += '<div class="mb-3"><div class="row linkrow">';
+            newRowAdd += '<div class="mb-1"><div class="row linkrow">';
             newRowAdd += linkhtml;
             newRowAdd += '</div></div>';
  
@@ -77,24 +77,24 @@ $(document).ready(function() {
         });
  
         $("body").on("click", "#DeleteRow", function () {
-            $(this).parents(".mb-3").remove();
+            $(this).parents(".mb-1").remove();
         })
 
-        $("body").on("change", ".links", function () {
-            var lid = $(this).val()
-            var el = $(this).parents(".mb-3");
+        // $("body").on("change", ".links", function () {
+        //     var lid = $(this).val()
+        //     var el = $(this).parents(".mb-3");
 
-            $.ajax({
-                url: getLinkUrl,
-                type: 'POST',
-                data: {id:lid},
-                dataType: 'json',
-                success: function(result) {                    
-                    el.contents().find("input").val(result.link);
-                }
-            });
+        //     $.ajax({
+        //         url: getLinkUrl,
+        //         type: 'POST',
+        //         data: {id:lid},
+        //         dataType: 'json',
+        //         success: function(result) {                    
+        //             el.contents().find("input").val(result.link);
+        //         }
+        //     });
             
-        });
+        // });
 
         $('body').on('click','input[type="checkbox"]',function(e){
             var currentElement = $(this);
@@ -124,6 +124,8 @@ $(document).ready(function() {
         $('.add-new').click(function(event) {
             $('#add-form-lable').html('');
             $('#add-form-lable').html('Add Student Time Log');
+            $('.linkrow').html('');
+            $('#ufiles').html('');
             $('#add-form').find('button[type="submit"]').show();
             $('#add-form').find('#edit-id').val(0);
             $('#add-form')[0].reset()
