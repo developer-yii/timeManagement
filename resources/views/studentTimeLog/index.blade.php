@@ -343,7 +343,7 @@ $lable = "Monthly Planner";
                         </div>
                     </div>
                 </div>
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <div class="row linkrow">
                         @php $temp = '';@endphp
                         <div class="col-sm-5">                            
@@ -367,9 +367,29 @@ $lable = "Monthly Planner";
                         </div>
                     </div>
                     <span class="error"></span>
+                </div> --}}
+
+                <div class="mb-1">
+                    <div class="row linkrow">
+                        
+                        <div class="col-sm-5">                            
+                            <input type="text" name="links[]" class="form-control links" placeholder="Enter Link Name">                            
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" name="address[]" value="" placeholder="Enter Address">
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-danger"
+                                id="DeleteRow" type="button">
+                                <i class="mdi mdi-delete"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <span class="error"></span>
                 </div>
+
                 <div id="newinput"></div>
-                <div class="text-right">
+                <div class="mb-3 text-right">
                     <button id="rowAdder" type="button"
                         class="btn btn-dark">
                         <i class="mdi mdi-plus">

@@ -29,8 +29,8 @@
                             $('#add-modal').find('#student_id').val(result.data.student_id);
                             $('#add-modal').find('#subject_id').val(result.data.subject_id);
                             $('#add-modal').find('#log_date').val(result.data.log_date);
-                            $('#add-modal').find('#hrs').val(result.hrs);
-                            $('#add-modal').find('#minutes').val(result.minutes);
+                            $('#add-modal').find('#hrs').val(parseInt(result.hrs));
+                            $('#add-modal').find('#minutes').val(parseInt(result.minutes));
                             // $('#add-modal').find('#end_time').val(result.data.end_time);
                             $('#add-modal').find("textarea#activity_notes").val(result.data.activity_notes); 
                             var htm = 'Edit Student Time Log';
@@ -44,7 +44,7 @@
 
                             if(result.html)
                             {
-                                $('.linkrow').parents(".mb-3").remove();
+                                $('.linkrow').parents(".mb-1").remove();
                                 $('#newinput').append(result.html);
                             }
 
