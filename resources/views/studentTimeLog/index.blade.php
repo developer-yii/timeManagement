@@ -274,7 +274,7 @@ $lable = "Monthly Planner";
                 </div>                
                 <div class="mb-3">
                     <div class="row abcd">
-                        <div class="col-4">                            
+                        <div class="col-5">                            
                             <label class="form-label" for="hrs">Log Hours</label>
                             <input id="hrs" name="hrs" type="number" step="1" min="0" class="form-control" autocomplete="off">
                             <span class="error"></span>      
@@ -282,7 +282,7 @@ $lable = "Monthly Planner";
                         <div class="col-auto">
                             <p class="colon-hhmm">:</p>                            
                         </div>
-                        <div class="col-4">
+                        <div class="col-5">
                             <label class="form-label" for="minutes">Log Minutes</label>
                             <input id="minutes" name="minutes" type="number" step="1" min="0" class="form-control" autocomplete="off">
                             <span class="error"></span>
