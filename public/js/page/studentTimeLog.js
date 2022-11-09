@@ -437,6 +437,27 @@ $(document).ready(function() {
             }
         });
 
+        $('body').on('click','.deleteRow',function(event) {
+            var link_id = $(this).attr('data-id');
+            $this = $(this);
+            
+            if(confirm('Are you sure want to delete this link?'))
+            {
+                $.ajax({
+                    url: deleteLinkUrl+'?id='+link_id,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(result) {            
+                        if(result.status == true)
+                        {                            
+                            show_toast(result.message, 'success');
+                            $this.parents(".mb-1").remove();
+                        }
+                    }
+                });
+            }
+        });
+
         $('body').on('click','#event-del',function(event) {
             var eventId = $('#edit-modal').find('#edit-id').val()
             if(confirm('Are you sure want to delete this log?'))

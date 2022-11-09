@@ -34,7 +34,10 @@
                         <button type="submi" class="btn btn-green ml-10">Update</button>
                     </form>
                 </div>
-                <h4 class="page-title">Dashboard</h4>
+                <div class="col-md-6 d-flex">
+                    <h4 class="page-title">Dashboard</h4>
+                    <a href="javascript:void(0)" data-serialtip="ex1"><img src="{{asset('images/tooltip.png')}}" class="bulb-icon"></a>
+                </div>
             </div>
         </div>
     </div>
@@ -331,6 +334,13 @@
 
 </div>
 <!-- container -->
+
+<div data-serialtip-target="ex1" class="serialtip-default">
+    <span class="serialtip-close"></span>
+    <h5 class="serialtip-title">Popover Example</h5>
+    <p>Tooltips and popovers are two very commonly used, customizable, interactive visual elements in creating websites and web applications.</p>
+</div>
+
 @endsection
 @section('css')
 <link href="{{ asset('css/vendor/apexcharts.css') }}?{{time()}}" rel="stylesheet">

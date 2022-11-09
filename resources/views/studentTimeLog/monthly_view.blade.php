@@ -75,6 +75,7 @@ $lable = "Student Time Log";
                     <div class="col-3">
                         <button class="btn btn-green search_log mt-3" type="submit">Search</button>
                         <button class="btn btn-green mt-3 print-pdf" type="button">Print</button>
+                        <a href="javascript:void(0)" data-serialtip="ex1"><img src="{{asset('images/tooltip.png')}}" class="bulb-icon ml-0 mt-3"></a>
                     </div>
                     </form>
                 </div>
@@ -200,8 +201,8 @@ $lable = "Student Time Log";
                 <div class="mb-3">
                     <div class="row abcd">
                         <div class="col-4">                            
-                            <label class="form-label" for="hrs">Log Hrs {{-- <i>(Enter Hours)</i> --}}</label>
-                            <input id="hrs" name="hrs" type="number" step="1" class="form-control" autocomplete="off">
+                            <label class="form-label" for="hrs">Log Hours {{-- <i>(Enter Hours)</i> --}}</label>
+                            <input id="hrs" name="hrs" type="number" step="1" min="0" class="form-control" autocomplete="off">
                             <span class="error"></span>      
                         </div>
                         <div class="col-auto">
@@ -209,7 +210,7 @@ $lable = "Student Time Log";
                         </div>
                         <div class="col-4">
                             <label class="form-label" for="minutes">Log Minutes {{-- <i>(Enter Minutes)</i> --}}</label>
-                            <input id="minutes" name="minutes" type="number" step="1" class="form-control" autocomplete="off">
+                            <input id="minutes" name="minutes" type="number" step="1" min="0" class="form-control" autocomplete="off">
                             <span class="error"></span>
                         </div>                        
                     </div>                        
@@ -301,6 +302,11 @@ $lable = "Student Time Log";
         </div>
     </div>
 </div>
+<div data-serialtip-target="ex1" class="serialtip-default">
+    <span class="serialtip-close"></span>
+    <h5 class="serialtip-title">Popover Example</h5>
+    <p>Tooltips and popovers are two very commonly used, customizable, interactive visual elements in creating websites and web applications.</p>
+</div>
 @endsection
 
 @section('js')
@@ -310,7 +316,9 @@ $lable = "Student Time Log";
     var deleteUrl = "{{ route('student-time-log.delete') }}";
     var appCssUrl = "{{ asset('css/app.min.css') }}";
     var customCssUrl = "{{ asset('css/custom.css') }}";
-    var pdfdataUrl = "{{ route('pdfData')}}"
+    var pdfdataUrl = "{{ route('pdfData')}}";
+    var deleteLinkUrl = "{{ route('link.delete')}}";
+    var deleteFileUrl = "{{ route('file.delete')}}";
     var searchUrl = $('#search-form').attr('action');
     var editUrl = $('#edit-form').attr('action');
     var linkhtml = $('.linkrow').html();

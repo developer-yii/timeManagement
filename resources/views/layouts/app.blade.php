@@ -85,7 +85,7 @@
 
  {{--                    <a href="{{ route('student-time-log.monthly_view') }}"><i class="mdi mdi-calendar-check"></i> Monthly Student Log</a> --}}
                     <li class="side-nav-item">
-                        <a href="{{ route('home') }}" class="side-nav-link">
+                        <a href="{{ route('home1') }}" class="side-nav-link">
                             <i class="mdi mdi-chart-bar-stacked"></i>
                             <span> Progress Charts </span>
                         </a>
@@ -101,26 +101,35 @@
                     </li>
                     @endif
 
-{{--                     <li class="side-nav-item">
-                        <a href="{{ route('student') }}" class="side-nav-link"> --}}
-                            {{-- <i class="mdi mdi-human-female-boy"></i> --}}
-                            {{-- <span><img src="{{ asset('images/plus.png')}}" height="25" /> Names/Students </span>
+                    <li class="side-nav-item">
+                        <a href="{{ route('student-time-log.create') }}" class="side-nav-link"> 
+                            <i class="mdi mdi-calendar-plus"></i>
+                            <span> Add Student Time/Activity </span>
                         </a>
-                    </li> --}}
+                    </li>
+
+                    <li class="side-nav-item">
+                        <a href="{{ route('student') }}" class="side-nav-link"> 
+                            <i class="mdi mdi-human-female-boy"></i>
+                            <span> Names/Students List </span>
+                        </a>
+                    </li>
+
+                    <li class="side-nav-item">
+                        <a href="{{ route('subject') }}" class="side-nav-link"> 
+                            <i class="mdi mdi-notebook"></i>
+                            <span> Subject/Activity List </span>
+                        </a>
+                    </li>
+
+                    <li class="side-nav-item">
+                        <a href="{{ route('holiday') }}" class="side-nav-link"> 
+                            <i class="mdi mdi-dance-ballroom"></i>
+                            <span> Events/Appointments List </span>
+                        </a>
+                    </li>
 
                     {{-- <li class="side-nav-item">
-                        
-                    </li> --}}
-
-{{-- 
-                    <li class="side-nav-item">
-                        <a href="{{ route('holiday') }}" class="side-nav-link"> --}}
-                            {{-- <i class="mdi mdi-dance-ballroom"></i> --}}
-                            {{-- <span><img src="{{ asset('images/plus.png')}}" height="25"/> Events/Appointments </span>
-                        </a>
-                    </li> --}}
-
-                    <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#sidebarCrm" aria-expanded="false" aria-controls="sidebarCrm" class="side-nav-link">
                             <img src="{{ asset('images/plus.png')}}" height="25"/>
                             <span class="menu-arrow"></span>
@@ -145,13 +154,10 @@
                                     <a href="{{ route('holiday') }}" class="side-nav-link">
                                         <span><i class="mdi mdi-dance-ballroom"></i> Events/Appointments </span>
                                     </a>                                  
-                                </li>
-                                {{-- <li>
-                                    <a href="{{ route('student-time-log.monthly_view') }}"><i class="mdi mdi-calendar-check"></i> Monthly Student Log</a>
-                                </li> --}}                                
+                                </li>                                                              
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
 
                     <li class="side-nav-item">
                         <a href="javascript:void(0)" class="side-nav-link">

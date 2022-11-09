@@ -56,9 +56,9 @@ $lable = "Student Time Log";
                                 <span class="error"></span>
                             </div>                
                             <div class="mb-3">
-                                <label class="form-label">Hrs <i>(Enter Hours)</i></label>
+                                <label class="form-label">Hours <i>(Enter Hours)</i></label>
                                 {{-- <div class="input-group"> --}}
-                                    <input id="hrs" name="hrs" type="number" step="1" class="form-control">
+                                    <input id="hrs" name="hrs" type="number" step="1" min="0"class="form-control">
                                     {{-- <span class="input-group-text"><i class="dripicons-clock"></i></span> --}}
                                 {{-- </div> --}}
                                 <span class="error"></span>
@@ -66,7 +66,7 @@ $lable = "Student Time Log";
                             <div class="mb-3">
                                 <label class="form-label">Minutes <i>(Enter Minutes)</i></label>
                                 {{-- <div class="input-group"> --}}
-                                    <input id="minutes" name="minutes" type="number" step="1" class="form-control">
+                                    <input id="minutes" name="minutes" type="number" step="1" min="0" class="form-control">
                                     {{-- <span class="input-group-text"><i class="dripicons-clock"></i></span> --}}
                                 {{-- </div> --}}
                                 <span class="error"></span>
