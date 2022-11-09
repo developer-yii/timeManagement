@@ -1,5 +1,5 @@
 .colon-hhmm{
-    margin-top: 2.4rem!important;
+    margin-top: 3.5rem!important;
     margin-left: 0px;
     font-size: 24px;
 }
@@ -10,6 +10,6 @@
     flex-wrap: nowrap;
     /*justify-content: space-around;*/
     align-items: center;
-    max-width: 40%;
+    /*max-width: 40%;*/
     /*align-content: center;*/
 }
