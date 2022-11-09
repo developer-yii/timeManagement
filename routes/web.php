@@ -18,12 +18,12 @@ use App\Http\Controllers\SiteController;
 Route::get('/', function () {
     // return redirect(route('index'));
     return redirect(route('student-time-log'));
-});
+})->name('home');
 
 Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home1');
 // Route::get('/tnc', 'RegisterController@tnc')->name('tnc');
 Route::get('/tnc', [RegisterController::class, 'tnc'])->name('tnc');
 Route::get('/index', [SiteController::class, 'index'])->name('index');

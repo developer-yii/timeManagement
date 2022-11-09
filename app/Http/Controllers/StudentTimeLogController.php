@@ -372,11 +372,11 @@ class StudentTimeLogController extends Controller
                             // $html .='<input type="text" class="form-control" name="address[]" value="'. $temp .'" readonly>';
                         $html .= '<p><a href="'.$loglink->link.'" target="_blank">'.$loglink->link.'</a></p>';
                         $html .= '</div>
-                        <div class="col-sm-2">';
-                            // <button class="btn btn-danger"
-                            //     id="DeleteRow" type="button">
-                            //     <i class="mdi mdi-delete"></i>
-                            // </button>
+                        <div class="col-sm-2">
+                            <button class="btn btn-danger deleteRow"
+                                data-id="'.$loglink->id.'" type="button">
+                                <i class="mdi mdi-delete"></i>
+                            </button>';
                         $html .='</div>
                     </div>
                     <span class="error"></span>

@@ -29,7 +29,7 @@ $lable = "Monthly Planner";
                     <button type="button" class="btn btn-green mb-2 add-new-holiday" data-bs-toggle="modal" data-bs-target="#add-holiday-modal"> Add Holiday/Events</button>
                     <button type="button" class="btn btn-green" data-bs-toggle="modal" data-bs-target="#add-student-modal" title="Quick Add Names"> Add Names/Students </button>
                     <button type="button" class="btn btn-green" data-bs-toggle="modal" data-bs-target="#add-subject-modal" title="Quick Add Subjects"> Add Subjects </button>
-                    <a href="javascript:void(0)" data-serialtip="student-tooltip" class="w-auto"><img src="{{asset('images/tooltip.png')}}" class="bulb-icon"></a>
+                    <a href="javascript:void(0)" data-serialtip="student-tooltip" class="w-auto"><img src="{{asset('images/tooltip.png')}}" class="bulb-icon ml-0"></a>
                 </div>
                 <div class="row mb-2">
                     <div class="col-xl-2">
@@ -275,8 +275,8 @@ $lable = "Monthly Planner";
                 <div class="mb-3">
                     <div class="row abcd">
                         <div class="col-4">                            
-                            <label class="form-label" for="hrs">Log Hrs {{-- <i>(Enter Hours)</i> --}}</label>
-                            <input id="hrs" name="hrs" type="number" step="1" class="form-control" autocomplete="off">
+                            <label class="form-label" for="hrs">Log Hours {{-- <i>(Enter Hours)</i> --}}</label>
+                            <input id="hrs" name="hrs" type="number" step="1" min="0" class="form-control" autocomplete="off">
                             <span class="error"></span>      
                         </div>
                         <div class="col-auto">
@@ -284,7 +284,7 @@ $lable = "Monthly Planner";
                         </div>
                         <div class="col-4">
                             <label class="form-label" for="minutes">Log Minutes {{-- <i>(Enter Minutes)</i> --}}</label>
-                            <input id="minutes" name="minutes" type="number" step="1" class="form-control" autocomplete="off">
+                            <input id="minutes" name="minutes" type="number" step="1" min="0" class="form-control" autocomplete="off">
                             <span class="error"></span>
                         </div>                        
                     </div>                        
@@ -634,7 +634,8 @@ $lable = "Monthly Planner";
     var deleteUrl = "{{ route('student-time-log.delete') }}";    
     var deleteEventUrl = "{{ route('holiday.delete') }}";    
     var getLinkUrl = "{{ route('get.link') }}";
-    var deleteFileUrl = "{{ route('file.delete')}}";    
+    var deleteFileUrl = "{{ route('file.delete')}}";
+    var deleteLinkUrl = "{{ route('link.delete')}}";    
     var addUrl = $('#add-form').attr('action');
     var addStudentUrl = $('#add-student-form').attr('action');
     var addSubjectUrl = $('#add-subject-form').attr('action');

@@ -6,6 +6,8 @@ $(document).ready(function() {
 
         var doc = window.jspdf.jsPDF;
 
+        $('[data-serialtip]').serialtip();
+
         $("#rowAdder").click(function () {
             newRowAdd = '';
             newRowAdd += '<div class="mb-3"><div class="row linkrow">';
@@ -33,6 +35,48 @@ $(document).ready(function() {
                 }
             });
             
+        });
+
+        $('body').on('click','.deleteRow',function(event) {
+            var link_id = $(this).attr('data-id');
+            $this = $(this);
+            
+            if(confirm('Are you sure want to delete this link?'))
+            {
+                $.ajax({
+                    url: deleteLinkUrl+'?id='+link_id,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(result) {            
+                        if(result.status == true)
+                        {                            
+                            show_toast(result.message, 'success');
+                            $this.parents(".mb-1").remove();
+                        }
+                    }
+                });
+            }
+        });
+
+        $('body').on('click','.delete-u-file',function(e){
+            e.preventDefault();
+            var fileId = $(this).attr('data-id');
+            var $this = $(this);
+            
+            if(confirm('Are you sure want to delete this file?')){
+                $.ajax({
+                    url: deleteFileUrl+'?id='+fileId,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(result) {
+                        if(result.status == true)
+                        {                            
+                            show_toast(result.message, 'success');
+                            $this.closest(".file").remove();
+                        }
+                    }
+                });    
+            }
         });
 
         function printDiv(divId,title,appCssUrl,customCssUrl,name,month,year) 
