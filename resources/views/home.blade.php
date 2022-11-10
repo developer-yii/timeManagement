@@ -12,8 +12,12 @@
     @endif --}}
     <div class="row">
         <div class="col-12">
-            <div class="page-title-box">
-                <div class="col-md-6 page-title-right">
+            <div class="page-title-box flex-home">
+                <div class="col-md-6 d-flex">
+                    <h4 class="page-title">Progress Charts</h4>
+                    <a href="javascript:void(0)" data-serialtip="ex1"><img src="{{asset('images/tooltip.png')}}" class="bulb-icon"></a>
+                </div>
+                <div class="col-md-6">
                     <form class="d-flex">                        
                         {{-- <div class="col-md-6"> --}}
                         <label for="status-select" class="me-2">Student</label>
@@ -31,12 +35,8 @@
                             @endforeach                            
                         </select>
                         {{-- </div> --}}
-                        <button type="submi" class="btn btn-green ml-10">Update</button>
+                        <button type="submit" class="btn btn-green ml-10">Update</button>
                     </form>
-                </div>
-                <div class="col-md-6 d-flex">
-                    <h4 class="page-title">Dashboard</h4>
-                    <a href="javascript:void(0)" data-serialtip="ex1"><img src="{{asset('images/tooltip.png')}}" class="bulb-icon"></a>
                 </div>
             </div>
         </div>

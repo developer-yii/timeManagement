@@ -13,3 +13,10 @@
     /*max-width: 40%;*/
     /*align-content: center;*/
 }
+
+.content-right{
+    float: right;
+}
+.bulb-icon{
+    margin-top: 15px!important;
+}
