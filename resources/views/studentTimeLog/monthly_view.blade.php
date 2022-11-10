@@ -2,19 +2,24 @@
 
 @section('content')
 @php
-$lable = "Student Time Log";
+$lable = "Monthly Student Log";
 
 @endphp
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
-            <div class="page-title-right">
-                <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-                    <li class="breadcrumb-item active">{{$lable}} List</li>
-                </ol>
+            <div class="col-md-8 page-title-right">
+                <div class="content-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                        <li class="breadcrumb-item active">{{$lable}}</li>
+                    </ol>
+                </div>
             </div>
-            <h4 class="page-title">{{$lable}} List</h4>
+            <div class="col-md-4 d-flex">                
+                <h4 class="page-title">{{$lable}}</h4>
+                <a href="javascript:void(0)" data-serialtip="ex1"><img src="{{asset('images/tooltip.png')}}" class="bulb-icon ml-0 mt-3"></a>
+            </div>
         </div>
     </div>
 </div> 
@@ -74,8 +79,7 @@ $lable = "Student Time Log";
                     </div>    
                     <div class="col-3">
                         <button class="btn btn-green search_log mt-3" type="submit">Search</button>
-                        <button class="btn btn-green mt-3 print-pdf" type="button">Print</button>
-                        <a href="javascript:void(0)" data-serialtip="ex1"><img src="{{asset('images/tooltip.png')}}" class="bulb-icon ml-0 mt-3"></a>
+                        <button class="btn btn-green mt-3 print-pdf" type="button">Print</button>                        
                     </div>
                     </form>
                 </div>
