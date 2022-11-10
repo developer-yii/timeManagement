@@ -101,12 +101,12 @@
                     </li>
                     @endif
 
-                    <li class="side-nav-item">
+                    {{-- <li class="side-nav-item">
                         <a href="{{ route('student-time-log.create') }}" class="side-nav-link"> 
                             <i class="mdi mdi-calendar-plus"></i>
                             <span> Add Student Time/Activity </span>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li class="side-nav-item">
                         <a href="{{ route('student') }}" class="side-nav-link"> 
@@ -125,7 +125,7 @@
                     <li class="side-nav-item">
                         <a href="{{ route('holiday') }}" class="side-nav-link"> 
                             <i class="mdi mdi-dance-ballroom"></i>
-                            <span> Events/Appointments List </span>
+                            <span> Holiday/Events List </span>
                         </a>
                     </li>
 

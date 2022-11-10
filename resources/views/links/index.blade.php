@@ -52,8 +52,8 @@ $lable = "Saved Links";
 
 <div data-serialtip-target="ex1" class="serialtip-default">
     <span class="serialtip-close"></span>
-    <h5 class="serialtip-title">Popover Example</h5>
-    <p>Tooltips and popovers are two very commonly used, customizable, interactive visual elements in creating websites and web applications.</p>
+    <h5 class="serialtip-title">Welcome to Homeschool Minutes Saved Links!</h5>
+    <p>When you add your child’s time and upload a link to that it will be added to this list so you can conveniently find and search for them.  You can also upload your links directly to this page.</p>
 </div>
 
 <!-- /.modal -->

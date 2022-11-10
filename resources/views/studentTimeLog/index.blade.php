@@ -101,8 +101,13 @@ $lable = "Monthly Planner";
 
 <div data-serialtip-target="student-tooltip" class="serialtip-default">
     <span class="serialtip-close"></span>
-    <h5 class="serialtip-title">Popover Example</h5>
-    <p>Tooltips and popovers are two very commonly used, customizable, interactive visual elements in creating websites and web applications.</p>
+    <h5 class="serialtip-title">Welcome to Homeschool Minutes Monthly Planner!</h5>
+    <p>Add Names/Students – enter all the family members you would like to add to the planner
+    (Mom or Dad, you can enter your name too!  Just put 0's in for attendance and hours required.)</p>
+    <p>Add Subjects – add all the subjects or activities you would like to track.</p>
+    <p>Add Holidays/Events - remember this is just to keep track of your schedule and will not calculate hours.</p>
+    <p>Add Student Time/Activity – Add all hours that you would like to calculate and show on the Progress Charts.  Upload photos of work and links for each entry.</p>
+    <p>** If you would like to see more detail visit our Help/Quick Tips page on the main menu.</p>
 </div>
 
 <!-- /.modal -->

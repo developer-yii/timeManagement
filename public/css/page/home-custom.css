@@ -65,6 +65,61 @@
 		font-size: 58px;
 	}
 }
+@media only screen and (width: 912px) {
+	 .font-40{
+		font-size: 194px;
+	}
+}
+@media only screen and (width: 820px) {
+	 .font-40{
+		font-size: 170px;
+	}
+}
+@media only screen and (width: 768px) {
+	 .font-40{
+		font-size: 156px;
+	}
+}
+@media only screen and (width: 640px) {
+	 .font-40{
+		font-size: 142px;
+	}
+}
+@media only screen and (width: 480px) {
+	 .font-40{
+		font-size: 100px;
+	}
+}
+@media only screen and (width: 375px) {
+	 .font-40{
+		font-size: 73px;
+	}
+}
+@media only screen and (width: 414px) {
+	 .font-40{
+		font-size: 84px;
+	}
+}
+@media only screen and (width: 412px) {
+	 .font-40{
+		font-size: 82px;
+	}
+}
+@media only screen and (width: 540px) {
+	 .font-40{
+		font-size: 116px;
+	}
+}
+@media only screen and (width: 280px) {
+	 .font-40{
+		font-size: 48px;
+	}
+}
+@media only screen and (width: 800px) {
+	 .font-40{
+		font-size: 165px;
+	}
+}
 @media only screen and (min-width: 1500px) {
 	 .font-40{
 		font-size: 34px;

@@ -337,8 +337,11 @@
 
 <div data-serialtip-target="ex1" class="serialtip-default">
     <span class="serialtip-close"></span>
-    <h5 class="serialtip-title">Popover Example</h5>
-    <p>Tooltips and popovers are two very commonly used, customizable, interactive visual elements in creating websites and web applications.</p>
+    <h5 class="serialtip-title">Welcome to Homeschool Minutes Progress Charts!</h5>
+    <p>See all your stats quickly for each child or family member.</p>
+    <p>This page will automatically keep track of hours, attendance, and the amount of time you spend on certain subjects.</p>
+    <p>This is the perfect tool to help make sure you are getting all your state requirements in or just to have peace of mind that your chosen curriculum is giving your child everything they need.</p>
+    <p>** You will be amazed at how much time you invest into homeschooling that you may not account for when estimating or recalling your times.</p>
 </div>
 
 @endsection
