@@ -304,8 +304,10 @@ $lable = "Student Time Log";
 </div>
 <div data-serialtip-target="ex1" class="serialtip-default">
     <span class="serialtip-close"></span>
-    <h5 class="serialtip-title">Popover Example</h5>
-    <p>Tooltips and popovers are two very commonly used, customizable, interactive visual elements in creating websites and web applications.</p>
+    <h5 class="serialtip-title">Welcome to Homeschool Minutes Monthly Student Log!</h5>
+    <p>Quickly see your hours and attendance by day, subject, and month.</p>
+<p>** This is a great page to print out each week or month if you would also like to keep a paper record or have a quick backup of your records.
+</p>
 </div>
 @endsection
 

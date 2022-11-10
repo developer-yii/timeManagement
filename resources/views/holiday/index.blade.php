@@ -56,8 +56,11 @@
 
 <div data-serialtip-target="ex1" class="serialtip-default">
     <span class="serialtip-close"></span>
-    <h5 class="serialtip-title">Popover Example</h5>
-    <p>Tooltips and popovers are two very commonly used, customizable, interactive visual elements in creating websites and web applications.</p>
+    <h5 class="serialtip-title">Welcome to Homeschool Minutes Holiday/Events List!</h5>
+    <p>This will give you a complete list of all the holiday/events you have entered in the Monthly Planner Calendar. </p>
+    <p>Events can be color coded.</p>
+    <p>** These items are not calculated in your hours.  If you make a 12:30 pm Drum Lesson, it will show up in your planner.  To add 30 minutes from this lesson to your child’s daily time, you will need to add 30 minutes for drums on that day through the ADD STUDENT TIME.</p>
+    <p>Keep track of everything!</p>
 </div>
 
 <!-- /.modal -->

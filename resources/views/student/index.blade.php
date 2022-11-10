@@ -56,8 +56,10 @@ $lable = "Student";
 @section('modal')
 <div data-serialtip-target="student-tooltip" class="serialtip-default">
     <span class="serialtip-close"></span>
-    <h5 class="serialtip-title">Popover Example</h5>
-    <p>Tooltips and popovers are two very commonly used, customizable, interactive visual elements in creating websites and web applications.</p>
+    <h5 class="serialtip-title">Welcome to Homeschool Minutes Names/Students List!</h5>
+    <p>This will give you a complete list of all the students you have entered in the Monthly Planner Calendar.</p>
+    <p>Names can be color coded.</p>
+    <p>** Enter Mom or Dad in the list to keep track of daily appointments, workouts, and even dinner!</p>
 </div>
 
 <!-- /.modal -->
