@@ -12,7 +12,7 @@
 
                 <!-- Logo -->
                 <div class="card-header text-center bg-primary">
-                    <a href="{{ Request::root() }}">
+                    <a href="https://www.homeschoolminutes.com/">
                         <span><img src="{{ asset('images/logo.png') }}" alt="" height="100"></span>
                     </a>
                 </div>
