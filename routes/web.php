@@ -27,7 +27,7 @@ Route::get('/home', 'HomeController@index')->name('home1');
 // Route::get('/tnc', 'RegisterController@tnc')->name('tnc');
 Route::get('/tnc', [RegisterController::class, 'tnc'])->name('tnc');
 Route::get('/index', [SiteController::class, 'index'])->name('index');
-Route::get('/faq', [SiteController::class, 'faq'])->name('faq');
+// Route::get('/faq', [SiteController::class, 'faq'])->name('faq');
 
 
 Route::middleware(['auth'])->group(function () {
