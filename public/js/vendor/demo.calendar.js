@@ -48,9 +48,9 @@
                                 $('#newinput').append(result.html);
                             }
 
+                            $('#ufiles').html('');
                             if(result.fileHtml)
                             {
-                                $('#ufiles').html('');
                                 $('#ufiles').html(result.fileHtml);                                
                             }
 
