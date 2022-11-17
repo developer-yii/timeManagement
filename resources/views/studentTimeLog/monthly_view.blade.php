@@ -310,8 +310,7 @@ $lable = "Monthly Student Log";
     <span class="serialtip-close"></span>
     <h5 class="serialtip-title">Welcome to Homeschool Minutes Monthly Student Log!</h5>
     <p>Quickly see your hours and attendance by day, subject, and month.</p>
-<p>** This is a great page to print out each week or month if you would also like to keep a paper record or have a quick backup of your records.
-</p>
+    <p>** This is a great page to print out each week or month if you would like to keep an extra paper record or backup.</p>
 </div>
 @endsection
 

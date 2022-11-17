@@ -17,4 +17,9 @@ class SiteController extends Controller
     {
         return view('faq');
     }
+
+    public function help()
+    {
+        return view('help');
+    }
 }

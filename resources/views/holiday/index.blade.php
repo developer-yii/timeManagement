@@ -57,10 +57,13 @@
 <div data-serialtip-target="ex1" class="serialtip-default">
     <span class="serialtip-close"></span>
     <h5 class="serialtip-title">Welcome to Homeschool Minutes Holiday/Events List!</h5>
-    <p>This will give you a complete list of all the holiday/events you have entered in the Monthly Planner Calendar. </p>
+    <p>This will give you a complete list of all the holiday/events you have entered in the Monthly Planner.</p>
     <p>Events can be color coded.</p>
-    <p>** These items are not calculated in your hours.  If you make a 12:30 pm Drum Lesson, it will show up in your planner.  To add 30 minutes from this lesson to your child’s daily time, you will need to add 30 minutes for drums on that day through the ADD STUDENT TIME.</p>
-    <p>Keep track of everything!</p>
+    <p>** These items are not calculated in your hours.</p>
+    <p>You can have two options:</p>
+    <p>1. TWO ENTRIES. You can add an event (Drums 12:30-1:00pm), then add student time/activity of 30 minutes in drums. Since you can color code the events it helps it stand out from the rest as a reminder.</p>
+    <p>2. ONE ENTRY. The Second option is to add the drum Lesson through the Add Student Time/Activity button on your planner only.</p>
+    {{-- <p>Keep track of everything!</p> --}}
 </div>
 
 <!-- /.modal -->

@@ -47,6 +47,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/links/delete', 'LinkController@delete')->name('link.delete');
     Route::post('/get/link', 'LinkController@getlink')->name('get.link');
 
+    Route::get('/help', 'SiteController@help')->name('help');
+
     Route::post('/file/delete', 'LogFileController@delete')->name('file.delete');
     // 
 
