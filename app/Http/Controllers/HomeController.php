@@ -131,6 +131,85 @@ class HomeController extends Controller
             $maxNonCore = max($max_noncore_array);           
         }
 
+        // core NonCore Hours by month : Starts
+        $coreMonths = DB::table('student_time_log')
+            ->join('subjects','student_time_log.subject_id','subjects.id')
+            ->where('student_time_log.deleted_at',null)
+            ->where('student_time_log.user_id',$user_id)
+            ->where('student_time_log.student_id',$s)
+            ->where('subjects.subject_type',1)
+            ->where('student_time_log.log_date','>',$firstDay)
+            ->where('student_time_log.log_date','<',$lastDay)
+            ->select('student_time_log.id','student_time_log.log_date','student_time_log.log_time')
+            ->get();
+
+        $coreMonthArray = [];        
+
+        for($b = 1; $b < 13; $b++)
+        {
+            if($b<10)
+                $m = '0'.$b;
+            else
+                $m = $b;
+
+            $coreMonthArray[$m] = 0;
+        }
+
+        foreach($coreMonths as $coreM)
+        {
+            $pieces = explode("-", $coreM->log_date);            
+            $coreMonthArray[$pieces[1]] = $coreMonthArray[$pieces[1]] + hhmmToSec($coreM->log_time);            
+        }
+
+        foreach($coreMonthArray as $key => $cm)
+        {            
+            $coreMonthArray[$key] = sectoHH($cm);
+        }
+
+        $coreMonthArray = array_values($coreMonthArray);        
+
+        $coreMonthArray = json_encode($coreMonthArray);
+
+        // NonCore
+        $nonCoreMonths = DB::table('student_time_log')
+            ->join('subjects','student_time_log.subject_id','subjects.id')
+            ->where('student_time_log.deleted_at',null)
+            ->where('student_time_log.user_id',$user_id)
+            ->where('student_time_log.student_id',$s)
+            ->where('subjects.subject_type',2)
+            ->where('student_time_log.log_date','>',$firstDay)
+            ->where('student_time_log.log_date','<',$lastDay)
+            ->select('student_time_log.id','student_time_log.log_date','student_time_log.log_time')
+            ->get();
+
+        $nonCoreMonthArray = [];        
+
+        for($b1 = 1; $b1 < 13; $b1++)
+        {
+            if($b1<10)
+                $m1 = '0'.$b1;
+            else
+                $m1 = $b1;
+
+            $nonCoreMonthArray[$m1] = 0;
+        }
+
+        foreach($nonCoreMonths as $nonCoreM)
+        {
+            $pieces1 = explode("-", $nonCoreM->log_date);            
+            $nonCoreMonthArray[$pieces1[1]] = $nonCoreMonthArray[$pieces1[1]] + hhmmToSec($nonCoreM->log_time);            
+        }
+
+        foreach($nonCoreMonthArray as $key => $ncm)
+        {            
+            $nonCoreMonthArray[$key] = sectoHH($ncm);
+        }
+
+        $nonCoreMonthArray = array_values($nonCoreMonthArray);
+        $nonCoreMonthArray = json_encode($nonCoreMonthArray);
+        // core NonCore Hours by month : Ends
+
+
         $coreHoursinSec = DB::table('student_time_log')
             ->join('subjects','student_time_log.subject_id','subjects.id')
             ->where('student_time_log.deleted_at',null)
@@ -228,7 +307,7 @@ class HomeController extends Controller
         $coreSubjectsTimeColumn = json_encode($coreSubjectsTimeColumn);
         
 
-        return view('home',compact('students','coreSubjects','nonCoreSubjects','coreHours','nonCoreHours','hoursCompleted','attendance','s','y','maxCore','maxNonCore','attendanceArray','hoursHHArray','attendance_required','hours_required','hoursHHBarArray','hourCoreNonCoreArray','coreSubjectsColumn','coreSubjectsTimeColumn','nonCoreSubjectsColumn','nonCoreSubjectsTimeColumn'));
+        return view('home',compact('students','coreSubjects','nonCoreSubjects','coreHours','nonCoreHours','hoursCompleted','attendance','s','y','maxCore','maxNonCore','attendanceArray','hoursHHArray','attendance_required','hours_required','hoursHHBarArray','hourCoreNonCoreArray','coreSubjectsColumn','coreSubjectsTimeColumn','nonCoreSubjectsColumn','nonCoreSubjectsTimeColumn','coreMonthArray','nonCoreMonthArray'));
     }
 
 
@@ -241,6 +320,9 @@ class HomeController extends Controller
 
     public function updateProfile(Request $request)
     {
+        // echo "<pre>";
+        // print_r($request->all());die;
+
         if($request->ajax()) {
             $rules = array(
                 'name'=>'required',
@@ -257,6 +339,21 @@ class HomeController extends Controller
                 {
                     $user->name = $request->name;
                     $user->email = $request->email;
+
+                    if ($request->hasFile('profilephoto')) {                        
+
+                        if($user->profilephoto != '') {
+                            if(file_exists(public_path('storage/uploads/profile') . $user->profilephoto)) {
+                                unlink(public_path('storage/uploads/profile') . $user->profilephoto);
+                            }
+                        }          
+                        
+                        $fileName = $request->file('profilephoto')->hashName();
+                        $path = public_path('storage/uploads/profile');
+                        request()->profilephoto->move($path, $fileName);
+
+                        $user->profilephoto = $fileName;
+                    }
 
                     if($user->save()){
                         $result = ['status' => true, 'message' => $msg, 'data' => []];

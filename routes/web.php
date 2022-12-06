@@ -50,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/help', 'SiteController@help')->name('help');
 
     Route::post('/file/delete', 'LogFileController@delete')->name('file.delete');
+    Route::get('/file/list', 'LogFileController@index')->name('file.index');
     // 
 
     // Route::get('/profileDetail', 'HomeController@profileDetail')->name('profileDetail');

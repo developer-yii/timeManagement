@@ -33,7 +33,20 @@
                     <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="{{ $user->email }}">
                     <span class="error"></span>
                 </div>
-            </div>
+                <div class="mb-3">
+                    <label for="profilephoto" class="form-label">Profile Photo</label>
+                    <input type="file" id="profilephoto" name="profilephoto" class="form-control">
+                    <span class="error"></span>
+                </div>
+                <div id="preview">
+                    @if($user->profilephoto)
+                        <div class="form-group required row">
+                        <div class="col-md-12 mb-2" id="img-prv">
+                            <img id="preview-image" src="{{ url('/storage/uploads/profile\/').$user->profilephoto }}" alt="" style="max-height: 250px; max-width: 250px">
+                        </div>
+                        </div>
+                    @endif
+                </div>
         </div> <!-- end row -->       
         
         <div class="text-start">

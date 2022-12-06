@@ -332,6 +332,21 @@
     </div>
     <!-- end row-->
 
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Core/Non-Core hours By Months</h4>
+                    <div id="core-nonCore-bymonth"></div>                        
+                </div>
+                <!-- end card body-->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col-->
+    </div>
+    <!-- end row-->
+
 </div>
 <!-- container -->
 
@@ -359,6 +374,12 @@
     var stuCoreNonCore = "{{$hourCoreNonCoreArray}}";
     var sesMessage = "{{ session()->get('success') }}";
 
+    var coreMonth = @json($coreMonthArray);
+    var nonCoreMonth = @json($nonCoreMonthArray);
+    coreMonth = JSON.parse(coreMonth);
+    nonCoreMonth = JSON.parse(nonCoreMonth);
+    
+
     var coreSubjectsColumn = @json($coreSubjectsColumn);
     var coreSubjectsTimeColumn = @json($coreSubjectsTimeColumn);
     var nonCoreSubjectsColumn = @json($nonCoreSubjectsColumn);
@@ -367,7 +388,7 @@
     coreSubjectsColumn = JSON.parse(coreSubjectsColumn);
     coreSubjectsTimeColumn = JSON.parse(coreSubjectsTimeColumn);
     nonCoreSubjectsColumn = JSON.parse(nonCoreSubjectsColumn);
-    nonCoreSubjectsTimeColumn = JSON.parse(nonCoreSubjectsTimeColumn);    
+    nonCoreSubjectsTimeColumn = JSON.parse(nonCoreSubjectsTimeColumn);
 
     attendance = JSON.parse(attendance);    
     stuHours = JSON.parse(stuHours);

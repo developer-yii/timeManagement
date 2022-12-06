@@ -172,6 +172,13 @@
                             <span> Saved Links </span>
                         </a>
                     </li>
+
+                    <li class="side-nav-item">
+                        <a href="{{ route('file.index')}}" class="side-nav-link">
+                            <i class="mdi mdi-image-multiple"></i>
+                            <span> Saved Photo/Uploads </span>
+                        </a>
+                    </li>
                 </ul>
 
                 <!-- End Sidebar -->
@@ -259,7 +266,11 @@
                                             <div class="d-flex align-items-center">
                                                 <div class="flex-shrink-0">
                                                     <div class="notify-icon">
+                                                        @if(auth()->user()->profilephoto)
+                                                            <img src="{{ url('/storage/uploads/profile\/').auth()->user()->profilephoto }}" class="img-fluid rounded-circle" alt="" />
+                                                        @else
                                                         <img src="{{ asset('images/users/avatar-2.jpg') }}" class="img-fluid rounded-circle" alt="" />
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1 text-truncate ms-2">
@@ -324,7 +335,12 @@
                             <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
                                 aria-expanded="false">
                                 <span class="account-user-avatar"> 
+                                    
+                                    @if(auth()->user()->profilephoto)
+                                        <img src="{{ url('/storage/uploads/profile\/').auth()->user()->profilephoto }}" class="rounded-circle" alt="user-image" />
+                                    @else
                                     <img src="{{ asset('images/users/avatar-1.jpg') }}" alt="user-image" class="rounded-circle">
+                                    @endif
                                 </span>
                                 <span>
                                     <span class="account-user-name">{{ Auth::user()->name }}</span>
