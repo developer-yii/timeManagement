@@ -31,7 +31,7 @@
         <!-- Topbar Start -->
                 <div class="navbar-custom center-flex">
                     <ul class="list-unstyled topbar-menu mb-0">
-                        <a href="{{ route('index') }}" class="">
+                        <a href="https://www.homeschoolminutes.com/" class="">
                         <img src="{{ asset('images/landing/logo.png') }}" alt="" height="60">
                     </a>
                     </ul>                    

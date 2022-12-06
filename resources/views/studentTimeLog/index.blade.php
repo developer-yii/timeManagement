@@ -281,7 +281,7 @@ $lable = "Monthly Planner";
                     <div class="row abcd">
                         <div class="col-5">                            
                             <label class="form-label" for="hrs">Log Hours</label>
-                            <input id="hrs" name="hrs" type="number" step="1" min="0" class="form-control" autocomplete="off">
+                            <input id="hrs" name="hrs" type="number" step="1" min="0" class="form-control" autocomplete="off" value="0">
                             <span class="error"></span>      
                         </div>
                         <div class="col-auto">
@@ -289,7 +289,7 @@ $lable = "Monthly Planner";
                         </div>
                         <div class="col-5">
                             <label class="form-label" for="minutes">Log Minutes</label>
-                            <input id="minutes" name="minutes" type="number" step="1" min="0" class="form-control" autocomplete="off">
+                            <input id="minutes" name="minutes" type="number" step="1" min="0" class="form-control" autocomplete="off" value="0">
                             <span class="error"></span>
                         </div>                        
                     </div>                        
