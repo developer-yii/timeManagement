@@ -7,6 +7,12 @@ use App\Models\LogFile;
 
 class LogFileController extends Controller
 {
+
+    public function index(Request $request)
+    {
+        return view('files.index');
+    }
+
     public function delete(Request $request)
     {
         $model = LogFile::find($request->id);

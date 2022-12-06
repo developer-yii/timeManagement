@@ -48,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/get/link', 'LinkController@getlink')->name('get.link');
 
     Route::post('/file/delete', 'LogFileController@delete')->name('file.delete');
+    Route::get('/file/list', 'LogFileController@index')->name('file.index');
     // 
 
     // Route::get('/profileDetail', 'HomeController@profileDetail')->name('profileDetail');

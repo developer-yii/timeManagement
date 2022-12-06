@@ -27,17 +27,40 @@ $(document).ready(function() {
                 }
             });
         }
-    })
+    });
+
+    $('#profilephoto').change(function(){
+        var cHtml ='<div class="form-group required row">'+
+                        '<div class="col-md-12 mb-2" id="img-prv">'+
+                            '<img id="preview-image" src="" alt="" style="max-height: 250px; max-width: 250px">'+
+                        '</div>'+
+                    '</div>';
+
+        $('#preview').html(cHtml);
+       
+        let reader = new FileReader();
+        reader.onload = (e) => { 
+          $('#preview-image').attr('src', e.target.result); 
+        }
+        reader.readAsDataURL(this.files[0]);           
+    });
 
     $('#profile-form').submit(function(event) {
         event.preventDefault();
         var $this = $(this);
-        console.log(addUrl);
+        var dataString = new FormData($('#profile-form')[0]);
+        var profile = $('#profile-form #profilephoto')[0].files.length;
+        if(profile){
+            dataString.append('profile', $('#profile-form #profilephoto')[0].files);
+        }
+        
         $.ajax({
             url: addUrl,
             type: 'POST',
-            data: $('#profile-form').serialize(),
-            dataType: 'json',
+            data: dataString,
+            cache:false,
+            contentType: false,
+            processData: false,
             beforeSend: function() {
                 $($this).find('button[type="submit"]').prop('disabled', true);
             },

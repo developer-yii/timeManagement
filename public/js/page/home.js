@@ -304,3 +304,57 @@ var optionscoreSubjectsColumn = {
         var chart5 = new ApexCharts(document.querySelector("#nonCore-subjects"), optionscoreSubjectsColumn);
         chart5.render();
 
+
+// Core/Non-core Hours by month
+var optionCoreNonCoreMonth = {
+  series: [{
+    name: 'Core',
+    data: coreMonth
+  }, {
+    name: 'Non-Core',
+    data: nonCoreMonth
+  }],
+  chart: {
+    type: 'bar',
+    height: 350
+  },
+  plotOptions: {
+    bar: {
+      horizontal: false,
+      columnWidth: '55%',
+      endingShape: 'rounded'
+    },
+  },
+  dataLabels: {
+    enabled: false
+  },
+  stroke: {
+    show: true,
+    width: 2,
+    colors: ['transparent']
+  },
+  xaxis: {
+    categories: ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  },
+  yaxis: {
+    title: {
+      text: 'Hours'
+    }
+  },
+  fill: {
+    opacity: 1
+  },
+  tooltip: {
+    y: {
+      formatter: function (val) {
+        return val + " Hours"
+      }
+    }
+  }
+};
+
+var chart6 = new ApexCharts(document.querySelector("#core-nonCore-bymonth"), optionCoreNonCoreMonth);
+chart6.render();
+
+// Core/Non-core Hours by month : Ends
+
