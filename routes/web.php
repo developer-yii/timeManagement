@@ -51,6 +51,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/file/delete', 'LogFileController@delete')->name('file.delete');
     Route::get('/file/list', 'LogFileController@index')->name('file.index');
+    Route::get('/file/get', 'LogFileController@get')->name('file.list');
     // 
 
     // Route::get('/profileDetail', 'HomeController@profileDetail')->name('profileDetail');

@@ -7,6 +7,8 @@ use App\Models\Plan;
 use Validator;
 use Auth;
 use Carbon\Carbon;
+use App\Mail\StripeLink;
+use Illuminate\Support\Facades\Mail;
 
 class SubscriptionController extends Controller
 {
@@ -31,6 +33,14 @@ class SubscriptionController extends Controller
         $user = Auth::user();
         $user->is_sub_cancel = 0;
         $user->save();
+
+        // Email user a stripe link
+        $to_email = $user->email;
+        $data = [
+            'username' => $user->name,
+            'link' => env('STRIPE_USER_LINK','https://billing.stripe.com/p/login/test_4gwdTQ4vac3g4c8288')
+        ];
+        Mail::to($to_email)->send(new StripeLink($data));
         
         // return redirect()->route('home')->with('success', 'Your plan subscribed successfully');
         return redirect()->route('student-time-log')->with('success', 'Your plan subscribed successfully');
