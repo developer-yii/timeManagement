@@ -186,10 +186,7 @@ class StudentTimeLogController extends Controller
                 'subject_id'=>'required',
                 'log_date'=>'required',
                 'hrs' => 'required|numeric|gte:0|max:23',
-                'minutes'=> 'required|integer|gte:0|max:59',
-                // 'log_time'=>'required',
-                // 'start_time'=>'required',
-                // 'end_time'=>'required',
+                'minutes'=> 'required|integer|gte:0|max:59',                
                 'formFileMultiple.*' => 'mimes:pdf,txt,jpg,jpeg,png,xls,xlsx,doc,docx,zip','application/zip|max:5000',
             );
             $message = [
@@ -208,72 +205,136 @@ class StudentTimeLogController extends Controller
                     if($model)
                     {
                         $studentTimeLog = $model;
+                        $studentTimeLog->student_id = $request->student_id;                
+                        $studentTimeLog->log_time = $request->hrs.':'.sprintf("%02d", $request->minutes);
+                        $studentTimeLog->subject_id = $request->subject_id;
+                        $studentTimeLog->log_date = date('Y-m-d',strtotime($request->log_date));
+                        $studentTimeLog->user_id = Auth::user()->id;
+                        $studentTimeLog->is_attendance = 0;    
+                        if($request->attendance == 'on'){
+                            $studentTimeLog->is_attendance = 1;    
+                        }
+
+                        $studentTimeLog->is_completed = 0;    
+                        if($request->completed == 'on'){
+                            $studentTimeLog->is_completed = 1;    
+                        }
+                        
+                        $studentTimeLog->activity_notes = $request->activity_notes;
+                        $studentTimeLog->created_at = Carbon::now();
+                        $studentTimeLog->updated_at = Carbon::now();
+                        $r = $studentTimeLog->save();
+
+                        if(isset($request->links))
+                        {
+                            $addresses = $request->address;
+                            // $links_array = array_unique($request->links);
+                            // $links = implode(', ', $links_array);
+                            // $studentTimeLog->links = $links;
+                            foreach ($request->links as $klink => $link) {
+                                if($link && $addresses[$klink])
+                                {                            
+                                    $linkObj = new Link;
+                                    $linkObj->name = $link;
+                                    $linkObj->link = $addresses[$klink];
+                                    $linkObj->log_id = $studentTimeLog->id;
+                                    $linkObj->user_id = Auth::user()->id;
+                                    $linkObj->save();
+                                }
+                            }
+                        }
+                        
+                        if($request->hasFile('formFileMultiple'))
+                        {
+                            foreach ($request->file('formFileMultiple') as $file) 
+                            {
+                                $fileName = $file->hashName();
+                                $path = public_path('storage/uploads/linkFiles');
+                                $file->move($path, $fileName);
+
+                                $logfile = new LogFile;
+                                $logfile->log_id = $studentTimeLog->id;
+                                $logfile->file_name = $fileName;
+                                $logfile->save();
+                            }
+                        }
                     }
                     else{
                         $result = ['status' => false, 'message' => 'Invalid request', 'data' => []];
                         return response()->json($result);
                     }
                 }
-                else{
+                else
+                {
                     $msg = 'Student Time Log added successfully';
-                    $studentTimeLog = new StudentTimeLog;
-                }
 
-                $studentTimeLog->student_id = $request->student_id;
-                // $studentTimeLog->start_time = $request->start_time;
-                // $studentTimeLog->end_time = $request->end_time;
-                $studentTimeLog->log_time = $request->hrs.':'.sprintf("%02d", $request->minutes);
-                $studentTimeLog->subject_id = $request->subject_id;
-                $studentTimeLog->log_date = date('Y-m-d',strtotime($request->log_date));
-                $studentTimeLog->user_id = Auth::user()->id;
-                $studentTimeLog->is_attendance = 0;    
-                if($request->attendance == 'on'){
-                    $studentTimeLog->is_attendance = 1;    
-                }
-
-                $studentTimeLog->is_completed = 0;    
-                if($request->completed == 'on'){
-                    $studentTimeLog->is_completed = 1;    
-                }
-                
-                $studentTimeLog->activity_notes = $request->activity_notes;
-                $studentTimeLog->created_at = Carbon::now();
-                $studentTimeLog->updated_at = Carbon::now();
-                $r = $studentTimeLog->save();
-
-                if(isset($request->links))
-                {
-                    $addresses = $request->address;
-                    // $links_array = array_unique($request->links);
-                    // $links = implode(', ', $links_array);
-                    // $studentTimeLog->links = $links;
-                    foreach ($request->links as $klink => $link) {
-                        if($link && $addresses[$klink])
-                        {                            
-                            $linkObj = new Link;
-                            $linkObj->name = $link;
-                            $linkObj->link = $addresses[$klink];
-                            $linkObj->log_id = $studentTimeLog->id;
-                            $linkObj->user_id = Auth::user()->id;
-                            $linkObj->save();
-                        }
-                    }
-                }
-                
-                if($request->hasFile('formFileMultiple'))
-                {
-                    foreach ($request->file('formFileMultiple') as $file) 
+                    $logDates = explode(",", $request->log_date);
+                    
+                    if(count($logDates))
                     {
-                        $fileName = $file->hashName();
-                        $path = public_path('storage/uploads/linkFiles');
-                        $file->move($path, $fileName);
+                        $fileArray = [];
+                        foreach($logDates as $key =>$logDate)
+                        {
+                            $studentTimeLog = new StudentTimeLog;   
+                            $studentTimeLog->student_id = $request->student_id;                
+                            $studentTimeLog->log_time = $request->hrs.':'.sprintf("%02d", $request->minutes);
+                            $studentTimeLog->subject_id = $request->subject_id;
+                            $studentTimeLog->log_date = date('Y-m-d',strtotime($logDate));
+                            $studentTimeLog->user_id = Auth::user()->id;
+                            $studentTimeLog->is_attendance = 0;    
+                            if($request->attendance == 'on'){
+                                $studentTimeLog->is_attendance = 1;    
+                            }
 
-                        $logfile = new LogFile;
-                        $logfile->log_id = $studentTimeLog->id;
-                        $logfile->file_name = $fileName;
-                        $logfile->save();
-                    }
+                            $studentTimeLog->is_completed = 0;    
+                            if($request->completed == 'on'){
+                                $studentTimeLog->is_completed = 1;    
+                            }
+                            
+                            $studentTimeLog->activity_notes = $request->activity_notes;
+                            $studentTimeLog->created_at = Carbon::now();
+                            $studentTimeLog->updated_at = Carbon::now();
+                            $r = $studentTimeLog->save();
+
+                            if(isset($request->links))
+                            {
+                                $addresses = $request->address;
+                                
+                                foreach ($request->links as $klink => $link) {
+                                    if($link && $addresses[$klink])
+                                    {                            
+                                        $linkObj = new Link;
+                                        $linkObj->name = $link;
+                                        $linkObj->link = $addresses[$klink];
+                                        $linkObj->log_id = $studentTimeLog->id;
+                                        $linkObj->user_id = Auth::user()->id;
+                                        $linkObj->save();
+                                    }
+                                }
+                            }
+                            
+                            if($request->hasFile('formFileMultiple'))
+                            {   
+                                foreach ($request->file('formFileMultiple') as $key => $file) 
+                                {                                    
+                                    if(!isset($fileArray[$key]))
+                                    {
+                                        $fileName = $file->hashName();
+                                        $fileArray[$key] = $fileName;
+                                        $path = public_path('storage/uploads/linkFiles');
+                                        $file->move($path, $fileName);
+                                    }
+
+                                    $logfile = new LogFile;
+                                    $logfile->log_id = $studentTimeLog->id;
+                                    $logfile->file_name = $fileArray[$key];
+                                    $logfile->save();
+                                }
+                            } 
+                        }
+                    }                    
                 }
+
 
                 if($r){
                     $result = ['status' => true, 'message' => $msg, 'data' => []];
