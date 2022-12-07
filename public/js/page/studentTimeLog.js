@@ -121,6 +121,11 @@ $(document).ready(function() {
             }
         })
 
+        $('#log_date').datepicker({
+            format: "yyyy-mm-dd",
+            multidate: true,            
+        });
+
         $('.add-new').click(function(event) {
             $('#add-form-lable').html('');
             $('#add-form-lable').html('Add Student Time Log');
@@ -128,7 +133,10 @@ $(document).ready(function() {
             $('#ufiles').html('');
             $('#add-form').find('button[type="submit"]').show();
             $('#add-form').find('#edit-id').val(0);
-            $('#add-form')[0].reset()
+            $('#log_date').datepicker('setDate',null);
+            $('#log_date').datepicker('destroy');
+            $('#log_date').datepicker({ format: "yyyy-mm-dd", multidate: true,});
+            $('#add-form')[0].reset();
         });
 
         $('body').on('click','.delete-u-file',function(e){

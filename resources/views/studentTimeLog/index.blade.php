@@ -272,11 +272,18 @@ $lable = "Monthly Planner";
                     <span class="error"></span>
                 </div>
                 
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label for="name" class="control-label">Select Date:</label>
                     <input type="text" class="form-control date" id="log_date" data-toggle="date-picker" data-single-date-picker="true" name="log_date">
                     <span class="error"></span>
-                </div>                
+                </div> --}}
+
+                <div class="mb-3 position-relative" id="datepicker3">
+                    <label for="log_date" class="control-label">Select Date:</label>
+                    <input type="text" class="form-control" id="log_date" name="log_date" data-date-format="yyyy-mm-dd">
+                    <span class="error"></span>
+                </div>               
+
                 <div class="mb-3">
                     <div class="row abcd">
                         <div class="col-5">                            
@@ -308,8 +315,8 @@ $lable = "Monthly Planner";
 
                 <div class="mb-3">
                     <div class="form-check">
-                        <input type="checkbox" id="attendance" name="attendance" class="form-check-input">
-                        <label for="attendance" class="form-check-label">Attended: <i>(this will count toward your daily attendance)</i></label>
+                        <input type="checkbox" id="attendance1" name="attendance" class="form-check-input">
+                        <label for="attendance1" class="form-check-label">Attended: <i>(this will count toward your daily attendance)</i></label>
                     </div>
                     <span class="error"></span>
                 </div>

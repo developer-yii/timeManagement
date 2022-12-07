@@ -25,9 +25,12 @@
                         if (result.status == true) {
                             // $('#add-modal').find()
                             $('#add-form').find('#completed').prop('checked',false);
-                            $('#add-form').find('#attendance').prop('checked',false);
+                            $('#add-form').find('#attendance1').prop('checked',false);
                             $('#add-modal').find('#student_id').val(result.data.student_id);
                             $('#add-modal').find('#subject_id').val(result.data.subject_id);
+                            
+                            $('#log_date').datepicker('destroy');
+                            $('#log_date').datepicker({ format: "yyyy-mm-dd", multidate: false,});
                             $('#add-modal').find('#log_date').val(result.data.log_date);
                             $('#add-modal').find('#hrs').val(parseInt(result.hrs));
                             $('#add-modal').find('#minutes').val(parseInt(result.minutes));
@@ -38,7 +41,7 @@
                             $('#add-form-lable').html(htm);
                             // $('#edit-log-modal').find('button[type="submit"]').hide();
                             if(result.data.is_attendance)
-                                $('#add-form').find('#attendance').prop('checked',true);
+                                $('#add-form').find('#attendance1').prop('checked',true);
                             if(result.data.is_completed)
                                 $('#add-form').find('#completed').prop('checked',true);
 
