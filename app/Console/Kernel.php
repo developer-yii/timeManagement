@@ -25,6 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('db:backup')->timezone('US/Eastern')->twiceDaily(5, 17);
+        $schedule->command('send:weeklyreport')->timezone('US/Eastern')->weeklyOn(1, '6:00');;
     }
 
     /**

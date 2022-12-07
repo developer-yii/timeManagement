@@ -46,4 +46,9 @@ class User extends Authenticatable
         'deleted_at',
         'trial_ends_at'
     ];
+
+    public function students()
+    {
+        return $this->hasMany('App\Models\Student', 'user_id');
+    }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-    
+    <link rel="stylesheet" href="{{ asset('css/page/file-index.css') }}?{{ time()}}" />    
 @endsection
 
 @section('content')
@@ -28,15 +28,17 @@ $lable = "Saved Photo/Uploads";
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <button type="button" class="btn btn-green mb-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal">Add Link</button><a href="javascript:void(0)" data-serialtip="ex1"><img src="{{asset('images/tooltip.png')}}" class="bulb-icon"></a>{{-- <img src="{{asset('images/bulb.png')}}" class="bulb-icon"><span class="font-bold">Add each subject, sport, and extracurricular your children/students may participate in. These subjects can also be classified as core or non-core.</span> --}}
+                {{-- <button type="button" class="btn btn-green mb-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal">Add Link</button> --}}
+                <a href="javascript:void(0)" data-serialtip="ex1"><img src="{{asset('images/tooltip.png')}}" class="bulb-icon"></a>{{-- <img src="{{asset('images/bulb.png')}}" class="bulb-icon"><span class="font-bold">Add each subject, sport, and extracurricular your children/students may participate in. These subjects can also be classified as core or non-core.</span> --}}
                 <div id="flash-message"></div>
                 <div class="table-responsive">
-                    <table id="linkTable" class="table table-hover dataTable">
+                    <table id="filesTable" class="table table-hover dataTable">
                         <thead>
                             <tr>
-                                <th>{{$lable}} Name</th>
-                                <th>Link</th>
-                                <th>Actions</th>
+                                <th>Date</th>
+                                <th>Student</th>
+                                <th>Subject</th>
+                                <th>Files</th>
                             </tr>
                         </thead>
                     </table>
@@ -52,8 +54,8 @@ $lable = "Saved Photo/Uploads";
 
 <div data-serialtip-target="ex1" class="serialtip-default">
     <span class="serialtip-close"></span>
-    <h5 class="serialtip-title">Welcome to Homeschool Minutes Saved Links!</h5>
-    <p>When you add your child’s time and upload a link to that it will be added to this list so you can conveniently find and search for them.  You can also upload your links directly to this page.</p>
+    <h5 class="serialtip-title">Welcome to Homeschool Minutes Saved Photos/Uploads!</h5>
+    <p>When you add your child’s time and upload a files/photos to that it will be added to this list so you can conveniently find and search for them.</p>
 </div>
 
 <!-- /.modal -->
@@ -105,7 +107,7 @@ $lable = "Saved Photo/Uploads";
 @section('js')
 
 <script>
-    var apiUrl = "{{ route('links.list') }}";
+    var apiUrl = "{{ route('file.list') }}";
     var detailUrl = "{{ route('link.detail') }}";
     var deleteUrl = "{{ route('link.delete') }}";
     var addUrl = $('#add-form').attr('action');
@@ -114,5 +116,5 @@ $lable = "Saved Photo/Uploads";
 @endsection
 
 @section('pagejs')
-<script src="{{asset('/js')}}/page/link.js"></script>
+<script src="{{asset('/js')}}/page/files.js"></script>
 @endsection

@@ -5,6 +5,32 @@ function secToHHmm($seconds = 0)
 	return sprintf('%02d:%02d', ($seconds/ 3600),$seconds/ 60 % 60);
 }
 
+function secToHHPart($seconds = 0)
+{
+	if($seconds)
+	{
+		$hhmm = sprintf('%02d:%02d', ($seconds/ 3600),$seconds/ 60 % 60);
+
+		$a = explode(':', $hhmm);
+		return $a[0].':00';
+	}
+
+	return 0;
+}
+
+function secTOmmPart($seconds = 0)
+{
+	if($seconds)
+	{
+		$hhmm = sprintf('%02d:%02d', ($seconds/ 3600),$seconds/ 60 % 60);
+
+		$a = explode(':', $hhmm);
+		return '00:'.$a[1];
+	}
+
+	return 0;
+}
+
 function secToHHmm4($seconds = 0)
 {
 	return sprintf('%04d:%02d', ($seconds/ 3600),$seconds/ 60 % 60);
@@ -51,6 +77,28 @@ function convertToHH($time)
 	$a = explode(':', $time);	
 	$b = intval($a[0]);
 	return $b;
+}
+
+function pdfDate($date)
+{
+	if($date)
+	{
+		$date = date_create($date);
+        return date_format($date,"F jS, Y");
+	}
+
+	return 0;
+}
+
+function pdfTableDate($date)
+{
+	if($date)
+	{
+		$date = date_create($date);
+        return date_format($date,"l, F jS");
+	}
+
+	return 0;
 }
 
 function generateReferralCode()
