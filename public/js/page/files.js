@@ -51,6 +51,11 @@ $(document).ready(function() {
                 },
             ],
             "drawCallback": function( settings ) {
-            }
+            },
+            rowCallback: function( row, data, index ) {
+                if (data['files'] <= 0) {
+                    $(row).hide();
+                }
+            },
         });
 });
