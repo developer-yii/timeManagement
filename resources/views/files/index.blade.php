@@ -39,6 +39,7 @@ $lable = "Saved Photo/Uploads";
                                 <th>Student</th>
                                 <th>Subject</th>
                                 <th>Files</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                     </table>
@@ -59,46 +60,36 @@ $lable = "Saved Photo/Uploads";
 </div>
 
 <!-- /.modal -->
-<div id="add-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             
             <div class="modal-header">
-                <h4 class="modal-title"><span class="modal-lable-class">Add</span> {{$lable}}</h4> 
+                <h4 class="modal-title"><span class="modal-lable-class">Edit photo</h4> 
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
             </div>
 
             <div class="modal-body">
-            <form id="add-form" method="post" class="ps-3 pe-3" action="{{route('link.addupdate')}}">
-                @csrf
-                <input type="hidden" name="id" value="0" id="edit-id">
-                <div id="add_error_message"></div>
-                
-                <div class="mb-3">
-                    <label for="name" class="control-label">Name:</label>
-                    <input type="text" class="form-control" id="name" name="name"> <span class="error"></span>
-                </div>
+                <form id="edit-form" method="post" class="ps-3 pe-3" action="">
+                    @csrf
+                    <input type="hidden" name="id" value="0" id="edit-id">
+                    <div id="add_error_message"></div>
 
-                <div class="mb-3">
-                    <label for="link" class="control-label">Link:</label>
-                    <input type="text" class="form-control" id="link" name="link"> <span class="error"></span>
-                    <span class="error"></span>
-                </div>
+                    <div class="mb-3">
+                        <label for="photo" class="control-label">Upload file:</label>
+                        <input type="file" class="form-control" id="photo" name="photo">
+                        <span class="error"></span>
+                    </div>                
 
-                {{-- <div class="mb-3">
-                    <label for="subject_color" class="control-label">Event Color:</label>
-                    <input type="text" class="form-control" name="subject_color" id="subject_color" data-coloris value="#727cf5">
-                    <span class="error"></span>
-                </div> --}}
-                
-                <div class="mb-3 text-center">
-                    <button class="btn btn-green" type="submit">Save changes</button>
-                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                </div>
+                    <div id="img-prv">                    
+                    </div>
 
-                
-            </form>
-                </div>
+                    <div class="mb-3 text-center">
+                        <button class="btn btn-green" type="submit">Save changes</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    </div>                
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -109,7 +100,8 @@ $lable = "Saved Photo/Uploads";
 <script>
     var apiUrl = "{{ route('file.list') }}";
     var detailUrl = "{{ route('link.detail') }}";
-    var deleteUrl = "{{ route('link.delete') }}";
+    var deleteUrl = "{{ route('file.delete') }}";
+    var updateUrl = "{{route('file.update')}}";
     var addUrl = $('#add-form').attr('action');
     var page_reload = false;
 </script>
