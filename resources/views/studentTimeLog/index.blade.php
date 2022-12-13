@@ -279,7 +279,7 @@ $lable = "Monthly Planner";
                 </div> --}}
 
                 <div class="mb-3 position-relative" id="datepicker3">
-                    <label for="log_date" class="control-label">Select Date:</label>
+                    <label for="log_date" class="control-label">Select Date: (multiple dates can be selected)</label>
                     <input type="text" class="form-control" id="log_date" name="log_date" data-date-format="yyyy-mm-dd">
                     <span class="error"></span>
                 </div>               

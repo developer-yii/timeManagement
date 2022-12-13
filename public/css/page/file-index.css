@@ -1,3 +1,7 @@
 .bulb-icon {
      margin-left: 0px; 
 }
+
+table tr td:last-child {
+    display: flex;
+}

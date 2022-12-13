@@ -45,11 +45,11 @@ class LogFileController extends Controller
                         if($fileExt == 'jpg' || $fileExt == 'jpeg' || $fileExt == 'png')
                         {
 
-                            $fileHtml .= '<img src="'.url('/storage/uploads/linkFiles\/').$f->file_name.'" height="75" />';
+                            $fileHtml .= '<img src="'.url('/storage/uploads/linkFiles\/').$f->file_name.'" height="75" class="ml-10"/>';
                         }
                         else
                         {
-                            $fileHtml .= '<a href="'.url('/storage/uploads/linkFiles\/').$f->file_name.'" class="" download></a>';
+                            $fileHtml .= '<a href="'.url('/storage/uploads/linkFiles\/').$f->file_name.'" class="ml-10" download></a>';
                         }
                         
                         $fileHtml .= '</span>';

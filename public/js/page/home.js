@@ -306,6 +306,8 @@ var optionscoreSubjectsColumn = {
 
 
 // Core/Non-core Hours by month
+var coreNonCoreColor = ['#41c1e0','#eccd84'];
+
 var optionCoreNonCoreMonth = {
   series: [{
     name: 'Core',
@@ -314,6 +316,7 @@ var optionCoreNonCoreMonth = {
     name: 'Non-Core',
     data: nonCoreMonth
   }],
+  colors: coreNonCoreColor,
   chart: {
     type: 'bar',
     height: 350
