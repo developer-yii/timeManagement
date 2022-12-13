@@ -269,7 +269,7 @@
                                                         @if(auth()->user()->profilephoto)
                                                             <img src="{{ url('/storage/uploads/profile\/').auth()->user()->profilephoto }}" class="img-fluid rounded-circle" alt="" />
                                                         @else
-                                                        <img src="{{ asset('images/users/avatar-2.jpg') }}" class="img-fluid rounded-circle" alt="" />
+                                                        <img src="{{ asset('images/users/avatar-app.jpeg') }}" class="img-fluid rounded-circle" alt="" />
                                                         @endif
                                                     </div>
                                                 </div>
@@ -308,7 +308,7 @@
                                             <div class="d-flex align-items-center">
                                                 <div class="flex-shrink-0">
                                                     <div class="notify-icon">
-                                                        <img src="{{ asset('images/users/avatar-4.jpg') }}" class="img-fluid rounded-circle" alt="" />
+                                                        <img src="{{ asset('images/users/avatar-app.jpeg') }}" class="img-fluid rounded-circle" alt="" />
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1 text-truncate ms-2">
@@ -339,7 +339,7 @@
                                     @if(auth()->user()->profilephoto)
                                         <img src="{{ url('/storage/uploads/profile\/').auth()->user()->profilephoto }}" class="rounded-circle" alt="user-image" />
                                     @else
-                                    <img src="{{ asset('images/users/avatar-1.jpg') }}" alt="user-image" class="rounded-circle">
+                                    <img src="{{ asset('images/users/avatar-app.jpeg') }}" alt="user-image" class="rounded-circle">
                                     @endif
                                 </span>
                                 <span>

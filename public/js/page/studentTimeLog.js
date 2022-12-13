@@ -300,6 +300,9 @@ $(document).ready(function() {
 
             var fileLength = $('#add-form #formFileMultiple')[0].files.length;
             let files = $('#formFileMultiple')[0];
+
+            var buttonLoading = '<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>Loading...';
+            var buttonSave = 'Save changes';
             
             for (let i = 0; i < fileLength; i++) {
                 dataString.append('formFileMultiple' + i, files.files[i]);
@@ -314,9 +317,11 @@ $(document).ready(function() {
                 contentType: false,
                 processData: false,
                 beforeSend: function() {
+                    $($this).find('button[type="submit"]').html(buttonLoading);
                     $($this).find('button[type="submit"]').prop('disabled', true);
                 },
                 success: function(result) {
+                    $($this).find('button[type="submit"]').html(buttonSave);
                     $($this).find('button[type="submit"]').prop('disabled', false);
                     if (result.status == true) {
                         $this[0].reset();
@@ -357,6 +362,7 @@ $(document).ready(function() {
                     }
                 },
                 error: function(error) {
+                    $($this).find('button[type="submit"]').html(buttonSave);
                     $($this).find('button[type="submit"]').prop('disabled', false);
                     alert('Something went wrong!', 'error');
                     //location.reload();

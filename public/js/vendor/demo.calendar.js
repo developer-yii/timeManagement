@@ -45,9 +45,9 @@
                             if(result.data.is_completed)
                                 $('#add-form').find('#completed').prop('checked',true);
 
+                            $('.linkrow').parents(".mb-1").remove();
                             if(result.html)
                             {
-                                $('.linkrow').parents(".mb-1").remove();
                                 $('#newinput').append(result.html);
                             }
 
