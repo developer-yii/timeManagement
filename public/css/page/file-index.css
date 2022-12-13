@@ -2,6 +2,10 @@
      margin-left: 0px; 
 }
 
-table tr td:last-child {
+table tr td:nth-child(4) {
     display: flex;
+}
+
+#img-prv{
+    margin-bottom: 10px;
 }
