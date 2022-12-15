@@ -54,7 +54,7 @@ class SendWeeklyStudentReport extends Command
                 foreach($user->students as $student)
                 {             
                     $data = [];    
-                    $data['student'] = $student->first_name.' '.$student->last_name;   
+                    $data['student'] = ucfirst($student->first_name).' '.ucfirst($student->last_name);   
                     $data['start'] = $start;
                     $data['end'] = $end;
 
@@ -95,10 +95,11 @@ class SendWeeklyStudentReport extends Command
 
                     }   
                     $data['activities'] = $dataArray;
+                    $name = $data['student'];
 
                     $pdf = \PDF::loadView('pdf.weekly-student-report', $data);
                     $to_email = $user->email;
-                    Mail::to($to_email)->send(new SendWeeklyReportMail($pdf));
+                    Mail::to($to_email)->send(new SendWeeklyReportMail($pdf,$name));
 
                 }
             }            

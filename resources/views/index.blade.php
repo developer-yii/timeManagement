@@ -136,7 +136,7 @@
 		<script src="https://kit.fontawesome.com/7749c9f08a.js"></script>
 		
 		<!-- Custom jQuery -->
-		<script src="{{ asset('js/landing/scripts.js')}}"></script>
+		<script src="{{ asset('js/landing/scripts.js')}}?{{time()}}"></script>
 		
 		<!-- Scroll-Top button -->
 		<a href="#" class="scrolltotop"><i class="fas fa-angle-up"></i></a>

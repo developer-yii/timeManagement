@@ -103,5 +103,5 @@
 @endsection
 
 @section('pagejs')
-	<script src="{{asset('/js')}}/page/tnc.js"></script>
+	<script src="{{asset('/js')}}/page/tnc.js?{{time()}}"></script>
 @endsection

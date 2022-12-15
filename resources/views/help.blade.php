@@ -86,6 +86,22 @@
 		            	<li>Quickly see your hours and attendance by day, subject, and month.</li>
 						<li>** This is a great page to print out each week or month if you would like to keep an extra paper record.</li>																	
 					</ul>
+
+					<hr>
+
+					<p><h5>To modify your payment method.</h5></p>
+
+	            	<ul>
+		            	<li>Please login to our stripe dashboard using this link: <a href="{{env('STRIPE_USER_LINK','https://billing.stripe.com/p/login/test_4gwdTQ4vac3g4c8288')}}">Stripe Link</a></li>
+					</ul>
+
+					<hr>
+
+					<p><h5>To make changes or cancel a subscription.</h5></p>
+
+					<ul>
+		            	<li>Please contact customer service. <a href="mailto:href=mailto:name@email.com">info@homeschoolminutes.com</a></li>
+					</ul>
 					
 					
 	            </div>

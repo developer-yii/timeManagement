@@ -22,7 +22,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.min.css') }}" rel="stylesheet" id="app-style">
     <link href="{{ asset('css/icons.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}?{{time()}}" rel="stylesheet">
     @yield('css')
 </head>
 <body class="loading authentication-bg" data-layout-config='{"darkMode":false}'>

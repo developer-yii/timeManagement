@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/vendor/coloris.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/page/student-index.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/vendor/coloris.css') }}?{{time()}}" />
+    <link rel="stylesheet" href="{{ asset('css/page/student-index.css') }}?{{time()}}" />
 @endsection
 
 @section('content')
@@ -156,5 +156,5 @@ $lable = "Student";
 @endsection
 
 @section('pagejs')
-<script src="{{asset('/js')}}/page/student.js"></script>
+<script src="{{asset('/js')}}/page/student.js?{{time()}}"></script>
 @endsection

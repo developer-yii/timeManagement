@@ -133,5 +133,5 @@
 @endsection
 
 @section('pagejs')
-	<script src="{{asset('/js')}}/page/profile.js"></script>
+	<script src="{{asset('/js')}}/page/profile.js?{{time()}}"></script>
 @endsection

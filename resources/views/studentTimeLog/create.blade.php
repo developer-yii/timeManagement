@@ -188,7 +188,7 @@ $lable = "Student Time Log";
 
 @section('pagejs')
 
-<script src="{{asset('/js')}}/page/createTimeLog.js"></script>
+<script src="{{asset('/js')}}/page/createTimeLog.js?{{time()}}"></script>
 @endsection
 
 @section('css')

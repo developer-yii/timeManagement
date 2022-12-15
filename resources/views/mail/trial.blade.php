@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Your Homeschool Minutes Planner Subscription is Active</title>
+    <title>Welcome to your Homeschool Minutes Planner Trial</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -12,9 +12,9 @@
             <div class="col-xl-6 col-lg-6 col-sm-12 m-auto">
                 <p>Dear {{ucfirst($data['username'])}},</p>
                 <!-- <br/> -->
-                <p>Your subscription is active!</p>                
+                <p>Congratulations on your decision to try Homeschool Minutes Planner!</p>
+                <p>Our goal is to help parents keep track of important state requirements and schedules.  Even if your state doesn’t have specific requirements for attendance/hours our planner will still help you keep track of schedules, appointments, and subjects to make sure you’re offering a balanced education.</p>
                 <br/>
-                
                 <h3>Quick Start Links & Information:</h3>
                 <p style="font-size: 18px;">Login link to your Homeschool Minutes Planner.</p>
                 <h3><a href="{{$data['loginRoute']}}">Login</a></h3>                

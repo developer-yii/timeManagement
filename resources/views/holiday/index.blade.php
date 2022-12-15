@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/vendor/coloris.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/page/holiday-index.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/vendor/coloris.css') }}?{{time()}}" />
+    <link rel="stylesheet" href="{{ asset('css/page/holiday-index.css') }}?{{time()}}" />
 @endsection
 
 @section('content')
@@ -211,7 +211,7 @@
 @endsection
 
 @section('js')
-<script src="{{ asset('js/vendor/coloris.js') }}"></script>
+<script src="{{ asset('js/vendor/coloris.js') }}?{{time()}}"></script>
 <script>
     var apiUrl = "{{ route('holiday.list') }}";
     var detailUrl = "{{ route('holiday.detail') }}";
@@ -223,5 +223,5 @@
 @endsection
 
 @section('pagejs')
-<script src="{{asset('/js')}}/page/holiday.js"></script>
+<script src="{{asset('/js')}}/page/holiday.js?{{time()}}"></script>
 @endsection

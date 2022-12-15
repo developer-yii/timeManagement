@@ -399,5 +399,5 @@
 @endsection
 
 @section('pagejs')
-<script src="{{asset('/js')}}/page/home.js"></script>
+<script src="{{asset('/js')}}/page/home.js?{{time()}}"></script>
 @endsection

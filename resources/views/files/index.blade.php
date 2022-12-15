@@ -108,5 +108,5 @@ $lable = "Saved Photo/Uploads";
 @endsection
 
 @section('pagejs')
-<script src="{{asset('/js')}}/page/files.js"></script>
+<script src="{{asset('/js')}}/page/files.js?{{time()}}"></script>
 @endsection
