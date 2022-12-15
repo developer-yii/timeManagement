@@ -38,7 +38,7 @@ class SubscriptionController extends Controller
         $to_email = $user->email;
         $data = [
             'username' => $user->name,
-            'link' => env('STRIPE_USER_LINK','https://billing.stripe.com/p/login/test_4gwdTQ4vac3g4c8288')
+            'loginRoute' => route('login'),
         ];
         Mail::to($to_email)->send(new StripeLink($data));
         

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/vendor/coloris.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/vendor/coloris.css') }}?{{time()}}" />
 @endsection
 
 @section('content')
@@ -62,5 +62,5 @@ $lable = "User";
 @endsection
 
 @section('pagejs')
-    <script src="{{asset('/js')}}/page/users.js"></script>
+    <script src="{{asset('/js')}}/page/users.js?{{time()}}"></script>
 @endsection

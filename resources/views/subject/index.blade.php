@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/vendor/coloris.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/page/subject-index.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/vendor/coloris.css') }}?{{time()}}" />
+    <link rel="stylesheet" href="{{ asset('css/page/subject-index.css') }}?{{time()}}" />
 @endsection
 
 @section('content')
@@ -109,7 +109,7 @@ $lable = "Subject";
 @endsection
 
 @section('js')
-<script src="{{ asset('js/vendor/coloris.js') }}"></script>
+<script src="{{ asset('js/vendor/coloris.js') }}?{{time()}}"></script>
 <script>
     var apiUrl = "{{ route('subject.list') }}";
     var detailUrl = "{{ route('subject.detail') }}";
@@ -120,5 +120,5 @@ $lable = "Subject";
 @endsection
 
 @section('pagejs')
-<script src="{{asset('/js')}}/page/subject.js"></script>
+<script src="{{asset('/js')}}/page/subject.js?{{time()}}"></script>
 @endsection

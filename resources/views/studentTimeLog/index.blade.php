@@ -28,7 +28,7 @@ $lable = "Monthly Planner";
                     <button type="button" class="btn btn-green mb-2 add-new" data-bs-toggle="modal" data-bs-target="#add-modal"> Add Student Time/Activity</button>
                     <button type="button" class="btn btn-green mb-2 add-new-holiday" data-bs-toggle="modal" data-bs-target="#add-holiday-modal"> Add Holiday/Events</button>
                     <button type="button" class="btn btn-green" data-bs-toggle="modal" data-bs-target="#add-student-modal" title="Quick Add Names"> Add Names/Students </button>
-                    <button type="button" class="btn btn-green" data-bs-toggle="modal" data-bs-target="#add-subject-modal" title="Quick Add Subjects"> Add Subjects </button>
+                    <button type="button" class="btn btn-green" data-bs-toggle="modal" data-bs-target="#add-subject-modal" title="Quick Add Subjects"> Add Subjects/Activities </button>
                     <a href="javascript:void(0)" data-serialtip="student-tooltip" class="w-auto"><img src="{{asset('images/tooltip.png')}}" class="bulb-icon ml-0"></a>
                 </div>
                 <div class="row mb-2">
@@ -672,19 +672,19 @@ $lable = "Monthly Planner";
 
 @section('pagejs')
 <!-- third party js -->
-<script src="{{ asset('js/vendor/fullcalendar.min.js') }}"></script>
+<script src="{{ asset('js/vendor/fullcalendar.min.js') }}?{{time()}}"></script>
 <!-- third party js ends -->
 
 <!-- demo app -->
-<script src="{{ asset('js/vendor/demo.calendar.js') }}"></script>
+<script src="{{ asset('js/vendor/demo.calendar.js') }}?{{time()}}"></script>
 <!-- end demo js-->
 
-<script src="{{asset('/js')}}/page/studentTimeLog.js"></script>
+<script src="{{asset('/js')}}/page/studentTimeLog.js?{{time()}}"></script>
 @endsection
 
 @section('css')
     <!-- third party css -->
-    <link rel="stylesheet" href="{{ asset('css/vendor/coloris.css') }}" />
-    <link href="{{ asset('css/vendor/fullcalendar.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('css/page/student-time-log.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('css/vendor/coloris.css') }}?{{time()}}" />
+    <link href="{{ asset('css/vendor/fullcalendar.min.css') }}?{{time()}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/page/student-time-log.css') }}?{{time()}}" rel="stylesheet" type="text/css" />
 @endsection

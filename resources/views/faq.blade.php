@@ -21,10 +21,10 @@
 		<link rel="stylesheet" href="{{ asset('css/landing/bootstrap.css')}}" />
 		
 		<!-- Main StyleSheet -->
-		<link rel="stylesheet" href="{{ asset('css/landing/style.css')}}" />
+		<link rel="stylesheet" href="{{ asset('css/landing/style.css')}}?{{time()}}" />
 		
 		<!-- Responsive CSS -->
-		<link rel="stylesheet" href="{{ asset('css/landing/responsive.css')}}" />	
+		<link rel="stylesheet" href="{{ asset('css/landing/responsive.css')}}?{{time()}}" />	
 		
 	</head>
 	<body>
@@ -130,7 +130,7 @@
 		<script src="https://kit.fontawesome.com/7749c9f08a.js"></script>
 		
 		<!-- Custom jQuery -->
-		<script src="{{ asset('js/landing/scripts.js')}}"></script>
+		<script src="{{ asset('js/landing/scripts.js')}}?{{time()}}"></script>
 		
 		<!-- Scroll-Top button -->
 		<a href="#" class="scrolltotop"><i class="fas fa-angle-up"></i></a>

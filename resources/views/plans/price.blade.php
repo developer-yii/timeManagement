@@ -47,5 +47,5 @@
     var priceChangeUrl = "{{ route('subscription.price.change') }}";
 </script>
 
-<script src="{{asset('/js')}}/page/price-show.js?{{time()"></script>
+<script src="{{asset('/js')}}/page/price-show.js?{{time()}}"></script>
 @endsection

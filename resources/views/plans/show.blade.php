@@ -50,5 +50,5 @@
     var stripe = Stripe('{{ env("STRIPE_KEY") }}');
 
 </script>
-<script src="{{asset('/js')}}/page/plan-show.js?{{time()"></script>
+<script src="{{asset('/js')}}/page/plan-show.js?{{time()}}"></script>
 @endsection

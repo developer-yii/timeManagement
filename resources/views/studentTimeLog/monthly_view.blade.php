@@ -338,11 +338,11 @@ $lable = "Monthly Student Log";
 {{-- <script src="{{ asset('js/vendor/demo.timepicker.js') }}"></script> --}}
 <!-- end demo js-->
 
-<script src="{{asset('/js')}}/page/studentMonthlyLog.js"></script>
+<script src="{{asset('/js')}}/page/studentMonthlyLog.js?{{time()}}"></script>
 
 @endsection
 
 @section('css')
     <!-- page css -->    
-    <link href="{{ asset('css/page/monthlyview.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/page/monthlyview.css') }}?{{time()}}" rel="stylesheet" type="text/css" />
 @endsection

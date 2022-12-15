@@ -114,5 +114,5 @@ $lable = "Saved Links";
 @endsection
 
 @section('pagejs')
-<script src="{{asset('/js')}}/page/link.js"></script>
+<script src="{{asset('/js')}}/page/link.js?{{time()}}"></script>
 @endsection

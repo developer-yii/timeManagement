@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Plan;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TrialMail;
 use Auth;
 use Carbon\Carbon;
 
@@ -43,6 +45,14 @@ class PlanController extends Controller
         {
             $user->trial_ends_at = now()->addDays(14);
             $user->save();
+
+            // Email user a mail for trial
+            $to_email = $user->email;
+            $data = [
+                'username' => $user->name,
+                'loginRoute' => route('login'),
+            ];
+            Mail::to($to_email)->send(new TrialMail($data));
 
             // return redirect()->route('home')->with('success', 'You are now on 14 days trial period');
             return redirect()->route('student-time-log')->with('success', 'You are now on 14 days trial period');

@@ -56,5 +56,5 @@
 @endsection
 
 @section('pagejs')
-	<script src="{{asset('/js')}}/page/password.js"></script>
+	<script src="{{asset('/js')}}/page/password.js?{{time()}}"></script>
 @endsection

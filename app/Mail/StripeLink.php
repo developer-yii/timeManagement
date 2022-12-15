@@ -31,7 +31,7 @@ class StripeLink extends Mailable
     public function build()
     {
         return $this->from(env('MAIL_FROM_ADDRESS'))
-               ->subject('Homeschool Minutes: Stripe Dashboard link')
+               ->subject('Your Homeschool Minutes Planner Subscription is Active')
                ->view('mail.subscription')
                ->with(['data' => $this->data]);
                

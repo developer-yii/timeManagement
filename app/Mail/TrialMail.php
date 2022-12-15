@@ -7,23 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendWeeklyReportMail extends Mailable
+class TrialMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $pdf;
-
-    protected $name;
+    protected $data;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($pdf,$name)
+    public function __construct($data)
     {
-        $this->pdf = $pdf;
-        $this->name = $name;
+        $this->data = $data;
     }
 
     /**
@@ -33,11 +30,9 @@ class SendWeeklyReportMail extends Mailable
      */
     public function build()
     {
-        $subject = 'Weekly Homeschool Minutes Report for '.$this->name;
         return $this->from(env('MAIL_FROM_ADDRESS'))
-               ->subject($subject)
-               ->view('mail.weekly-report')
-               ->with(['name' => $this->name])
-               ->attachData($this->pdf->output(), 'homeschool_weekly_report.pdf');
+               ->subject('Welcome to your Homeschool Minutes Planner Trial')
+               ->view('mail.trial')
+               ->with(['data' => $this->data]);
     }
 }
