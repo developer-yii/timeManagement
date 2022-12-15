@@ -107,8 +107,8 @@ class StudentTimeLogController extends Controller
             {
                 $data[$i]['title'] = $hlist['note'].' ('.ucfirst($hlist['first_name']).' '.substr(ucfirst($hlist['last_name']),0,1).')';
             }
-            $data[$i]['start'] = date('Y-m-d',strtotime($hlist['start_date']));
-            $data[$i]['end'] = date('Y-m-d',strtotime($hlist['end_date'].'+ 1 day')); // 1 day added as fullcalender doesnt count endday
+            $data[$i]['start'] = date('Y-m-d',strtotime($hlist['event_date']));
+            $data[$i]['end'] = date('Y-m-d',strtotime($hlist['event_date'].'+ 1 day')); // 1 day added as fullcalender doesnt count endday
             // $data[$i]['className'] = 'bg-danger';    
             $data[$i]['holiday_id'] = $hlist['holiday_id'];
             if(!$hlist['event_color'])
