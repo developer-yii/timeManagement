@@ -25,6 +25,11 @@ $(document).ready(function() {
           themeMode: 'light', // light, dark, auto
         });
 
+        $('#event_date,#edit_event_date').datepicker({
+            format: "yyyy-mm-dd",
+            multidate: true,            
+        });
+
         $('.add-new').click(function(event) {
             $('.modal-lable-class').html('Add');
             $('#add-form')[0].reset();
@@ -171,8 +176,11 @@ $(document).ready(function() {
                     $('#edit-id').val(id);
                     $('#edit-modal').modal('show');
                     $('.modal-lable-class').html('Edit');
-                    $('#edit-form').find('#edit_start_date').val(result.data.start_date);
-                    $('#edit-form').find('#edit_end_date').val(result.data.end_date);
+                    // $('#edit-form').find('#edit_start_date').val(result.data.start_date);
+                    // $('#edit-form').find('#edit_end_date').val(result.data.end_date);
+                    $('#edit_event_date').datepicker('destroy');
+                    $('#edit_event_date').datepicker({ format: "yyyy-mm-dd", multidate: false,});
+                    $('#edit-form').find('#edit_event_date').val(result.data.event_date);
                     $('#edit-form').find('#edit_note').val(result.data.note);
                     $('#edit-form').find('#edit_event_color').val(result.data.event_color);
                     $('#edit_modal').html('');
@@ -223,8 +231,8 @@ $(document).ready(function() {
             columns: [
                 { data: 'first_name', name:'students.first_name' },
                 { data: 'last_name', name:'students.last_name' },
-                { data: 'start_date' },
-                { data: 'end_date' },
+                { data: 'event_date' },
+                // { data: 'end_date' },
                 { data: 'note' },
                 {
                     sortable: false,

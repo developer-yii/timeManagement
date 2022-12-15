@@ -136,3 +136,9 @@ function isSubscriptionActive()
         return true;
     }    
 }
+
+function dddd($data)
+{
+	print_r($data);
+	die;
+}

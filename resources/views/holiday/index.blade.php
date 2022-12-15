@@ -36,8 +36,8 @@
                             <tr>
                                 <th>First Name</th>
                                 <th>Last Name</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
+                                <th>Event Date</th>
+                                {{-- <th>End Date</th> --}}
                                 <th>Note</th>
                                 <th>Color</th>
                                 <th>Actions</th>
@@ -103,7 +103,7 @@
                     
                 </div>
 
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label for="start_date" class="control-label">Start Date:</label>
                     <input type="text" class="form-control date" id="start_date" data-provide="datepicker" data-single-date-picker="true" name="start_date" data-date-format="yyyy-mm-dd" data-date-autoclose="true">
                     <span class="error"></span>
@@ -112,6 +112,12 @@
                 <div class="mb-3">
                     <label for="name" class="control-label">End Date:</label>
                     <input type="text" class="form-control date" id="end_date" data-provide="datepicker" data-single-date-picker="true" name="end_date" data-date-format="yyyy-mm-dd">
+                    <span class="error"></span>
+                </div> --}}
+
+                <div class="mb-3">
+                    <label for="event_date" class="control-label">Date:</label>
+                    <input type="text" class="form-control date" id="event_date" data-provide="datepicker" name="event_date">
                     <span class="error"></span>
                 </div>
 
@@ -161,7 +167,7 @@
                     <span class="error student_id"></span>
                 </div>
 
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label for="edit_start_date" class="control-label">Start Date:</label>
                     <input type="text" class="form-control date" id="edit_start_date" data-provide="datepicker" data-single-date-picker="true" name="start_date" data-date-format="yyyy-mm-dd" data-date-autoclose="true">
                     <span class="error"></span>
@@ -170,6 +176,12 @@
                 <div class="mb-3">
                     <label for="edit_end_date" class="control-label">End Date:</label>
                     <input type="text" class="form-control date" id="edit_end_date" data-provide="datepicker" data-single-date-picker="true" name="end_date" data-date-format="yyyy-mm-dd">
+                    <span class="error"></span>
+                </div> --}}
+
+                <div class="mb-3">
+                    <label for="edit_event_date" class="control-label">Date:</label>
+                    <input type="text" class="form-control date" id="edit_event_date" data-provide="datepicker" name="event_date">
                     <span class="error"></span>
                 </div>
 

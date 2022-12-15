@@ -14,4 +14,8 @@ class Holiday extends Model
     use SoftDeletes;
     
     protected $table = 'student_holidays';
+
+    protected $fillable = [
+        'student_id', 'user_id', 'event_date','start_date','end_date','note','event_color','created_at'
+    ];
 }

@@ -121,7 +121,7 @@ $(document).ready(function() {
             }
         })
 
-        $('#log_date').datepicker({
+        $('#log_date,#event_date,#edit_event_date').datepicker({
             format: "yyyy-mm-dd",
             multidate: true,            
         });

@@ -91,8 +91,10 @@
                         success: function(result) {
                             $('#edit-modal').modal('show');
                             $('#edit-form').find('#edit-id').val(hId);
-                            $('#edit-form').find('#edit_start_date').val(result.data.start_date);
-                            $('#edit-form').find('#edit_end_date').val(result.data.end_date);
+                            $('#edit_event_date').datepicker('destroy');
+                            $('#edit_event_date').datepicker({ format: "yyyy-mm-dd", multidate: false,});
+                            $('#edit-form').find('#edit_event_date').val(result.data.event_date);
+                            // $('#edit-form').find('#edit_end_date').val(result.data.end_date);
                             $('#edit-form').find('#edit_note').val(result.data.note);
                             $('#edit-form').find('#edit_event_color').val(result.data.event_color);
                             $('#edit_modal').html('');

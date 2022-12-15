@@ -33,19 +33,21 @@ class HolidayController extends Controller
     {
         $data = Holiday::where('student_holidays.user_id',Auth::user()->id)
             ->leftjoin('students','students.id','=','student_holidays.student_id')
-            ->select('student_holidays.id','start_date','end_date','note','students.first_name','students.last_name','student_holidays.event_color');
+            ->select('student_holidays.id','event_date','note','students.first_name','students.last_name','student_holidays.event_color');
 
         return DataTables::eloquent($data)->toJson();
     }
 
     public function addupdate(Request $request)
     {
+        // dddd($request->all());
         if($request->ajax()) {
             $rules = array(
                 'student_id'=>'required',
-                'start_date'=>'required',
-                'end_date'=>'required',
+                'event_date'=>'required',
                 'note'=>'required'
+                // 'start_date'=>'required',
+                // 'end_date'=>'required',
             );
             $msg = '';
             $validator = Validator::make($request->all(), $rules);
@@ -57,18 +59,24 @@ class HolidayController extends Controller
 
                 if(is_array($request->student_id))
                 {                    
+                    $logDates = explode(",", $request->event_date);
                     foreach($request->student_id as $key => $studentId)
                     {
-                        $holiday = new Holiday;
-                        $holiday->student_id = $studentId;
-                        $holiday->start_date = date('Y-m-d',strtotime($request->start_date));
-                        $holiday->end_date = date('Y-m-d',strtotime($request->end_date));
-                        $holiday->user_id = Auth::user()->id;
-                        $holiday->event_color = $request->event_color;
-                        $holiday->note = $request->note;
-                        $holiday->created_at = Carbon::now();
-                        $holiday->updated_at = Carbon::now();
-                        $r = $holiday->save();
+
+                        foreach($logDates as $key =>$logDate)
+                        {
+                            $holiday = new Holiday;
+                            $holiday->student_id = $studentId;
+                            // $holiday->start_date = date('Y-m-d',strtotime($request->start_date));
+                            // $holiday->end_date = date('Y-m-d',strtotime($request->end_date));
+                            $holiday->event_date = date('Y-m-d',strtotime($logDate));
+                            $holiday->user_id = Auth::user()->id;
+                            $holiday->event_color = $request->event_color;
+                            $holiday->note = $request->note;
+                            $holiday->created_at = Carbon::now();
+                            $holiday->updated_at = Carbon::now();
+                            $r = $holiday->save();
+                        }
                     }
                 }
                 else{
@@ -84,17 +92,23 @@ class HolidayController extends Controller
 
                     //     foreach($request->student_id as $key => $studentId)
                     //     {
+                    $logDates = explode(",", $request->event_date);
+
+                        foreach($logDates as $key =>$logDate)
+                        {
                             $holiday = new Holiday;
                             // $holiday->student_id = $studentId;
                             $holiday->student_id = 0;
-                            $holiday->start_date = date('Y-m-d',strtotime($request->start_date));
-                            $holiday->end_date = date('Y-m-d',strtotime($request->end_date));
+                            // $holiday->start_date = date('Y-m-d',strtotime($request->start_date));
+                            // $holiday->end_date = date('Y-m-d',strtotime($request->end_date));
+                            $holiday->event_date = date('Y-m-d',strtotime($logDate));
                             $holiday->user_id = Auth::user()->id;
                             $holiday->event_color = $request->event_color;
                             $holiday->note = $request->note;
                             $holiday->created_at = Carbon::now();
                             $holiday->updated_at = Carbon::now();
                             $r = $holiday->save();
+                        }
                         // }
                     // }
                 }
@@ -118,8 +132,9 @@ class HolidayController extends Controller
     {
         if($request->ajax()) {
             $rules = array(
-                'start_date'=>'required',
-                'end_date'=>'required',
+                // 'start_date'=>'required',
+                // 'end_date'=>'required',
+                'event_date'=>'required',
                 'note'=>'required'
             );
             $msg = '';
@@ -134,13 +149,14 @@ class HolidayController extends Controller
                     if($model)
                     {
                         $holiday = $model;
-                        $holiday->start_date = date('Y-m-d',strtotime($request->start_date));
-                        $holiday->end_date = date('Y-m-d',strtotime($request->end_date));
+                        // $holiday->start_date = date('Y-m-d',strtotime($request->start_date));
+                        // $holiday->end_date = date('Y-m-d',strtotime($request->end_date));
+                        $holiday->event_date = date('Y-m-d',strtotime($request->event_date));
                         $holiday->user_id = Auth::user()->id;
                         $holiday->event_color = $request->event_color;
                         $holiday->note = $request->note;
-                        $holiday->created_at = Carbon::now();
-                        $holiday->updated_at = Carbon::now();
+                        // $holiday->created_at = Carbon::now();
+                        // $holiday->updated_at = Carbon::now();
                         $r = $holiday->save();
                     }
                     else{
