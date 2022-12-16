@@ -209,13 +209,13 @@ var optionsColumnCoreNonCore = {
         var chart3 = new ApexCharts(document.querySelector("#core-nonCore"), optionsColumnCoreNonCore);
         chart3.render();
 
-var coreSubjectsColumnColors = [];
+var coreSubjectsColumnColors = ['#41c1e0'];
 // var colorArray = ['#61ba61','#f4a261','#20b6da','#fa5c7c','#61ba61','#b883c2']
-var colorArray = ['#61ba61'];
-for(var i = 0; i < coreSubjectsColumn.length; i++)
-{
-  coreSubjectsColumnColors.push(colorArray[Math.floor(Math.random() * colorArray.length)]);  
-}
+// var colorArray = ['#61ba61'];
+// for(var i = 0; i < coreSubjectsColumn.length; i++)
+// {
+//   coreSubjectsColumnColors.push(colorArray[Math.floor(Math.random() * colorArray.length)]);  
+// }
 var optionscoreSubjectsColumn = {
           series: [{
             name: "hours",
@@ -257,12 +257,12 @@ var optionscoreSubjectsColumn = {
         var chart4 = new ApexCharts(document.querySelector("#core-subjects"), optionscoreSubjectsColumn);
         chart4.render();
 
-var nonCoreSubjectsColumnColors = [];
-for(var i = 0; i < coreSubjectsColumn.length; i++)
-{
-  // nonCoreSubjectsColumnColors.push(randomColor());
-  nonCoreSubjectsColumnColors.push(colorArray[Math.floor(Math.random() * colorArray.length)]);
-}
+var nonCoreSubjectsColumnColors = ['#eccd84'];
+// for(var i = 0; i < coreSubjectsColumn.length; i++)
+// {
+//   // nonCoreSubjectsColumnColors.push(randomColor());
+//   nonCoreSubjectsColumnColors.push(colorArray[Math.floor(Math.random() * colorArray.length)]);
+// }
 var optionscoreSubjectsColumn = {
           series: [{
             name: "hours",

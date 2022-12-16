@@ -51,10 +51,11 @@ $lable = "Monthly Planner";
                                <div class="d-flex align-items-center">
                                    <label for="subject-select" class="me-2">Student</label>
                                    <select class="form-select" id="student-select" name="st">
-                                       <option value="0" @if(empty($student)) selected @endif>Choose...</option>
+                                       <option value="" @if(empty($student)) selected @endif>Choose...</option>
                                         @foreach($student_list as $key => $value)
                                             <option value="{{$key}}" @if($student == $key) selected @endif>{{$value}}</option>
                                         @endforeach
+                                        <option value="0" @if($student == '0') selected @endif>All</option>
                                    </select>
                                </div>
                            </div>
