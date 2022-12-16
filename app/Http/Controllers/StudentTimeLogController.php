@@ -32,9 +32,14 @@ class StudentTimeLogController extends Controller
         $conditionHoliStu = [];
         
         if($request->st)
-        {            
+        {   
             $conditionHoliStu[] = ['student_holidays.student_id','=' ,$request->st];            
-        }        
+        }
+        elseif($request->st == '0')
+        {
+            $conditionHoliStu[] = ['student_holidays.student_id','=' ,$request->st];   
+        }
+
 
         $user_id = Auth::user()->id;
 
