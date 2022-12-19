@@ -668,6 +668,7 @@ $lable = "Monthly Planner";
     var addHolidayUrl = $('#add-holiday-form').attr('action');
     var linkhtml = $('.linkrow').html();
     var page_reload = false;
+    var sesMessage = "{{ session()->get('success') }}";
 </script>
 @endsection
 

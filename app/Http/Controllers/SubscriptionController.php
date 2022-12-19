@@ -32,6 +32,10 @@ class SubscriptionController extends Controller
 
         $user = Auth::user();
         $user->is_sub_cancel = 0;
+        if($user->onTrial())
+        {
+            $user->trial_ends_at = now();
+        }
         $user->save();
 
         // Email user a stripe link

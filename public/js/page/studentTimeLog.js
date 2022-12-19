@@ -23,6 +23,11 @@ $(document).ready(function() {
         var msgElement = $('#add_error_message');
         var editmsgElement = $('#edit_error_message');     
 
+        if(sesMessage)
+        {
+            show_toast(sesMessage, 'success');
+        }
+
         $(function(){
             $('[data-serialtip]').serialtip();
         });   
@@ -272,6 +277,10 @@ $(document).ready(function() {
                             $('#add-subject-modal').modal('hide');
                             show_toast(result.message, 'success');
                         }, 300);
+
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1500);
 
                         $('.error').html("");                        
 
