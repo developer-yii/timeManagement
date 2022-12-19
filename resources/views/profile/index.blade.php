@@ -59,10 +59,12 @@
         @if($user->onTrial())
             <div class="col-12 font-bold">Trial Subscription: <span class="badge badge-success-lighten">Active</span></div>
             <div>Trial Ends At: <span class="badge badge-dark-lighten rounded-pill">{{ $user->trial_ends_at }}</span></div>
+            <div><a href="{{ route('plans.index') }}" class="btn btn-success mt-2">Subscribe Here</a></div>
         @elseif(!$user->is_sub_cancel)
             <div class="col-12">
                 <span><h3><span class="badge badge-success-lighten">{{ (isSubscriptionActive())?"Active":"Inactive"}}</span></h3></span>
             </div>
+
             <div class="col-12">
                 <button class="btn btn-sm btn-danger cancel-sub" >Cancel Subscription</button>
             </div>
@@ -87,6 +89,11 @@
             </div>
             <div class="col-12">
                 <span>********{{$user->pm_last_four}}</span>
+            </div>
+            
+            <div class="col-12 mt-2">
+                <p>To modify your payment method.
+                Please login to our stripe dashboard using this link: <a href="{{ env('STRIPE_USER_LINK')}}" target="_blank">Stripe Link</a></p>
             </div>
         
         @endif

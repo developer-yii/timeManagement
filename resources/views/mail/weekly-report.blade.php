@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-xl-6 col-lg-6 col-sm-12 m-auto">
                 <p>Hello,</p>                
-                <p>Please find attached the CTCMath Weekly Report you requested for {{ $name }}</p>
+                <p>Please find attached the Homeschool Minutes Weekly Report you requested for {{ $name }}</p>
                 
                 <p>This report contains:</p>
                 <ul>
