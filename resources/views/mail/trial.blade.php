@@ -13,7 +13,7 @@
                 <p>Dear {{ucfirst($data['username'])}},</p>
                 <!-- <br/> -->
                 <p>Congratulations on your decision to try Homeschool Minutes Planner!</p>
-                <p>Our goal is to help parents keep track of important state requirements and schedules.  Even if your state doesn’t have specific requirements for attendance/hours our planner will still help you keep track of schedules, appointments, and subjects to make sure you’re offering a balanced education.</p>
+                <p>This is a great way to keep track of schedules, appointments, school work, hours, and attendance for yourself or for state requirements.</p>
                 <br/>
                 <h3>Quick Start Links & Information:</h3>
                 <p style="font-size: 18px;">Login link to your Homeschool Minutes Planner.</p>
