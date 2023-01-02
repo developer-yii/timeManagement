@@ -219,7 +219,7 @@ $(document).ready(function() {
             event.preventDefault();
             var $this = $(this);
             $.ajax({
-                url: addStudentUr,
+                url: addStudentUrl,
                 type: 'POST',
                 data: $('#add-student-form').serialize(),
                 dataType: 'json',
