@@ -39,10 +39,25 @@ $(document).ready(function() {
 		}
 	}
 
+	function color_type_change() {
+		var card_color = $('input[name="card_color"]:checked').val();
+
+		if (card_color == 1) {
+			$('.v-card').css('background', '#1e541c');
+		} else {
+			$('.v-card').css('background', '#40a3a3');
+		}
+	}
+
 	card_type_change();
+	color_type_change();
 
 	$('input[type=radio][name=card_type]').change(function() {
 		card_type_change();
+	});
+
+	$('input[type=radio][name=card_color]').change(function() {
+		color_type_change();
 	});
 
 	$('body').on('click', '.update_preview', function() {

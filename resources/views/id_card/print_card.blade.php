@@ -23,9 +23,17 @@
 </head>
 <body>
 	@if ($data->card_type == 1)
-		<img src="{{ asset('card/img/card-bg-student.png') }}" />
+		@if ($data->card_color == 1)
+			<img src="{{ asset('card/img/card-green-student.png') }}" />
+		@else
+			<img src="{{ asset('card/img/card-aqua-student.png') }}" />
+		@endif
 	@else
-		<img src="{{ asset('card/img/card-bg-teacher.png') }}" />
+		@if ($data->card_color == 1)
+			<img src="{{ asset('card/img/card-green-teacher.png') }}" />
+		@else
+			<img src="{{ asset('card/img/card-aqua-teacher.png') }}" />
+		@endif
 	@endif
 
 	<p style="position: absolute; left: 350px; top:34px; font-size: 32px; color: #fff !important; text-align: right; line-height: 20px;">{{ $data->school_name }}</p>
