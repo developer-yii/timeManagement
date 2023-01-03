@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\IdCardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,11 @@ Route::get('/home', 'HomeController@index')->name('home1');
 Route::get('/tnc', [RegisterController::class, 'tnc'])->name('tnc');
 Route::get('/index', [SiteController::class, 'index'])->name('index');
 // Route::get('/faq', [SiteController::class, 'faq'])->name('faq');
-
+Route::get('/id-card', [IdCardController::class, 'id_card'])->name('id_card');
+Route::post('/idcard_form', [IdCardController::class, 'idcard_form'])->name('idcard_form');
+Route::get('/preview-card/{id?}', [IdCardController::class, 'preview_card'])->name('preview_card');
+Route::get('/print-card/{id}', [IdCardController::class, 'print_card'])->name('print_card');
+Route::post('/print_canvas', [IdCardController::class, 'print_canvas'])->name('print_canvas');
 
 Route::middleware(['auth'])->group(function () {
     
