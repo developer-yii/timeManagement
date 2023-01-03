@@ -155,7 +155,7 @@
 											</span>
 
 											<div class="button-center">
-												<input type="submit" name="asubmitbutton" value="Display Printable Page" class="display_printable_page select_card_type">
+												<input type="submit" name="asubmitbutton" value="Display Printable Page" class="display_printable_page select_card_type btn btn-success">
 						 					</div>
 										</div>
 									</div>
@@ -177,19 +177,19 @@
 											</div>
 										</div>
 
-										{{-- <div class="row">
+										<div class="row">
 											<div class="column">
 												<div class="checkbox">
-													<input type="radio" name="card_color" id="color-magenta" checked="" value="1" class="toggle_appropriate_fields">
-													<label for="color-magenta">&nbsp;MAGENTA</label>
+													<input type="radio" name="card_color" id="color-green" checked="" value="1" class="toggle_appropriate_fields">
+													<label for="color-green" style="display: inline; margin-bottom: 0 !important;">&nbsp;GREEN</label>
 
 													<span class="spacer"></span>
 
-													<input type="radio" name="card_color" id="color-blue" value="2" class="toggle_appropriate_fields">
-													<label for="color-blue">&nbsp;BLUE</label>
+													<input type="radio" name="card_color" id="color-aqua" value="2" class="toggle_appropriate_fields">
+													<label for="color-aqua" style="display: inline; margin-bottom: 0 !important;">&nbsp;AQUA</label>
 												</div>
 											</div>
-										</div> --}}
+										</div>
 
 										<div class="row">
 											<div class="one-half column">
@@ -300,7 +300,7 @@
 
 											<div class="one-half column">
 												<div>
-													<input type="submit" name="asubmitbutton" class="update_preview" value="Update Preview">
+													<input type="submit" name="asubmitbutton" class="update_preview btn btn-success" value="Update Preview">
 												</div>
 												<p></p>
 											</div>

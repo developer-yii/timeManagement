@@ -9,6 +9,7 @@ use Auth;
 use DB;
 use Carbon\Carbon;
 use App\Models\IdCard;
+use File;
 
 class IdCardController extends Controller
 {
@@ -51,7 +52,7 @@ class IdCardController extends Controller
 		        	$idcard = new IdCard;
 		        	$idcard->id_number = $request->id_number;
 		        	$idcard->card_type = $request->card_type;
-		        	// $idcard->card_color = $request->card_color;
+		        	$idcard->card_color = $request->card_color;
 		        	$idcard->school_name = $request->school_name;
 		        	$idcard->school_year = $request->school_year;
 		        	$idcard->student_grade = $request->student_grade;
@@ -68,7 +69,10 @@ class IdCardController extends Controller
 
 		        	if ($request->hasFile('display_photo')) {
 	                    if ($idcard->display_photo != '') {
-	                        if (file_exists(public_path('uploads/idcard_photo') . $idcard->display_photo)) {
+	                    	$file_path = public_path('uploads/idcard_photo') . $idcard->display_photo;
+	                    	File::makeDirectory($file_path, $mode = 0777, true, true);
+
+	                        if (file_exists($file_path)) {
 	                            unlink(public_path('uploads/idcard_photo') . $idcard->display_photo);
 	                        }
 	                    }          
