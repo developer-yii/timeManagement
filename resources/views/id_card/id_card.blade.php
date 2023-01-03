@@ -26,6 +26,11 @@
 	<link rel="stylesheet" href="{{ asset('css/custom.css')}}" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 	<link href="{{ asset('card/css/style.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/app.min.css') }}" rel="stylesheet" id="app-style">
+	<!-- third party css -->
+    <link href="{{ asset('css/vendor/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/vendor/jquery.serialtip.css') }}" rel="stylesheet" type="text/css" />
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
 </head>
@@ -51,12 +56,6 @@
 							@csrf
 							<input type="hidden" name="id" value="" id="edit-id">
 							<input type="hidden" name="form_type" class="form_type" value="submit">
-							{{-- <input type="hidden" name="Itemid" id="Itemid" value="416">
-							<input type="hidden" name="option" id="option" value="com_hsbc_id_test">
-							<input type="hidden" name="task" id="task" value="update">
-							<input type="hidden" name="need_image_upload" id="need_image_upload" value="0">
-							<input type="hidden" name="student_id" id="student_id" value="966851">
-							<input type="hidden" name="validate_mode" id="validate_mode" value="all"> --}}
 
 							<div class="row" style="padding-left:10px;padding-top:30px;">
 								<div class="one-third column photo-id">
@@ -143,12 +142,6 @@
 														<img src="{{ asset('card/img/home-logo.png') }}" style="height: 28px;" />
 													</div>
 												</div>
-												{{-- <img src="https://www.homeschoolbuyersclub.com/images/stories/hsbc_id/tmp/1672478026-1.png" width="326" height="205" border="0">
-												<div class="img_dob" style="position:absolute;left:135px;top:97px;font-family:Arial;font-size:9pt;font-weight:bold"></div>
-												<div class="img_grade" align="center" style="width:40px;position:absolute;left:275px;top:127px;font-family:Arial;font-size:20pt;font-weight:bold">P</div>
-												<div class="img_teacher_name" style="position:absolute;left:135px;top:143px;font-family:Arial;font-size:9pt;font-weight:bold"></div>
-												<div class="img_student_name" style="position:absolute;left:135px;top:52px;font-family:Arial;font-size:9pt;font-weight:bold"></div>
-												<div style="position:absolute;left:274px;top:52px;font-family:Arial;font-size:9pt;font-weight:bold">{{ random_int(100000, 999999); }}</div> --}}
 											</div>
 										</span>
 									</div>
@@ -170,18 +163,6 @@
 
 								<div class="two-thirds column photo-id">
 									<div id="id_card_form">
-										{{-- <div class="row">
-											<table>
-												<tbody>
-													<tr style="background:white" id="errors" class="hidden">
-														<td colspan="4" style="padding: 0px;">
-															<ul class="errors"></ul>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div> --}}
-
 										<div class="row">
 											<div class="column">
 												<div class="checkbox">
@@ -264,14 +245,14 @@
 											</div>
 
 											<div class="one-half column">
-												<input type="text" name="dob" id="dob" class="id_data_field disable_for_teacher form-control" size="10" value="" placeholder="Date Of Birth (MM/DD/YY)">
+												<input type="text" name="dob" id="dob" class="id_data_field disable_for_teacher form-control" size="10" value="" placeholder="Date Of Birth (MM/DD/YY)" data-provide="datepicker" autocomplete="off">
 												<span class="error"></span>
 											</div>
 										</div>
 
 										<div class="row">
 											<div class="column">
-												<input type="text" name="phone_number" id="phone_number" class="id_data_field disable_for_student form-control" size="15" value="" placeholder="Phone Number">
+												<input type="number" name="phone_number" id="phone_number" class="id_data_field disable_for_student form-control" size="15" value="" placeholder="Phone Number">
 												<span class="error"></span>
 											</div>
 										</div>
@@ -313,15 +294,7 @@
 
 										<div class="row">
 											<div class="one-half column">
-												{{-- <input type="button" name="upload_image" id="upload_image" value="Browse"> --}}
 												<input type="file" name="display_photo" id="display_photo" accept="image/png, image/gif, image/jpeg" onchange="document.getElementById('preview_card_img').src = window.URL.createObjectURL(this.files[0])">
-												{{-- <div id="id_file_name_container" class="highlight_error_container">
-													<input type="hidden" name="id_file_name" id="id_file_name" class="id_data_field" value="">
-													<span id="file_name_string"></span>
-													<div>
-														<input type="button" name="upload_image" id="upload_image" value="Browse" class="   ">
-													</div>
-												</div> --}}
 												<span class="error"></span>
 											</div>
 
@@ -366,10 +339,14 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 
+	<script src="{{ asset('js/vendor.min.js') }}"></script>
+	<script src="{{ asset('js/app.min.js') }}"></script>
+
 	<script type="text/javascript">
 		var addUrl = "{{ route('idcard_form') }}";
 		var previewCardUrl = "{{ route('preview_card') }}";
 		var isPrint = false;
+		var isCard = true;
 	</script>
 
 	<script src="{{ asset('js/page/id-card.js') }}"></script>

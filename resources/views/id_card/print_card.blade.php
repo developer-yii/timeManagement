@@ -30,7 +30,7 @@
 
 	<p style="position: absolute; left: 350px; top:34px; font-size: 32px; color: #fff !important; text-align: right; line-height: 20px;">{{ $data->school_name }}</p>
 
-	<img src="{{ asset('uploads/idcard_photo/'.$data->display_photo) }}" style="max-height: 247px; position: absolute; left: 45px; top:105px;">
+	<img src="{{ asset('uploads/idcard_photo/'.$data->display_photo) }}" style="max-height: 247px; position: absolute; left: 45px; top:105px; max-width: 230px !important;">
 
 	<p style="position: absolute; left: 289px; top:155px; font-weight: 700; font-size: 20px; max-height: 40px;">@if ($data->card_type == 1) {{ $data->student_name }} @else {{ $data->teacher_name }} @endif</p>
 
@@ -50,6 +50,7 @@
 
 	<script type="text/javascript">
 		var isPrint = true;
+		var isCard = false;
 	</script>
 
 	<script src="{{ asset('js/page/id-card.js') }}"></script>

@@ -112,6 +112,7 @@
 
 	<script type="text/javascript">
 		var isPrint = false;
+		var isCard = false;
 	</script>
 
 	<script src="{{ asset('js/page/id-card.js') }}"></script>

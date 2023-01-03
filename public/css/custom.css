@@ -286,7 +286,7 @@ span.file a[href$=".txt"] {
   }
 }
 
-#id_card_form input[type="text"], #id_card_form select {
+#id_card_form input[type="text"], #id_card_form select, #id_card_form input[type="number"] {
   font-size: 0.8em;
   margin: 10px 0;
 }

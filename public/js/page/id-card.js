@@ -1,4 +1,11 @@
 $(document).ready(function() {
+	if (isCard) {
+		$('#dob').datepicker({
+	        format: "mm-dd-yy",
+	        autoclose: true,
+	    });
+	}
+
 	// var element = $('#print-v-card');
 	if (isPrint) {
 		window.print();
