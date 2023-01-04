@@ -8,7 +8,7 @@
          url('../fonts/CenturyGothic.svg#CenturyGothic') format('svg');
 }
 
-body{font-family: 'CenturyGothic', sans-serif; font-weight: 400; font-size:16px; color:#000; line-height:20px; background:#fff;}
+body{font-family: 'CenturyGothic', sans-serif; font-weight: 400; font-size:17px; color:#000; line-height:20px; background:#fff;}
 img{max-width:100%;}
 h1,h2,h3,h4,h5,h6{margin:0; padding:0; font-family: 'CenturyGothic', sans-serif;}
 h2{font-size:40px; font-weight:600; color:#333; margin-bottom:30px;}
@@ -19,7 +19,7 @@ label{color:#333; font-weight:400; display:block; font-size:13px;}
 lable span{color:#333;}
 .btn-primary{font-size: 16px; font-weight: 600; color: #fff; padding: 16px 24px; box-shadow: none; background: #dde0e1; border-radius: 16px; position:relative; border: 0;}
 
-.v-card{width:730px; height: 460px; background:#1e541c; margin:0 auto; position:relative;}
+.v-card{width:730px; height: 460px; background:#023047; margin:0 auto; position:relative;}
 .v-card:before{content:""; display:block; position:absolute; top:0; left:0; width:90px; height:100%; z-index:1;}
 .v-card:after{content:""; background:#dde0e1; display:block; position:absolute; top:0; right:0; width:calc(100% - 80px); height:100%; z-index:1;}
 .v-card .top{position:relative; z-index:11;}
@@ -75,4 +75,10 @@ img{max-width:100%;}
 
 @media(max-width:730px){
 	
+}
+
+.display_printable_page, .update_preview {
+    background-color: #61ba61 !important;
+    border-color: #61ba61 !important;
+    box-shadow: 0 2px 6px 0 rgb(129 219 129 / 50%) !important;
 }
