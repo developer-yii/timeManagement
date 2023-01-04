@@ -3,6 +3,7 @@ $(document).ready(function() {
 		$('#dob').datepicker({
 	        format: "mm-dd-yy",
 	        autoclose: true,
+	        todayHighlight: true,
 	    });
 	}
 
@@ -30,35 +31,57 @@ $(document).ready(function() {
 
 			$('.hide_for_student').hide();
 			$('.hide_for_teacher').show();
+
+			$('.dp_teacher').hide();
+			$('.dp_student').show();
 		} else {
 			$('.disable_for_student').attr('disabled', false);
 			$('.disable_for_teacher').attr('disabled', true);
 
 			$('.hide_for_student').show();
 			$('.hide_for_teacher').hide();
+
+			$('.dp_teacher').show();
+			$('.dp_student').hide();
 		}
 	}
 
-	function color_type_change() {
-		var card_color = $('input[name="card_color"]:checked').val();
+	// function color_type_change() {
+	// 	var card_color = $('input[name="card_color"]:checked').val();
 
-		if (card_color == 1) {
-			$('.v-card').css('background', '#1e541c');
-		} else {
-			$('.v-card').css('background', '#40a3a3');
-		}
-	}
+	// 	if (card_color == 1) {
+	// 		$('.v-card').css('background', '#1e541c');
+	// 	} else {
+	// 		$('.v-card').css('background', '#40a3a3');
+	// 	}
+	// }
 
 	card_type_change();
-	color_type_change();
+	// color_type_change();
 
 	$('input[type=radio][name=card_type]').change(function() {
 		card_type_change();
 	});
 
-	$('input[type=radio][name=card_color]').change(function() {
-		color_type_change();
-	});
+	// $('input[type=radio][name=card_color]').change(function() {
+	// 	color_type_change();
+	// });
+
+	$('#phone_number').keydown(function (e) {
+       	var key = e.charCode || e.keyCode || 0;
+       	$text = $(this);
+
+       	if (key !== 8 && key !== 9) {
+           	if ($text.val().length === 3) {
+               	$text.val($text.val() + '-');
+           	}
+
+           	if ($text.val().length === 7) {
+               	$text.val($text.val() + '-');
+           	}
+       	}
+       	return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+   	});
 
 	$('body').on('click', '.update_preview', function() {
 		$('.form_type').val('preview');
@@ -94,23 +117,49 @@ $(document).ready(function() {
 
 	                    window.location.href = previewCardUrl+'/'+result.data.id;
 	                } else {
+	                	$('.left_loader').show();
 	                	$('.error').html("");
 	                	$('.school_card').text(result.data.school_name);
 	                	$('.year_card').text(result.data.school_year);
-	                	$('.middle').find('.left').hide();
+	                	// $('.middle').find('.left').hide();
+	                	$('.student_img_card').remove();
+	                	$('.teacher_img_card').remove();
 	                	$('.append_card_img').show();
 
 	                	if (result.data.card_type == '1') {
-	                		// $('.student_img_card').attr('src', '');
 	                		$('.student_name_card').text(result.data.student_name);
 	                		$('.dob_card').text(result.data.dob);
 	                		$('.educator_card').text(result.data.teacher_name);
 	                		$('.grade_card').text(result.data.student_grade);
 	                	} else {
+	                		var address1 = "";
+	                		if (result.data.address1) {
+	                			address1 = result.data.address1;
+	                		}
+
+	                		var address2 = "";
+	                		if (result.data.address2) {
+	                			address2 = result.data.address2;
+	                		}
+
+	                		var city = "";
+	                		if (result.data.city) {
+	                			city = result.data.city;
+	                		}
+
 	                		$('.teacher_name_card').text(result.data.teacher_name);
-	                		$('.address_card').text(result.data.address1+' '+result.data.address2+', '+result.data.city);
+	                		$('.address_card').text(address1+' '+address2+', '+city);
 	                		$('.phone_card').text(result.data.phone_number);
 	                	}
+
+	                	$('#html2canvas').show();
+	                	var container = document.getElementById("html2canvas");
+		                html2canvas(container, { allowTaint: true,backgroundColor:null }).then(function (canvas) {
+		                    var dataURL = canvas.toDataURL();
+		                    $('#html2canvas').hide();
+		                    $('.static_img').html('<img src="'+dataURL+'">');
+		                    $('.left_loader').hide();
+		                });
 	                }
                 } else {
                     first_input = "";

@@ -225,13 +225,13 @@ span.file a[href$=".txt"] {
 
 @media (min-width: 720px) {
   .column, .columns {
-    margin-left: 4%;
+/*    margin-left: 4%;*/
   }
 }
 
 .centerAlign {
   margin: auto;
-  width: 75%;
+  width: 80%;
   padding: 10px;
 }
 
@@ -241,7 +241,7 @@ span.file a[href$=".txt"] {
 }
 
 .hsbcid-header {
-  color: #F53240 !important;
+  color: #2dc33b !important;
 }
 
 .hsbcid-header span:first-child {
@@ -273,6 +273,7 @@ span.file a[href$=".txt"] {
 
 #id_card_form label {
   font-size: 0.9em;
+  color: #707070;
 }
 
 #id_card_form .spacer {
@@ -282,7 +283,7 @@ span.file a[href$=".txt"] {
 
 @media (min-width: 720px) {
   .one-half.column {
-    width: 48%;
+    width: 50%;
   }
 }
 
@@ -292,7 +293,7 @@ span.file a[href$=".txt"] {
 }
 
 #id_card_form select {
-  border-radius: 25px;
+/*  border-radius: 25px;*/
 }
 
 #id_card_form .upload p {
