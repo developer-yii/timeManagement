@@ -103,12 +103,12 @@
 
 																<div class="text-field hide_for_teacher">
 																	<span class="label">DATE OF BIRTH</span>
-																	<p class="dob_card">02/03/14</p>
+																	<p class="dob_card">02/03/2014</p>
 																</div>
 
 																<div class="text-field hide_for_student">
 																	<span class="label">ADDRESS</span>
-																	<p class="address_card" style="width: 200%;">1296 Farmton Lane Hills, NY 63251</p>
+																	<p class="address_card" style="width: 200%; overflow: unset;">1296 Farmton Lane Hills, NY 63251</p>
 																</div>
 
 																<div class="text-field mb0 hide_for_teacher">
@@ -215,7 +215,7 @@
 											</div>
 
 											<div class="one-half column">
-												<input type="text" name="dob" id="dob" class="id_data_field disable_for_teacher form-control" size="10" value="" placeholder="Date Of Birth (MM/DD/YY)" data-provide="datepicker" autocomplete="off">
+												<input type="text" name="dob" id="dob" class="id_data_field disable_for_teacher form-control" size="10" value="" placeholder="Date Of Birth (MM/DD/YYYY)" data-provide="datepicker" autocomplete="off">
 												<span class="error"></span>
 											</div>
 										</div>
