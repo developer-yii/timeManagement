@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	if (isCard) {
 		$('#dob').datepicker({
-	        format: "mm-dd-yy",
+	        format: "mm/dd/yyyy",
 	        autoclose: true,
 	        todayHighlight: true,
 	    });
