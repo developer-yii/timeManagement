@@ -117,11 +117,11 @@ $(document).ready(function() {
 
 	                    window.location.href = previewCardUrl+'/'+result.data.id;
 	                } else {
-	                	$('.left_loader').show();
+	                	// $('.left_loader').show();
 	                	$('.error').html("");
 	                	$('.school_card').text(result.data.school_name);
 	                	$('.year_card').text(result.data.school_year);
-	                	// $('.middle').find('.left').hide();
+	                	$('.middle').find('.left').hide();
 	                	$('.student_img_card').remove();
 	                	$('.teacher_img_card').remove();
 	                	$('.append_card_img').show();
@@ -152,14 +152,14 @@ $(document).ready(function() {
 	                		$('.phone_card').text(result.data.phone_number);
 	                	}
 
-	                	$('#html2canvas').show();
-	                	var container = document.getElementById("html2canvas");
-		                html2canvas(container, { allowTaint: true,backgroundColor:null }).then(function (canvas) {
-		                    var dataURL = canvas.toDataURL();
-		                    $('#html2canvas').hide();
-		                    $('.static_img').html('<img src="'+dataURL+'">');
-		                    $('.left_loader').hide();
-		                });
+	                	// $('#html2canvas').show();
+	                	// var container = document.getElementById("html2canvas");
+		                // html2canvas(container, { allowTaint: true,backgroundColor:null }).then(function (canvas) {
+		                //     var dataURL = canvas.toDataURL();
+		                //     $('#html2canvas').hide();
+		                //     $('.static_img').html('<img src="'+dataURL+'">');
+		                //     $('.left_loader').hide();
+		                // });
 	                }
                 } else {
                     first_input = "";

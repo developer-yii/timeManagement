@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="img/favicon.png">
+    {{-- <link rel="icon" href="img/favicon.png"> --}}
     <title>ID Card</title>
 	<meta name="description"  content="" />
 	<meta name="keywords"  content="" />
@@ -17,11 +17,11 @@
 
 	<link href="{{ asset('card/css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('card/css/font-awesome.min.css') }}" rel="stylesheet">
-	<link href="{{ asset('card/css/style-org.css') }}" rel="stylesheet">
+	<link href="{{ asset('card/css/style.css') }}" rel="stylesheet">
 	<script src="{{ asset('card/js/jquery.min.js') }}"></script>
 	<script src="{{ asset('card/js/bootstrap.min.js') }}"></script>
 </head>
-<body>
+<body style="font-family: 'CenturyGothic', sans-serif; font-weight: 400; font-size: 16px; line-height: 20px;">
 	@if ($data->card_type == 1)
 		<img src="{{ asset('card/img/card-bg-student.png') }}" />
 	@else

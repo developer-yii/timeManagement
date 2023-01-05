@@ -250,13 +250,13 @@ span.file a[href$=".txt"] {
 
 @media (min-width: 720px) {
   .one-third.column {
-    width: 30.6666666667%;
+    width: 35%;
   }
 }
 
 @media (min-width: 720px) {
   .two-thirds.column {
-    width: 65.3333333333%;
+    width: 65%;
   }
 }
 
@@ -289,7 +289,7 @@ span.file a[href$=".txt"] {
 
 #id_card_form input[type="text"], #id_card_form select, #id_card_form input[type="number"] {
   font-size: 0.8em;
-  margin: 10px 0;
+  margin: 12px 0px 0px 0px;
 }
 
 #id_card_form select {
