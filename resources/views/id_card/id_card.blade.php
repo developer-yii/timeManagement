@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
 	<meta name="keywords" content="">
 	<meta name="decription" content="">
 	<title>ID Card</title>
@@ -25,7 +25,8 @@
 	<link rel="stylesheet" href="{{ asset('css/landing/responsive.css')}}" />
 
 	<link rel="stylesheet" href="{{ asset('css/custom.css')}}" />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<link href="{{ asset('card/css/bootstrap.min.css')}}" rel="stylesheet">
+	{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> --}}
 	<link href="{{ asset('card/css/style.css') }}" rel="stylesheet">
 	<!-- third party css -->
     <link href="{{ asset('css/vendor/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet" type="text/css" />
@@ -66,89 +67,25 @@
 							<input type="hidden" name="form_type" class="form_type" value="submit">
 
 							<div class="row" style="padding-top:30px; flex-wrap: nowrap;">
-								<div class="col-md-5 column photo-id">
+								<div class="one-third column photo-id">
 									<div class="text-center">
-										<div class="left_loader" style="display: none; position: absolute; top: 17%; left: 50%; font-size: 40px; color: #2dc33b;"><i class="fa fa-spinner fa-spin"></i></div>
-
-										<div class="canvas_data" id="html2canvas" style="display: none;">
-											<img src="{{ asset('card/img/card-bg-student.png') }}" class="dp_student">
-											<img src="{{ asset('card/img/card-bg-teacher.png') }}" class="dp_teacher" style="display: none;">
-
-											<div class="left hide_for_teacher">
-												<img src="{{ asset('card/img/student-img.png') }}" class="student_img_card" style="width: 27%; position: absolute; top: 62px; left: 40px; height: 145px;">
-											</div>
-
-											<div class="left hide_for_student">
-												<img src="{{ asset('card/img/teacher-img.png') }}" class="teacher_img_card" style="width: 27%; position: absolute; top: 62px; left: 40px; height: 145px;">
-											</div>
-
-											<img src="" class="append_card_img" id="append_card_img" style="display: none; width: 27%; position: absolute; top: 62px; left: 40px; height: 145px;">
-
-											<p class="school_card" style="position: absolute; top: 16px; left: 155px; color: #fff; font-size: 18px;">Johnson Family Homeschool</p>
-
-											<div class="left hide_for_teacher">
-												<p class="student_name_card" style="position: absolute; top: 85px; left: 185px; font-size: 13px; color: black; font-weight: bold;">Arianna Henry</p>
-											</div>
-
-											<div class="left hide_for_student">
-												<p class="teacher_name_card" style="position: absolute; top: 85px; left: 185px; font-size: 13px; color: black; font-weight: bold;">Sarah Miller</p>
-											</div>
-
-											<div class="left hide_for_teacher">
-												<p class="dob_card" style="position: absolute; top: 131px; left: 185px; font-size: 13px; color: black; font-weight: bold;">02/03/14</p>
-											</div>
-
-											<div class="left hide_for_student">
-												<p class="address_card" style="position: absolute; top: 130px; left: 185px; font-size: 13px; color: black; font-weight: bold;">1296 Farmton Lane Hills, NY 63251</p>
-											</div>
-
-											<div class="left hide_for_teacher">
-												<p class="educator_card" style="position: absolute; top: 175px; left: 185px; font-size: 13px; color: black; font-weight: bold;">Sandra Henry</p>
-											</div>
-
-											<div class="left hide_for_student">
-												<p class="phone_card" style="position: absolute; top: 179px; left: 185px; font-size: 13px; color: black; font-weight: bold;">111-111-1111</p>
-											</div>
-
-											<div class="left hide_for_teacher">
-												<p class="grade_card" style="position: absolute; top: 153px; left: 340px; font-size: 30px; color: black; font-weight: bold;">3</p>
-											</div>
-
-											<p class="year_card" style="position: absolute; top: 241px; left: 39px; font-size: 18px; color: #fff;">2022 - 2023</p>
-
-											@php
-											$id_number = random_int(10000000, 99999999);
-											@endphp
-											<p class="id_number_card" style="position: absolute; top: 86px; left: 323px; font-size: 13px; color: black; font-weight: bold;">{{ $id_number }}</p>
-											<input type="hidden" name="id_number" class="id_number" value="{{ $id_number }}">
-										</div>
-
-										{{-- <div class="left append_card_img" style="display: none;">
-											<img src="" id="preview_card_img">
-										</div> --}}
-
-										<div class="static_img">
-											<img src="{{ asset('card/img/sample-id.png') }}" class="dp_student">
-											<img src="{{ asset('card/img/sample-id-teacher.png') }}" class="dp_teacher" style="display: none;">
-										</div>
-
-										{{-- <span id="current_preview"> --}}
-											{{-- <div class="v-card" style="width:350px;height:242px;position:relative">
+										<span id="current_preview">
+											<div class="v-card" style="width:358px;height:230px;position:relative">
 												<div class="top">
 													<span class="school_card">Johnson Family Homeschool</span>
 												</div>
 
 												<div class="middle">
 													<div class="left hide_for_teacher">
-														<img src="{{ asset('card/img/student-img.png') }}" class="student_img_card">
+														<img src="{{ asset('card/img/student-img.png') }}" class="student_img_card" style="height: 100%;">
 													</div>
 
 													<div class="left hide_for_student">
-														<img src="{{ asset('card/img/teacher-img.png') }}" class="teacher_img_card">
+														<img src="{{ asset('card/img/teacher-img.png') }}" class="teacher_img_card" style="height: 100%;">
 													</div>
 
 													<div class="left append_card_img" style="display: none;">
-														<img src="" id="preview_card_img">
+														<img src="" id="preview_card_img" style="height: 100%;">
 													</div>
 
 													<div class="right">
@@ -171,7 +108,7 @@
 
 																<div class="text-field hide_for_student">
 																	<span class="label">ADDRESS</span>
-																	<p class="address_card">1296 Farmton Lane Hills, NY 63251</p>
+																	<p class="address_card" style="width: 200%;">1296 Farmton Lane Hills, NY 63251</p>
 																</div>
 
 																<div class="text-field mb0 hide_for_teacher">
@@ -214,10 +151,8 @@
 														<img src="{{ asset('card/img/home-logo.png') }}" style="height: 28px;" />
 													</div>
 												</div>
-											</div> --}}
-
-											{{--  --}}
-										{{-- </span> --}}
+											</div>
+										</span>
 									</div>
 
 									<div style="padding-top:20px;">
@@ -231,18 +166,18 @@
 									</div>
 								</div>
 
-								<div class="col-md-7 column photo-id">
+								<div class="two-thirds column photo-id">
 									<div id="id_card_form">
 										<div class="row">
 											<div class="column text-center">
 												<div class="checkbox">
 													<input type="radio" name="card_type" id="student-id" checked="" value="1" class="toggle_appropriate_fields">
-													<label for="student-id" style="display: inline; margin-bottom: 0 !important;">&nbsp;STUDENT ID</label>
+													<label for="student-id" style="display: inline; margin-bottom: 0 !important; padding-left: 0;">&nbsp;STUDENT ID</label>
 
 													<span class="spacer"></span>
 
 													<input type="radio" name="card_type" id="teacher-id" value="2" class="toggle_appropriate_fields">
-													<label for="teacher-id" style="display: inline; margin-bottom: 0 !important;">&nbsp;TEACHER ID</label>
+													<label for="teacher-id" style="display: inline; margin-bottom: 0 !important; padding-left: 0;">&nbsp;TEACHER ID</label>
 												</div>
 											</div>
 										</div>
@@ -371,7 +306,7 @@
 
 										<div class="row">
 											<div class="one-half column">
-												<input type="file" name="display_photo" id="display_photo" accept="image/png, image/gif, image/jpeg" onchange="document.getElementById('append_card_img').src = window.URL.createObjectURL(this.files[0])">
+												<input type="file" name="display_photo" id="display_photo" accept="image/png, image/gif, image/jpeg" onchange="document.getElementById('preview_card_img').src = window.URL.createObjectURL(this.files[0])">
 												<span class="error"></span>
 											</div>
 
