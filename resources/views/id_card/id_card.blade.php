@@ -27,7 +27,7 @@
 	<link rel="stylesheet" href="{{ asset('css/custom.css')}}" />
 	<link href="{{ asset('card/css/bootstrap.min.css')}}" rel="stylesheet">
 	{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> --}}
-	<link href="{{ asset('card/css/style.css') }}" rel="stylesheet">
+	<link href="{{ asset('card/css/style.css?v=123') }}" rel="stylesheet">
 	<!-- third party css -->
     <link href="{{ asset('css/vendor/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/vendor/jquery.serialtip.css') }}" rel="stylesheet" type="text/css" />
