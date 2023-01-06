@@ -1,26 +1,36 @@
 $(document).ready(function() {
-	if (isCard) {
-		$('#dob').datepicker({
-	        format: "mm/dd/yyyy",
-	        autoclose: true,
-	        todayHighlight: true,
-	    });
-	}
+	// if (isCard) {
+	// 	$('#dob').datepicker({
+	//         format: "mm/dd/yyyy",
+	//         autoclose: true,
+	//         todayHighlight: true,
+	//     });
+	// }
 
-	// var element = $('#print-v-card');
+	// var element = $('.body-main-div');
 	if (isPrint) {
-		window.print();
+		// window.print();
 	}
 
 	// html2canvas(element, {
     //     onrendered: function(canvas) {
     //         var imgData = canvas.toDataURL('image/jpeg');
-    //         $('#print-v-card').hide();
-    //         $('.append_canvas').attr('src', imgData);
-    //         $('.append_canvas').show();
-    //         window.print();
+    //         // $('#print-v-card').hide();
+    //         // $('.append_canvas').attr('src', imgData);
+    //         // $('.append_canvas').show();
+    //         // window.print();
+    //         $('.body-main-div').html('<img src="'+imgData+'">');
     //     }
     // });
+
+	var container = document.getElementById("body-main-div");
+    html2canvas(container, { allowTaint: true,backgroundColor:null }).then(function (canvas) {
+        var dataURL = canvas.toDataURL();
+        $('#body-main-div').html('<img src="'+dataURL+'">');
+        setTimeout(function () {
+        	window.print();
+        }, 1000);
+    });
 
 	function card_type_change() {
 		var card_type = $('input[name="card_type"]:checked').val();

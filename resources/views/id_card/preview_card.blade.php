@@ -35,48 +35,25 @@
 			<div class="row">
 				<div class="column text left" style="margin-left:0px">
 					<div class="centerAlign">
-						<h1><b>INSTRUCTIONS:</b></h1>
-						Below is a link to a printable page with the Homeschool ID card you just created.  For your benefit, please read ALL of the instructions on this page before you proceed.
+						<h1 style="color: #2dc33b !important;"><b>Print Instructions:</b></h1>
+						<br>
+						{{-- Below is a link to a printable page with the Homeschool ID card you just created.  For your benefit, please read ALL of the instructions on this page before you proceed.
+						<br>
+						<br> --}}
+
+						<b>Please click the link below to print your ID card.  You can print this on card stock and laminate it for durability.</b>
 						<br>
 						<br>
 
-						<b>1.  Click the link below to go to your design: </b>
+						If your print box does not come up, you can use Ctrl P to bring up your print box or save it as a PDF.
 						<br>
 						<br>
 
 						<a href="{{ route('print_card', ['id' => $data->id]) }}" data-id="{{ $data->id }}" class="print_img">{{ route('print_card', ['id' => $data->id]) }}</a>
 						<br><br>
 
-						<b>2.  Use your browser's Print command to print the design on the printer/paper of your choice.</b>
-						<br>
-						<br>
-
-						<b><u>GETTING A DURABLE PLASTIC (PVC) CARD: </u></b>
-						<br>
-
-						For the highest quality ID card at a low price, come back to the Homeschool Buyers Club website and order professionally printed cards from the Club <u>for $7.95</u>.  We print high quality images on the same kind of PVC plastic as your credit card: 
-						<br>
-						<br>
-
-						<a href="{{ route('id_card') }}">
-							<b>{{ route('id_card') }}</b>
-						</a>
-						<br>
-						<br>
-
-						Your full satisfaction is guaranteed, excluding data entry errors on your part.<br>
-						<br>
-
-						<h2><b>HELP US SPREAD THE WORD!</b></h2>
-						<br>
-
-						Please tell your homeschool friends about the Club and this free service.  The more members we have, the more services we are able to provide.
-						<br>
-						<br>
-
-						You can also help us spread the word by publishing the following HTML on your blog or website:
-						<br>
-						<br>
+						Below is the HTML code for our SCHOOL ID.  Please feel free to paste this on social media, your website, or your blog.  This will help let other parents know how they can get their FREE ID card!
+						<br><br>
 
 						<table>
 							<tbody>
@@ -93,15 +70,7 @@
 						</table>
 						<br>
 
-						The HTML will cause the thumbnail image shown above to display on your blog or website.
-						<br>
-						<br>
-
-						We appreciate you at the Club!
-						<br>
-						<br>
-
-						Homeschool Buyers Club
+						<b>Thank you for helping us get the word out.</b>
 					</div>
 				</div>
 			</div>
