@@ -17,7 +17,7 @@
 
 	<link href="{{ asset('card/css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('card/css/font-awesome.min.css') }}" rel="stylesheet">
-	<link href="{{ asset('card/css/style.css') }}" rel="stylesheet">
+	<link href="{{ asset('card/css/style.css?v=123') }}" rel="stylesheet">
 	<script src="{{ asset('card/js/jquery.min.js') }}"></script>
 	<script src="{{ asset('card/js/bootstrap.min.js') }}"></script>
 </head>
