@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	{{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="">
 	<meta name="decription" content="">
 	<title>ID Card</title>
@@ -215,7 +215,7 @@
 											</div>
 
 											<div class="one-half column">
-												<input type="text" name="dob" id="dob" class="id_data_field disable_for_teacher form-control" size="10" value="" placeholder="Date Of Birth (MM/DD/YYYY)" data-provide="datepicker" autocomplete="off">
+												<input type="text" name="dob" id="dob" class="id_data_field disable_for_teacher form-control" size="10" value="" placeholder="Date Of Birth (MM/DD/YYYY)" autocomplete="off" maxlength="10">
 												<span class="error"></span>
 											</div>
 										</div>
