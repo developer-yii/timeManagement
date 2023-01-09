@@ -216,6 +216,7 @@ $(document).ready(function() {
             },
         },
         columns: [
+        	{ data: 'card_type' },
             { data: 'email' },
         ],
         "drawCallback": function( settings ) {
