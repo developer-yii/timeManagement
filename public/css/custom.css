@@ -322,3 +322,15 @@ span.file a[href$=".txt"] {
   padding: 10px 0px 10px 0px;
 }
 /*student id page*/
+
+#home-body{padding:0 15px;}
+@media(max-width:1199px){
+.hiddeninput{top:0 !important; left:0 !important;}
+.centerAlign{width:100% !important;}
+.hsbcid-header span:first-child{font-size: 24pt;}
+.cus_table tr td{width:50%;}
+.cus_table tr td textarea{width:100%; margin-top: 15px;}
+#home-body a{word-break: break-all;}
+.cus_table, .cus_table tbody, .cus_table tbody tr, .cus_table tbody tr td{display:block; width: 100%;}
+
+}

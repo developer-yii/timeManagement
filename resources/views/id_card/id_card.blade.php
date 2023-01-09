@@ -338,7 +338,7 @@
 		</div>
 	</div>
 
-	<input type="file" name="id_file" style="position: absolute; margin: -5px 0px 0px -175px; padding: 0px; width: 220px; height: 30px; font-size: 14px; opacity: 0; cursor: pointer; display: block; z-index: 2147483583; top: 1162px; left: 616px;">
+	<input type="file" name="id_file" class="hiddeninput" style="position: absolute; margin: -5px 0px 0px -175px; padding: 0px; width: 220px; height: 30px; font-size: 14px; opacity: 0; cursor: pointer; display: block; z-index: 2147483583; top: 1162px; left: 616px;">
 
 	<!-- Main jQuery -->
 	<script src="{{ asset('js/landing/jquery-3.4.1.min.js')}}"></script>		

@@ -55,7 +55,7 @@
 						Below is the HTML code for our SCHOOL ID.  Please feel free to paste this on social media, your website, or your blog.  This will help let other parents know how they can get their FREE ID card!
 						<br><br>
 
-						<table>
+						<table class="cus_table">
 							<tbody>
 								<tr>
 									<td>
