@@ -96,7 +96,7 @@
 																	<p class="student_name_card">Arianna Henry</p>
 																</div>
 
-																<div class="text-field hide_for_student">
+																<div class="text-field hide_for_student" style="margin-bottom: 16px !important;">
 																	<span class="label">HOME EDUCATOR</span>
 																	<p class="teacher_name_card">Sarah Miller</p>
 																</div>
@@ -106,9 +106,9 @@
 																	<p class="dob_card">02/03/2014</p>
 																</div>
 
-																<div class="text-field hide_for_student">
+																<div class="text-field hide_for_student" style="margin-bottom: 37px !important;">
 																	<span class="label">ADDRESS</span>
-																	<p class="address_card" style="width: 200%; overflow: unset;">1296 Farmton Lane Hills, NY 63251</p>
+																	<p class="address_card" style="width: 200%; overflow: unset;">1296 <br> Farmton Lane Hills <br> NY 63251</p>
 																</div>
 
 																<div class="text-field mb0 hide_for_teacher">
@@ -143,7 +143,8 @@
 
 												<div class="bottom">
 													<div class="bleft">
-														<span>STUDENT ID</span>
+														<span class="student_id_card hide_for_teacher">STUDENT ID</span>
+														<span class="teacher_id_card hide_for_student" style="margin-bottom: 3px !important;">TEACHER ID</span>
 														<span class="year_card">2022 - 2023</span>
 													</div>
 

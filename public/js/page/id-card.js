@@ -158,7 +158,7 @@ $(document).ready(function() {
 	                		}
 
 	                		$('.teacher_name_card').text(result.data.teacher_name);
-	                		$('.address_card').text(address1+' '+address2+', '+city);
+	                		$('.address_card').text(address1+' '+address2+' '+city);
 	                		$('.phone_card').text(result.data.phone_number);
 	                	}
 
