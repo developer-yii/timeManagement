@@ -119,4 +119,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/update', 'HolidayController@update')->name('holiday.update');
         Route::post('/delete', 'HolidayController@delete')->name('holiday.delete');
     });
+
+    Route::group(['prefix' => 'idcard'], function () {
+        Route::get('/', 'IdCardController@index')->name('idcard');
+        Route::get('/index', 'IdCardController@index')->name('idcard');
+        Route::get('/get', 'IdCardController@get')->name('idcard.list');
+    });
 });
