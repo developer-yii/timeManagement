@@ -23,7 +23,11 @@ class IdCardController extends Controller
     {
         $data = IdCard::where('status', 1);
 
-        return DataTables::eloquent($data)->toJson();
+        return DataTables::eloquent($data)
+        	->editColumn('card_type', function($row) {
+        		return ($row->card_type == 1) ? "Student" : "Teacher";
+            })
+        	->toJson();
     }
 
 	public function id_card()

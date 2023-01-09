@@ -29,6 +29,7 @@ $lable = "ID Card Emails";
                     <table id="idcardTable" class="table table-hover dataTable">
                         <thead>
                             <tr>
+                                <th>Type</th>
                                 <th>Email</th>
                             </tr>
                         </thead>
