@@ -9,7 +9,9 @@ $(document).ready(function() {
 
 	// var element = $('.body-main-div');
 	if (isPrint) {
-		// window.print();
+		setTimeout(function () {
+			window.print();
+		}, 1000);
 	}
 
 	// html2canvas(element, {
@@ -23,14 +25,16 @@ $(document).ready(function() {
     //     }
     // });
 
-	var container = document.getElementById("body-main-div");
-    html2canvas(container, { allowTaint: true,backgroundColor:null }).then(function (canvas) {
-        var dataURL = canvas.toDataURL();
-        $('#body-main-div').html('<img src="'+dataURL+'">');
-        setTimeout(function () {
-        	window.print();
-        }, 1000);
-    });
+	if (isPrint) {
+		// var container = document.getElementById("body-main-div");
+	    // html2canvas(container, { allowTaint: true,backgroundColor:null }).then(function (canvas) {
+	    //     var dataURL = canvas.toDataURL();
+	    //     $('#body-main-div').html('<img src="'+dataURL+'">');
+	    //     setTimeout(function () {
+	    //     	window.print();
+	    //     }, 1000);
+	    // });
+	}
 
 	function card_type_change() {
 		var card_type = $('input[name="card_type"]:checked').val();
@@ -158,7 +162,17 @@ $(document).ready(function() {
 	                		}
 
 	                		$('.teacher_name_card').text(result.data.teacher_name);
-	                		$('.address_card').text(address1+' '+address2+' '+city);
+	                		// $('.address_card').text(address1+' '+address2+' '+city);
+	                		$('.address_card1').html(address1);
+
+	                		if (result.data.address2) {
+	                			$('.address_card2').html(address2);
+	                			$('.address_card3').html(city);
+	                		} else {
+	                			$('.address_card2').html(city);
+	                			$('.address_card3').html('');
+	                		}
+
 	                		$('.phone_card').text(result.data.phone_number);
 	                	}
 
@@ -187,4 +201,24 @@ $(document).ready(function() {
             }
         });
 	});
+
+	if($('#idcardTable').length>0)
+    var departmentTable = $('#idcardTable').DataTable({
+        searching: true,
+        pageLength: 25,
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: apiUrl,
+            type: 'GET',
+            headers: {
+                'X-XSRF-TOKEN': $('meta[name=csrf-token]').attr('content'),
+            },
+        },
+        columns: [
+            { data: 'email' },
+        ],
+        "drawCallback": function( settings ) {
+        }
+    });
 });
