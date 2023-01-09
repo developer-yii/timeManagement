@@ -10,9 +10,22 @@ use DB;
 use Carbon\Carbon;
 use App\Models\IdCard;
 use File;
+use DataTables;
 
 class IdCardController extends Controller
 {
+	public function index()
+    {
+        return view('id_card.index');
+    }
+
+	public function get()
+    {
+        $data = IdCard::where('status', 1);
+
+        return DataTables::eloquent($data)->toJson();
+    }
+
 	public function id_card()
     {
         return view('id_card/id_card');

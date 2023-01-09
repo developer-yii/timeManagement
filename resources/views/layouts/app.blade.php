@@ -179,6 +179,13 @@
                             <span> Saved Photo/Uploads </span>
                         </a>
                     </li>
+
+                    <li class="side-nav-item">
+                        <a href="{{ route('idcard')}}" class="side-nav-link">
+                            <i class="mdi mdi-card-account-details-outline"></i>
+                            <span> ID Card Emails </span>
+                        </a>
+                    </li>
                 </ul>
 
                 <!-- End Sidebar -->
