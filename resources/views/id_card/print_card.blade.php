@@ -29,7 +29,7 @@
 			<img src="{{ asset('card/img/card-bg-teacher.png') }}">
 		@endif
 
-		<p style="position: absolute !important; left: 108px !important; top:10px !important; font-size: 15px !important; text-align: center !important; line-height: 20px !important; width: 208px !important;"><span style="color: #fff !important;">{{ $data->school_name }}</span></p>
+		<p style="position: absolute !important; left: 108px !important; top: 0px !important; font-size: 14px !important; text-align: center !important; line-height: 20px !important; width: 208px !important; height: 39px !important; display: flex !important; justify-content: center !important; align-items: center !important;"><span style="color: #fff !important;">{{ $data->school_name }}</span></p>
 
 		<img src="{{ asset('uploads/idcard_photo/'.$data->display_photo) }}" style="height: 105px !important; position: absolute !important; left: 20px !important; top: 50px !important; width: 94px !important;">
 
