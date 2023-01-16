@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use App\Models\IdCard;
 use File;
 use DataTables;
+use Illuminate\Support\Facades\Mail;
 
 class IdCardController extends Controller
 {
@@ -106,8 +107,10 @@ class IdCardController extends Controller
 		        	} else {
 	                    $result = ['status' => false, 'message' => 'Error in saving data', 'data' => []];
 	                }
-	            } else {
+	            } else if ($request->form_type == 'preview') {
 	            	$result = ['status' => true, 'message' => '', 'data' => $request->all(), 'type' => 'preview'];
+	            } else {
+	            	$result = ['status' => true, 'message' => '', 'data' => $request->all(), 'type' => 'email'];
 	            }
 	        }
 	    } else {
@@ -134,6 +137,24 @@ class IdCardController extends Controller
     public function print_canvas(Request $request)
     {
     	dd($request->all());
+    }
+
+    public function send_card(Request $request)
+    {
+    	$data["email"] = $request->email;
+        $data["title"] = "ID Card";
+        $data["image"] = $request->image;
+
+
+        Mail::send('mail.send-card', $data, function($message)use($request) {
+        	$message->to($request->email);
+        	$message->subject('ID Card');
+            // $message->attachData(base64_decode($request->image), 'id-card.png', ['mime' => 'image/png']);
+            $message->embedData(base64_decode($request->image), 'id-card.png');
+        });
+
+        $result = ['status' => true, 'message' => 'Email sent successfully', 'data' => []];
+        return response()->json($result);
     }
 }
 

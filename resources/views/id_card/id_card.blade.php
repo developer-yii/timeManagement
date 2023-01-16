@@ -70,22 +70,22 @@
 								<div class="one-third column photo-id">
 									<div class="text-center">
 										<span id="current_preview">
-											<div class="v-card" style="width:358px;height:230px;position:relative">
+											<div class="v-card" id="v-card" style="width:358px;height:230px;position:relative">
 												<div class="top">
-													<span class="school_card">Johnson Family Homeschool</span>
+													<span class="school_card" style="text-align: center; margin-left: 90px;">Johnson Family Homeschool</span>
 												</div>
 
 												<div class="middle">
 													<div class="left hide_for_teacher">
-														<img src="{{ asset('card/img/student-img.png') }}" class="student_img_card" style="height: 100%;">
+														<img src="{{ asset('card/img/student-img.png') }}" class="student_img_card" style="height: 111px; width: 90px;">
 													</div>
 
 													<div class="left hide_for_student">
-														<img src="{{ asset('card/img/teacher-img.png') }}" class="teacher_img_card" style="height: 100%;">
+														<img src="{{ asset('card/img/teacher-img.png') }}" class="teacher_img_card" style="height: 111px; width: 90px;">
 													</div>
 
 													<div class="left append_card_img" style="display: none;">
-														<img src="" id="preview_card_img" style="height: 100%;">
+														<img src="" id="preview_card_img" style="height: 111px; width: 90px;">
 													</div>
 
 													<div class="right">
@@ -166,6 +166,8 @@
 
 											<div class="button-center text-center">
 												<input type="submit" name="asubmitbutton" value="Print School ID" class="display_printable_page select_card_type btn btn-success">
+
+												<input type="submit" name="asubmitbutton" value="Email School ID" class="email_printable_page btn btn-success">
 						 					</div>
 										</div>
 									</div>
@@ -363,8 +365,10 @@
 	<script type="text/javascript">
 		var addUrl = "{{ route('idcard_form') }}";
 		var previewCardUrl = "{{ route('preview_card') }}";
+		var sendCardUrl = "{{ route('send_card') }}";
 		var isPrint = false;
 		var isCard = true;
+		var _token = "{{ csrf_token() }}";
 	</script>
 
 	<script src="{{ asset('js/page/id-card.js') }}"></script>
