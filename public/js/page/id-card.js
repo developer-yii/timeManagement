@@ -189,20 +189,31 @@ $(document).ready(function() {
 		                //     $('.left_loader').hide();
 		                // });
 	                } else {
+	                	$('.email_printable_page').val('Please wait...');
+
 	                	var container = document.getElementById("v-card");
 		                html2canvas(container, { allowTaint: true,backgroundColor:null }).then(function (canvas) {
 		                    var dataURL = canvas.toDataURL();
 		                    var email = $('#email').val();
-		                    $('.email_printable_page').val('Please wait...');
 		                    
 		                    $.ajax({
 				                url: sendCardUrl,
 				                type: 'POST',
 				                data: { 'image': dataURL, 'email': email, '_token': _token },
 				                dataType: 'json',
+				                beforeSend: function() {
+					                $('.email_printable_page').prop('disabled', true);
+					            },
 				                success: function(result) {
+		                			$('.email_printable_page').val('Email School ID');
+		                			$('.email_printable_page').prop('disabled', false);
+				                	show_toast(result.message, 'success');
+				                },
+				                error: function(error) {
 				                	$('.email_printable_page').val('Email School ID');
-				                }
+					                $('.email_printable_page').prop('disabled', false);
+					                alert('Something went wrong!', 'error');
+					            }
 				            });
 		                });
 	                }

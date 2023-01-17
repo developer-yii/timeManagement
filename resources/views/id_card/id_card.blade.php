@@ -169,6 +169,10 @@
 
 												<input type="submit" name="asubmitbutton" value="Email School ID" class="email_printable_page btn btn-success">
 						 					</div>
+
+						 					<div style="margin-top: 20px;">
+						 						<p>* Want to keep your school ID's conveniently on your phone? Click the Email School ID above.</p>
+						 					</div>
 										</div>
 									</div>
 								</div>
@@ -363,6 +367,13 @@
 	<script src="{{ asset('js/html2canvas.js') }}"></script>
 
 	<script type="text/javascript">
+		function show_toast(toast_message,toast_type) {
+            if(toast_type == 'success')
+                $.NotificationApp.send("Success!", toast_message, "top-right", "rgba(0,0,0,0.2)", toast_type);
+            else if(toast_type == 'error')
+                $.NotificationApp.send("", toast_message, "top-right", "rgba(0,0,0,0.2)", toast_type);
+        }
+
 		var addUrl = "{{ route('idcard_form') }}";
 		var previewCardUrl = "{{ route('preview_card') }}";
 		var sendCardUrl = "{{ route('send_card') }}";
