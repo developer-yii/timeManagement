@@ -169,12 +169,12 @@
 
 												<input type="submit" name="asubmitbutton" value="Email School ID" class="email_printable_page btn btn-success">
 						 					</div>
-
-						 					<div style="margin-top: 20px;">
-						 						<p>* Want to keep your school ID's conveniently on your phone? Click the Email School ID above.</p>
-						 					</div>
 										</div>
 									</div>
+
+									<div class="text-center" style="width: 358px; margin: 45px auto 0 auto;">
+				 						<p>* Want to keep your school ID's conveniently on your phone? Click the Email School ID above.</p>
+				 					</div>
 								</div>
 
 								<div class="two-thirds column photo-id">

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+ini_set('max_execution_time', 180);
+
 use Illuminate\Http\Request;
 use App\User;
 use Validator;
@@ -12,6 +14,9 @@ use App\Models\IdCard;
 use File;
 use DataTables;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
+// use Image;
+use Intervention\Image\Facades\Image;
 
 class IdCardController extends Controller
 {
@@ -141,17 +146,29 @@ class IdCardController extends Controller
 
     public function send_card(Request $request)
     {
+	    $png_url = "id-card.png";
+	    $path = public_path().'/card/' . $png_url;
+
+	    $img = $request->image;
+		$img = substr($img, strpos($img, ",")+1);
+		$data2 = base64_decode($img);
+		$success = file_put_contents($path, $data2);
+
+	    $id_card_img = public_path('card/id-card.png');
+
     	$data["email"] = $request->email;
         $data["title"] = "ID Card";
         $data["image"] = $request->image;
 
-
-        Mail::send('mail.send-card', $data, function($message)use($request) {
+        Mail::send('mail.send-card', $data, function($message)use($request, $id_card_img) {
         	$message->to($request->email);
         	$message->subject('ID Card');
             // $message->attachData(base64_decode($request->image), 'id-card.png', ['mime' => 'image/png']);
-            $message->embedData(base64_decode($request->image), 'id-card.png');
+            // $message->embedData(base64_decode($request->image), 'id-card.png');
+            $message->attach($id_card_img, ['as' => 'id-card.png', 'mime' => 'image/png']);
         });
+
+        unlink('card/id-card.png');
 
         $result = ['status' => true, 'message' => 'Email sent successfully', 'data' => []];
         return response()->json($result);
