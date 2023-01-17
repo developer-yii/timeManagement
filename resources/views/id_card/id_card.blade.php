@@ -363,6 +363,13 @@
 	<script src="{{ asset('js/html2canvas.js') }}"></script>
 
 	<script type="text/javascript">
+		function show_toast(toast_message,toast_type) {
+            if(toast_type == 'success')
+                $.NotificationApp.send("Success!", toast_message, "top-right", "rgba(0,0,0,0.2)", toast_type);
+            else if(toast_type == 'error')
+                $.NotificationApp.send("", toast_message, "top-right", "rgba(0,0,0,0.2)", toast_type);
+        }
+		
 		var addUrl = "{{ route('idcard_form') }}";
 		var previewCardUrl = "{{ route('preview_card') }}";
 		var sendCardUrl = "{{ route('send_card') }}";
