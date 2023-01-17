@@ -21,7 +21,7 @@
 
 	Below is the HTML code for our SCHOOL ID. Please feel free to paste this on social media, your website, or your blog. This will help let other parents know how they can get their FREE ID <br><br>
 
-	<xmp><table width=150px><tr><td><a href="https://app.homeschoolminutes.com/id-card"><img src="https://app.homeschoolminutes.com/card/img/sample-id.png" border=0></a></td></tr><tr><td><a href="https://app.homeschoolminutes.com/id-card"><center>Get a <b>FREE</b><br/>Homeschool ID Card!</a></center></td></tr></table></xmp> <br>
+	&lt;table width=150px&gt;&lt;tr&gt;&lt;td&gt;&lt;a href="{{ route('id_card') }}"&gt;&lt;img src="{{ asset('card/img/sample-id.png') }}" border=0&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a href="{{ route('id_card') }}"&gt;&lt;center&gt;Get a &lt;b&gt;FREE&lt;/b&gt;&lt;br/&gt;Homeschool ID Card!&lt;/a&gt;&lt;/center&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt; <br>
 
 	_________________________________________________________________ <br><br>
 
