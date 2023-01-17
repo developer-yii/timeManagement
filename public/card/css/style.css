@@ -27,10 +27,10 @@ lable span{color:#333;}
 .v-card .top:before{content:""; background:url(../img/line.png) no-repeat; display:block; position:absolute; top:15px; left:0; width:230px; height:5px; z-index:1; background-size: auto 5px;}
 .v-card .top span{display:block; color:#fff; text-align:right; padding:10px 20px; font-size:14px; line-height:14px; position:relative; z-index:11;}
 .v-card .middle{display: flex; position:relative; z-index:11; padding:5px 10px 5px; height:158px;}
-.v-card .middle .left{width:90px; height: 105px; margin-top: 18px;}
-.v-card .middle .left .img{height:90px; width:105px; object-fit:cover; object-position:top center;}
-.v-card .middle .right{padding:10px 10px 0 15px; width:calc(100% - 105px);}
-.v-card .middle .right{padding:10px 10px 0 15px; width:calc(100% - 105px);}
+.v-card .middle .left{width:90px; height: 111px; margin-top: 18px;}
+.v-card .middle .left .img{height:90px; width:111px; object-fit:cover; object-position:top center;}
+.v-card .middle .right{padding:10px 10px 0 15px; width:calc(100% - 111px);}
+.v-card .middle .right{padding:10px 10px 0 15px; width:calc(100% - 111px);}
 .v-card .middle .right .text-field{margin-bottom:20px;}
 .v-card .middle .right .text-field .label{color:#000000; font-weight:400; font-size:10px; text-transform:uppercase; padding:0; margin-bottom: 3px; display: block; text-align: left;}
 .v-card .middle .right .text-field p{margin-bottom:0; font-weight:700;font-size:12px; line-height:12px; max-height: 13px; text-align: left; color: black;}
@@ -105,7 +105,7 @@ img{max-width:100%;}
     padding: 0px 15px;
 }
 
-.display_printable_page, .update_preview {
+.display_printable_page, .update_preview, .email_printable_page {
     background-color: #61ba61 !important;
     border-color: #61ba61 !important;
     box-shadow: 0 2px 6px 0 rgb(129 219 129 / 50%) !important;

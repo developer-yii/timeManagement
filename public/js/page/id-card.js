@@ -101,6 +101,10 @@ $(document).ready(function() {
 		$('.form_type').val('preview');
 	});
 
+	$('body').on('click', '.email_printable_page', function() {
+		$('.form_type').val('email');
+	});
+
 	$('body').on('click', '.display_printable_page', function() {
 		$('.form_type').val('submit');
 	});
@@ -130,7 +134,7 @@ $(document).ready(function() {
 	                    $('.error').html("");
 
 	                    window.location.href = previewCardUrl+'/'+result.data.id;
-	                } else {
+	                } else if (result.type == 'preview') {
 	                	// $('.left_loader').show();
 	                	$('.error').html("");
 	                	$('.school_card').text(result.data.school_name);
@@ -184,6 +188,23 @@ $(document).ready(function() {
 		                //     $('.static_img').html('<img src="'+dataURL+'">');
 		                //     $('.left_loader').hide();
 		                // });
+	                } else {
+	                	var container = document.getElementById("v-card");
+		                html2canvas(container, { allowTaint: true,backgroundColor:null }).then(function (canvas) {
+		                    var dataURL = canvas.toDataURL();
+		                    var email = $('#email').val();
+		                    $('.email_printable_page').val('Please wait...');
+		                    
+		                    $.ajax({
+				                url: sendCardUrl,
+				                type: 'POST',
+				                data: { 'image': dataURL, 'email': email, '_token': _token },
+				                dataType: 'json',
+				                success: function(result) {
+				                	$('.email_printable_page').val('Email School ID');
+				                }
+				            });
+		                });
 	                }
                 } else {
                     first_input = "";
