@@ -25,6 +25,7 @@ Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home1');
+Route::post('/getDate', 'HomeController@getDateRange')->name('getStudentDateRange');
 // Route::get('/tnc', 'RegisterController@tnc')->name('tnc');
 Route::get('/tnc', [RegisterController::class, 'tnc'])->name('tnc');
 Route::get('/index', [SiteController::class, 'index'])->name('index');
@@ -41,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/plan/{plan}', 'PlanController@show')->name('plans.show');
     Route::post('/subscription', 'SubscriptionController@create')->name('subscription.create');
     Route::post('/subscription/cancel', 'SubscriptionController@cancel')->name('subscription.cancel');
+    Route::post('/freeCodePlan', 'SubscriptionController@freeCodePlan')->name('freeCodePlan');
 
     Route::get('/subscription/price/show', 'SubscriptionController@addPriceShow')->name('subscription.price.show');
     Route::post('subscription/price/change', 'SubscriptionController@addPrice')->name('subscription.price.change');
@@ -84,6 +86,17 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/get', 'SubjectController@get')->name('subject.list');
         Route::post('/addupdate', 'SubjectController@addupdate')->name('subject.addupdate');
         Route::post('/delete', 'SubjectController@delete')->name('subject.delete');
+    });
+
+    Route::group(['prefix' => 'promocode'], function () {
+        Route::get('/', 'PromoCodeController@index')->name('promocode');
+        Route::get('/detail', 'PromoCodeController@detail')->name('promocode.detail');
+        Route::get('/create', 'PromoCodeController@create')->name('promocode.create');
+        Route::get('/index', 'PromoCodeController@index')->name('promocode');
+        Route::get('/get', 'PromoCodeController@get')->name('promocode.list');
+        Route::post('/addupdate', 'PromoCodeController@addupdate')->name('promocode.addupdate');
+        Route::post('/delete', 'PromoCodeController@delete')->name('promocode.delete');
+        Route::get('/generate', 'PromoCodeController@generate')->name('promocode.generate');
     });
 
     Route::group(['prefix' => 'student'], function () {

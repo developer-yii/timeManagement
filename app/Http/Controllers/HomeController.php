@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use App\Models\Student;
 use App\Models\Subject;
 use App\Models\StudentTimeLog;
+use App\Models\StudentDateRange;
 use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
@@ -64,17 +65,59 @@ class HomeController extends Controller
         {            
             $attendance_required = $studentObj->attendance_required;
             $hours_required = $studentObj->hours_required;
+        }        
+            
+        $tempDateArray = '';
+
+        if(isset($request->daterange))
+        {            
+            $dtArray = explode('-',$request->daterange);
+            $firstDay = date('Y-m-d', strtotime($dtArray[0]));
+            $lastDay = date('Y-m-d', strtotime($dtArray[1]));
+
+            $studentDaterange = StudentDateRange::where('student_id',$s)->first();
+            if($studentDaterange)
+            {   
+                $tempDateArray = $studentDaterange->daterange = $request->daterange;             
+            }
+            else
+            {
+                $studentDaterange = new StudentDateRange;
+                $tempDateArray = $studentDaterange->daterange = $request->daterange;
+                $studentDaterange->student_id = $s;
+            }
+            $studentDaterange->save();
+        }
+        else
+        {   
+            $studentDaterange = StudentDateRange::where('student_id',$s)->first();
+            if($studentDaterange)
+            {                
+                $dtArray = explode('-',$studentDaterange->daterange);
+                $firstDay = date('Y-m-d', strtotime($dtArray[0]));
+                $lastDay = date('Y-m-d', strtotime($dtArray[1]));
+                $tempDateArray = $studentDaterange->daterange;
+            }
+            else
+            {
+                // $y = date('Y');                
+                // $firstDay = $y.'-01-01';
+                // $lastDay = $y.'-12-31';
+
+                // $firstDay = date('m/d/Y', strtotime($firstDay));
+                // $lastDay = date('m/d/Y', strtotime($lastDay));
+                $y = date('Y');
+                $date = Carbon::createFromDate($y, 2, 23);
+
+                $firstDay = $date->copy()->startOfYear()->format('Y/m/d');
+                $lastDay   = $date->copy()->endOfYear()->format('Y/m/d');
+
+                $tempDateArray = $firstDay.' - '.$lastDay;       
+                // echo $tempDateArray;die;         
+            }
         }
 
-
-        $y = date('Y');
-        if(isset($request->y))
-        {            
-            $y = $request->y;
-        }        
-
-        $firstDay = $y.'-01-01';
-        $lastDay = $y.'-12-31';
+         
 
         $coreSubjects = DB::table('subjects')
                     ->leftJoin('student_time_log', function($join) use ($user_id,$s,$firstDay,$lastDay) {
@@ -307,7 +350,7 @@ class HomeController extends Controller
         $coreSubjectsTimeColumn = json_encode($coreSubjectsTimeColumn);
         
 
-        return view('home',compact('students','coreSubjects','nonCoreSubjects','coreHours','nonCoreHours','hoursCompleted','attendance','s','y','maxCore','maxNonCore','attendanceArray','hoursHHArray','attendance_required','hours_required','hoursHHBarArray','hourCoreNonCoreArray','coreSubjectsColumn','coreSubjectsTimeColumn','nonCoreSubjectsColumn','nonCoreSubjectsTimeColumn','coreMonthArray','nonCoreMonthArray'));
+        return view('home',compact('students','coreSubjects','nonCoreSubjects','coreHours','nonCoreHours','hoursCompleted','attendance','s','tempDateArray','maxCore','maxNonCore','attendanceArray','hoursHHArray','attendance_required','hours_required','hoursHHBarArray','hourCoreNonCoreArray','coreSubjectsColumn','coreSubjectsTimeColumn','nonCoreSubjectsColumn','nonCoreSubjectsTimeColumn','coreMonthArray','nonCoreMonthArray'));
     }
 
 
@@ -427,5 +470,18 @@ class HomeController extends Controller
             return DataTables::of($data)                
                 ->toJson();
         }
+    }
+
+    public function getDateRange(Request $request)
+    {
+        if($request->id)
+        {
+            $dateRange = StudentDateRange::where('student_id',$request->id)->first();
+            if($dateRange)
+            {
+                $result = ['status' => true, 'message' => '', 'dateRange' => $dateRange->daterange];
+                return response()->json($result);
+            }
+        }        
     }
 }

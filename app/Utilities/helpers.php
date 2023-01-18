@@ -142,3 +142,31 @@ function dddd($data)
 	print_r($data);
 	die;
 }
+
+function generateUniquePromoCode() {
+    $a4 = strtoupper(\Str::random(4));
+    $b5 = strtoupper(\Str::random(5));
+    $c4 = strtoupper(\Str::random(4));
+    $d5 = strtoupper(\Str::random(5));
+
+    $string = $a4.'-'.$b5.'-'.$c4.'-'.$d5;
+
+    // call the same function if the string already exists
+    if (stringExists($string)) {
+        return $this->generateUniquePromoCode();
+    }
+
+    // otherwise, it's valid and can be used
+    return $string;
+}
+
+function stringExists($string) {
+    // query the database and return a boolean    
+    $ug = App\Models\Promocode::where('promocode',$string)->where('deleted_at',null)->first();
+    if($ug === null){
+        return false;
+    }
+    else{
+        return true;
+    }
+}
