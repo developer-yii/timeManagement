@@ -13,29 +13,37 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box flex-home">
-                <div class="col-md-6 d-flex">
+                <div class="col-md-4 d-flex">
                     <h4 class="page-title">Progress Charts</h4>
                     <a href="javascript:void(0)" data-serialtip="ex1"><img src="{{asset('images/tooltip.png')}}" class="bulb-icon"></a>
                 </div>
-                <div class="col-md-6">
-                    <form class="d-flex">                        
-                        {{-- <div class="col-md-6"> --}}
-                        <label for="status-select" class="me-2">Student</label>
-                        <select class="form-control select2" data-toggle="select2" id="student-select" name="s">
-                            {{-- <option value="">Select Student</option> --}}
-                            @foreach($students as $key => $value) 
-                                <option value="{{$key}}" {{($key == $s)?"selected":""}}>{{$value}}</option>
-                            @endforeach                            
-                        </select>
-                        <label for="status-select" class="me-2 ml-10">Year</label>
-                        
-                        <select class="form-control select2" data-toggle="select2" id="year-select" name="y">
-                            @foreach(config('years') as $key => $value)
-                                <option value="{{$key}}" {{($key == $y)?"selected":""}}>{{$value}}</option>
-                            @endforeach                            
-                        </select>
-                        {{-- </div> --}}
-                        <button type="submit" class="btn btn-green ml-10">Update</button>
+                <div class="col-md-3">
+                    <form>
+                        <div class="d-flex">                        
+                            {{-- <div class="col-md-6"> --}}
+                            <label for="status-select" class="me-2">Student</label>
+                            <select class="form-control select2" data-toggle="select2" id="student-select" name="s">
+                                {{-- <option value="">Select Student</option> --}}
+                                @foreach($students as $key => $value) 
+                                    <option value="{{$key}}" {{($key == $s)?"selected":""}}>{{$value}}</option>
+                                @endforeach                            
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="d-flex">
+                            {{-- <label for="status-select" class="me-2 ml-10">Year</label> --}}
+                            <label for="status-select" class="me-2 ml-10">Date</label>
+                            <input type="text" class="form-control date" name="daterange" id="singledaterange" value="{{$tempDateArray}}">
+                            
+                            {{-- <select class="form-control select2" data-toggle="select2" id="year-select" name="y">
+                                @foreach(config('years') as $key => $value)
+                                    <option value="{{$key}}" {{($key == $y)?"selected":""}}>{{$value}}</option>
+                                @endforeach                            
+                            </select> --}}
+                            {{-- </div> --}}
+                            <button type="submit" class="btn btn-green ml-10">Update</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -368,6 +376,7 @@
 @section('js')
 {{-- <script src="{{ asset('js/vendor/coloris.js') }}"></script> --}}
 <script>
+    var getdateUrl = "{{ route('getStudentDateRange')}}";
     var attendance = "{{$attendanceArray}}";
     var stuHours = "{{$hoursHHArray}}";
     var stuBarHours = "{{$hoursHHBarArray}}";
@@ -394,6 +403,13 @@
     stuHours = JSON.parse(stuHours);
     stuBarHours = JSON.parse(stuBarHours);
     stuCoreNonCore = JSON.parse(stuCoreNonCore);    
+
+    
+      $('#singledaterange').daterangepicker({                
+        locale: {
+          format: 'YYYY/MM/DD'
+        }
+      });
     
 </script>
 @endsection

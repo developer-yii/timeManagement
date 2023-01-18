@@ -56,7 +56,9 @@
     <div class="row pt-4">
     @if($user->user_type != 1)
         <div class="col-12 font-bold">Subscription :</div>
-        @if($user->onTrial())
+        @if($user->promocode_id)
+            <div class="col-12 font-bold">Promo Subscription: <span class="badge badge-success-lighten">Active</span></div>
+        @elseif($user->onTrial())
             <div class="col-12 font-bold">Trial Subscription: <span class="badge badge-success-lighten">Active</span></div>
             <div>Trial Ends At: <span class="badge badge-dark-lighten rounded-pill">{{ $user->trial_ends_at }}</span></div>
             <div><a href="{{ route('plans.index') }}" class="btn btn-success mt-2">Subscribe Here</a></div>

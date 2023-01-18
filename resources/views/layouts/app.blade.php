@@ -99,6 +99,13 @@
                             <span> Users </span>
                         </a>
                     </li>
+                    <li class="side-nav-item">
+                        <a href="{{ route('promocode') }}" class="side-nav-link">
+                            <i class="mdi mdi-ticket"></i>
+                            <span> Promo Codes </span>
+                        </a>
+                    </li>
+                    
                     @endif
 
                     {{-- <li class="side-nav-item">

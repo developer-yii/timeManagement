@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\Promocode;
 
 class SubscriptionCheck
 {
@@ -21,7 +22,20 @@ class SubscriptionCheck
 
         if($user->user_type != 1)
         {
-            if($user->onTrial())
+            if($user->promocode_id)
+            {
+                $promo = Promocode::find($user->promocode_id);
+                
+                if($promo)
+                {
+                    return $next($request);   
+                }
+                else
+                {
+                    return redirect()->route('plans.index')->with('subMessage','Subscribe plan to access site');
+                }
+            }
+            else if($user->onTrial())
             {
                 return $next($request);
             }

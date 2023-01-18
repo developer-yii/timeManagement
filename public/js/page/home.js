@@ -8,6 +8,23 @@ if(sesMessage)
 {
     show_toast(sesMessage, 'success');
 }
+
+$(document).on('change','#student-select', function (e) {
+  e.preventDefault();
+  var stId = $(this).val();
+
+  $.ajax({
+    url: getdateUrl+'?id='+stId,
+    type: 'POST',
+    dataType: 'json',
+    success: function(result) {        
+      console.log(result.dateRange);  
+      $('#singledaterange').val(result.dateRange);
+    }
+  }); 
+
+});
+
 var pieColors = ['#61ba61','#fa5c7c'];
 
 var options = {

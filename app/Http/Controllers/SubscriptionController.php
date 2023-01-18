@@ -8,7 +8,10 @@ use Validator;
 use Auth;
 use Carbon\Carbon;
 use App\Mail\StripeLink;
+use App\Models\Promocode;
+use App\User;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 class SubscriptionController extends Controller
 {
@@ -36,6 +39,7 @@ class SubscriptionController extends Controller
         {
             $user->trial_ends_at = now();
         }
+        $user->promocode_id = null;
         $user->save();
 
         // Email user a stripe link
@@ -151,5 +155,51 @@ class SubscriptionController extends Controller
                 }
             }            
         }
+    }
+
+    public function freeCodePlan(Request $request)
+    {
+        if($request->ajax()) {
+            $rules = array(                             
+                'freecode'=>'required|exists:promocodes,promocode|size:21|regex:/^[a-zA-Z0-9-]{5}[a-zA-Z0-9{5}-]{6}[a-zA-Z0-9{4}-]{5}[a-zA-Z0-9-]{5}$/', 
+            );
+
+            $messages = [
+                'freecode.required' => 'Please Enter Promo Code!',
+                'freecode.exists' => 'Invalid Promo Code!',
+                'freecode.size' => 'Invalid Promo Code!',
+                'freecode.regex' => 'Invalid Promo Code!',                
+            ];
+
+            $validator = Validator::make($request->all(), $rules, $messages);
+
+            if($validator->fails()){
+                $result = ['status' => false, 'message' => $validator->errors(), 'data' => []];
+                return response()->json($result);
+            }
+            else
+            {
+                $promo = Promocode::where('promocode',$request->freecode)->first();
+                if($promo)
+                {
+                    $user = User::where('promocode_id',$promo->id)->first();
+                    if($user)
+                    {
+                        $validator->getMessageBag()->add('freecode', 'Promo Code already used');
+                        $result = ['status' => false, 'message' => $validator->errors(), 'data' => []];
+                        return response()->json($result);
+                    }
+
+                    $loginUser = Auth::user();
+                    $loginUser->promocode_id = $promo->id;
+                    $loginUser->save();
+
+                    session(['success' => 'Your Promo Code Applied successfully, You can now user application free of cost']);
+
+                    $result = ['status' => true, 'message' => 'Promo Code applied successfully', 'data' => []];
+                    return response()->json($result);                    
+                }
+            }
+        }        
     }
 }
