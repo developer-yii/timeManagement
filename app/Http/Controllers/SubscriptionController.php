@@ -194,7 +194,7 @@ class SubscriptionController extends Controller
                     $loginUser->promocode_id = $promo->id;
                     $loginUser->save();
 
-                    session(['success' => 'Your Promo Code Applied successfully, You can now user application free of cost']);
+                    session(['success' => 'Your Promo Code Applied successfully, You can now use application free of cost']);
 
                     $result = ['status' => true, 'message' => 'Promo Code applied successfully', 'data' => []];
                     return response()->json($result);                    
