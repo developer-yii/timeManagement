@@ -35,7 +35,7 @@ class PromoCodeController extends Controller
     {
         if($request->ajax()) {
             $rules = array(
-                'promocode'=>'required|unique:promocodes,promocode|size:21|regex:/^[a-zA-Z0-9-]{5}[a-zA-Z0-9{5}-]{6}[a-zA-Z0-9{4}-]{5}[a-zA-Z0-9-]{5}$/',                
+                'promocode'=>'required|size:21|regex:/^[a-zA-Z0-9-]{5}[a-zA-Z0-9{5}-]{6}[a-zA-Z0-9{4}-]{5}[a-zA-Z0-9-]{5}$/|unique:promocodes,promocode,'.$request->id,                
             );
             $msg = '';
             $validator = Validator::make($request->all(), $rules);
