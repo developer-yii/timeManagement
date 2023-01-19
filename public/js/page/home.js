@@ -17,9 +17,10 @@ $(document).on('change','#student-select', function (e) {
     url: getdateUrl+'?id='+stId,
     type: 'POST',
     dataType: 'json',
-    success: function(result) {        
-      console.log(result.dateRange);  
-      $('#singledaterange').val(result.dateRange);
+    success: function(result) {             
+      
+      $("#singledaterange").data('daterangepicker').setStartDate(result.firstDay);
+      $("#singledaterange").data('daterangepicker').setEndDate(result.lastDay);
     }
   }); 
 

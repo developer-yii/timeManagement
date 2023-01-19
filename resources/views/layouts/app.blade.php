@@ -187,12 +187,14 @@
                         </a>
                     </li>
 
-                    <li class="side-nav-item">
-                        <a href="{{ route('idcard')}}" class="side-nav-link">
-                            <i class="mdi mdi-card-account-details-outline"></i>
-                            <span> ID Card Emails </span>
-                        </a>
-                    </li>
+                    @if(auth()->user()->user_type == 1)
+                        <li class="side-nav-item">
+                            <a href="{{ route('idcard')}}" class="side-nav-link">
+                                <i class="mdi mdi-card-account-details-outline"></i>
+                                <span> ID Card Emails </span>
+                            </a>
+                        </li>
+                    @endif
                 </ul>
 
                 <!-- End Sidebar -->

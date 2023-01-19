@@ -109,11 +109,13 @@ class HomeController extends Controller
                 $y = date('Y');
                 $date = Carbon::createFromDate($y, 2, 23);
 
-                $firstDay = $date->copy()->startOfYear()->format('Y/m/d');
-                $lastDay   = $date->copy()->endOfYear()->format('Y/m/d');
+                $firstDay = $date->copy()->startOfYear()->format('Y-m-d');
+                $lastDay   = $date->copy()->endOfYear()->format('Y-m-d');
 
-                $tempDateArray = $firstDay.' - '.$lastDay;       
-                // echo $tempDateArray;die;         
+                $firstDay1 = $date->copy()->startOfYear()->format('m/d/Y');
+                $lastDay1   = $date->copy()->endOfYear()->format('m/d/Y');
+
+                $tempDateArray = $firstDay1.' - '.$lastDay1;               
             }
         }
 
@@ -479,7 +481,12 @@ class HomeController extends Controller
             $dateRange = StudentDateRange::where('student_id',$request->id)->first();
             if($dateRange)
             {
-                $result = ['status' => true, 'message' => '', 'dateRange' => $dateRange->daterange];
+                $dtArray = explode('-',$dateRange->daterange);
+
+                $firstDay = $dtArray[0];
+                $lastDay = $dtArray[1];                
+
+                $result = ['status' => true, 'message' => '', 'firstDay' => $firstDay, 'lastDay' => $lastDay];
                 return response()->json($result);
             }
         }        
