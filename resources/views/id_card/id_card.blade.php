@@ -70,7 +70,53 @@
 								<div class="one-third column photo-id">
 									<div class="text-center">
 										<span id="current_preview">
-											<div class="v-card" id="v-card" style="width:358px;height:230px;position:relative">
+											<div id="body-main-div" style="width: 324px !important; position: relative;">
+												<img src="{{ asset('card/img/card-bg-student.png') }}" class="hide_for_teacher">
+
+												<img src="{{ asset('card/img/card-bg-teacher.png') }}" class="hide_for_student">
+
+												<p style="position: absolute !important; left: 108px !important; top: 0px !important; font-size: 14px !important; text-align: center !important; line-height: 20px !important; width: 208px !important; height: 39px !important; display: flex !important; justify-content: center !important; align-items: center !important;">
+													<span class="school_card" style="color: #fff !important;">Johnson Family Homeschool</span>
+												</p>
+
+												<img src="{{ asset('card/img/student-img.png') }}" style="height: 105px !important; position: absolute !important; left: 20px !important; top: 50px !important; width: 94px !important;" class="hide_for_teacher">
+
+												<img src="{{ asset('card/img/teacher-img.png') }}" style="height: 105px !important; position: absolute !important; left: 20px !important; top: 50px !important; width: 94px !important;" class="hide_for_student">
+
+												<div class="append_card_img" style="display: none;">
+													<img src="" id="preview_card_img" style="height: 105px !important; position: absolute !important; left: 20px !important; top: 50px !important; width: 94px !important;">
+												</div>
+
+												<p class="student_name_card hide_for_teacher" style="position: absolute !important; left: 129px !important; top:64px !important; font-weight: 700 !important; font-size: 11px !important; color: black !important;">Arianna Henry</p>
+
+												<p class="teacher_name_card hide_for_student" style="position: absolute !important; left: 129px !important; top:64px !important; font-weight: 700 !important; font-size: 11px !important; color: black !important;">Sarah Miller</p>
+
+												<p class="dob_card hide_for_teacher" style="position: absolute !important; left: 129px !important; top: 100px !important; font-weight: 700 !important; font-size: 11px !important; line-height: 14px; color: black !important;">02/03/2014</p>
+
+												<p class="address_card hide_for_student" style="position: absolute !important; left: 129px !important; top:95px !important; font-weight: 700 !important; font-size: 11px !important; line-height: 11px; text-align: left; color: black !important;">
+													<span class="address_card1">1296</span><br>
+													<span class="address_card2">Farmton Lane Hills</span><br>
+													<span class="address_card3">NY 63251</span>
+												</p>
+
+												<p class="educator_card hide_for_teacher" style="position: absolute !important; left: 129px !important; top:131px !important; font-weight: 700 !important; font-size: 11px !important; color: black !important;">Sandra Henry</p>
+
+												<p class="phone_card hide_for_student" style="position: absolute !important; left: 129px !important; top:139px !important; font-weight: 700 !important; font-size: 11px !important; color: black !important;">111-111-1111</p>
+
+												@php
+												$id_number = random_int(10000000, 99999999);
+												@endphp
+												<p style="position: absolute !important; left: 234px !important; top:64px !important; font-weight: 700 !important; font-size: 11px !important; color: black !important;">{{ $id_number }}</p>
+												<input type="hidden" name="id_number" class="id_number" value="{{ $id_number }}">
+
+												<p class="year_card" style="position: absolute !important; left: 20px !important; top: 181px !important; font-size: 13px !important; text-align: center !important; color: #fff !important; line-height: 20px;">2022 - 2023</p>
+
+												<p class="grade_card hide_for_teacher" style="position: absolute !important; left: 235px !important; top:100px !important; font-weight: 700 !important; font-size: 25px !important; line-height: 39px !important; text-transform: uppercase !important; display: block !important; text-align: center !important; padding: 5px 0 !important; width: 35px !important; color: black !important;">
+													<span>3</span>
+												</p>
+											</div>
+
+											{{-- <div class="v-card" id="v-card" style="width:358px;height:230px;position:relative">
 												<div class="top">
 													<span class="school_card" style="text-align: center; margin-left: 90px;">Johnson Family Homeschool</span>
 												</div>
@@ -156,7 +202,7 @@
 														<img src="{{ asset('card/img/home-logo.png') }}" style="height: 28px;" />
 													</div>
 												</div>
-											</div>
+											</div> --}}
 										</span>
 									</div>
 

@@ -191,7 +191,7 @@ $(document).ready(function() {
 	                } else {
 	                	$('.email_printable_page').val('Please wait...');
 
-	                	var container = document.getElementById("v-card");
+	                	var container = document.getElementById("body-main-div");
 		                html2canvas(container, { allowTaint: true,backgroundColor:null }).then(function (canvas) {
 		                    var dataURL = canvas.toDataURL();
 		                    var email = $('#email').val();
