@@ -191,16 +191,15 @@ $(document).ready(function() {
 	                } else {
 	                	$('.email_printable_page').val('Please wait...');
 
-	                	var container = document.getElementById("body-main-div");
-		                html2canvas(container, { allowTaint: true,backgroundColor:null }).then(function (canvas) {
-		                    var dataURL = canvas.toDataURL();
-		                    var email = $('#email').val();
-		                    
+	                	// var container = document.getElementById("body-main-div");
+		                // html2canvas(container, { allowTaint: true,backgroundColor:null }).then(function (canvas) {
+		                //     var dataURL = canvas.toDataURL();
 		                    $.ajax({
 				                url: sendCardUrl,
 				                type: 'POST',
-				                data: { 'image': dataURL, 'email': email, '_token': _token },
-				                dataType: 'json',
+				                data: dataString,
+				                processData: false,
+            					contentType: false,
 				                beforeSend: function() {
 					                $('.email_printable_page').prop('disabled', true);
 					            },
@@ -215,7 +214,7 @@ $(document).ready(function() {
 					                alert('Something went wrong!', 'error');
 					            }
 				            });
-		                });
+		                // });
 	                }
                 } else {
                     first_input = "";
