@@ -134,8 +134,8 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::group(['prefix' => 'idcard'], function () {
-        Route::get('/', 'IdCardController@index')->name('idcard');
-        Route::get('/index', 'IdCardController@index')->name('idcard');
+        Route::get('/', 'IdCardController@index')->name('idcard')->middleware('admin.user');
+        Route::get('/index', 'IdCardController@index')->name('idcard')->middleware('admin.user');
         Route::get('/get', 'IdCardController@get')->name('idcard.list');
     });
 });

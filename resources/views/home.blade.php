@@ -406,9 +406,9 @@
 
     
       $('#singledaterange').daterangepicker({                
-        locale: {
-          format: 'YYYY/MM/DD'
-        }
+        // locale: {
+        //   format: 'MM/DD/YYYY'
+        // }
       });
     
 </script>
