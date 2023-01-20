@@ -71,9 +71,9 @@
 									<div class="text-center">
 										<span id="current_preview">
 											<div id="body-main-div" style="width: 324px !important; position: relative;">
-												<img src="{{ asset('card/img/card-bg-student.png') }}" class="hide_for_teacher">
+												<img src="{{ asset('card/img/card-bg-student.png') }}" class="hide_for_teacher" style="width: 325px !important;">
 
-												<img src="{{ asset('card/img/card-bg-teacher.png') }}" class="hide_for_student">
+												<img src="{{ asset('card/img/card-bg-teacher.png') }}" class="hide_for_student" style="width: 325px !important;">
 
 												<p style="position: absolute !important; left: 108px !important; top: 0px !important; font-size: 14px !important; text-align: center !important; line-height: 20px !important; width: 208px !important; height: 39px !important; display: flex !important; justify-content: center !important; align-items: center !important;">
 													<span class="school_card" style="color: #fff !important;">Johnson Family Homeschool</span>
