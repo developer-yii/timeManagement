@@ -68,9 +68,9 @@
 
 							<div class="row" style="padding-top:30px; flex-wrap: nowrap;">
 								<div class="one-third column photo-id">
-									<div class="text-center">
+									<div class="text-center" style="display: flex; justify-content: center;">
 										<span id="current_preview">
-											<div id="body-main-div" style="width: 324px !important; position: relative;">
+											<div id="body-main-div" style="width: 324px !important; position: relative !important;">
 												<img src="{{ asset('card/img/card-bg-student.png') }}" class="hide_for_teacher" style="width: 325px !important;">
 
 												<img src="{{ asset('card/img/card-bg-teacher.png') }}" class="hide_for_student" style="width: 325px !important;">
@@ -218,7 +218,7 @@
 										</div>
 									</div>
 
-									<div class="text-center" style="width: 358px; margin: 45px auto 0 auto;">
+									<div class="text-center" style="width: 324px; margin: 45px auto 0 auto;">
 				 						<p>* Want to keep your school ID's conveniently on your phone? Click the Email School ID above.</p>
 				 					</div>
 								</div>
