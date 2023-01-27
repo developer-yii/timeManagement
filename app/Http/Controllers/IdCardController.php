@@ -233,7 +233,18 @@ class IdCardController extends Controller
 		$image_height = imagesy($im);
 
 		imagettftext($im, 17, 0, 525, 170, $textcolor, $font_file, $id_number);
-		imagettftext($im, 20, 0, 350, 55, imagecolorallocate($im, 255, 255, 255), $font_file, $school_name);
+
+		if ((strlen($school_name) > 0) && (strlen($school_name) <= 20)) {
+			imagettftext($im, 20, 0, 350, 55, imagecolorallocate($im, 255, 255, 255), $font_file, $school_name);
+		} else if ((strlen($school_name) >= 21) && (strlen($school_name) <= 30)) {
+			imagettftext($im, 20, 0, 280, 55, imagecolorallocate($im, 255, 255, 255), $font_file, $school_name);
+		} else if ((strlen($school_name) >= 31) && (strlen($school_name) <= 40)) {
+			imagettftext($im, 20, 0, 280, 55, imagecolorallocate($im, 255, 255, 255), $font_file, $school_name);
+		} else {
+			imagettftext($im, 18, 0, 240, 55, imagecolorallocate($im, 255, 255, 255), $font_file, $school_name);
+		}
+
+
 		imagettftext($im, 20, 0, 50, 435, imagecolorallocate($im, 255, 255, 255), $font_file, $school_year);
 
 		if ($request->card_type == 1) {
