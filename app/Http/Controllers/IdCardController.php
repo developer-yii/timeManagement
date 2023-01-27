@@ -185,8 +185,8 @@ class IdCardController extends Controller
 
     	$virtualprofile = imagecreatefrompng($profileimage);
     	list($profilewid, $profilehayt) = getimagesize($profileimage);
-    	$newprofilewid = 94;
-		$newprofilehayt = 105;
+    	$newprofilewid = 200;
+		$newprofilehayt = 220;
 
 		$destination = imagecreatetruecolor($newprofilewid, $newprofilehayt);
 		imagecopyresampled($destination, $virtualprofile, 0, 0, 0, 0, $newprofilewid, $newprofilehayt, $profilewid, $profilehayt);
@@ -200,19 +200,20 @@ class IdCardController extends Controller
 			$aaa = public_path().'/card/img/card-bg-teacher.png';
 		}
 
-		list($width, $height) = getimagesize($aaa);
-    	$new_width = 324;
-		$new_height = 204;
-		$destination2 = imagecreatetruecolor($new_width, $new_height);
-		imagecopyresampled($destination2, $backgroundimage, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
-		imagejpeg($destination2, public_path().'/card/tmp2.jpg', 100);
+		// list($width, $height) = getimagesize($aaa);
+    	// $new_width = 324;
+		// $new_height = 204;
+		// $destination2 = imagecreatetruecolor($new_width, $new_height);
+		// imagecopyresampled($destination2, $backgroundimage, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+		// imagejpeg($destination2, public_path().'/card/tmp2.jpg', 100);
 
-		$backgroundimage2 = imagecreatefromjpeg(public_path().'/card/tmp2.jpg');
+		// $backgroundimage2 = imagecreatefromjpeg(public_path().'/card/tmp2.jpg');
+		$backgroundimage2 = $backgroundimage;
 
 		$profilestamp = imagecreatefromjpeg(public_path().'/card/tmp.jpg');
 
-		$marge_right = 210;
-		$marge_bottom = 50;
+		$marge_right = 480;
+		$marge_bottom = 120;
 
 		$sx = imagesx($profilestamp);
 		$sy = imagesy($profilestamp);
@@ -231,29 +232,29 @@ class IdCardController extends Controller
 		$image_width = imagesx($im);  
 		$image_height = imagesy($im);
 
-		imagettftext($im, 8, 0, 235, 78, $textcolor, $font_file, $id_number);
-		imagettftext($im, 11, 0, 140, 24, imagecolorallocate($im, 255, 255, 255), $font_file, $school_name);
-		imagettftext($im, 10, 0, 20, 196, imagecolorallocate($im, 255, 255, 255), $font_file, $school_year);
+		imagettftext($im, 17, 0, 525, 170, $textcolor, $font_file, $id_number);
+		imagettftext($im, 20, 0, 350, 55, imagecolorallocate($im, 255, 255, 255), $font_file, $school_name);
+		imagettftext($im, 20, 0, 50, 435, imagecolorallocate($im, 255, 255, 255), $font_file, $school_year);
 
 		if ($request->card_type == 1) {
-			imagettftext($im, 8, 0, 130, 78, $textcolor, $font_file, $student_name);
-			imagettftext($im, 8, 0, 130, 146, $textcolor, $font_file, $teacher_name);
-			imagettftext($im, 8, 0, 130, 112, $textcolor, $font_file, $dob);
+			imagettftext($im, 17, 0, 290, 170, $textcolor, $font_file, $student_name);
+			imagettftext($im, 17, 0, 290, 322, $textcolor, $font_file, $teacher_name);
+			imagettftext($im, 17, 0, 290, 247, $textcolor, $font_file, $dob);
 
 			if (($student_grade == 10) || ($student_grade == 11) || ($student_grade == 12)) {
-				imagettftext($im, 12, 0, 246, 130, $textcolor, $font_file, $student_grade);
+				imagettftext($im, 30, 0, 545, 290, $textcolor, $font_file, $student_grade);
 			} else {
-				imagettftext($im, 12, 0, 248, 130, $textcolor, $font_file, $student_grade);
+				imagettftext($im, 30, 0, 555, 290, $textcolor, $font_file, $student_grade);
 			}
 		} else {
-			imagettftext($im, 8, 0, 130, 78, $textcolor, $font_file, $teacher_name);
-			imagettftext($im, 8, 0, 130, 152, $textcolor, $font_file, $phone_number);
-			imagettftext($im, 8, 0, 130, 106, $textcolor, $font_file, $address1);
-			imagettftext($im, 8, 0, 130, 116, $textcolor, $font_file, $address2);
+			imagettftext($im, 17, 0, 290, 170, $textcolor, $font_file, $teacher_name);
+			imagettftext($im, 17, 0, 290, 340, $textcolor, $font_file, $phone_number);
+			imagettftext($im, 17, 0, 290, 235, $textcolor, $font_file, $address1);
+			imagettftext($im, 17, 0, 290, 257, $textcolor, $font_file, $address2);
 			if ($address2 != '') {
-				imagettftext($im, 8, 0, 130, 126, $textcolor, $font_file, $city);
+				imagettftext($im, 17, 0, 290, 280, $textcolor, $font_file, $city);
 			} else {
-				imagettftext($im, 8, 0, 130, 116, $textcolor, $font_file, $city);
+				imagettftext($im, 17, 0, 290, 257, $textcolor, $font_file, $city);
 			}
 		}
 
@@ -278,7 +279,7 @@ class IdCardController extends Controller
 		unlink(public_path().'/card/id-card-copy.png');
 		unlink(public_path().'/card/final.png');
 		unlink(public_path().'/card/tmp.jpg');
-		unlink(public_path().'/card/tmp2.jpg');
+		// unlink(public_path().'/card/tmp2.jpg');
 
 
 	    // $path = public_path().'/card/' . $png_url;
