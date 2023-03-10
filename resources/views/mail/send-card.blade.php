@@ -25,8 +25,8 @@
 
 	_________________________________________________________________ <br><br>
 
-	Don't forget to visit Homeschool Nextdoor. Get information about curriculums, events, homeschool planners, and classifieds. All homeschool, all in one place! <br><br>
+	Don't forget to visit Homeschool Minutes and check out our homeschool tracking app! <br><br>
 
-	https://www.homeschoolnextdoor.com/
+	https://www.homeschoolminutes.com
 </body>
 </html>
