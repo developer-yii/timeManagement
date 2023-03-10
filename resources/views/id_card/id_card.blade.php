@@ -49,14 +49,13 @@
 							<p>There are tons of great discounts that are available to teachers, students & homeschool educators!</p>
 							<p class="hsbcid-header fs-3 font-bold">Download your IDs and take advantage of these discounts and more.</p>
 
-							<ul>
-								<li>Michaels - 15% Off</li>
-								<li>Apple Computer</li>
-								<li>Books-A-Million - 20% Off</li>
-								<li>JoAnn Crafts</li>
-								<li>Barnes and Noble Bookstore and more!</li>
-							</ul>
-							<p class="fs-3 font-bold fst-italic text-info">Print your school IDs and be sure to ask at every store and restaurant you visit!</p>
+								<p>Michaels - 15% Off</p>
+								<p>Apple Computer</p>
+								<p>Books-A-Million - 20% Off</p>
+								<p>JoAnn Crafts</p>
+								<p>Barnes and Noble Bookstore and more!</p>
+							
+							<p class="fs-3 font-bold fst-italic text-info">Print your school IDs today! Be sure to ask at every store and restaurant you visit if they offer a homeschool discount!</p>
 							<br><br>
 
 
