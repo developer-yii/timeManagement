@@ -41,24 +41,30 @@
 			<div class="row">
 				<div class="column text left" style="margin-left:0px">
 					<div class="centerAlign">
-						<div style="text-align: center;">
-							<h2 class="hsbcid-header">
-								<span>FREE Student & Teacher (parent) ID!</span>
-							</h2>
+						<div class="text-black text-center">
+							<div class="mb-5">
+								<img src="{{ asset('images/pages/idcardbanner.png')}}">								
+							</div>							
 
-							There are tons of great discounts that are available to teachers. What many parents aren’t aware of is that many <u>are available to homeschool families with a valid School ID.</u>
+							<p>There are tons of great discounts that are available to teachers, students & homeschool educators!</p>
+							<p class="hsbcid-header fs-3 font-bold">Download your IDs and take advantage of these discounts and more.</p>
+
+							<ul>
+								<li>Michaels - 15% Off</li>
+								<li>Apple Computer</li>
+								<li>Books-A-Million - 20% Off</li>
+								<li>JoAnn Crafts</li>
+								<li>Barnes and Noble Bookstore and more!</li>
+							</ul>
+							<p class="fs-3 font-bold fst-italic text-info">Print your school IDs and be sure to ask at every store and restaurant you visit!</p>
 							<br><br>
 
-							Fill out the form below, click “Update Preview” to make sure everything is entered correctly then click “Print School ID”.
+
+							Need help with tracking homeschool hours, your daily schedule, or just to making sure
+							your kids are getting a balanced education?
 							<br><br>
-
-							<h4>It’s that easy!</h4>
-							<br>
-
-							Then visit our directory to see current discounts we found.
-							<br>
-
-							<a href="https://www.homeschoolnextdoor.com">www.homeschoolnextdoor.com</a>
+							<p class="font-bold">Visit <a href="https://www.homeschoolminutes.com">www.homeschoolminutes.com</a> today!</p>							
+							<br>							
 						</div>
 
 						<form action="" method="post" name="id_card_form" class="id_card_form" enctype="multipart/form-data">
@@ -378,7 +384,7 @@
 										<div class="row">
 											<div class="column">
 												<input type="radio" name="print_free_card" id="print_free_card" value="email" checked>
-												<label for="print_free_card" style="display: inline;"> To use our FREE service. You agree to receive homeschooling promotional messages, discounts, and exciting new updates.</label>
+												<label for="print_free_card" style="display: inline;"> By using our FREE ID app, you agree to receive homeschool promotional emails, discounts, and exciting new updates.</label>
 											</div>
 										</div>
 
